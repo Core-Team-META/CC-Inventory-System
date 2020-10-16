@@ -7,6 +7,6 @@ local CRIT_MULTIPLIER = 2.0
 function CombatStats:GetAttackDamage(player1, player2) -- player, player
 end
 
-function CombatStats:
+-- TODO: Create some methods that some of the important combat stats
 
 return CombatStats

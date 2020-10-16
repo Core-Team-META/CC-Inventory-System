@@ -23,19 +23,11 @@ Objects {
   ChildIds: 13845877589726147037
   ChildIds: 9477342016099356239
   ChildIds: 7676655385465303512
-  ChildIds: 12959719698012695927
-  ChildIds: 14329793543405687529
-  ChildIds: 5658783580572616501
-  ChildIds: 6531770978321040968
-  ChildIds: 1834604009455991085
-  ChildIds: 10988097915557158587
+  ChildIds: 7988535948195848523
   ChildIds: 5012740452443113133
   ChildIds: 16418814071275107557
-  ChildIds: 7235330886198137516
-  ChildIds: 95891908219836363
-  ChildIds: 7534996663070165078
-  ChildIds: 18289443880586435386
-  ChildIds: 15887715521753241645
+  ChildIds: 4772262806763452274
+  ChildIds: 6159348408707338010
   UnregisteredParameters {
   }
   Collidable_v2 {
@@ -48,6 +40,82 @@ Objects {
   }
 }
 Objects {
+  Id: 6159348408707338010
+  Name: "ITEM_Consumable_PoisonPotion"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  WantsNetworking: true
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 1558197855077483019
+      value {
+        Overrides {
+          Name: "Name"
+          String: "ITEM_Consumable_PoisonPotion"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: -122.634949
+            Y: -193.218628
+            Z: 2.28881836e-05
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 5151373499733762021
+    }
+  }
+}
+Objects {
+  Id: 4772262806763452274
+  Name: "ArmorSets"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  ChildIds: 7235330886198137516
+  ChildIds: 95891908219836363
+  ChildIds: 7534996663070165078
+  ChildIds: 18289443880586435386
+  ChildIds: 15887715521753241645
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Folder {
+    IsGroup: true
+  }
+}
+Objects {
   Id: 15887715521753241645
   Name: "Armour Set 1 BootGroup"
   Transform {
@@ -57,7 +125,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 4781671109827199097
+  ParentId: 4772262806763452274
   TemplateInstance {
     ParameterOverrideMap {
       key: 8801047473708117576
@@ -72,6 +140,19 @@ Objects {
             X: 309.19043
             Y: -325.696564
             Z: 4.45903778
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+        Overrides {
+          Name: "Scale"
+          Vector {
+            X: 1
+            Y: 1
+            Z: 1
           }
         }
       }
@@ -91,7 +172,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 4781671109827199097
+  ParentId: 4772262806763452274
   TemplateInstance {
     ParameterOverrideMap {
       key: 9526724338161417331
@@ -106,6 +187,19 @@ Objects {
             X: 244.854614
             Y: -320.274384
             Z: 86.3473816
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+        Overrides {
+          Name: "Scale"
+          Vector {
+            X: 1
+            Y: 1
+            Z: 1
           }
         }
       }
@@ -125,7 +219,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 4781671109827199097
+  ParentId: 4772262806763452274
   WantsNetworking: true
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
@@ -154,6 +248,14 @@ Objects {
           Rotator {
           }
         }
+        Overrides {
+          Name: "Scale"
+          Vector {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
       }
     }
     TemplateAsset {
@@ -171,7 +273,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 4781671109827199097
+  ParentId: 4772262806763452274
   TemplateInstance {
     ParameterOverrideMap {
       key: 2636871004928294663
@@ -194,6 +296,14 @@ Objects {
             Yaw: 85.7404633
           }
         }
+        Overrides {
+          Name: "Scale"
+          Vector {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
       }
     }
     TemplateAsset {
@@ -211,7 +321,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 4781671109827199097
+  ParentId: 4772262806763452274
   TemplateInstance {
     ParameterOverrideMap {
       key: 15284010473359952955
@@ -231,7 +341,15 @@ Objects {
         Overrides {
           Name: "Rotation"
           Rotator {
-            Yaw: 91.2885132
+            Yaw: 91.2885056
+          }
+        }
+        Overrides {
+          Name: "Scale"
+          Vector {
+            X: 1
+            Y: 1
+            Z: 1
           }
         }
       }
@@ -389,6 +507,41 @@ Objects {
   }
 }
 Objects {
+  Id: 7988535948195848523
+  Name: "Npcs"
+  Transform {
+    Location {
+      X: 793.884888
+      Y: -0.38445282
+      Z: -100.165451
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  ChildIds: 12959719698012695927
+  ChildIds: 14329793543405687529
+  ChildIds: 5658783580572616501
+  ChildIds: 6531770978321040968
+  ChildIds: 1834604009455991085
+  ChildIds: 10988097915557158587
+  WantsNetworking: true
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Folder {
+    IsGroup: true
+  }
+}
+Objects {
   Id: 10988097915557158587
   Name: "RPG Dragon Enemy - Easy"
   Transform {
@@ -405,7 +558,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 4781671109827199097
+  ParentId: 7988535948195848523
   WantsNetworking: true
   TemplateInstance {
     ParameterOverrideMap {
@@ -418,9 +571,21 @@ Objects {
         Overrides {
           Name: "Position"
           Vector {
-            X: 1095.70483
-            Y: -239.856857
-            Z: -100.165451
+            X: 301.819946
+            Y: -239.472412
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+        Overrides {
+          Name: "Scale"
+          Vector {
+            X: 1
+            Y: 1
+            Z: 1
           }
         }
       }
@@ -447,7 +612,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 4781671109827199097
+  ParentId: 7988535948195848523
   WantsNetworking: true
   TemplateInstance {
     ParameterOverrideMap {
@@ -460,9 +625,21 @@ Objects {
         Overrides {
           Name: "Position"
           Vector {
-            X: 1121.04517
-            Y: -11.3411865
-            Z: -100.165451
+            X: 327.160278
+            Y: -10.9567337
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+        Overrides {
+          Name: "Scale"
+          Vector {
+            X: 1
+            Y: 1
+            Z: 1
           }
         }
       }
@@ -489,7 +666,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 4781671109827199097
+  ParentId: 7988535948195848523
   WantsNetworking: true
   TemplateInstance {
     ParameterOverrideMap {
@@ -502,9 +679,21 @@ Objects {
         Overrides {
           Name: "Position"
           Vector {
-            X: 910.566
-            Y: 98.9699707
-            Z: -100.165451
+            X: 116.681091
+            Y: 99.3544235
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+        Overrides {
+          Name: "Scale"
+          Vector {
+            X: 1
+            Y: 1
+            Z: 1
           }
         }
       }
@@ -531,7 +720,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 4781671109827199097
+  ParentId: 7988535948195848523
   WantsNetworking: true
   TemplateInstance {
     ParameterOverrideMap {
@@ -544,9 +733,21 @@ Objects {
         Overrides {
           Name: "Position"
           Vector {
-            X: 910.566
-            Y: -288.584167
-            Z: -100.165451
+            X: 116.681091
+            Y: -288.199707
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+        Overrides {
+          Name: "Scale"
+          Vector {
+            X: 1
+            Y: 1
+            Z: 1
           }
         }
       }
@@ -573,7 +774,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 4781671109827199097
+  ParentId: 7988535948195848523
   WantsNetworking: true
   TemplateInstance {
     ParameterOverrideMap {
@@ -586,9 +787,21 @@ Objects {
         Overrides {
           Name: "Position"
           Vector {
-            X: 910.566
-            Y: -91.3132
-            Z: -100.165451
+            X: 116.681091
+            Y: -90.9287491
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+        Overrides {
+          Name: "Scale"
+          Vector {
+            X: 1
+            Y: 1
+            Z: 1
           }
         }
       }
@@ -608,7 +821,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 4781671109827199097
+  ParentId: 7988535948195848523
   WantsNetworking: true
   TemplateInstance {
     ParameterOverrideMap {
@@ -621,9 +834,9 @@ Objects {
         Overrides {
           Name: "Position"
           Vector {
-            X: 910.566
-            Y: 706.177368
-            Z: -97.1855316
+            X: 116.681091
+            Y: 706.561829
+            Z: 2.97991943
           }
         }
         Overrides {
@@ -637,6 +850,11 @@ Objects {
         Overrides {
           Name: "cs:CurrentHealth"
           Float: 500
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
         }
       }
     }

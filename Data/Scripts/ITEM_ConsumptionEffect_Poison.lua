@@ -3,11 +3,10 @@
 return function(player)
     if RuntimeContextDetection.IsClientSide() then
         Task.Spawn(function()
-            UI.PrintToScreen("Client Side", Color.ORANGE)
+            UI.PrintToScreen("Do client side stuff.", Color.GREEN)
         end, 0.5)
     end
-
     if RuntimeContextDetection.IsServerSide() then
-        player:AddImpulse(Vector3.UP * 300)
+        player:Die() 
     end
 end

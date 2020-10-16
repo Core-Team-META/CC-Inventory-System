@@ -14,7 +14,6 @@ local DATA_STATS = {}
 for _,itemType in ipairs(Item.TYPES) do
     assert(script:GetCustomProperty(string.format("%s_Catalog", itemType)), "Could not load ItemSystems_DATA_"..itemType.."_Catalog script as it does not exist as a property of the database")
     assert(script:GetCustomProperty(string.format("%s_Stats", itemType)), "Could not load ItemSystems_DATA_"..itemType.."_Stats script as it does not exist as a property of the database")
-    --print(itemType,require(script:GetCustomProperty(string.format("%s_Catalog", itemType))))
     table.insert(DATA_CATALOGS, require(script:GetCustomProperty(string.format("%s_Catalog", itemType))))
     table.insert(DATA_STATS, require(script:GetCustomProperty(string.format("%s_Stats", itemType))))
 end
@@ -173,7 +172,6 @@ function Database:_RollItemStats(item)
 end
 
 function Database:_GetRollFunction(StatKey)
-    --print("Stat Key:",StatKey)
     local _RollStats = function()
         local statRollInfos = self.itemStatRollInfos[StatKey]
         local stats = {}
@@ -225,7 +223,6 @@ function Database:_LoadDrops()
             dropTable.cumulativeLikelihood = dropTable.cumulativeLikelihood + dropInfo.likelihood
         end
     end
-    print("LOADING LOOT Ended")
 end
 
 function Database:_LoadAssetDerivedInformation()
