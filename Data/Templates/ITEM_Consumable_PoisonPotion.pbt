@@ -17,6 +17,7 @@
         }
         ParentId: 4781671109827199097
         ChildIds: 4755894725365256958
+        ChildIds: 12916001317274604236
         UnregisteredParameters {
           Overrides {
             Name: "cs:Name"
@@ -130,6 +131,40 @@
           StaticMesh {
             Physics {
             }
+          }
+        }
+      }
+      Objects {
+        Id: 12916001317274604236
+        Name: "Trigger"
+        Transform {
+          Location {
+            X: 683.833252
+            Y: -1950.21545
+          }
+          Rotation {
+            Yaw: -63.3271484
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 1558197855077483019
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Trigger {
+          TeamSettings {
+            IsTeamCollisionEnabled: true
+            IsEnemyCollisionEnabled: true
+          }
+          TriggerShape_v2 {
+            Value: "mc:etriggershape:box"
           }
         }
       }

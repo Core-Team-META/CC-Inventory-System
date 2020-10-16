@@ -881,7 +881,6 @@ Objects {
   }
   ParentId: 4781671109827199097
   ChildIds: 4351541052923964445
-  ChildIds: 10270274032745289017
   ChildIds: 2334161425802837733
   ChildIds: 1384745705464509494
   ChildIds: 14106985790683904916
@@ -1525,53 +1524,6 @@ Objects {
     }
     TemplateAsset {
       Id: 3427213701677311018
-    }
-  }
-}
-Objects {
-  Id: 10270274032745289017
-  Name: "ITEM_Misc_Barrel"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 7676655385465303512
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 15187230565777795458
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ITEM_Misc_Barrel"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: 109.14798
-            Y: -453.916412
-            Z: 14.4127274
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-            Yaw: -35.7811546
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 4507323551487954050
     }
   }
 }
