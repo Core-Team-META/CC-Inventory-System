@@ -31,6 +31,11 @@ Objects {
   ChildIds: 10988097915557158587
   ChildIds: 5012740452443113133
   ChildIds: 16418814071275107557
+  ChildIds: 7235330886198137516
+  ChildIds: 95891908219836363
+  ChildIds: 7534996663070165078
+  ChildIds: 18289443880586435386
+  ChildIds: 15887715521753241645
   UnregisteredParameters {
   }
   Collidable_v2 {
@@ -40,6 +45,200 @@ Objects {
     Value: "mc:evisibilitysetting:forceon"
   }
   Folder {
+  }
+}
+Objects {
+  Id: 15887715521753241645
+  Name: "Armour Set 1 BootGroup"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 8801047473708117576
+      value {
+        Overrides {
+          Name: "Name"
+          String: "Armour Set 1 BootGroup"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: 309.19043
+            Y: -325.696564
+            Z: 4.45903778
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 8570789723404155664
+    }
+  }
+}
+Objects {
+  Id: 18289443880586435386
+  Name: "Armour Set 1 Helm"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 9526724338161417331
+      value {
+        Overrides {
+          Name: "Name"
+          String: "Armour Set 1 Helm"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: 244.854614
+            Y: -320.274384
+            Z: 86.3473816
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 4245188321794423334
+    }
+  }
+}
+Objects {
+  Id: 7534996663070165078
+  Name: "Armour Set 1 Chest"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  WantsNetworking: true
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 4129509117028474446
+      value {
+        Overrides {
+          Name: "Name"
+          String: "Armour Set 1 Chest"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: 245.64418
+            Y: -322.746948
+            Z: 32.5796356
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 9838926182254776715
+    }
+  }
+}
+Objects {
+  Id: 95891908219836363
+  Name: "Armour Set 1 Male Mannequin"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 2636871004928294663
+      value {
+        Overrides {
+          Name: "Name"
+          String: "Armour Set 1 Male Mannequin"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: 411.02594
+            Y: -461.706848
+            Z: 2.28881836e-05
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+            Yaw: 85.7404633
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 10989718002773240115
+    }
+  }
+}
+Objects {
+  Id: 7235330886198137516
+  Name: "Armour Set 2 Male Mannequin"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 15284010473359952955
+      value {
+        Overrides {
+          Name: "Name"
+          String: "Armour Set 2 Male Mannequin"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: 585.790405
+            Y: -464.762054
+            Z: 2.28881836e-05
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+            Yaw: 91.2885132
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 857123357129956019
+    }
   }
 }
 Objects {

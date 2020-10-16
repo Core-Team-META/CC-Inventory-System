@@ -20,6 +20,6 @@ Entries {
     StringVar: "inventoryHash"
   }
   SimpleValue {
-    StringVar: "P<EMainHand>P0CFE0C59E5ADA039|ba|#Attack=saaa&CritChance=kaaa&Attack=daaa;"
+    StringVar: "P<EChest>P888AE33BE096118B|ba|#Defense=qaaa&Haste=haaa&Defense=laaa;<Bb>P477D5AE7A4FDDFE5|ba|#Value=Oaaa;"
   }
 }

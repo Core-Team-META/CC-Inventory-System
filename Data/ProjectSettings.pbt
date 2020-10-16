@@ -1,5 +1,1 @@
-﻿SharedKeysList {
-  StorageKeys {
-    Key: "LocalGameStorageKey"
-  }
-}
+﻿

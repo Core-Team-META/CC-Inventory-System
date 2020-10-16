@@ -168,9 +168,6 @@ end
 
 -- Register a new loot object dropped for the owner of this inventory. Optionally provide a callback for when the loot is claimed.
 function Inventory:RegisterLootItem(lootItem, lootWorldObject, onLootClaimed)
-
-    --print("Registering:",lootItem)
-
     if not lootItem then return end
     local lootInfo = {
         isClaimed = false,
@@ -198,7 +195,6 @@ function Inventory:ClaimLoot(lootIndex)
     local lootInfo = self.lootInfos[lootIndex]
     if lootInfo and not lootInfo.isClaimed then
         lootInfo.isClaimed = true
-        print("is stackable?",lootInfo.item:IsStackable())
         if lootInfo.item:IsStackable() then
             self:_AddStackableItemToBackpack(lootInfo.item)
         else
@@ -370,7 +366,6 @@ function Inventory:_AddStackableItemToBackpack(itemToAdd)
         if itemToAdd:WillStackWith(itemInSlot) then
             local amountToAdd = math.min(itemToAdd:GetStackSize(), itemInSlot:GetAvailableStackSpace())
             itemInSlot:SetStackSize(itemInSlot:GetStackSize() + amountToAdd)
-            print("SIZE:",itemInSlot:GetStackSize() + amountToAdd)
             local newStackSize = itemToAdd:GetStackSize() - amountToAdd
             if newStackSize > 0 then
                 itemToAdd:SetStackSize(newStackSize)

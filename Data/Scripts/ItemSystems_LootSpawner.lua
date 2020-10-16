@@ -20,34 +20,16 @@ local function OnPlayerLeft(player)
     playerLotteryTickets[player] = nil
 end
 
--- The more tickets a player holds, the more likely they are to win.
--- Players who do not win have their tickets doubled and thus become much more likely to win next time.
-local function ChoosePlayerByLottery(tickets)
-    local sumLotteryTickets = 0
-    for _,tickets in pairs(tickets) do sumLotteryTickets = sumLotteryTickets + tickets end
-    local winningNumber = sumLotteryTickets * math.random()
-    local winner = nil
-    for player,tickets in pairs(tickets) do
-        if winningNumber <= tickets then
-            winner = player
-            break
+-- Get the lottery tickets for the players given
+local function GetLotteryTickets(players)
+    local tickets = {}
+    for _, player in pairs(players) do
+        local ticket = playerLotteryTickets[player]
+        if ticket then
+            table.insert(tickets, ticket)
         end
-        winningNumber = winningNumber - tickets
     end
-    -- Adjust tickets depending on outcome. All loser ticket amounts get compounded.
-    local minTickets = math.huge
-    for player,tickets in pairs(tickets) do
-        if player ~= winner then
-            tickets[player] = tickets * TICKET_EXPONENTIATION_BASE
-        end
-        minTickets = math.min(minTickets, tickets[player])
-    end
-    -- Renormalize so that the lowest number is always 1.
-    for player,tickets in pairs(tickets) do
-        tickets[player] = math.max(1, tickets[player] // minTickets)
-    end
-    -- Lottery complete!
-    return winner
+    return tickets
 end
 
 -- Returns a table of tickets of the players we given
@@ -61,6 +43,37 @@ local function GetPlayersLotteryTickets(players) -- table
     return tickets
 end
 
+-- The more tickets a player holds, the more likely they are to win.
+-- Players who do not win have their tickets doubled and thus become much more likely to win next time.
+local function ChoosePlayerByLottery(playerLotteryTickets)
+    local sumLotteryTickets = 0
+    for _,tickets in pairs(playerLotteryTickets) do sumLotteryTickets = sumLotteryTickets + tickets end
+    local winningNumber = sumLotteryTickets * math.random()
+    local winner = nil
+    for player,tickets in pairs(playerLotteryTickets) do
+        if winningNumber <= tickets then
+            winner = player
+            break
+        end
+        winningNumber = winningNumber - tickets
+    end
+    -- Adjust tickets depending on outcome. All loser ticket amounts get compounded.
+    local minTickets = math.huge
+    for player,tickets in pairs(playerLotteryTickets) do
+        if player ~= winner then
+            playerLotteryTickets[player] = tickets * TICKET_EXPONENTIATION_BASE
+        end
+        minTickets = math.min(minTickets, playerLotteryTickets[player])
+    end
+    -- Renormalize so that the lowest number is always 1.
+    for player,tickets in pairs(playerLotteryTickets) do
+        playerLotteryTickets[player] = math.max(1, playerLotteryTickets[player] // minTickets)
+    end
+    -- Lottery complete!
+    return winner
+end
+
+-- Rotates a model when it spawns.
 local function ApplyLootRotation(model)
     local dropRotation = model:GetCustomProperty("DropRotation")
     -- If the item has a drop rotation property we will rotate the item to that inital rotation
