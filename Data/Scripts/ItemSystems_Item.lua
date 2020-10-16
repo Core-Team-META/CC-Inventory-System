@@ -214,7 +214,7 @@ function Item:RollStats()
 end
 
 function Item:HasConsumptionEffect()
-    assert(self:GetType() == "Consumable" and self.data.consumptionEffect ~= nil, "Item type is a consumable, but it does not have a consumption effect.")
+    assert(self:GetType() == "Consumable" and self.data.consumptionEffect ~= nil, "Item type is a consumable and it does not have a consumption effect.")
     return self:GetType() == "Consumable" and self.data.consumptionEffect ~= nil
 end
 
@@ -222,7 +222,6 @@ function Item:ApplyConsumptionEffect(player)
     assert(self:GetType() == "Consumable")
     if self.data.consumptionEffect then
         require(self.data.consumptionEffect)(player)
-        --self.data.consumptionEffect(player)
     end
 end
 
@@ -279,10 +278,6 @@ function Item._FromHash(database, hash)
     local isRuntime = hashType == HASH_RUNTIME
     local hashItemId, hashStackSize, hashItemStats = hashData:match(HASH_PATTERN_FULL)
     local itemData = nil
-    -- print("CURRENT HASH:",hashData)
-    -- print("hashID:",hashItemId)
-    -- print("stackSize:",hashStackSize)
-    -- print("itemStats:",hashItemStats)
     if isRuntime then
         itemData = database:FindItemDataByIndex(Base64.Decode24(hashItemId))
     else

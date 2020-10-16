@@ -129,7 +129,7 @@ function Database:_LoadCatalog()
             end
 
             if propConsumptionEffect then
-
+                assert(require(propConsumptionEffect), "Could not require consumption effect - %s", propName)
             end
 
             assert(not self.itemDatasByName[propName], string.format("duplicate item name is not allowed - %s", propName))
@@ -141,6 +141,7 @@ function Database:_LoadCatalog()
                 assert(self.itemStatRollInfos[propStatKey], string.format("unrecognized item stat key - %s", propStatKey))
             end
 
+            print(propName)
 
             local itemData = {
                 index = index,

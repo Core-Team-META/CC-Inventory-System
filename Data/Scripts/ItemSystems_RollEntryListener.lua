@@ -10,7 +10,6 @@ local ROLLENTRIES_GROUP = script:GetCustomProperty("RollEntriesGroup"):WaitForOb
 local ROLLENTRY_TEMPLATE = script:GetCustomProperty("RollEntryUITemplate")
 local ROLLENTRY_CONTAINER = script:GetCustomProperty("RollEntryContainer"):WaitForObject()
 local LOCALPLAYER = Game.GetLocalPlayer()
-local YSPACING = 180
 
 local ItemDatabase = require(script:GetCustomProperty("ItemSystems_Database"))
 
@@ -27,7 +26,9 @@ local function CreateUIRollEntry(itemHash, ID)
     table.insert(entries,newEntry)
 end
 
+-- Restructures the list of rollable UI loot so that it collapses and displays properly.
 local function RestructureList(removedEntry)
+    local YSPACING = 180
     for i, entry in pairs(entries) do
         if removedEntry == entry then
             table.remove(entries,i)
@@ -39,13 +40,12 @@ local function RestructureList(removedEntry)
 end
 
 -- Anytime a player rolls on a entry we will receive what they rolled.
-local function OnRollAdded(_,child)
-    print("Roll Added:",child)
+local function OnPlayerRolled(_,child)
     while not child:GetCustomProperty("PlayerName") or not child:GetCustomProperty("Rolled") do Task.Wait() end
     local playerName = child:GetCustomProperty("PlayerName")
     local name = playerName == LOCALPLAYER.name and "You" or playerName
     local roll = child:GetCustomProperty("Rolled")
-    local extraSpace = name ~= "You" and 50 or 0
+    local extraSpace = name ~= "You" and 40 or 0
     UI.ShowFlyUpText( string.format( "%s Rolled: %s For %s", name, roll, child.parent.clientUserData.item:GetName() ), 
         LOCALPLAYER:GetWorldPosition() + Vector3.UP * 110 + extraSpace, { isBig = true, color = Color.New(extraSpace,1,0), duration = 3 } )
 end
@@ -61,18 +61,15 @@ local function OnEntryCreated(_,child)
     local ID = child:GetCustomProperty("ID")
     local itemHash = child:GetCustomProperty("ItemHash")
     child.clientUserData.item = ItemDatabase:CreateItemFromHash(itemHash)
-
-    -- Check to make sure the player is allowed to roll for this.
     if not IsAllowedToRoll(allowedPlayers) then return end
     -- Listen for any rolls performed on the item and show them.
-    child.childAddedEvent:Connect(OnRollAdded)
+    child.childAddedEvent:Connect(OnPlayerRolled)
     CreateUIRollEntry(itemHash,ID)
     RestructureList()
 end
 
 local function OnEntryRemoved(_,child)
     RestructureList(child)
-    --child.childAddedEvent:Disconnect()
 end
 
 ROLLENTRIES_GROUP.childAddedEvent:Connect(OnEntryCreated)

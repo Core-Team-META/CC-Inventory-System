@@ -1,6 +1,33 @@
 ﻿Name: "ItemSystems"
 RootId: 9666008904107838960
 Objects {
+  Id: 1764184352370659241
+  Name: "Dependencies"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 9666008904107838960
+  ChildIds: 17565214277585214929
+  ChildIds: 2801070742257441407
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Folder {
+    IsGroup: true
+  }
+}
+Objects {
   Id: 2801070742257441407
   Name: "Health Bar"
   Transform {
@@ -10,7 +37,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 9666008904107838960
+  ParentId: 1764184352370659241
   TemplateInstance {
     ParameterOverrideMap {
       key: 1675656989204002660
@@ -57,7 +84,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 9666008904107838960
+  ParentId: 1764184352370659241
   TemplateInstance {
     ParameterOverrideMap {
       key: 8014650375856875642
@@ -108,6 +135,7 @@ Objects {
   ParentId: 9666008904107838960
   ChildIds: 1836620499527227305
   ChildIds: 432829153838092039
+  ChildIds: 7148198279766004770
   Collidable_v2 {
     Value: "mc:ecollisionsetting:forceoff"
   }
@@ -115,6 +143,31 @@ Objects {
     Value: "mc:evisibilitysetting:inheritfromparent"
   }
   NetworkContext {
+  }
+}
+Objects {
+  Id: 7148198279766004770
+  Name: "___RUNTIME_CONTEXT_CLIENT"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 8827254590626963338
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Folder {
+    IsGroup: true
   }
 }
 Objects {
@@ -6922,6 +6975,7 @@ Objects {
   ParentId: 9666008904107838960
   ChildIds: 17764809034601553852
   ChildIds: 4495186901191985175
+  ChildIds: 791847807004345984
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
@@ -6930,6 +6984,31 @@ Objects {
   }
   NetworkContext {
     Type: Server
+  }
+}
+Objects {
+  Id: 791847807004345984
+  Name: "___RUNTIME_CONTEXT_SERVER"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 10160495207205497663
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Folder {
+    IsGroup: true
   }
 }
 Objects {

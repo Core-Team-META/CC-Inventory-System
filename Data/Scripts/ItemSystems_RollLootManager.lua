@@ -13,11 +13,11 @@ Database:WaitUntilLoaded()
 
 local entries = {}
 
--- Create a ID table of all players as a 
+-- Create a string full of players IDs concatenated together.
 local function PlayersToIDTable(players)
     local ids = ''
     for _, player in pairs(players) do
-        ids = ids .. player.id .. ","
+        ids = ids .. player.id
     end
     return ids
 end
@@ -42,7 +42,8 @@ local function DeleteEntry(oldEntry)
     end
 end
 
-local function RollingComplete(entry)
+-- When rolling is complete we will determine the the winner and reward them then destroy the entry as it's finished.
+local function RollingComplete(entry) -- CoreObject
     local highestRoller = 0
     local winner = nil
     if not Object.IsValid(entry) then return end 
@@ -52,14 +53,16 @@ local function RollingComplete(entry)
             winner = playerEntry.player
         end
     end
-    if winner ~= nil then -- If no one claims the loot then we will destroy the entry
+    if winner ~= nil then
+        -- TODO: Attempt to add item to their inventory and notify the player
+        -- TODO: I need to use the item hash and not the item name as we're basically rerolling the stats...
         Events.Broadcast("DropLootSpecificForPlayers",entry.serverUserData.itemName,winner,winner:GetWorldPosition() + Vector3.UP * -100)
     end
     DeleteEntry(entry)
 end
 
--- Check if someone already rolled our number. If so then reroll.
-local function GetValidRoll(entry)
+-- Check if someone already rolled our number.
+local function GetValidRoll(entry) -- CoreObject
     local roll = math.random(0,100)
     for _, playerEntry in pairs(entry.serverUserData.replies) do
         if playerEntry.roll == roll then GetValidRoll(entry) end
@@ -67,7 +70,7 @@ local function GetValidRoll(entry)
     return roll
 end
 
--- Receives a client reques
+-- Receives a client request
 local function ProcessRollRequest(player,id,request) -- player, int, bool
     local entry = GetEntry(id)
     if not Object.IsValid(entry) then return end
