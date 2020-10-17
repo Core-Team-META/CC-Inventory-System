@@ -1,4 +1,8 @@
-﻿return {
-    '0CFE0C59E5ADA039:Loot_SwordTest',
-    --"4985F1C17EE976B1:Lightning Gauntlet",
+﻿--[[
+    Item Systems - Sword Catalog
+    For more information see the ItemSystems_README file.
+--]]
+
+return {
+    '390E4CC80F3B5297:ITEM_Sword_ExampleEquipment',
 }

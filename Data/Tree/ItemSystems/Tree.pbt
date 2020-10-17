@@ -1,8 +1,8 @@
 ﻿Name: "ItemSystems"
 RootId: 9666008904107838960
 Objects {
-  Id: 1764184352370659241
-  Name: "Dependencies"
+  Id: 13845877589726147037
+  Name: "PlayerStats"
   Transform {
     Location {
     }
@@ -15,8 +15,6 @@ Objects {
     }
   }
   ParentId: 9666008904107838960
-  ChildIds: 17565214277585214929
-  ChildIds: 2801070742257441407
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
@@ -24,98 +22,8 @@ Objects {
     Value: "mc:evisibilitysetting:inheritfromparent"
   }
   Folder {
-    IsGroup: true
-  }
-}
-Objects {
-  Id: 2801070742257441407
-  Name: "Health Bar"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 1764184352370659241
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 1675656989204002660
-      value {
-        Overrides {
-          Name: "Name"
-          String: "Health Bar"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -632.679077
-            Y: -261.217896
-            Z: 2.28881836e-05
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 12894225256195665925
-    }
-  }
-}
-Objects {
-  Id: 17565214277585214929
-  Name: "Combat Dependencies"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 1764184352370659241
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 8014650375856875642
-      value {
-        Overrides {
-          Name: "Name"
-          String: "Combat Dependencies"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 1337239855421309995
-    }
+    IsFilePartition: true
+    FilePartitionName: "PlayerStats"
   }
 }
 Objects {
@@ -190,7 +98,7 @@ Objects {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
   Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
+    Value: "mc:evisibilitysetting:forceon"
   }
   Control {
     RenderTransformPivot {
@@ -235,7 +143,6 @@ Objects {
   ChildIds: 1149859882092803039
   ChildIds: 6259174324988271020
   ChildIds: 1409531751741388156
-  ChildIds: 13435652155757436403
   ChildIds: 6544090723022500015
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
@@ -322,48 +229,6 @@ Objects {
           Value: "mc:euianchor:topleft"
         }
       }
-    }
-  }
-}
-Objects {
-  Id: 13435652155757436403
-  Name: "ItemSystems_RollLootUITemplate"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 3829052445877668271
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:forceoff"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 1369327332584532433
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ItemSystems_RollLootUITemplate"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 4790151374355426320
     }
   }
 }
@@ -796,7 +661,7 @@ Objects {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
   Visible_v2 {
-    Value: "mc:evisibilitysetting:forceon"
+    Value: "mc:evisibilitysetting:forceoff"
   }
   Control {
     Width: 660
@@ -6301,7 +6166,7 @@ Objects {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
   Visible_v2 {
-    Value: "mc:evisibilitysetting:forceon"
+    Value: "mc:evisibilitysetting:forceoff"
   }
   Control {
     Width: 300
@@ -7030,6 +6895,10 @@ Objects {
     Overrides {
       Name: "cs:Enabled"
       Bool: true
+    }
+    Overrides {
+      Name: "cs:CheatDropKey"
+      String: "BasicMobTrash"
     }
   }
   Collidable_v2 {

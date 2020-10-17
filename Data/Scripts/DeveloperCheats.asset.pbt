@@ -10,6 +10,10 @@
           Id: 4685988691808682848
         }
       }
+      Overrides {
+        Name: "cs:Enabled"
+        Bool: true
+      }
     }
   }
   SerializationVersion: 65

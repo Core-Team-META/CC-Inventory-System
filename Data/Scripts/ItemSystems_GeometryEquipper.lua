@@ -1,4 +1,12 @@
-﻿local COMPONENT = script:GetCustomProperty("InventoryComponent"):WaitForObject()
+﻿--[[
+    ItemSystems.GeometryEquipper
+    ====================
+    Gets any changes to the equipped items in the inventory and spawns the items geometry onto the character
+    at a specificed socket. The determined socket is derived from a custom property on the item.
+    Please refer to the ItemSystems_README for detailed information.
+]]
+
+local COMPONENT = script:GetCustomProperty("InventoryComponent"):WaitForObject()
 
 ---------------------------------------------------------------------------------------------------------
 local OWNER = nil
@@ -46,21 +54,18 @@ local function UpdateItemGeometry(slotIndex, item)
     end
     DestroyGeometry(slotIndex)
     if item then
-
         local itemRoot = nil
         if slotIndex ~= 1 then -- If not equipment
             itemRoot = World.SpawnAsset(item:GetMUID(), { parent = COMPONENT })
         else
             return
         end
-
         itemRoot.clientUserData.geometries = {}
-
         for propName,propValue in pairs(itemRoot:GetCustomProperties()) do
             local socket = propName:match("SOCKET_(.+)")
             if socket then
                 local geometry = propValue:WaitForObject()
-                if socket == "BothFeet" then
+                if socket == "both_feet" then
                     local copy = World.SpawnAsset(item:GetMUID(), { parent = COMPONENT })
                     geometry:AttachToPlayer(OWNER, "right_ankle")
                     copy:AttachToPlayer(OWNER, "left_ankle")

@@ -1,5 +1,5 @@
 ﻿Assets {
-  Id: 15689866003364672751
+  Id: 13070671787079488428
   Name: "ItemSystems_DATA_Boots_Catalog"
   PlatformAssetType: 3
   TextAsset {

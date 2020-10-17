@@ -15,32 +15,18 @@ Item.__index = Item
 local function Enum(values) for i,v in ipairs(values) do values[v] = i end return values end
 
 Item.TYPES = Enum{
-
+    -- Add item types here. And create the catalog and stats script for it then add it to the database as a custom property. You may also assign it a loot table.
     "Sword",
-    "Boots",
+    "Shield",
+    "Helmet",
     "Armor",
-
+    "Boots",
+    "Trinket",
+    -- Example: "Ring",
     -- Specials (Non-Equipables)
     "Misc",
     "Consumable",
 }
-
--- Item.TYPES = Enum{
---     "Armor",
---     "Axe",
---     "Boots",
---     "Dagger",
---     "Focus",
---     "Greatsword",
---     "Helmet",
---     "Mace",
---     "Shield",
---     "Staff",
---     "Sword",
---     "Trinket",
---     "Wand",
---     "Warhammer",
--- }
 
 Item.STATS = Enum{
     "Health",
@@ -63,13 +49,13 @@ Item.RARITIES = Enum{
     "Legendary",
 }
 
+-- These are paired with Item.STATS. If you want your item to be equippable then add your type here.
 Item.SLOT_CONSTRAINTS = {
     Armor       = { slotType = "Chest" },
     Axe         = { slotType = "MainHand" },
     Boots       = { slotType = "Feet" },
     Dagger      = { slotType = "MainHand" },
     Greatsword  = { slotType = "MainHand", isOffHandDisabled = true },
-    Focus       = { slotType = "OffHand" },
     Helmet      = { slotType = "Head" },
     Mace        = { slotType = "MainHand" },
     Shield      = { slotType = "OffHand" },
@@ -78,6 +64,7 @@ Item.SLOT_CONSTRAINTS = {
     Trinket     = { slotType = "Accessory" },
     Warhammer   = { slotType = "MainHand", isOffHandDisabled = true },
     Wand        = { slotType = "MainHand" },
+    -- Example: Ring = { slotType = "Accessory" }
 }
 
 ---------------------------------------------------------------------------------------------------------
@@ -92,6 +79,10 @@ end
 
 function Item.FromHash(database, itemHash)
     return Item._FromHash(database, itemHash)
+end
+
+function Item.StatGreaterThan(item1, item2, statName)
+    return item1:GetStatTotal(statName) > item2:GetStatTotal(statName) or false
 end
 
 function Item:RuntimeHash()

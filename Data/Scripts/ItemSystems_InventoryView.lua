@@ -1,4 +1,12 @@
-﻿local ItemThemes = require(script:GetCustomProperty("ItemSystems_ItemThemes"))
+﻿--[[
+    ItemSystems.IventoryView
+    ================
+
+    Handles displaying of items, stats, and performs all the comparisons when dealing with items.
+    Also handles all the interactions between the player and the inventory.
+]]
+
+local ItemThemes = require(script:GetCustomProperty("ItemSystems_ItemThemes"))
 local INVENTORY_VIEW = script:GetCustomProperty("InventoryView"):WaitForObject()
 local PLAYER_NAME = script:GetCustomProperty("PlayerName"):WaitForObject()
 local PLAYER_ICON = script:GetCustomProperty("PlayerIcon"):WaitForObject()
@@ -196,6 +204,7 @@ function view:InitEquippedSlots()
     self.equippedSlots = {}
     TraverseAndSetupSlots(PANEL_EQUIPPED, function(slot) table.insert(self.equippedSlots, slot) end)
     local accessoryOffset = 1
+    self.accessoryEquipCycle = 0
     for i,slot in ipairs(self.equippedSlots) do
         slot.clientUserData.isEquipped = true
         local slotOffset = nil
@@ -329,35 +338,20 @@ function view:PerformClickAction()
         else
             local equipSlotType = clickedItem:GetEquipSlotType()
             local equipSlotOffset = nil
-            if equipSlotType == "Accessory" then
-                equipSlotOffset = self.accessoryEquipCycle + 1
-                self.accessoryEquipCycle = (self.accessoryEquipCycle + 1) % inventory.NUM_ACCESSORY_SLOTS 
-            end
             local equipSlotIndex = inventory:GetFreeEquipSlot(equipSlotType) or inventory:ConvertEquipSlotIndex(equipSlotType, equipSlotOffset)
+            -- Check for the weakest accessory that we should replace if there is any.
+            if equipSlotType == "Accessory" then
+                local _, slot = inventory:GetWeakestAccessory()
+                equipSlotIndex = slot
+            end
             if equipSlotIndex then
                 self:AttemptMoveItem(self.clickSlotIndex, equipSlotIndex)
             end
         end
     elseif clickedItem:HasConsumptionEffect() then
-        print("Consuming item")
         inventory:ConsumeItem(self.clickSlotIndex)
     end
 end
-
--- function view:PerformClickAction()
---     local clickedItem = inventory:GetItem(self.clickSlotIndex)
---     if inventory:IsEquipSlot(self.clickSlotIndex) then
---         local emptyBackpackSlotIndex = inventory:GetFreeBackpackSlot()
---         if emptyBackpackSlotIndex then
---             self:AttemptMoveItem(self.clickSlotIndex, emptyBackpackSlotIndex)
---         end
---     else
---         local equipSlotIndex = inventory:ConvertEquipSlotIndex(clickedItem:GetEquipSlotType())
---         if equipSlotIndex then
---             self:AttemptMoveItem(self.clickSlotIndex, equipSlotIndex)
---         end
---     end
--- end
 
 function view:PerformDragDropAction()
     if self.slotUnderCursor or not self.isCursorInBounds then
@@ -493,7 +487,6 @@ function view:DrawSlots()
             slot.clientUserData.gradientColored:SetColor(rarityColor)
             slot.clientUserData.border:SetImage(slot.clientUserData.borderDefaultImage)
             slot.clientUserData.border:SetColor(rarityColor)
-
             -- Backpacks have counter indicators.
             if inventory:IsBackpackSlot(slot.clientUserData.slotIndex) then
                 if item:IsStackable() then
@@ -550,7 +543,7 @@ function view:DrawHoverInfo()
         PANEL_ITEM_HOVER.clientUserData.title.text = item:GetName()
         PANEL_ITEM_HOVER.clientUserData.classification.text = string.format("%s %s", item:GetRarity(), item:GetType())
         PANEL_ITEM_HOVER.clientUserData.description.text = item:GetDescription()
-        -- Attributes.d
+        -- Attributes
         local stats = item:GetStats()
         self:EnsureSufficientHoverStatEntries(#stats)
         local offsetYBase = 0
@@ -609,7 +602,12 @@ function view:DrawHoverStatCompare()
             local previewItem = self.itemUnderCursor
             local targetEquipSlotIndex = inventory:ConvertEquipSlotIndex(previewItem:GetEquipSlotType())
             local exchangeItem = inventory:GetItem(targetEquipSlotIndex)
-            -- First the item we are hypothetically equipping.
+            -- First we check to make sure we're going to 
+            if previewItem:GetEquipSlotType() == "Accessory" and inventory:HasAvaliableAccessorySlots() then
+                local weakestAccessory, slot = inventory:GetWeakestAccessory()
+                exchangeItem = weakestAccessory
+            end
+            -- Second the item we are hypothetically equipping.
             for _,itemStatName in ipairs(previewItem.STATS) do
                 local statValue = previewItem:GetStatTotal(itemStatName)
                 if itemStatName == "HealthPercent" then

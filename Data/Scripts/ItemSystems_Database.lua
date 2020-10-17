@@ -117,7 +117,6 @@ function Database:_LoadCatalog()
             local propIcon = tempItem:GetCustomProperty("Icon")
             local propMaxStackableSize = tempItem:GetCustomProperty("MaxStackableSize")
             local propItemType = tempItem:GetCustomProperty("ItemType")
-            local propEquipmentStance = tempItem:GetCustomProperty("EquipmentStance")
             local propDescription = tempItem:GetCustomProperty("Description")
             local propRarity = tempItem:GetCustomProperty("Rarity")
             local propStatKey = tempItem:GetCustomProperty("StatKey")
@@ -129,16 +128,16 @@ function Database:_LoadCatalog()
             end
 
             if propConsumptionEffect then
-                assert(require(propConsumptionEffect), "Could not require consumption effect - %s", propName)
+                assert(require(propConsumptionEffect), "Could not require consumption effect script from item - %s", propName)
             end
 
-            assert(not self.itemDatasByName[propName], string.format("duplicate item name is not allowed - %s", propName))
+            assert(not self.itemDatasByName[propName], string.format("duplicate item name is not allowed - %s check your catalogs for duplicate names.", propName))
             assert(not self.itemDatasByMUID[muid], string.format("duplicate item MUID is not allowed - %s", muid))
-            assert(Item.TYPES[propItemType], string.format("unrecognized item type - %s", propItemType))
-            assert(Item.RARITIES[propRarity], string.format("unrecognized item rarity - %s", propRarity))
+            assert(Item.TYPES[propItemType], string.format("unrecognized item type - %s from %s you'll need to add the type to ItemSystems_Item script", propItemType, propName))
+            assert(Item.RARITIES[propRarity], string.format("unrecognized item rarity - %s check ItemSystems_ItemThemes to make sure this rarity exist.", propRarity))
 
             if propStatKey ~= nil then
-                assert(self.itemStatRollInfos[propStatKey], string.format("unrecognized item stat key - %s", propStatKey))
+                assert(self.itemStatRollInfos[propStatKey], string.format("unrecognized item stat key - %s ensure %s has the %s key in the ItemSystems_%s_Stats", propStatKey, propName, propStatKey, propItemType))
             end
 
             print(propName)
@@ -214,9 +213,9 @@ function Database:_LoadDrops()
             table.insert(self.itemDropKeys, dropKey)
         end
         for i, row in pairs(lootTable) do
-            assert(row.ItemName, string.format("drop missing name at row %d", i))
-            assert(self:FindItemDataByName(row.ItemName), string.format("drop references unknown item - %s", row.ItemName))
-            assert(row.Likelihood, string.format("drop missing likelihood at row %d", i))
+            assert(row.ItemName, string.format("loot drop missing name at row - %d at loot table - %s", i, dropKey))
+            assert(self:FindItemDataByName(row.ItemName), string.format("loot drop references unknown item - %s at loot table - %s", row.ItemName, dropKey))
+            assert(row.Likelihood, string.format("loot drop missing likelihood - %s at loot table - %s", row.ItemName, dropKey))
 
             local dropTable = self.itemDropTables[dropKey]
             local dropInfo = { itemName = row.ItemName, likelihood = tonumber(row.Likelihood) }

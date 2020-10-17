@@ -1,4 +1,11 @@
-﻿local Item = require(script:GetCustomProperty("ItemSystems_Item"))
+﻿--[[
+    ItemSystems.Inventory
+    ====================
+    Logical representation of an inventory that contains numerous methods that allow you to manage
+    and control it the players inventory. Please refer to the ItemSystems_README for detailed information.
+]]
+
+local Item = require(script:GetCustomProperty("ItemSystems_Item"))
 local Base64 = require(script:GetCustomProperty("Base64"))
 
 local Inventory = {}
@@ -21,6 +28,7 @@ Inventory.EQUIP_SLOTS = {
 }
 
 Inventory.BACKPACK_CAPACITY = 32
+Inventory.NUM_ACCESSORY_SLOTS = 3 -- Add more slots if you plan on expanding. 
 
 Inventory.TOTAL_CAPACITY = #Inventory.EQUIP_SLOTS + Inventory.BACKPACK_CAPACITY
 assert(Inventory.TOTAL_CAPACITY <= 64, "inventory size limit is 64 for compression reasons")
@@ -36,7 +44,6 @@ function Inventory.New(database, owner)
     o:_DefineEvent("itemEquippedEvent")
     o:_DefineEvent("itemMovedEvent")
     o:_DefineEvent("itemConsumedEvent")
-
     return o
 end
 
@@ -63,7 +70,7 @@ function Inventory:ConvertEquipSlotIndex(slotType, slotNumber)
             if number == slotNumber then return i end
         end
     end
-    --error("equip slot not found")
+    error(string.format("equip slot not found - %s, %d", slotType, slotNumber))
 end
 
 -- True if the slot represents a backpack item.
@@ -110,6 +117,49 @@ function Inventory:IterateEquipSlots()
         end
     end
     return iter, nil, 0 
+end
+
+-- Returns true if the player has accessory slots that have no items in them.
+function Inventory:HasAvaliableAccessorySlots()
+    for _, item in self:IterateEquipSlots() do
+        if item and item:GetEquipSlotType() == "Accessory"  then
+            return true
+        end
+    end
+    return false
+end
+
+-- Gets the weakest accessory from the equipped slots.
+function Inventory:GetWeakestAccessory()
+    local weakestAccessory = nil
+    local weakestAcessorySlot = nil
+    for slot, item in self:IterateEquipSlots() do
+        if item and item:GetEquipSlotType() == "Accessory" then
+            if not weakestAccessory then 
+                weakestAccessory = item
+                weakestAcessorySlot = slot
+            end
+            local weakScore = 0
+            local stats = item:GetStats()
+            for _, statName in pairs(stats) do
+                if Item.StatGreaterThan(weakestAccessory,item,statName.name) then
+                    weakScore = weakScore + 1
+                else
+                    weakScore = weakScore - 1
+                end
+            end
+            -- It's considered weak if half the stats are better.
+            if weakScore >= math.floor(#stats/2)+1 then
+                weakestAccessory = item
+                weakestAcessorySlot = slot
+            end
+        else
+            if self:IsEquipSlotType(slot,"Accessory") then
+                return nil, slot
+            end
+        end
+    end
+    return weakestAccessory, weakestAcessorySlot
 end
 
 -- Gets the first free backpack slot.
@@ -166,6 +216,17 @@ function Inventory:MoveItem(fromSlotIndex, toSlotIndex)
     self:_FireEvent("itemMovedEvent", fromSlotIndex, toSlotIndex)
 end
 
+-- Adds an item to the backpack.
+function Inventory:AddItem(item)
+    print("Adding item",item)
+    local emptySlotIndex = self:GetFreeBackpackSlot()
+    if item:IsStackable() and emptySlotIndex then
+        self:_AddStackableItemToBackpack(item)
+    elseif emptySlotIndex then
+        self:_SetSlotItem(emptySlotIndex, item)
+    end
+end
+
 -- Register a new loot object dropped for the owner of this inventory. Optionally provide a callback for when the loot is claimed.
 function Inventory:RegisterLootItem(lootItem, lootWorldObject, onLootClaimed)
     if not lootItem then return end
@@ -203,7 +264,6 @@ function Inventory:ClaimLoot(lootIndex)
         end
         self:_FireEvent("lootClaimedEvent", lootIndex)
         if lootInfo.onLootClaimed then lootInfo.onLootClaimed() end
-        --table.remove(self.lootInfos,lootIndex)
     end
 end
 

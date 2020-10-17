@@ -19,15 +19,20 @@ Objects {
   ChildIds: 14713340454944924967
   ChildIds: 10005074784157121906
   ChildIds: 14982843161775482339
+  ChildIds: 17565214277585214929
   ChildIds: 9666008904107838960
-  ChildIds: 13845877589726147037
   ChildIds: 9477342016099356239
-  ChildIds: 7676655385465303512
   ChildIds: 7988535948195848523
   ChildIds: 5012740452443113133
   ChildIds: 16418814071275107557
   ChildIds: 4772262806763452274
-  ChildIds: 6159348408707338010
+  ChildIds: 8227661568793764708
+  ChildIds: 9302073284470822362
+  ChildIds: 698571168463123174
+  ChildIds: 10404968503941071681
+  ChildIds: 9780361304009322667
+  ChildIds: 4737860779378406983
+  ChildIds: 15257364585281102976
   UnregisteredParameters {
   }
   Collidable_v2 {
@@ -40,8 +45,239 @@ Objects {
   }
 }
 Objects {
-  Id: 6159348408707338010
-  Name: "ITEM_Consumable_PoisonPotion"
+  Id: 15257364585281102976
+  Name: "ITEM_Trinket_Example"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  WantsNetworking: true
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:forceoff"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 18299769885140533039
+      value {
+        Overrides {
+          Name: "Name"
+          String: "ITEM_Trinket_Example"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: -219.335281
+            Y: -77.8688431
+            Z: 2.28881836e-05
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 14350940540964847784
+    }
+  }
+}
+Objects {
+  Id: 4737860779378406983
+  Name: "ITEM_Sword_ExampleEquipment"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  WantsNetworking: true
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 1550651346007304081
+      value {
+        Overrides {
+          Name: "Name"
+          String: "ITEM_Sword_ExampleEquipment"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: -260.748688
+            Y: 165.007278
+            Z: 2.28881836e-05
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 4111307931968557719
+    }
+  }
+}
+Objects {
+  Id: 9780361304009322667
+  Name: "ITEM_Shield_Example"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  WantsNetworking: true
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 4129509117028474446
+      value {
+        Overrides {
+          Name: "Name"
+          String: "ITEM_Shield_Example"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: -282.264557
+            Y: 76.0063553
+            Z: 28.2312393
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 801508354706908814
+    }
+  }
+}
+Objects {
+  Id: 10404968503941071681
+  Name: "ITEM_Consumable_ExamplePotion"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  WantsNetworking: true
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 1558197855077483019
+      value {
+        Overrides {
+          Name: "Name"
+          String: "ITEM_Consumable_ExamplePotion"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: -314.253357
+            Y: -191.6922
+            Z: 2.28881836e-05
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 5151373499733762021
+    }
+  }
+}
+Objects {
+  Id: 698571168463123174
+  Name: "ITEM_Armor_ExampleHelm"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  WantsNetworking: true
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 1103300475510269383
+      value {
+        Overrides {
+          Name: "Name"
+          String: "ITEM_Armor_ExampleHelm"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: -310.689087
+            Y: -75.020256
+            Z: 2.28881836e-05
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 12889700838915016367
+    }
+  }
+}
+Objects {
+  Id: 9302073284470822362
+  Name: "ITEM_Armor_ExampleChest"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  WantsNetworking: true
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 4129509117028474446
+      value {
+        Overrides {
+          Name: "Name"
+          String: "ITEM_Armor_ExampleChest"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: -307.300659
+            Y: -140.264191
+            Z: 34.85923
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 9838926182254776715
+    }
+  }
+}
+Objects {
+  Id: 8227661568793764708
+  Name: "ITEM_Armor_ExampleBoots"
   Transform {
     Scale {
       X: 1
@@ -59,18 +295,18 @@ Objects {
   }
   TemplateInstance {
     ParameterOverrideMap {
-      key: 1558197855077483019
+      key: 4129509117028474446
       value {
         Overrides {
           Name: "Name"
-          String: "ITEM_Consumable_PoisonPotion"
+          String: "ITEM_Armor_ExampleBoots"
         }
         Overrides {
           Name: "Position"
           Vector {
-            X: -122.634949
-            Y: -193.218628
-            Z: 2.28881836e-05
+            X: -300.084351
+            Y: -26.6845837
+            Z: 3.32801056
           }
         }
         Overrides {
@@ -81,7 +317,7 @@ Objects {
       }
     }
     TemplateAsset {
-      Id: 5151373499733762021
+      Id: 17226259549463923582
     }
   }
 }
@@ -100,10 +336,7 @@ Objects {
     }
   }
   ParentId: 4781671109827199097
-  ChildIds: 7235330886198137516
   ChildIds: 95891908219836363
-  ChildIds: 7534996663070165078
-  ChildIds: 18289443880586435386
   ChildIds: 15887715521753241645
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
@@ -163,107 +396,6 @@ Objects {
   }
 }
 Objects {
-  Id: 18289443880586435386
-  Name: "Armour Set 1 Helm"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4772262806763452274
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 9526724338161417331
-      value {
-        Overrides {
-          Name: "Name"
-          String: "Armour Set 1 Helm"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: 244.854614
-            Y: -320.274384
-            Z: 86.3473816
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 4245188321794423334
-    }
-  }
-}
-Objects {
-  Id: 7534996663070165078
-  Name: "Armour Set 1 Chest"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4772262806763452274
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 4129509117028474446
-      value {
-        Overrides {
-          Name: "Name"
-          String: "Armour Set 1 Chest"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: 245.64418
-            Y: -322.746948
-            Z: 32.5796356
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 9838926182254776715
-    }
-  }
-}
-Objects {
   Id: 95891908219836363
   Name: "Armour Set 1 Male Mannequin"
   Transform {
@@ -274,6 +406,12 @@ Objects {
     }
   }
   ParentId: 4772262806763452274
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
   TemplateInstance {
     ParameterOverrideMap {
       key: 2636871004928294663
@@ -296,66 +434,10 @@ Objects {
             Yaw: 85.7404633
           }
         }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
       }
     }
     TemplateAsset {
       Id: 10989718002773240115
-    }
-  }
-}
-Objects {
-  Id: 7235330886198137516
-  Name: "Armour Set 2 Male Mannequin"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4772262806763452274
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 15284010473359952955
-      value {
-        Overrides {
-          Name: "Name"
-          String: "Armour Set 2 Male Mannequin"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: 585.790405
-            Y: -464.762054
-            Z: 2.28881836e-05
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-            Yaw: 91.2885056
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 857123357129956019
     }
   }
 }
@@ -455,6 +537,12 @@ Objects {
       Name: "cs:ActivateTrigger"
       ObjectReference {
         SelfId: 7083834742207966819
+      }
+    }
+    Overrides {
+      Name: "cs:Database"
+      AssetReference {
+        Id: 4685988691808682848
       }
     }
   }
@@ -864,725 +952,6 @@ Objects {
   }
 }
 Objects {
-  Id: 7676655385465303512
-  Name: "Items"
-  Transform {
-    Location {
-      X: -106.232841
-      Y: -373.87558
-    }
-    Rotation {
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  ChildIds: 4351541052923964445
-  ChildIds: 2334161425802837733
-  ChildIds: 1384745705464509494
-  ChildIds: 14106985790683904916
-  ChildIds: 5724368418345972088
-  ChildIds: 12316673657735734859
-  ChildIds: 5954348493119569615
-  ChildIds: 16470797276562980579
-  ChildIds: 15663120047908219623
-  ChildIds: 13174259384824319329
-  ChildIds: 12154903061359348365
-  ChildIds: 17880639510562830896
-  ChildIds: 10217403086504913994
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  Folder {
-    IsGroup: true
-  }
-}
-Objects {
-  Id: 10217403086504913994
-  Name: "ITEM_Sword_TestSword"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 7676655385465303512
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 1550651346007304081
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ITEM_Sword_TestSword"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -206.100891
-            Y: 40.1820068
-            Z: 2.28881836e-05
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 936199352784625721
-    }
-  }
-}
-Objects {
-  Id: 17880639510562830896
-  Name: "ITEM_Misc_HeartGem"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 7676655385465303512
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 6768785850011398152
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ITEM_Misc_HeartGem"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -182.156128
-            Y: -741.980591
-            Z: 59.3678856
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-            Yaw: -35.7811546
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 16661454203177044454
-    }
-  }
-}
-Objects {
-  Id: 12154903061359348365
-  Name: "ITEM_Misc_HeartGem"
-  Transform {
-    Location {
-      X: -288.388977
-      Y: -1011.70667
-      Z: 59.3678856
-    }
-    Rotation {
-      Yaw: -35.7811546
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 7676655385465303512
-  WantsNetworking: true
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 6768785850011398152
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ITEM_Misc_HeartGem"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -182.156128
-            Y: -692.268188
-            Z: 59.3678856
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-            Yaw: -35.7811546
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 16661454203177044454
-    }
-  }
-}
-Objects {
-  Id: 13174259384824319329
-  Name: "ITEM_Misc_HeartGem"
-  Transform {
-    Location {
-      X: -288.388977
-      Y: -955.661316
-      Z: 59.3678856
-    }
-    Rotation {
-      Yaw: -35.7811546
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 7676655385465303512
-  WantsNetworking: true
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 6768785850011398152
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ITEM_Misc_HeartGem"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -182.156128
-            Y: -637.831055
-            Z: 59.3678856
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-            Yaw: -35.7811546
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 16661454203177044454
-    }
-  }
-}
-Objects {
-  Id: 15663120047908219623
-  Name: "ITEM_Misc_HeartGem"
-  Transform {
-    Location {
-      X: -288.388977
-      Y: -901.691833
-      Z: 59.3678856
-    }
-    Rotation {
-      Yaw: -35.7811546
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 7676655385465303512
-  WantsNetworking: true
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 6768785850011398152
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ITEM_Misc_HeartGem"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -182.156128
-            Y: -581.785767
-            Z: 59.3678856
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-            Yaw: -35.7811546
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 16661454203177044454
-    }
-  }
-}
-Objects {
-  Id: 16470797276562980579
-  Name: "ITEM_Misc_HeartGem"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 7676655385465303512
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 6768785850011398152
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ITEM_Misc_HeartGem"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -182.156128
-            Y: -527.816284
-            Z: 59.3678856
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-            Yaw: -35.7811546
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 16661454203177044454
-    }
-  }
-}
-Objects {
-  Id: 5954348493119569615
-  Name: "ITEM_Consumable_PoisonPotion"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 7676655385465303512
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 1558197855077483019
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ITEM_Consumable_PoisonPotion"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -182.156128
-            Y: -373.328888
-            Z: 59.3678856
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-            Yaw: -35.7811546
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 5151373499733762021
-    }
-  }
-}
-Objects {
-  Id: 12316673657735734859
-  Name: "ITEM_Misc_GoldIngot"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 7676655385465303512
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:forceoff"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 470904502169642274
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ITEM_Misc_GoldIngot"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: 62.7652092
-            Y: -227.900421
-            Z: 14.4127274
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-            Yaw: -35.7811546
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 8111517688277291983
-    }
-  }
-}
-Objects {
-  Id: 5724368418345972088
-  Name: "ITEM_Misc_GoldIngot"
-  Transform {
-    Location {
-      X: -216.414978
-      Y: -610.888367
-      Z: 14.4127274
-    }
-    Rotation {
-      Yaw: -35.7811546
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 7676655385465303512
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 470904502169642274
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ITEM_Misc_GoldIngot"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -11.0560226
-            Y: -314.290497
-            Z: 14.4127274
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-            Yaw: -35.7811546
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 8111517688277291983
-    }
-  }
-}
-Objects {
-  Id: 14106985790683904916
-  Name: "ITEM_Misc_GoldIngot"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 7676655385465303512
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:forceoff"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 470904502169642274
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ITEM_Misc_GoldIngot"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -110.182137
-            Y: -237.012787
-            Z: 14.4127274
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-            Yaw: -35.7811546
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 8111517688277291983
-    }
-  }
-}
-Objects {
-  Id: 1384745705464509494
-  Name: "ITEM_Armor_TestBody"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 7676655385465303512
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 14221847442462413670
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ITEM_Armor_TestBody"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: 86.7052078
-            Y: 44.5745544
-            Z: 70.0596237
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 7436971458701454068
-    }
-  }
-}
-Objects {
-  Id: 2334161425802837733
-  Name: "ITEM_Boots_RuggedBoots"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 7676655385465303512
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 14221847442462413670
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ITEM_Boots_RuggedBoots"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -103.669838
-            Y: 55.0228577
-            Z: 14.4127426
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 3427213701677311018
-    }
-  }
-}
-Objects {
-  Id: 4351541052923964445
-  Name: "ITEM_Misc_GoldIngot"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 7676655385465303512
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 470904502169642274
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ITEM_Misc_GoldIngot"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -36.6978226
-            Y: -163.217804
-            Z: 14.4127274
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-            Yaw: -35.7811546
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 8111517688277291983
-    }
-  }
-}
-Objects {
   Id: 9477342016099356239
   Name: "Grass"
   Transform {
@@ -1849,32 +1218,6 @@ Objects {
   }
 }
 Objects {
-  Id: 13845877589726147037
-  Name: "PlayerStats"
-  Transform {
-    Location {
-    }
-    Rotation {
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  Folder {
-    IsFilePartition: true
-    FilePartitionName: "PlayerStats"
-  }
-}
-Objects {
   Id: 9666008904107838960
   Name: "ItemSystems"
   Transform {
@@ -1898,6 +1241,50 @@ Objects {
   Folder {
     IsFilePartition: true
     FilePartitionName: "ItemSystems"
+  }
+}
+Objects {
+  Id: 17565214277585214929
+  Name: "Combat Dependencies"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 8014650375856875642
+      value {
+        Overrides {
+          Name: "Name"
+          String: "Combat Dependencies"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+        Overrides {
+          Name: "Scale"
+          Vector {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 1337239855421309995
+    }
   }
 }
 Objects {

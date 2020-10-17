@@ -1,4 +1,9 @@
-﻿return {
+﻿--[[
+    Item Systems - Armor Stats
+    For more information see the ItemSystems_README file.
+--]]
+
+return {
   {
     StatKey = 'CommonArmor',
     Group = 'Base',
@@ -6,7 +11,7 @@
     Min = '15',
     Max = '20',
     Likelihood = '',
-    ['Author Notes (will be ignored by script)'] = 'Common Boots always have between 5 and 10 Defense',
+    ['Author Notes (will be ignored by script)'] = '',
   },
   {
     StatKey = 'UncommonArmor',
@@ -15,7 +20,7 @@
     Min = '20',
     Max = '30',
     Likelihood = '',
-    ['Author Notes (will be ignored by script)'] = 'Uncommon Boots have between 7 and 12 Defense...',
+    ['Author Notes (will be ignored by script)'] = '',
   },
   {
     StatKey = 'UncommonArmor',
@@ -24,7 +29,7 @@
     Min = '10',
     Max = '15',
     Likelihood = '100',
-    ['Author Notes (will be ignored by script)'] = '...and either 5-8 additional Defense or 10-20 Health ',
+    ['Author Notes (will be ignored by script)'] = '',
   },
   {
     StatKey = 'UncommonArmor',
@@ -69,7 +74,7 @@
     Min = '5',
     Max = '10',
     Likelihood = '',
-    ['Author Notes (will be ignored by script)'] = 'Uncommon Magic Boots always have between 2 and 5 Defense...',
+    ['Author Notes (will be ignored by script)'] = '',
   },
   {
     StatKey = 'UncommonMagicArmor',
@@ -78,7 +83,7 @@
     Min = '10',
     Max = '15',
     Likelihood = '100',
-    ['Author Notes (will be ignored by script)'] = '...and either 5-10 magic or 1-5% CDR',
+    ['Author Notes (will be ignored by script)'] = '',
   },
   {
     StatKey = 'UncommonMagicArmor',

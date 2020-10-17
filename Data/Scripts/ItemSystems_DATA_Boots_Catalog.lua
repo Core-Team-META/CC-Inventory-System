@@ -1,3 +1,8 @@
-﻿return {
-    MUID = '2F8FE8B419D3E42A:ITEM_Boots_RuggedBoots',
+﻿--[[
+    Item Systems - Boots Catalog
+    For more information see the ItemSystems_README file.
+--]]
+
+return {
+    "EF0FF7CAA67A4B7E:ITEM_Armor_ExampleBoots"
 }

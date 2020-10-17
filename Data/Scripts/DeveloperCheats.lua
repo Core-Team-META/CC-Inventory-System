@@ -1,5 +1,7 @@
-﻿print("Checking")
+﻿-- Do not use in a release build of your game!
 if not script:GetCustomProperty("Enabled") then return end
+
+local CHEATDROPKEY = script:GetCustomProperty("CheatDropKey")
 
 local Database = require(script:GetCustomProperty("ItemSystems_Database"))
 
@@ -51,9 +53,8 @@ local BINDING_STATSHEET_PRINT   = "ability_extra_56"    -- [F7]
 local function OnBindingPressed(player, binding)
     if binding == BINDING_DROP_LOOT then
         Database:WaitUntilLoaded()
-        local dropKey = "BasicMobTrash"
         local playerPosition = player:GetWorldPosition()
-        Events.Broadcast("DropLoot", dropKey, playerPosition - 100 * Vector3.UP)
+        Events.Broadcast("DropLoot", CHEATDROPKEY, playerPosition - 100 * Vector3.UP)
         print("CHEAT: DROP LOOT")
     elseif binding == BINDING_INVENTORY_CLEAR then
         local playerData = Storage.GetPlayerData(player)

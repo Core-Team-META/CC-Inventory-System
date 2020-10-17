@@ -12,14 +12,21 @@ local Item = require(script:GetCustomProperty("ItemSystems_Item"))
 local PRIMARYSLOT = "E1"
 local OWNER = nil
 
-local function EquipNewEquipment()
-    local itemHash = HelperItemSystemInventory:GetCustomProperty(PRIMARYSLOT)
-    -- Remove old equipment
+-- Cleans up old equipment
+local function CleanUpEquipment()
     local equipments = OWNER:GetEquipment()
     for _, equipment in pairs(equipments) do
-        equipment:Unequip()
-        equipment:Destroy()
+        if Object.IsValid(equipment) then
+            equipment:Unequip()
+            equipment:Destroy()
+        end
     end
+end
+
+-- Gets the primary slot network property of the players inventory and creates the equipment then equips it.
+local function EquipNewEquipment()
+    local itemHash = HelperItemSystemInventory:GetCustomProperty(PRIMARYSLOT)
+    CleanUpEquipment()
     if itemHash ~= "" and itemHash then
         local item = Item.FromHash(ItemDatabase,itemHash)
         local equipment = World.SpawnAsset(item:GetMUID())
@@ -28,12 +35,14 @@ local function EquipNewEquipment()
     end
 end
 
+-- Listens for network property changes to the players inventory
 local function EquipmentChanged(_,property)
     if property == PRIMARYSLOT then -- Primary slot
         EquipNewEquipment()
     end
 end
 
+-- Gets the owner and equips the new equipment when the player joins the game.
 while not OWNER do
     Task.Wait()
     for _,player in ipairs(Game.GetPlayers()) do
@@ -48,3 +57,4 @@ while not OWNER do
 end
 
 HelperItemSystemInventory.networkedPropertyChangedEvent:Connect(EquipmentChanged)
+Game.playerLeftEvent:Connect(CleanUpEquipment)

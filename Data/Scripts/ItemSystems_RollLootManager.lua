@@ -53,10 +53,15 @@ local function RollingComplete(entry) -- CoreObject
             winner = playerEntry.player
         end
     end
-    if winner ~= nil then
-        -- TODO: Attempt to add item to their inventory and notify the player
-        -- TODO: I need to use the item hash and not the item name as we're basically rerolling the stats...
-        Events.Broadcast("DropLootSpecificForPlayers",entry.serverUserData.itemName,winner,winner:GetWorldPosition() + Vector3.UP * -100)
+    if winner ~= nil and Object.IsValid(winner) then
+        local winnerInventory = winner.serverUserData.inventory
+        if winnerInventory:IsBackpackFull() then
+            Events.Broadcast("DropLootSpecificHashForPlayers",entry.serverUserData.rolledItem:PersistentHash(),winner,winner:GetWorldPosition() + Vector3.UP * -100)
+        else
+            print("Adding item")
+            winnerInventory:AddItem(entry.serverUserData.rolledItem)
+            -- TODO: Notify the client to add the item hash.
+        end
     end
     DeleteEntry(entry)
 end
@@ -95,7 +100,7 @@ end
 
 -- Create a rolled loot entry that specified clients will receive to roll upon.
 local function CreateRollForLootEntry(itemName, players) -- string, table of players
-    assert(#players > 1, "You need more than 1 player to create rollable loot.")
+    --assert(#players > 1, "You need more than 1 player to create rollable loot.")
     local rolledItem = Database:CreateItemDropFromName(itemName)
     local rollEntry = World.SpawnAsset(ROLLENTRY_TEMPLATE,{ parent = script })
     local ID = #entries+1
@@ -104,7 +109,7 @@ local function CreateRollForLootEntry(itemName, players) -- string, table of pla
     rollEntry:SetNetworkedCustomProperty('ItemHash',rolledItem:PersistentHash())
     rollEntry:SetNetworkedCustomProperty("RequestedPlayers",playerIds)
     rollEntry:SetNetworkedCustomProperty("ID",ID)
-    rollEntry.serverUserData.itemName = rolledItem:GetName()
+    rollEntry.serverUserData.rolledItem = rolledItem
     rollEntry.serverUserData.id = ID
     rollEntry.serverUserData.requiredReplies = #players -- Amount of replies required to process the roll.
     rollEntry.serverUserData.replies = {} -- { player, rollType }

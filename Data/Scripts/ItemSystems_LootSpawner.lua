@@ -1,4 +1,12 @@
-﻿local Database = require(script:GetCustomProperty("ItemSystems_Database"))
+﻿--[[
+    ItemSystems.LootSpawner
+    ================
+
+    Contains various functions that are called by Events.Broadcast() to create the loot drops.
+]]
+
+
+local Database = require(script:GetCustomProperty("ItemSystems_Database"))
 local LOOT_TEMPLATE = script:GetCustomProperty("LootTemplate")
 
 -- Drops are assigned by lottery.
@@ -84,7 +92,11 @@ local function ApplyLootRotation(model)
     end
 end
 
--- Drop a specific item and chooses a random player from a table of players.
+-----------------------------------------
+-- To call these use Events.Broadcast() 
+-----------------------------------------
+
+-- Drop a specific item and chooses a random player from a table of players. (This can be a single player too)
 local function OnDropSpecificLootForPlayers(itemName, players, dropWorldPosition) -- string, table or player, vector3
     -- If for some crazy reason the database has yet to load and loot is already dropping, ignore it.
     Database:WaitUntilLoaded()
@@ -109,8 +121,34 @@ local function OnDropSpecificLootForPlayers(itemName, players, dropWorldPosition
     object:SetNetworkedCustomProperty("INFO", lootInfo)
 end
 
--- Drops a random item based on likelihood and chooses a random player from a table of players. ( This can be a single player too )
-local function OnDropLootForPlayers(dropKey, players, dropWorldPosition) -- string, table, vector3
+-- Drop a specific itemHash and choose a random player from a table of players. (This can be a single player too)
+local function OnDropSpecificHashLootForPlayers(itemHash, players, dropWorldPosition) -- string, table or player, vector3
+    -- If for some crazy reason the database has yet to load and loot is already dropping, ignore it.
+    Database:WaitUntilLoaded()
+    -- Get the lottery tickets of the players if a table
+    local winner = nil
+    if type(players) == table then
+        winner = ChoosePlayerByLottery(players)
+    else
+        winner = players
+    end
+
+    -- Drop a specific item
+    print("Hash:",itemHash)
+    local item = Database:CreateItemFromHash(itemHash)
+
+    local object = World.SpawnAsset(LOOT_TEMPLATE, { position = dropWorldPosition, parent = script })
+    -- Attach associated model to drop
+    local model = World.SpawnAsset(item:GetMUID(),{ parent = object })
+    ApplyLootRotation(model)
+
+    -- Encode information into the objects loot property.
+    local lootInfo = string.format("%s/%s", winner.id, item:RuntimeHash())
+    object:SetNetworkedCustomProperty("INFO", lootInfo)
+end
+
+-- Drops a random item based on likelihood and chooses a random player from a table of players. (This can be a single player too)
+local function OnDropLootForPlayers(dropKey, players, dropWorldPosition) -- string, table or player, vector3
     -- If for some crazy reason the database has yet to load and loot is already dropping, ignore it.
     Database:WaitUntilLoaded()
     local tickets = GetPlayersLotteryTickets(players)
@@ -148,8 +186,12 @@ local function OnDropLoot(dropKey, dropWorldPosition) -- string, vector3
     object:SetNetworkedCustomProperty("INFO", lootInfo)
 end
 
-Game.playerJoinedEvent:Connect(OnPlayerJoined)
-Game.playerLeftEvent:Connect(OnPlayerLeft)
+-- Events that you should call when wanting to spawn loot.
 Events.Connect("DropLoot", OnDropLoot)
 Events.Connect("DropLootForPlayers", OnDropLootForPlayers)
 Events.Connect("DropLootSpecificForPlayers", OnDropSpecificLootForPlayers)
+Events.Connect("DropLootSpecificHashForPlayers", OnDropSpecificHashLootForPlayers)
+-----------------------------------------
+
+Game.playerJoinedEvent:Connect(OnPlayerJoined)
+Game.playerLeftEvent:Connect(OnPlayerLeft)

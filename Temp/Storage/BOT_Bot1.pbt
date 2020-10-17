@@ -1,5 +1,13 @@
 ﻿Entries {
   Key {
+    StringVar: "inventoryHash"
+  }
+  SimpleValue {
+    StringVar: "P<EMainHand>P390E4CC80F3B5297|ba|#Attack=haaa#Attack=qaaa&Attack=uaaa&Magic=faaa&Attack=eaaa;<EOffHand>P0B1F879A1ED0268E|ba|#Defense=oaaa#Defense=waaa&Defense=faaa;"
+  }
+}
+Entries {
+  Key {
     StringVar: "STATS"
   }
   SimpleValue {
@@ -13,13 +21,5 @@
         }
       }
     }
-  }
-}
-Entries {
-  Key {
-    StringVar: "inventoryHash"
-  }
-  SimpleValue {
-    StringVar: "P<EMainHand>P0CFE0C59E5ADA039|ba|#Attack=saaa&CritChance=faaa&Attack=caaa;<EChest>P67356E23909E6AF4|ba|#Defense=uaaa&Defense=paaa&Haste=gaaa;"
   }
 }
