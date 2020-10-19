@@ -1,4 +1,12 @@
-﻿local StatSheet = {}
+﻿--[[
+    ItemSystems.StatSheet
+    ================
+
+    An object that calculates the players stats and contains various methods
+    to get and modify information.
+]]
+
+local StatSheet = {}
 StatSheet.__index = StatSheet
 
 ---------------------------------------------------------------------------------------------------------
@@ -14,7 +22,7 @@ StatSheet.STATS = Enum{
     "CritChance", -- Percent chance to perform a critical strike
     "CDR", -- Makes your abilities charge faster ( Not used as core does not allow the changing of abilities at runtime. )
     "Haste", -- Player's speed
-    "Tenacity", -- Makes Crowd Control effects on your character expire faster
+    "Tenacity", -- Makes Crowd Control effects on your character expire faster ( Custom implementation required )
 }
 
 -- Calculate the base stat amounts at a given level.
@@ -131,7 +139,9 @@ function StatSheet:GetStatTotalModifierMul(statName)
 end
 
 ---------------------------------------------------------------------------------------------------------
-function StatSheet:NewStatModifierAdd(statName, addend, isStatic)
+
+-- Add a additive buff or debuff to the player stats.
+function StatSheet:NewStatModifierAdd(statName, addend, isStatic) -- string, int, bool
     local modifier = {
         statName    = statName,
         addend      = addend,
@@ -142,7 +152,8 @@ function StatSheet:NewStatModifierAdd(statName, addend, isStatic)
     return modifier
 end
 
-function StatSheet:NewStatModifierMul(statName, multiplier, isStatic)
+-- Add a multiplicative buff or debuff to the player stats.
+function StatSheet:NewStatModifierMul(statName, multiplier, isStatic) -- string, int, bool
     assert(multiplier >= 0)
     local modifier = {
         statName    = statName,
@@ -154,7 +165,8 @@ function StatSheet:NewStatModifierMul(statName, multiplier, isStatic)
     return modifier
 end
 
-function StatSheet:RemoveStatModifier(modifier)
+-- Remove a buff or debuff
+function StatSheet:RemoveStatModifier(modifier) -- string
     self.statModifiersAdd[modifier] = nil
     self.statModifiersMul[modifier] = nil
     self:Update()
@@ -181,6 +193,7 @@ function StatSheet:_UpdateLevel()
         self.level = self.MAX_LEVEL
         return
     end
+    local oldLevel = self.level
     -- Bisect the experience curve to find the correct level.
     local lo = 1
     local hi = self.MAX_LEVEL
@@ -196,6 +209,11 @@ function StatSheet:_UpdateLevel()
         elseif not isBelowHiCutoff then
             lo = mi + 1
         end
+    end
+    local newLevel = self.level
+    if newLevel ~= oldLevel then
+        -- Tells the client to create the cool level up VFX
+        Events.Broadcast("StatSheet_LevelChanged", self, newLevel, oldLevel)
     end
 end
 

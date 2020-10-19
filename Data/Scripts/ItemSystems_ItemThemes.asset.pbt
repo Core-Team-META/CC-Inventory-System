@@ -195,6 +195,12 @@
           Id: 2710581938246947078
         }
       }
+      Overrides {
+        Name: "cs:SFX_EquipRing"
+        AssetReference {
+          Id: 14625542863664929846
+        }
+      }
     }
     Assets {
       Id: 1285653368607626957

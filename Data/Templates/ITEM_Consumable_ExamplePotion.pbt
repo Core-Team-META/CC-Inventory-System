@@ -7,7 +7,7 @@
       RootId: 1558197855077483019
       Objects {
         Id: 1558197855077483019
-        Name: "ITEM_Consumable_PoisonPotion"
+        Name: "ITEM_Consumable_ExamplePotion"
         Transform {
           Scale {
             X: 1
@@ -31,7 +31,7 @@
           }
           Overrides {
             Name: "cs:MaxStackableSize"
-            Int: 1
+            Int: 2
           }
           Overrides {
             Name: "cs:ItemType"
@@ -39,21 +39,45 @@
           }
           Overrides {
             Name: "cs:Description"
-            String: "This item is special in that it can execute code when clicked in your inventory! Give it a try!"
+            String: "A harmless potion! Click to use!"
           }
           Overrides {
             Name: "cs:Rarity"
             String: "Uncommon"
           }
           Overrides {
-            Name: "cs:StatKey"
-            String: "UncommonMisc"
-          }
-          Overrides {
             Name: "cs:ConsumptionEffect"
             AssetReference {
               Id: 15665912626586225084
             }
+          }
+          Overrides {
+            Name: "cs:Name:tooltip"
+            String: "The name of the Item that will be displayed in the inventory, loot view, and referenced in the drops table."
+          }
+          Overrides {
+            Name: "cs:Icon:tooltip"
+            String: "The Icon that will be displayed"
+          }
+          Overrides {
+            Name: "cs:MaxStackableSize:tooltip"
+            String: "The amount of items that can stack into this object in the inventory."
+          }
+          Overrides {
+            Name: "cs:ItemType:tooltip"
+            String: "The type of Item this is. This will reference a type from ItemSystems_Item -> Item.TYPES."
+          }
+          Overrides {
+            Name: "cs:Description:tooltip"
+            String: "The lore for this item when viewed from the Inventory"
+          }
+          Overrides {
+            Name: "cs:Rarity:tooltip"
+            String: "The theme of this item. This does not affect stats in anyways, but gives it a nice look in the inventory and loot view."
+          }
+          Overrides {
+            Name: "cs:ConsumptionEffect:tooltip"
+            String: "Only for the Consumable Item type. Read the Consumable Items section of the readme for details on how to implement this."
           }
         }
         WantsNetworking: true

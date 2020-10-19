@@ -8,6 +8,7 @@ local ROLLENTRY_TEMPLATE = script:GetCustomProperty("RollEntryTemplate")
 local ROLLER_TEMPLATE = script:GetCustomProperty("RollerTemplate")
 local ROLL_EXPIRETIME = script:GetCustomProperty("RollExpireTime")
 
+local ReliableEvents = require(script:GetCustomProperty("ReliableEvents"))
 local Database = require(script:GetCustomProperty("ItemSystems_Database"))
 Database:WaitUntilLoaded()
 
@@ -58,9 +59,8 @@ local function RollingComplete(entry) -- CoreObject
         if winnerInventory:IsBackpackFull() then
             Events.Broadcast("DropLootSpecificHashForPlayers",entry.serverUserData.rolledItem:PersistentHash(),winner,winner:GetWorldPosition() + Vector3.UP * -100)
         else
-            print("Adding item")
             winnerInventory:AddItem(entry.serverUserData.rolledItem)
-            -- TODO: Notify the client to add the item hash.
+            ReliableEvents.BroadcastToPlayer(winner,"AddWonItem",entry.serverUserData.rolledItem:PersistentHash())
         end
     end
     DeleteEntry(entry)
@@ -99,9 +99,9 @@ local function ProcessRollRequest(player,id,request) -- player, int, bool
 end
 
 -- Create a rolled loot entry that specified clients will receive to roll upon.
-local function CreateRollForLootEntry(itemName, players) -- string, table of players
+local function CreateRollForLootEntry(dropKey, players) -- string, table of players
     --assert(#players > 1, "You need more than 1 player to create rollable loot.")
-    local rolledItem = Database:CreateItemDropFromName(itemName)
+    local rolledItem = Database:CreateItemFromDrop(dropKey)
     local rollEntry = World.SpawnAsset(ROLLENTRY_TEMPLATE,{ parent = script })
     local ID = #entries+1
     local playerIds = PlayersToIDTable(players)

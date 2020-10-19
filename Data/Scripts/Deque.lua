@@ -1,4 +1,9 @@
-﻿local Deque = {}
+﻿--[[
+    Deque
+    A double ended queue object.
+--]]
+
+local Deque = {}
 Deque.__index = Deque
 
 function Deque.New()

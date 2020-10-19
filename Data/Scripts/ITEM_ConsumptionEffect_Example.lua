@@ -9,6 +9,6 @@ return function(player)
     end
     if RuntimeContextDetection.IsServerSide() then
         -- Execute server side code here!
-        player:Die() -- If you drank the poison you're going to die.
+        player:Die()
     end
 end

@@ -28,7 +28,7 @@ Database:WaitUntilLoaded()
 ---------------------------------------------------------------------------------------------------------
 local function ServerLoadInventory()
     local playerData = Storage.GetPlayerData(OWNER)
-    print("Loading inventory: ", playerData.inventoryHash)
+    --print("Loading inventory: ", playerData.inventoryHash)
     OWNER.serverUserData.inventory:LoadHash(playerData.inventoryHash)
     COMPONENT:SetNetworkedCustomProperty("LOAD", OWNER.serverUserData.inventory:RuntimeHash())
 end
@@ -92,7 +92,7 @@ local function ServerInitInventory()
         -- Update the player's stat sheet.
         ServerUpdateStatSheet(inventory, statModifiers)
         -- Update the player's animation stance depending on the item.
-        if inventory:IsPrimaryWeaponSlot(equipIndex) then
+        if inventory:IsPrimaryWeaponSlot(equipIndex) and equipItem then
             OWNER.animationStance = equipItem and equipItem:GetAnimationStance() or "unarmed_stance"
         end
     end)

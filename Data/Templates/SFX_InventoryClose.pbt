@@ -55,7 +55,7 @@
           }
           AutoPlay: true
           Transient: true
-          Volume: 2
+          Volume: 7
           Falloff: -1
           Radius: -1
         }

@@ -3,7 +3,7 @@ local ACCEPT_ROLLBUTTON = script:GetCustomProperty("AcceptRollButton"):WaitForOb
 local PASS_ROLLBUTTON = script:GetCustomProperty("PassRollButton"):WaitForObject()
 local FRAME_ITEM_HOVER = script:GetCustomProperty("PanelItemHover"):WaitForObject()
 local HOVER_STATS_BUTTON = script:GetCustomProperty("HoverStatsButton"):WaitForObject()
-local INITAL_REMAININGTIME = script:GetCustomProperty("RollManager"):WaitForObject():GetCustomProperty("RollExpireTime")
+local INITAL_REMAININGTIME = World.FindObjectByName("ItemSystems_RollLootManager"):GetCustomProperty("RollExpireTime")
 
 local ItemDatabase = require(script:GetCustomProperty("ItemSystems_Database"))
 local ItemThemes = require(script:GetCustomProperty("ItemSystems_ItemThemes"))
@@ -117,7 +117,7 @@ end
 local function init()
     -- We need to wait for the item data and roll id before we continue.
     script.parent.visibility = Visibility.FORCE_OFF
-    while not script.parent.clientUserData.ItemHash or not script.parent.clientUserData.id do Task.Wait() end
+    while not script.parent.clientUserData.ItemHash do print(script.parent.clientUserData.ItemHash) Task.Wait() end
     script.parent.visibility = Visibility.FORCE_ON
     local itemHash = script.parent.clientUserData.ItemHash
     local item = ItemDatabase:CreateItemFromHash(itemHash)

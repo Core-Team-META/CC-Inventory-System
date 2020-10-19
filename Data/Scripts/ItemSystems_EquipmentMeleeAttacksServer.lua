@@ -20,10 +20,10 @@ This script uses the specified hitbox trigger on ability to damage enemy players
 Each ability can have its own trigger (e.g. small attacks - front trigger, big attacks - wider trigger).
 ]]
 
+-- Require standardcombo's combat wrap to use on the weapon.
 local MODULE = require( script:GetCustomProperty("ModuleManager") )
 function COMBAT() return MODULE:Get("standardcombo.Combat.Wrap") end
-
-local CRIT_DAMAGE_MULTIPLIER = 2.0
+local CombatStats = require(script:GetCustomProperty("PlayerStats_Combat"))
 
 -- Internal custom properties
 local EQUIPMENT = script:FindAncestorByType('Equipment')
@@ -74,25 +74,14 @@ function MeleeAttack(other, abilityInfo)
     -- Avoid hitting the same player multiple times in a single swing
     if (abilityInfo.ignoreList[other] ~= 1) then
 
-        -- Creates new damage info at apply it to the enemy
-
-        local statSheet = ability.owner.serverUserData.statSheet
-        local critChance = ability.owner.serverUserData.statSheet:GetStatTotalValue("CritChance") / 100.0
-        local totalDamage = statSheet:GetStatTotalValue("Attack")
-
-        if math.random() < critChance then
-            totalDamage = totalDamage * CRIT_DAMAGE_MULTIPLIER
+        -- If the opponent has a statsheet
+        local damage = nil
+        if other.serverUserData.statSheet then
+            damage = CombatStats:CalculateAttackDamageBetweenPlayers(ability.owner, other)
+        else
+            damage = CombatStats:GetAttackDamage(ability.owner)
         end
-
-        local damage = Damage.New(totalDamage)
-
-        --print("Applying standard combo damage.")
-        --function API.ApplyDamage(object, dmg, source, pos, rot)
         COMBAT().ApplyDamage(other, damage, ability.owner, other:GetWorldPosition(), Rotation.New())
-        
-        -- damage.sourcePlayer = ability.owner
-        -- damage.sourceAbility = ability
-        -- player:ApplyDamage(damage)
 
         abilityInfo.ignoreList[other] = 1
     end

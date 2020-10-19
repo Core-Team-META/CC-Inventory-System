@@ -1,4 +1,11 @@
-﻿local RARITY_COLORS = {
+﻿--[[
+    ItemSystems.ItemThemes
+    ================
+
+    The Customizable properties of the Item System.
+]]
+
+local RARITY_COLORS = {
     Common      = script:GetCustomProperty("RarityCommon"),
     Uncommon    = script:GetCustomProperty("RarityUncommon"),
     Rare        = script:GetCustomProperty("RarityRare"),
@@ -66,6 +73,7 @@ local PLAYER_STAT_EXPLANATIONS = {
 }
 
 local ITEM_SFX = {
+    --Ring       = script:GetCustomProperty("SFX_EquipRing"),
     Armor      = script:GetCustomProperty("SFX_EquipArmor"),
     Axe        = script:GetCustomProperty("SFX_EquipAxe"),
     Boots      = script:GetCustomProperty("SFX_EquipBoots"),
@@ -82,6 +90,7 @@ local ITEM_SFX = {
     Wand       = script:GetCustomProperty("SFX_EquipWand"),
     Misc       = script:GetCustomProperty("SFX_MiscPickup"),
     Consumable = script:GetCustomProperty("SFX_ConsumablePickup"),
+
 }
 
 return {
@@ -110,7 +119,13 @@ return {
     end,
 
     GetItemSFX = function(itemType)
-        assert(ITEM_SFX[itemType],"Item type does not have an associated SFX custom property")
+        local SuprressWarning = false -- Change this to true if you don't care about warning messages.
+        if not ITEM_SFX[itemType] then
+            if not SuprressWarning then
+                warn(string.format("Item type: %s does not have an associated SFX custom property. This will default to Misc SFX. Consider adding one to ItemThemes or supress the warning inside the script.",itemType))
+            end
+            return ITEM_SFX["Misc"]
+        end
         return ITEM_SFX[itemType]
     end,
 }

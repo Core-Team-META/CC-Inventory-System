@@ -15,7 +15,7 @@
             Z: 1
           }
         }
-        ParentId: 7676655385465303512
+        ParentId: 4781671109827199097
         ChildIds: 14215941098795335743
         ChildIds: 16445015100220171757
         ChildIds: 11448027595919400989
@@ -92,6 +92,34 @@
             Name: "cs:SwingSound:tooltip"
             String: "Template that is spawned at the equipment owner location when a melee ability is executed."
           }
+          Overrides {
+            Name: "cs:Name:tooltip"
+            String: "The name of the Item that will be displayed in the inventory, loot view, and referenced in the drops table."
+          }
+          Overrides {
+            Name: "cs:Icon:tooltip"
+            String: "he Icon that will be displayed"
+          }
+          Overrides {
+            Name: "cs:ItemType:tooltip"
+            String: "The type of Item this is. This must point to a type from ItemSystems_Item -> Item.TYPES."
+          }
+          Overrides {
+            Name: "cs:StatKey:tooltip"
+            String: "The stat key this item points to when when rolling for stats. Usually assoicated with the Item type. ItemSystems_DATA_TYPEHERE_Stats."
+          }
+          Overrides {
+            Name: "cs:Rarity:tooltip"
+            String: "The theme of this item. This does not affect stats in anyways, but gives it a nice look in the inventory and loot view."
+          }
+          Overrides {
+            Name: "cs:Description:tooltip"
+            String: "The lore for this item when viewed from the Inventory"
+          }
+          Overrides {
+            Name: "cs:DropRotation:tooltip"
+            String: "The drop rotation that is applied to the object when dropped."
+          }
         }
         WantsNetworking: true
         Collidable_v2 {
@@ -103,7 +131,6 @@
         Equipment {
           SocketName: "right_prop"
           PickupTrigger {
-            SelfId: 6907903927183883021
           }
         }
       }
@@ -505,6 +532,12 @@
             Name: "cs:ModuleManager"
             AssetReference {
               Id: 5020659879017544757
+            }
+          }
+          Overrides {
+            Name: "cs:PlayerStats_Combat"
+            AssetReference {
+              Id: 6901022733058076057
             }
           }
         }

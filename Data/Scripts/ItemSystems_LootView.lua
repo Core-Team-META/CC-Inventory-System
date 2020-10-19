@@ -14,7 +14,6 @@ while not LOCAL_PLAYER.clientUserData.inventory do Task.Wait() end
 local inventory = LOCAL_PLAYER.clientUserData.inventory
 
 local function PlaySound(sfx)
-    print("Playing sfx",sfx)
     World.SpawnAsset(sfx, { parent = script })
 end
 
@@ -126,7 +125,6 @@ end
 
 function view:OnClick(button)
     local lootIndex = button.clientUserData.entry.clientUserData.lootIndex
-    print("LootIndex:",lootIndex)
     if inventory:CanClaimLoot(lootIndex) then
         inventory:ClaimLoot(lootIndex)
         local claimedItem = inventory:GetLootItem(lootIndex)

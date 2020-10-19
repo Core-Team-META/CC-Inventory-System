@@ -1,13 +1,13 @@
 ﻿Assets {
-  Id: 801508354706908814
-  Name: "ITEM_Shield_Example"
+  Id: 15055086068281261176
+  Name: "ITEM_Misc_ExampleCandle"
   PlatformAssetType: 5
   TemplateAsset {
     ObjectBlock {
-      RootId: 4129509117028474446
+      RootId: 1558197855077483019
       Objects {
-        Id: 4129509117028474446
-        Name: "ITEM_Shield_Example"
+        Id: 1558197855077483019
+        Name: "ITEM_Misc_ExampleCandle"
         Transform {
           Scale {
             X: 1
@@ -16,45 +16,34 @@
           }
         }
         ParentId: 4781671109827199097
-        ChildIds: 8368475805096733658
+        ChildIds: 4755894725365256958
+        ChildIds: 12916001317274604236
         UnregisteredParameters {
           Overrides {
             Name: "cs:Name"
-            String: "Example Shield"
+            String: "Example Misc Candle"
           }
           Overrides {
             Name: "cs:Icon"
             AssetReference {
-              Id: 8406414470576079988
+              Id: 14664897474530513931
             }
+          }
+          Overrides {
+            Name: "cs:MaxStackableSize"
+            Int: 1
           }
           Overrides {
             Name: "cs:ItemType"
-            String: "Shield"
+            String: "Misc"
           }
           Overrides {
             Name: "cs:Description"
-            String: "Defensive mode!"
+            String: "A useless burnt out candle."
           }
           Overrides {
             Name: "cs:Rarity"
-            String: "Uncommon"
-          }
-          Overrides {
-            Name: "cs:StatKey"
-            String: "UncommonShield"
-          }
-          Overrides {
-            Name: "cs:SOCKET_left_wrist"
-            ObjectReference {
-              SubObjectId: 4129509117028474446
-            }
-          }
-          Overrides {
-            Name: "cs:DropRotation"
-            Vector {
-              X: 90
-            }
+            String: "Common"
           }
           Overrides {
             Name: "cs:Name:tooltip"
@@ -63,6 +52,10 @@
           Overrides {
             Name: "cs:Icon:tooltip"
             String: "The Icon that will be displayed"
+          }
+          Overrides {
+            Name: "cs:MaxStackableSize:tooltip"
+            String: "The amount of items that can stack into this object in the inventory."
           }
           Overrides {
             Name: "cs:ItemType:tooltip"
@@ -75,18 +68,6 @@
           Overrides {
             Name: "cs:Rarity:tooltip"
             String: "The theme of this item. This does not affect stats in anyways, but gives it a nice look in the inventory and loot view."
-          }
-          Overrides {
-            Name: "cs:StatKey:tooltip"
-            String: "The stat key this item points to when when rolling for stats. Usually assoicated with the Item type. ItemSystems_DATA_TYPEHERE_Stats."
-          }
-          Overrides {
-            Name: "cs:SOCKET_left_wrist:tooltip"
-            String: "is the socket we\'re going to attach the geometry to when the player equips this item. If you want your boots to go on both feet then make sure to have the name of your custom property, \"Socket_both_feet\". Then assign the root geometry object. Reference all the sockets here: https://docs.coregames.com/api/animations/"
-          }
-          Overrides {
-            Name: "cs:DropRotation:tooltip"
-            String: "The drop rotation that is applied to the object dropped."
           }
         }
         WantsNetworking: true
@@ -101,27 +82,25 @@
         }
       }
       Objects {
-        Id: 8368475805096733658
-        Name: "Geo"
+        Id: 4755894725365256958
+        Name: "ClientContext"
         Transform {
           Location {
-            Y: -12.9192123
           }
           Rotation {
-            Yaw: -89.9998779
-            Roll: 88.9418259
+            Pitch: 10.0505953
           }
           Scale {
-            X: 0.676926196
-            Y: 0.676926196
-            Z: 0.676926196
+            X: 1
+            Y: 1
+            Z: 1
           }
         }
-        ParentId: 4129509117028474446
-        ChildIds: 14626052061674654734
+        ParentId: 1558197855077483019
+        ChildIds: 286054055824311789
         WantsNetworking: true
         Collidable_v2 {
-          Value: "mc:ecollisionsetting:forceoff"
+          Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
           Value: "mc:evisibilitysetting:inheritfromparent"
@@ -130,13 +109,12 @@
         }
       }
       Objects {
-        Id: 14626052061674654734
-        Name: "Shield 04"
+        Id: 286054055824311789
+        Name: "Candle 01"
         Transform {
           Location {
           }
           Rotation {
-            Yaw: -90
           }
           Scale {
             X: 1
@@ -144,7 +122,7 @@
             Z: 1
           }
         }
-        ParentId: 8368475805096733658
+        ParentId: 4755894725365256958
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -153,7 +131,7 @@
         }
         CoreMesh {
           MeshAsset {
-            Id: 16905878857680006024
+            Id: 18243333251623460988
           }
           Teams {
             IsTeamCollisionEnabled: true
@@ -166,23 +144,58 @@
           }
         }
       }
-    }
-    Assets {
-      Id: 8406414470576079988
-      Name: "Fantasy Shield 008"
-      PlatformAssetType: 9
-      PrimaryAsset {
-        AssetType: "PlatformBrushAssetRef"
-        AssetId: "UI_Fantasy_Weapon_Shield_008"
+      Objects {
+        Id: 12916001317274604236
+        Name: "Trigger"
+        Transform {
+          Location {
+            X: 683.833252
+            Y: -1950.21545
+          }
+          Rotation {
+            Yaw: -63.3271484
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 1558197855077483019
+        WantsNetworking: true
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Trigger {
+          TeamSettings {
+            IsTeamCollisionEnabled: true
+            IsEnemyCollisionEnabled: true
+          }
+          TriggerShape_v2 {
+            Value: "mc:etriggershape:box"
+          }
+        }
       }
     }
     Assets {
-      Id: 16905878857680006024
-      Name: "Shield 04"
+      Id: 14664897474530513931
+      Name: "Fantasy Candle 001"
+      PlatformAssetType: 9
+      PrimaryAsset {
+        AssetType: "PlatformBrushAssetRef"
+        AssetId: "UI_Fantasy_Equip_Candle_001"
+      }
+    }
+    Assets {
+      Id: 18243333251623460988
+      Name: "Candle 01"
       PlatformAssetType: 1
       PrimaryAsset {
         AssetType: "StaticMeshAssetRef"
-        AssetId: "sm_shield_004"
+        AssetId: "sm_prop_fantasy_candle_003"
       }
     }
     PrimaryAssetId {

@@ -120,6 +120,7 @@ function Database:_LoadCatalog()
             local propDescription = tempItem:GetCustomProperty("Description")
             local propRarity = tempItem:GetCustomProperty("Rarity")
             local propStatKey = tempItem:GetCustomProperty("StatKey")
+            local propEquipmentStance = tempItem:GetCustomProperty("EquipmentStance")
             local propConsumptionEffect = tempItem:GetCustomProperty("ConsumptionEffect")
             tempItem:Destroy()
 
@@ -140,18 +141,20 @@ function Database:_LoadCatalog()
                 assert(self.itemStatRollInfos[propStatKey], string.format("unrecognized item stat key - %s ensure %s has the %s key in the ItemSystems_%s_Stats", propStatKey, propName, propStatKey, propItemType))
             end
 
-            print(propName)
-
+            local isEquippable = Item.SLOT_CONSTRAINTS[propItemType] and true or false
+            local stance = propEquipmentStance or nil
+            local maxStackSize = propMaxStackableSize ~= nil and propMaxStackableSize > 1 and propMaxStackableSize or nil
             local itemData = {
                 index = index,
                 name = propName,
                 iconMUID = propIcon,
                 type = propItemType,
                 rarity = propRarity,
-                maxStackSize = propMaxStackableSize ~= nil and propMaxStackableSize > 1 and propMaxStackableSize or nil,
-                isEquippable = Item.SLOT_CONSTRAINTS[propItemType] and true or false,
+                stance = stance,
+                isEquippable = isEquippable,
+                maxStackSize = maxStackSize,
                 muid = muid:match("^(.+):"), -- these MUIDs are used as keys; strip the irrelevant name part.
-                description = propDescription,
+                description = propDescription or "",
                 statKey = propStatKey,
                 consumptionEffect = propConsumptionEffect,
                 _RollStats = Database:_GetRollFunction(propStatKey)

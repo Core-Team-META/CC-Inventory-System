@@ -15,14 +15,16 @@ Item.__index = Item
 local function Enum(values) for i,v in ipairs(values) do values[v] = i end return values end
 
 Item.TYPES = Enum{
-    -- Add item types here. And create the catalog and stats script for it then add it to the database as a custom property. You may also assign it a loot table.
+    -- Add item types here. Create the catalog and stats script for it then add it to the database as a custom property. You may also assign it a loot table.
+    -- Refer to Item.SLOT_CONSTRAINTS below if you want your type to have an equipable slot.
     "Sword",
     "Shield",
     "Helmet",
     "Armor",
     "Boots",
     "Trinket",
-    -- Example: "Ring",
+    --"Ring", -- For the catalog and stats tutorial. Remove the comment.
+
     -- Specials (Non-Equipables)
     "Misc",
     "Consumable",
@@ -49,13 +51,14 @@ Item.RARITIES = Enum{
     "Legendary",
 }
 
--- These are paired with Item.STATS. If you want your item to be equippable then add your type here.
+-- These are paired with Item.TYPES. If you want your item to be equippable then add your type here.
 Item.SLOT_CONSTRAINTS = {
+    --Ring        = { slotType = "Accessory" }, -- Remove the comment.
     Armor       = { slotType = "Chest" },
     Axe         = { slotType = "MainHand" },
     Boots       = { slotType = "Feet" },
     Dagger      = { slotType = "MainHand" },
-    Greatsword  = { slotType = "MainHand", isOffHandDisabled = true },
+    Greatsword  = { slotType = "MainHand", isOffHandDisabled = true }, -- isOffHandDisabled unequips your shield item in favor of this weapon.
     Helmet      = { slotType = "Head" },
     Mace        = { slotType = "MainHand" },
     Shield      = { slotType = "OffHand" },
@@ -64,7 +67,6 @@ Item.SLOT_CONSTRAINTS = {
     Trinket     = { slotType = "Accessory" },
     Warhammer   = { slotType = "MainHand", isOffHandDisabled = true },
     Wand        = { slotType = "MainHand" },
-    -- Example: Ring = { slotType = "Accessory" }
 }
 
 ---------------------------------------------------------------------------------------------------------
@@ -168,7 +170,7 @@ function Item:GetMUID()
 end
 
 function Item:GetAnimationStance()
-    return self.data.animationStance
+    return self.data.stance
 end
 
 function Item:GetAbilityNames()
@@ -205,12 +207,10 @@ function Item:RollStats()
 end
 
 function Item:HasConsumptionEffect()
-    assert(self:GetType() == "Consumable" and self.data.consumptionEffect ~= nil, "Item type is a consumable and it does not have a consumption effect.")
     return self:GetType() == "Consumable" and self.data.consumptionEffect ~= nil
 end
 
 function Item:ApplyConsumptionEffect(player)
-    assert(self:GetType() == "Consumable")
     if self.data.consumptionEffect then
         require(self.data.consumptionEffect)(player)
     end

@@ -50,21 +50,27 @@ end
 
 -----------------------------------------------------------------------------------------------------------------
 -- Setup all UI elements.
-local function IsMatchingTemplate(object, template)
-    local isTemplateRoot = object:FindTemplateRoot() == object
-    return isTemplateRoot and template:find(object.sourceTemplateId) ~= nil
-end
+-- local function IsMatchingTemplate(object, template)
+--     local isTemplateRoot = object:FindTemplateRoot() == object
+--     return isTemplateRoot and template:find(object.sourceTemplateId) ~= nil
+-- end
 
 local function IsSlotControl(control)
-    return IsMatchingTemplate(control, TEMPLATE_SLOT_BACKPACK) or
-           IsMatchingTemplate(control, TEMPLATE_SLOT_EQUIPPED) 
+    if control:FindChildByName("Icon") and 
+    control:FindChildByName("Border") and
+    control:FindChildByName("Gradient") then
+        return true
+    end
+    return false
+    --return IsMatchingTemplate(control, TEMPLATE_SLOT_BACKPACK) or
+    --       IsMatchingTemplate(control, TEMPLATE_SLOT_EQUIPPED) 
 end
 
 local function ShouldConsiderControl(control)
     return control == INVENTORY_VIEW or
            control == PANEL_EQUIPPED or
            control == PANEL_BACKPACK or
-           IsSlotControl(control)
+            IsSlotControl(control)
 end
 
 local function GetControlUIParameters(control)
@@ -129,6 +135,16 @@ local function SetupControl(control, processSlot)
         end
         if processSlot then processSlot(control) end
     end
+end
+
+local function HasRequiredSlotProperties(root)
+    if root:FindChildByName("Gradient") and 
+    root:FindChildByName("Icon") and 
+    root:FindChildByName("Border") then
+        print("true")
+        return true
+    end
+    return false
 end
 
 local function TraverseAndSetupSlots_R(root, processSlot)

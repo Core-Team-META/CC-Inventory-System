@@ -236,7 +236,9 @@ function DropRewards(killer)
 	and killer:IsA("Player") then
 		killer:AddResource(REWARD_RESOURCE_TYPE, REWARD_RESOURCE_AMOUNT)
 	end
-	
+
+	Events.Broadcast("RollForLootDrop",LOOT_ID,Game:GetPlayers())
+
 	-- Drop loot
 	if LOOT_DROP_FACTORY() then
 		local pos = script:GetWorldPosition()

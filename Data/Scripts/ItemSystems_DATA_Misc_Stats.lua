@@ -11,7 +11,7 @@ return {
       Min = '3',
       Max = '6',
       Likelihood = '',
-      ['Author Notes (will be ignored by script)'] = 'Common Boots always have between 5 and 10 Defense',
+      ['Author Notes (will be ignored by script)'] = '',
     },
     {
       StatKey = 'UncommonMisc',
@@ -20,6 +20,6 @@ return {
       Min = '40',
       Max = '85',
       Likelihood = '',
-      ['Author Notes (will be ignored by script)'] = 'Common Boots always have between 5 and 10 Defense',
+      ['Author Notes (will be ignored by script)'] = '',
     },
   }

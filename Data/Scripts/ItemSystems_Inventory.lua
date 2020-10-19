@@ -7,6 +7,7 @@
 
 local Item = require(script:GetCustomProperty("ItemSystems_Item"))
 local Base64 = require(script:GetCustomProperty("Base64"))
+local RuntimeContextDetection = require(script:GetCustomProperty("RuntimeContextDetection")) -- Used to change the speed of the player.
 
 local Inventory = {}
 Inventory.__index = Inventory
@@ -70,7 +71,6 @@ function Inventory:ConvertEquipSlotIndex(slotType, slotNumber)
             if number == slotNumber then return i end
         end
     end
-    error(string.format("equip slot not found - %s, %d", slotType, slotNumber))
 end
 
 -- True if the slot represents a backpack item.
@@ -218,7 +218,6 @@ end
 
 -- Adds an item to the backpack.
 function Inventory:AddItem(item)
-    print("Adding item",item)
     local emptySlotIndex = self:GetFreeBackpackSlot()
     if item:IsStackable() and emptySlotIndex then
         self:_AddStackableItemToBackpack(item)
@@ -228,6 +227,7 @@ function Inventory:AddItem(item)
 end
 
 -- Register a new loot object dropped for the owner of this inventory. Optionally provide a callback for when the loot is claimed.
+-- Returns an index of the registered item.
 function Inventory:RegisterLootItem(lootItem, lootWorldObject, onLootClaimed)
     if not lootItem then return end
     local lootInfo = {
@@ -237,6 +237,15 @@ function Inventory:RegisterLootItem(lootItem, lootWorldObject, onLootClaimed)
         onLootClaimed = onLootClaimed,
     }
     table.insert(self.lootInfos, lootInfo)
+    return #self.lootInfos
+end
+
+-- Unregisters an item from dropped loot. This is useful if you want to destroy loot that has been registered and needs to be removed.
+function Inventory:UnRegisterLootItem(lootIndex)
+    local lootInfo = self.lootInfos[lootIndex]
+    lootInfo.isClaimed = true
+    self:_FireEvent("lootClaimedEvent", lootIndex)
+    if lootInfo.onLootClaimed then lootInfo.onLootClaimed() end
 end
 
 -- True if the claim operation is valid.
@@ -474,6 +483,10 @@ function Inventory:_RecalculateStatTotals()
                 end
             end
         end
+    end
+    -- Apply haste stat to player
+    if RuntimeContextDetection:IsServerSide() then
+        self.owner.maxWalkSpeed = 640 + (self.statTotals["Haste"]*640)/100
     end
 end
 

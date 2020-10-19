@@ -112,6 +112,18 @@
           Id: 2110776185112995361
         }
       }
+      Overrides {
+        Name: "cs:Ring_Catalog"
+        AssetReference {
+          Id: 14192121082240662754
+        }
+      }
+      Overrides {
+        Name: "cs:Ring_Stats"
+        AssetReference {
+          Id: 4091765668381715221
+        }
+      }
     }
   }
   SerializationVersion: 65
