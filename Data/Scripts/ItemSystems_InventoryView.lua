@@ -25,6 +25,7 @@ local CURSOR_HIGHLIGHT_BACKPACK = script:GetCustomProperty("CursorHighlightBackp
 local SFX_EQUIP = script:GetCustomProperty("SFX_Equip")
 local SFX_MOVE = script:GetCustomProperty("SFX_Move")
 local SFX_DISCARD = script:GetCustomProperty("SFX_Discard")
+local SFX_DENIED = script:GetCustomProperty("SFX_Denied")
 local LOCAL_PLAYER = Game.GetLocalPlayer()
 
 -- Hardcoded UI placement settings.
@@ -50,11 +51,6 @@ end
 
 -----------------------------------------------------------------------------------------------------------------
 -- Setup all UI elements.
--- local function IsMatchingTemplate(object, template)
---     local isTemplateRoot = object:FindTemplateRoot() == object
---     return isTemplateRoot and template:find(object.sourceTemplateId) ~= nil
--- end
-
 local function IsSlotControl(control)
     if control:FindChildByName("Icon") and 
     control:FindChildByName("Border") and
@@ -62,8 +58,6 @@ local function IsSlotControl(control)
         return true
     end
     return false
-    --return IsMatchingTemplate(control, TEMPLATE_SLOT_BACKPACK) or
-    --       IsMatchingTemplate(control, TEMPLATE_SLOT_EQUIPPED) 
 end
 
 local function ShouldConsiderControl(control)
@@ -141,7 +135,6 @@ local function HasRequiredSlotProperties(root)
     if root:FindChildByName("Gradient") and 
     root:FindChildByName("Icon") and 
     root:FindChildByName("Border") then
-        print("true")
         return true
     end
     return false
@@ -254,6 +247,8 @@ function view:InitItemHover()
     PANEL_ITEM_HOVER.clientUserData.border = PANEL_ITEM_HOVER:GetCustomProperty("Border"):WaitForObject()
     PANEL_ITEM_HOVER.clientUserData.title = PANEL_ITEM_HOVER:GetCustomProperty("Title"):WaitForObject()
     PANEL_ITEM_HOVER.clientUserData.classification = PANEL_ITEM_HOVER:GetCustomProperty("Classification"):WaitForObject()
+    PANEL_ITEM_HOVER.clientUserData.level = PANEL_ITEM_HOVER:GetCustomProperty("Level"):WaitForObject()
+    PANEL_ITEM_HOVER.clientUserData.leveldivider = PANEL_ITEM_HOVER:GetCustomProperty("LevelDivider"):WaitForObject()
     PANEL_ITEM_HOVER.clientUserData.description = PANEL_ITEM_HOVER:GetCustomProperty("Description"):WaitForObject()
     PANEL_ITEM_HOVER.clientUserData.statOffsetY = PANEL_ITEM_HOVER:GetCustomProperty("StatOffsetY")
     PANEL_ITEM_HOVER.clientUserData.statOffsetXBase = PANEL_ITEM_HOVER:GetCustomProperty("StatOffsetXBase")
@@ -264,6 +259,17 @@ end
 -----------------------------------------------------------------------------------------------------------------
 function view:AttemptMoveItem(fromSlotIndex, toSlotIndex)
     if inventory:CanMoveItem(fromSlotIndex, toSlotIndex) then
+        local movingItem = inventory:GetItem(fromSlotIndex)
+        if movingItem and movingItem:GetLevelRequirement() then
+            local itemLevel = movingItem:GetLevelRequirement()
+            local playerLevel = LOCAL_PLAYER.clientUserData.statSheet:GetLevel()
+            if itemLevel and playerLevel < itemLevel then
+                if toSlotIndex ~= nil and inventory:IsEquipSlot(toSlotIndex) then
+                    PlaySound(SFX_DENIED)
+                    return
+                end
+            end
+        end
         inventory:MoveItem(fromSlotIndex, toSlotIndex)
         if toSlotIndex then
             if inventory:IsEquipSlot(toSlotIndex) or inventory:IsEquipSlot(fromSlotIndex) then
@@ -273,7 +279,11 @@ function view:AttemptMoveItem(fromSlotIndex, toSlotIndex)
                 PlaySound(SFX_MOVE)
             end
         else
-            PlaySound(SFX_DISCARD)
+            if inventory.DROP_ITEM_INSTEAD_OF_DELETE then
+                PlaySound(SFX_MOVE)
+            else
+                PlaySound(SFX_DISCARD)
+            end
         end
     end
 end
@@ -343,7 +353,13 @@ end
 -----------------------------------------------------------------------------------------------------------------
 function view:PerformClickAction()
     -- Now go ahead an perform the appropriate action.
+    local playerLevel = LOCAL_PLAYER.clientUserData.statSheet:GetLevel()
     local clickedItem = inventory:GetItem(self.clickSlotIndex)
+    local itemLevel = clickedItem:GetLevelRequirement()
+    if itemLevel and playerLevel < itemLevel then
+        PlaySound(SFX_DENIED)
+        return
+    end
     if clickedItem:IsEquippable() then
         -- Equippable item.
         if inventory:IsEquipSlot(self.clickSlotIndex) then
@@ -556,14 +572,22 @@ function view:DrawHoverInfo()
         PANEL_ITEM_HOVER.y = self.slotUnderCursor.clientUserData.yAbsolute
         -- Text
         local item = self.itemUnderCursor
+        local playerLevel = LOCAL_PLAYER.clientUserData.statSheet:GetLevel()
+        local itemLevel = item:GetLevelRequirement()
         PANEL_ITEM_HOVER.clientUserData.title.text = item:GetName()
         PANEL_ITEM_HOVER.clientUserData.classification.text = string.format("%s %s", item:GetRarity(), item:GetType())
         PANEL_ITEM_HOVER.clientUserData.description.text = item:GetDescription()
+        PANEL_ITEM_HOVER.clientUserData.level.text =  string.format("Requires Level %i",itemLevel or 0)
+        PANEL_ITEM_HOVER.clientUserData.level.visibility = itemLevel ~= nil and Visibility.FORCE_ON or Visibility.FORCE_OFF
+        PANEL_ITEM_HOVER.clientUserData.leveldivider.visibility = itemLevel ~= nil and Visibility.FORCE_ON or Visibility.FORCE_OFF
+        if itemLevel then
+            PANEL_ITEM_HOVER.clientUserData.level:SetColor(itemLevel <= playerLevel and Color.WHITE or Color.RED)
+        end
         -- Attributes
         local stats = item:GetStats()
         self:EnsureSufficientHoverStatEntries(#stats)
-        local offsetYBase = 0
-        local offsetYBonus = 0
+        local offsetYBase = itemLevel and 30 or 0
+        local offsetYBonus = itemLevel and 30 or 0
         for i,entry in ipairs(self.itemHoverStatEntries) do
             local statInfo = stats[i]
             if statInfo then

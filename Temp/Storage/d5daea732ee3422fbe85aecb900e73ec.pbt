@@ -3,7 +3,7 @@
     StringVar: "inventoryHash"
   }
   SimpleValue {
-    StringVar: "P<EMainHand>P390E4CC80F3B5297|ba|#Attack=kaaa#Attack=waaa&Magic=eaaa&CritChance=kaaa&Attack=eaaa;<EOffHand>P0B1F879A1ED0268E|ba|#Defense=gaaa#Defense=Aaaa&Defense=gaaa;<EAccessory>PC728C86330F640A8|ba|#CritChance=daaa;<EAccessory>PC728C86330F640A8|ba|#CritChance=daaa;<EAccessory>PC728C86330F640A8|ba|#CritChance=daaa;<Bg>PEF0FF7CAA67A4B7E|ba|#Attack=eaaa#Defense=vaaa&Defense=maaa;<Bh>P888AE33BE096118B|ba|#Defense=Adaa&Haste=kaaa&HealthPercent=iaaa&Haste=eaaa;<Bi>PD0EE69038AD63C78|ba|;<Bj>P477D5AE7A4FDDFE5|ba|;<Bk>PD0EE69038AD63C78|ba|;<Bl>PB2E16A9ED49586AF|ba|#Attack=daaa#Defense=uaaa&Health=Caaa;<Bm>PEF0FF7CAA67A4B7E|ba|#Attack=daaa#Defense=vaaa&Defense=paaa;<Bn>PB2E16A9ED49586AF|ba|#Attack=daaa#Defense=Daaa&Defense=kaaa;<Bo>PD0EE69038AD63C78|ba|;<Bp>P0B1F879A1ED0268E|ba|#Defense=kaaa#Defense=Aaaa&Defense=gaaa;<Bq>PD0EE69038AD63C78|ba|;<Br>PB2E16A9ED49586AF|ba|#Attack=daaa#Defense=Eaaa&Health=Kaaa;<Bt>P0B1F879A1ED0268E|ba|#Defense=laaa#Defense=Aaaa&Defense=gaaa;<Bu>PB2E16A9ED49586AF|ba|#Attack=daaa#Defense=Caaa&Health=Kaaa;<Bv>P0B1F879A1ED0268E|ba|#Defense=naaa#Defense=Caaa&Defense=faaa;<Bw>PB2E16A9ED49586AF|ba|#Attack=daaa#Defense=uaaa&Health=xaaa;<Bx>P0B1F879A1ED0268E|ba|#Defense=laaa#Defense=uaaa&Defense=eaaa;<By>P888AE33BE096118B|ba|#Defense=dcaa&CDR=daaa&Defense=3aaa&Haste=daaa;<Bz>P477D5AE7A4FDDFE5|ca|;<BC>P0B1F879A1ED0268E|ba|#Defense=naaa#Defense=xaaa&Defense=faaa;<BD>P0B1F879A1ED0268E|ba|#Defense=iaaa#Defense=Baaa&Defense=faaa;<BE>P0B1F879A1ED0268E|ba|#Defense=iaaa#Defense=waaa&Defense=eaaa;<BF>PD0EE69038AD63C78|ba|;<BG>P390E4CC80F3B5297|ba|#Attack=kaaa#Attack=yaaa&Magic=daaa&Attack=saaa&Attack=eaaa;"
+    StringVar: "P<EMainHand>PA97FF8CA41A92008|ba|#Attack=jaaa#Attack=saaa&CritChance=haaa&Attack=faaa&Magic=faaa;<EHead>P0EA2B93E6B93556A|ba|#Attack=faaa#Defense=vaaa&Defense=oaaa;<EChest>PBF595CD63605AD06|ba|#Defense=jcaa&Haste=eaaa&Haste=iaaa&Defense=0aaa;<EFeet>PC68BAC944803D6CF|ba|#Attack=faaa#Defense=waaa&Health=Laaa;<EAccessory>PC728C86330F640A8|ba|#CritChance=daaa;<EAccessory>PC728C86330F640A8|ba|#CritChance=caaa;<EAccessory>PC728C86330F640A8|ba|#CritChance=daaa;<Bb>P888AE33BE096118B|ba|#Defense=ueaa&Haste=daaa&Haste=iaaa&HealthPercent=gaaa;<Bc>P477D5AE7A4FDDFE5|ba|;<Bd>P158FFEE130E423F6|ba|#Attack=gaaa#Attack=saaa&Attack=daaa&Magic=eaaa&Attack=uaaa;<Be>PC728C86330F640A8|ba|#CritChance=baaa;<Bf>PC728C86330F640A8|ba|#CritChance=caaa;<Bg>P888AE33BE096118B|ba|#Defense=Tcaa&Haste=faaa&CDR=caaa&HealthPercent=iaaa;<Bh>P158FFEE130E423F6|ba|#Attack=kaaa#Attack=Daaa&Attack=eaaa&Magic=faaa&CritChance=kaaa;<Bi>PD0EE69038AD63C78|ba|;<Bj>PB2E16A9ED49586AF|ba|#Attack=daaa#Defense=zaaa&Defense=naaa;<Bk>P888AE33BE096118B|ba|#Defense=Sdaa&Haste=eaaa&CDR=daaa&Defense=Aaaa;<Bl>PB2E16A9ED49586AF|ba|#Attack=eaaa#Defense=Daaa&Defense=maaa;<Bm>P0B1F879A1ED0268E|ba|#Defense=faaa#Defense=vaaa&Defense=gaaa;<Bn>PB2E16A9ED49586AF|ba|#Attack=faaa#Defense=Caaa&Defense=maaa;<Bo>P888AE33BE096118B|ba|#Defense=Qcaa&Haste=faaa&Haste=gaaa&HealthPercent=faaa;<Bv>PA97FF8CA41A92008|ba|#Attack=kaaa#Attack=yaaa&Attack=eaaa&CritChance=faaa&Attack=daaa;"
   }
 }
 Entries {
@@ -17,7 +17,7 @@ Entries {
           StringVar: "experience"
         }
         SimpleValue {
-          IntVar: 2033
+          IntVar: 2746
         }
       }
     }

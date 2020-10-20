@@ -22,6 +22,14 @@
           Id: 12996009040054713330
         }
       }
+      Overrides {
+        Name: "cs:DropItemInsteadOfDelete"
+        Bool: true
+      }
+      Overrides {
+        Name: "cs:DropItemInsteadOfDelete:tooltip"
+        String: "When enabled players can drop items straight from their inventory onto the ground for the nearest players to loot. Disabling this will have the players trash their items instead of dropping them"
+      }
     }
   }
   SerializationVersion: 65

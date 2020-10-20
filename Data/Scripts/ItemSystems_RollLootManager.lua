@@ -49,6 +49,7 @@ local function RollingComplete(entry) -- CoreObject
     local winner = nil
     if not Object.IsValid(entry) then return end 
     for _, playerEntry in pairs(entry.serverUserData.replies) do
+        --print(playerEntry.player, playerEntry.roll, playerEntry.participated)
         if playerEntry.roll > highestRoller and playerEntry.participated then 
             highestRoller = playerEntry.roll
             winner = playerEntry.player
@@ -68,7 +69,7 @@ end
 
 -- Check if someone already rolled our number.
 local function GetValidRoll(entry) -- CoreObject
-    local roll = math.random(0,100)
+    local roll = math.random(1,100)
     for _, playerEntry in pairs(entry.serverUserData.replies) do
         if playerEntry.roll == roll then GetValidRoll(entry) end
     end
@@ -82,15 +83,20 @@ local function ProcessRollRequest(player,id,request) -- player, int, bool
     local replies = entry.serverUserData.replies
     local requiredReplies = entry.serverUserData.requiredReplies
     local roll = GetValidRoll(entry)
-    if request then -- If the player wants to participate in the roll. 
+    if request then -- If the player wants to participat in the roll. 
         -- Clients will be listening for the players roll child. When they receive it they'll display what the person rolled above their head.
         local newRollerEntry = World.SpawnAsset(ROLLER_TEMPLATE)
         newRollerEntry:SetNetworkedCustomProperty("PlayerName",player.name)
         newRollerEntry:SetNetworkedCustomProperty("Rolled",roll)
         newRollerEntry.parent = entry
+    else
+        local newRollerEntry = World.SpawnAsset(ROLLER_TEMPLATE)
+        newRollerEntry:SetNetworkedCustomProperty("PlayerName",player.name)
+        newRollerEntry:SetNetworkedCustomProperty("Rolled",0)
+        newRollerEntry.parent = entry
     end
     table.insert(replies,{ player = player, 
-                participated = request, 
+                participated = request,
                 roll = roll, })
     if #replies >= requiredReplies then
         Task.Wait(1) -- Wait for the last player to see their roll.

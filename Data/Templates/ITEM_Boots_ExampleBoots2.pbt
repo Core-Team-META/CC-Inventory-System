@@ -1,23 +1,95 @@
 ﻿Assets {
-  Id: 7691217985634324088
-  Name: "Armour Set 2 BootGroup"
+  Id: 14306718394135860943
+  Name: "ITEM_Boots_ExampleBoots2"
   PlatformAssetType: 5
   TemplateAsset {
     ObjectBlock {
-      RootId: 15199103735460399045
+      RootId: 4129509117028474446
       Objects {
-        Id: 15199103735460399045
-        Name: "Armour Set 2 BootGroup"
+        Id: 4129509117028474446
+        Name: "ITEM_Boots_ExampleBoots2"
         Transform {
           Scale {
-            X: 1
-            Y: 1
-            Z: 1
+            X: 1.15003169
+            Y: 1.15003169
+            Z: 1.15003169
           }
         }
-        ParentId: 4781671109827199097
-        ChildIds: 1748433493197657946
-        ChildIds: 7406387411501357654
+        ParentId: 10629419136333760156
+        ChildIds: 8368475805096733658
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:Name"
+            String: "Promised Retribution Boots"
+          }
+          Overrides {
+            Name: "cs:Icon"
+            AssetReference {
+              Id: 703957094748170813
+            }
+          }
+          Overrides {
+            Name: "cs:ItemType"
+            String: "Boots"
+          }
+          Overrides {
+            Name: "cs:Description"
+            String: "Forged by Mucusinator."
+          }
+          Overrides {
+            Name: "cs:Rarity"
+            String: "Epic"
+          }
+          Overrides {
+            Name: "cs:StatKey"
+            String: "EpicBoots"
+          }
+          Overrides {
+            Name: "cs:SOCKET_both_feet"
+            ObjectReference {
+              SubObjectId: 4129509117028474446
+            }
+          }
+          Overrides {
+            Name: "cs:DropRotation"
+            Vector {
+              X: 90
+            }
+          }
+          Overrides {
+            Name: "cs:Name:tooltip"
+            String: "The name of the Item that will be displayed in the inventory, loot view, and referenced in the drops table."
+          }
+          Overrides {
+            Name: "cs:Icon:tooltip"
+            String: "The Icon that will be displayed"
+          }
+          Overrides {
+            Name: "cs:ItemType:tooltip"
+            String: "The type of Item this is. This will reference a type from ItemSystems_Item -> Item.TYPES."
+          }
+          Overrides {
+            Name: "cs:Description:tooltip"
+            String: "The lore for this item when viewed from the Inventory"
+          }
+          Overrides {
+            Name: "cs:Rarity:tooltip"
+            String: "The theme of this item. This does not affect stats in anyways, but gives it a nice look in the inventory and loot view."
+          }
+          Overrides {
+            Name: "cs:StatKey:tooltip"
+            String: "The stat key this item points to when when rolling for stats. Usually assoicated with the Item type. ItemSystems_DATA_TYPEHERE_Stats."
+          }
+          Overrides {
+            Name: "cs:SOCKET_both_feet:tooltip"
+            String: "the socket we\'re going to attach the geomtry to when  the player equips this item. If you want your boots to go on both feet then make sure to have the name of your custom property, \"Socket_both_feet\". Then assign the root geometry object. Reference all the sockets here: https://docs.coregames.com/api/animations/"
+          }
+          Overrides {
+            Name: "cs:DropRotation:tooltip"
+            String: "The drop rotation that is applied to the object dropped."
+          }
+        }
+        WantsNetworking: true
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -29,17 +101,13 @@
         }
       }
       Objects {
-        Id: 1748433493197657946
-        Name: "Armour Set 2 Left UpperBoot"
+        Id: 8368475805096733658
+        Name: "Geo"
         Transform {
           Location {
-            X: -1.60591125
-            Y: -7.97172546
-            Z: 32.6743088
+            X: 3.05464578
           }
           Rotation {
-            Pitch: -0.000671386719
-            Yaw: 8.43993912e-05
           }
           Scale {
             X: 1
@@ -47,11 +115,43 @@
             Z: 1
           }
         }
-        ParentId: 15199103735460399045
-        ChildIds: 7232356720448797793
-        ChildIds: 4403306422790705913
-        ChildIds: 6003969258837406900
-        ChildIds: 7070590339452361986
+        ParentId: 4129509117028474446
+        ChildIds: 9791800862693172438
+        ChildIds: 17971649372105419226
+        WantsNetworking: true
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:forceoff"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        NetworkContext {
+        }
+      }
+      Objects {
+        Id: 9791800862693172438
+        Name: "Armour Set 2 Left UpperBoot"
+        Transform {
+          Location {
+            X: -8.37480164
+            Y: 0.755592346
+            Z: 35.8244
+          }
+          Rotation {
+            Pitch: -0.000671386719
+            Yaw: -89.9998779
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 8368475805096733658
+        ChildIds: 18158135330870644717
+        ChildIds: 11726095944815698293
+        ChildIds: 14768072587114170168
+        ChildIds: 18284352310511169166
         UnregisteredParameters {
         }
         Collidable_v2 {
@@ -65,7 +165,7 @@
         }
       }
       Objects {
-        Id: 7232356720448797793
+        Id: 18158135330870644717
         Name: "Gem - Baguette Polished"
         Transform {
           Location {
@@ -84,7 +184,7 @@
             Z: 0.644284368
           }
         }
-        ParentId: 1748433493197657946
+        ParentId: 9791800862693172438
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -127,7 +227,7 @@
         }
       }
       Objects {
-        Id: 4403306422790705913
+        Id: 11726095944815698293
         Name: "Gem - Baguette Polished"
         Transform {
           Location {
@@ -146,7 +246,7 @@
             Z: 0.239933893
           }
         }
-        ParentId: 1748433493197657946
+        ParentId: 9791800862693172438
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -189,7 +289,7 @@
         }
       }
       Objects {
-        Id: 6003969258837406900
+        Id: 14768072587114170168
         Name: "Gem - Baguette Polished"
         Transform {
           Location {
@@ -208,7 +308,7 @@
             Z: 0.14737767
           }
         }
-        ParentId: 1748433493197657946
+        ParentId: 9791800862693172438
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -251,7 +351,7 @@
         }
       }
       Objects {
-        Id: 7070590339452361986
+        Id: 18284352310511169166
         Name: "Gem - Baguette Polished"
         Transform {
           Location {
@@ -270,7 +370,7 @@
             Z: 0.644285
           }
         }
-        ParentId: 1748433493197657946
+        ParentId: 9791800862693172438
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -313,13 +413,14 @@
         }
       }
       Objects {
-        Id: 7406387411501357654
+        Id: 17971649372105419226
         Name: "Armour Set 2 Left LowerBoot"
         Transform {
           Location {
+            Y: 7.62939453e-06
           }
           Rotation {
-            Yaw: -3.05175781e-05
+            Yaw: -90.0000076
           }
           Scale {
             X: 1
@@ -327,18 +428,18 @@
             Z: 1
           }
         }
-        ParentId: 15199103735460399045
-        ChildIds: 3665452325913685263
-        ChildIds: 10635293451162832762
-        ChildIds: 12568933645116496047
-        ChildIds: 12784773760969821958
-        ChildIds: 17108938366723247342
-        ChildIds: 13178749962099231256
-        ChildIds: 1325480681671462100
-        ChildIds: 7522837427261587826
-        ChildIds: 15056648669726138666
-        ChildIds: 14636539801055606825
-        ChildIds: 2198536173926639131
+        ParentId: 8368475805096733658
+        ChildIds: 12501592921767108227
+        ChildIds: 880734056744549622
+        ChildIds: 3588537055323253539
+        ChildIds: 3372204366832794762
+        ChildIds: 8273096241174740834
+        ChildIds: 2973654188759693716
+        ChildIds: 10215804798761582424
+        ChildIds: 17854139427152032510
+        ChildIds: 5715964922289181350
+        ChildIds: 6106800384788433829
+        ChildIds: 9305031659629827479
         UnregisteredParameters {
         }
         Collidable_v2 {
@@ -352,7 +453,7 @@
         }
       }
       Objects {
-        Id: 3665452325913685263
+        Id: 12501592921767108227
         Name: "Gem - Baguette Polished"
         Transform {
           Location {
@@ -371,7 +472,7 @@
             Z: 0.68178165
           }
         }
-        ParentId: 7406387411501357654
+        ParentId: 17971649372105419226
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -414,7 +515,7 @@
         }
       }
       Objects {
-        Id: 10635293451162832762
+        Id: 880734056744549622
         Name: "Crescent - 03"
         Transform {
           Location {
@@ -433,7 +534,7 @@
             Z: 0.0419057496
           }
         }
-        ParentId: 7406387411501357654
+        ParentId: 17971649372105419226
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -476,7 +577,7 @@
         }
       }
       Objects {
-        Id: 12568933645116496047
+        Id: 3588537055323253539
         Name: "Crescent - 03"
         Transform {
           Location {
@@ -495,7 +596,7 @@
             Z: 0.0419057496
           }
         }
-        ParentId: 7406387411501357654
+        ParentId: 17971649372105419226
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -538,7 +639,7 @@
         }
       }
       Objects {
-        Id: 12784773760969821958
+        Id: 3372204366832794762
         Name: "Thorn"
         Transform {
           Location {
@@ -557,7 +658,7 @@
             Z: 0.235261261
           }
         }
-        ParentId: 7406387411501357654
+        ParentId: 17971649372105419226
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -600,7 +701,7 @@
         }
       }
       Objects {
-        Id: 17108938366723247342
+        Id: 8273096241174740834
         Name: "Gem - Baguette Polished"
         Transform {
           Location {
@@ -619,7 +720,7 @@
             Z: 0.644285083
           }
         }
-        ParentId: 7406387411501357654
+        ParentId: 17971649372105419226
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -662,7 +763,7 @@
         }
       }
       Objects {
-        Id: 13178749962099231256
+        Id: 2973654188759693716
         Name: "Gem - Baguette Polished"
         Transform {
           Location {
@@ -681,7 +782,7 @@
             Z: 0.807826757
           }
         }
-        ParentId: 7406387411501357654
+        ParentId: 17971649372105419226
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -724,7 +825,7 @@
         }
       }
       Objects {
-        Id: 1325480681671462100
+        Id: 10215804798761582424
         Name: "Gem - Baguette Polished"
         Transform {
           Location {
@@ -743,7 +844,7 @@
             Z: 0.287245631
           }
         }
-        ParentId: 7406387411501357654
+        ParentId: 17971649372105419226
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -786,7 +887,7 @@
         }
       }
       Objects {
-        Id: 7522837427261587826
+        Id: 17854139427152032510
         Name: "Thorn"
         Transform {
           Location {
@@ -805,7 +906,7 @@
             Z: 0.336292952
           }
         }
-        ParentId: 7406387411501357654
+        ParentId: 17971649372105419226
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -848,7 +949,7 @@
         }
       }
       Objects {
-        Id: 15056648669726138666
+        Id: 5715964922289181350
         Name: "Thorn"
         Transform {
           Location {
@@ -867,7 +968,7 @@
             Z: 0.344444603
           }
         }
-        ParentId: 7406387411501357654
+        ParentId: 17971649372105419226
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -910,7 +1011,7 @@
         }
       }
       Objects {
-        Id: 14636539801055606825
+        Id: 6106800384788433829
         Name: "Thorn"
         Transform {
           Location {
@@ -929,7 +1030,7 @@
             Z: 0.344444603
           }
         }
-        ParentId: 7406387411501357654
+        ParentId: 17971649372105419226
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -972,7 +1073,7 @@
         }
       }
       Objects {
-        Id: 2198536173926639131
+        Id: 9305031659629827479
         Name: "Gem - Baguette Polished"
         Transform {
           Location {
@@ -991,7 +1092,7 @@
             Z: 0.685859144
           }
         }
-        ParentId: 7406387411501357654
+        ParentId: 17971649372105419226
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -1032,6 +1133,15 @@
             }
           }
         }
+      }
+    }
+    Assets {
+      Id: 703957094748170813
+      Name: "Fantasy Boot 009"
+      PlatformAssetType: 9
+      PrimaryAsset {
+        AssetType: "PlatformBrushAssetRef"
+        AssetId: "UI_Fantasy_Gear_Boot_009"
       }
     }
     Assets {

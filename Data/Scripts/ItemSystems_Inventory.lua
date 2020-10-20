@@ -11,7 +11,6 @@ local RuntimeContextDetection = require(script:GetCustomProperty("RuntimeContext
 
 local Inventory = {}
 Inventory.__index = Inventory
-
 ---------------------------------------------------------------------------------------------------------
 -- CONSTANTS
 ---------------------------------------------------------------------------------------------------------
@@ -34,6 +33,9 @@ Inventory.NUM_ACCESSORY_SLOTS = 3 -- Add more slots if you plan on expanding.
 Inventory.TOTAL_CAPACITY = #Inventory.EQUIP_SLOTS + Inventory.BACKPACK_CAPACITY
 assert(Inventory.TOTAL_CAPACITY <= 64, "inventory size limit is 64 for compression reasons")
 
+-- When enabled on the script it will allow the client to drop items into the world without trashing the item.
+Inventory.DROP_ITEM_INSTEAD_OF_DELETE = script:GetCustomProperty("DropItemInsteadOfDelete")
+
 ---------------------------------------------------------------------------------------------------------
 -- PUBLIC
 ---------------------------------------------------------------------------------------------------------
@@ -45,6 +47,7 @@ function Inventory.New(database, owner)
     o:_DefineEvent("itemEquippedEvent")
     o:_DefineEvent("itemMovedEvent")
     o:_DefineEvent("itemConsumedEvent")
+    o:_DefineEvent("itemDropEvent")
     return o
 end
 
@@ -206,6 +209,12 @@ end
 
 -- Move an item. If there is an item in the destination slot, the items will swap. Acts as delete if destination slot is nil.
 function Inventory:MoveItem(fromSlotIndex, toSlotIndex)
+    -- If it's being thrown out of the inventory and we allowed item drops.
+    if self.DROP_ITEM_INSTEAD_OF_DELETE and toSlotIndex == nil then
+        self:_FireEvent("itemDropEvent", fromSlotIndex, toSlotIndex)
+        self:_SetSlotItem(fromSlotIndex, nil)
+        return
+    end
     if not self:CanMoveItem(fromSlotIndex, toSlotIndex) then return end
     local swapItem = nil
     if toSlotIndex then

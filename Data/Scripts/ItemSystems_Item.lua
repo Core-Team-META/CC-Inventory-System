@@ -23,6 +23,7 @@ Item.TYPES = Enum{
     "Armor",
     "Boots",
     "Trinket",
+    "Greatsword",
     --"Ring", -- For the catalog and stats tutorial. Remove the comment.
 
     -- Specials (Non-Equipables)
@@ -105,6 +106,10 @@ end
 
 function Item:GetIcon()
     return self.data.iconMUID
+end
+
+function Item:GetLevelRequirement()
+    return self.data.levelRequirement
 end
 
 function Item:GetRarity()

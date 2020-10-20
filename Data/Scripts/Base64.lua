@@ -1,4 +1,11 @@
-﻿local Base64 = {}
+﻿--[[
+    ItemSystems.Base64
+    ====================
+    This library is used by the Item system to transform data into a shorter length of that data so it's easy on the network and
+    for storage.
+]]
+
+local Base64 = {}
 
 -- Lookup tables for fast encode/decode.
 local SYMBOLS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-+"

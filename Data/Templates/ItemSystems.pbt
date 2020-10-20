@@ -1403,6 +1403,12 @@
               Id: 1817346499606343559
             }
           }
+          Overrides {
+            Name: "cs:SFX_Denied"
+            AssetReference {
+              Id: 8324207555291993451
+            }
+          }
         }
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
@@ -26724,6 +26730,18 @@
             }
           }
           Overrides {
+            Name: "cs:Level"
+            ObjectReference {
+              SubObjectId: 5570522164128400760
+            }
+          }
+          Overrides {
+            Name: "cs:LevelDivider"
+            ObjectReference {
+              SubObjectId: 734256404424304181
+            }
+          }
+          Overrides {
             Name: "cs:StatOffsetY"
             Int: 85
           }
@@ -26795,7 +26813,9 @@
         ChildIds: 7322933115436473937
         ChildIds: 10064761227816727647
         ChildIds: 15159484305623760215
+        ChildIds: 5570522164128400760
         ChildIds: 684730094481126810
+        ChildIds: 734256404424304181
         ChildIds: 8495283702520065512
         ChildIds: 16673927649142950040
         Collidable_v2 {
@@ -26806,7 +26826,7 @@
         }
         Control {
           Width: 266
-          Height: 145
+          Height: 172
           UIX: -30
           UIY: -25
           RenderTransformPivot {
@@ -27172,6 +27192,63 @@
         }
       }
       Objects {
+        Id: 5570522164128400760
+        Name: "Level"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 14553076722947734445
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 244
+          Height: 26
+          UIY: 75
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          Text {
+            Label: "Requires Level 10"
+            Color {
+              R: 1
+              G: 0.953642428
+              A: 1
+            }
+            Size: 12
+            Justification {
+              Value: "mc:etextjustify:center"
+            }
+            AutoWrapText: true
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:topcenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:topcenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
         Id: 684730094481126810
         Name: "Divider"
         Transform {
@@ -27196,6 +27273,64 @@
           Width: -20
           Height: 2
           UIY: 70
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          UseParentWidth: true
+          Image {
+            Brush {
+            }
+            Color {
+              R: 1
+              G: 1
+              B: 1
+              A: 0.1
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:topcenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:topcenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 734256404424304181
+        Name: "LevelDivider"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 14553076722947734445
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: -20
+          Height: 2
+          UIY: 99.1752319
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"

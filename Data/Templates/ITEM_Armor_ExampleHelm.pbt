@@ -10,9 +10,9 @@
         Name: "ITEM_Armor_ExampleHelm"
         Transform {
           Scale {
-            X: 1
-            Y: 1
-            Z: 1
+            X: 1.20542693
+            Y: 1.20542693
+            Z: 1.20542693
           }
         }
         ParentId: 4781671109827199097

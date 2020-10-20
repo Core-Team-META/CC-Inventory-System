@@ -48,6 +48,8 @@ local function OnPlayerRolled(_,child)
     local extraSpace = name ~= "You" and 40 or 0
     UI.ShowFlyUpText( string.format( "%s Rolled: %s For %s", name, roll, child.parent.clientUserData.item:GetName() ), 
         LOCALPLAYER:GetWorldPosition() + Vector3.UP * 110 + extraSpace, { isBig = true, color = Color.New(extraSpace,1,0), duration = 3 } )
+
+    
 end
 
 -- Checks if we're allowed to roll on this item. If we can then we will create a roll loot view UI.

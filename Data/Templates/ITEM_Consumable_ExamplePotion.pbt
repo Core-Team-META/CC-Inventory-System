@@ -52,6 +52,10 @@
             }
           }
           Overrides {
+            Name: "cs:LevelRequirement"
+            Int: 4
+          }
+          Overrides {
             Name: "cs:Name:tooltip"
             String: "The name of the Item that will be displayed in the inventory, loot view, and referenced in the drops table."
           }

@@ -40,7 +40,7 @@ Framework usage
         These methods also apply to any item creation aswell, but this tutorial will just focus on creating a weapon. 
 
         1) Start by taking one of the example items from My Templates
-        Search for "ITEM_Sword_ExampleEquipment"
+        Search for "ITEM_Sword_ExampleSword"
 
         2) Drag and drop the item into the scene.
 
@@ -58,21 +58,24 @@ Framework usage
         6) For now just change Name, Icon, Description and Rarity.
             Your rarity may be: Common, Uncommon, Rare, Epic, or Legendary
 
-        7) Adjust the colors of your items geometry if there is any. The geomtry is inside the
-        client context inside geo group.
+        7) Adjust the colors of your items geometry if there is any. The geometry is inside the
+        client context folder inside the geo group.
         
         Now that your new item is customized we must register it with the item database.
-        The item database requires that your item's MUID is inside a catalog.
+        The item database requires that your item is as asset reference of a catalog object.
     
-        8) Once you've changed your item to your liking right click the root of the object in the hierarchy
+        8) Once you've changed your item to your liking right-click the root of the object in the hierarchy
         and click "Update Template From This". (or click the checkmark in the properties window)
 
-        9) Go find your item in your project content my templates folder.
+        9) Search for, "Catalog" in project content and locate ItemSystems_DATA_Sword_Catalog
 
-        10) Right-Click and copy the MUID and open ItemSystems_DATA_<Type>_Catalog. 
-        ( <Type> being the type of your item. If it's a sword then put it into the ItemSystems_DATA_Sword_Catalog )
+        10) Drag and drop the catalog into the scene
 
-        11) Paste your MUID as an entry inside the return.
+        11) Right-Click the catalog in the hierarchy and click, "Deinstance this object"
+        
+        11) Add a custom property that is a Asset Reference to your weapon.
+
+        11) Right-click the catalog in the Hierarchy and click, "Update Template from this".
 
         You're basically done! your item is now registered with the item database.
         To test your item in game we have to add the Item name to a loot table.
@@ -93,25 +96,20 @@ Framework usage
         To create custom stats and catalogs for your weapons please refer to "Creating Catalogs and Stats".
     ------------------------------
 
-    ------ Creating Catalogs and Stats ------
+    ------ Creating Catalogs and Stats (Giving items stats) ------
         This tutorial will guide you through creating catalogs and stats for your items.
 
-        1) Create a new script and name it "ItemSystems_DATA_Ring_Catalog"
-        2) Open the script and copy and paste what's below into the script:
-                
-            return {
-                '',
-            }
+        1) Create an Empty Group in the Hierarchy and name it "ItemSystems_DATA_Ring_Catalog"
         
         We're going to need an item for this so make sure you create one.
         If you followed the creating items tutorial then this should be straight forward.
         
         3) Search in My Templates, "ITEM_Trinket_Example"
-        4) Create a new template of that item and customize it, but this time change everything.
+        4) Create a new template of that object and customize it, but this time change everything and rename it to, "ITEM_Ring_DamageRing".
         5) For ItemType set it as, "Ring"
         6) For StatKey set it as, "Common_DamageRing"
         7) Right-Click the Item in the hierarchy and update your template.
-        8) Copy the MUID of your item and paste it into the empty single-quotes in ItemSystems_DATA_Ring_Catalog.
+        8) On your ring catalog in Hierarchy add a custom property that is a Asset Reference and assign your Item template. (Update template after)
         9) Create a new script and name it "ItemSystems_DATA_Ring_Stats"
         10) Open the script and copy and paste what's below into the script.
 
@@ -173,8 +171,8 @@ Framework usage
         12) Click the, "Add Custom Property" button
         13) For the property name put "Ring_Catalog" and make sure the type is an Asset Reference
         14) Do this again for the Stats. Name the property, "Ring_Stats"
-        15) Assign Ring_Catalog, ItemSystems_DATA_Ring_Catalog
-        16) Assign Ring_Stats, ItemSystems_DATA_Ring_Stats
+        15) Assign Ring_Catalog, ItemSystems_DATA_Ring_Catalog (Object)
+        16) Assign Ring_Stats, ItemSystems_DATA_Ring_Stats (Script)
 
         The Item will register now and can be added to a loot table for spawning, but you won't
         be able to equip the item as the ring Item type is not recongized.
@@ -232,9 +230,10 @@ Framework usage
             local statsSheet = player.serverUserData.statSheet
             statsSheet:NewStatModifierAdd("Attack",100,false) -- Gives 100 damage to your player
 
-        13) Copy the MUID of your Item and add it to, "ItemSystems_DATA_Consumable_Catalog" so that it registers with the Item Databsae.
-        14) Copy the name of your Item and create a new loot drop in the BasicMobTrash table.
-        15) Spawn your Item, Collect it, and use it by clicking on it in the Inventory.
+        13) Search for, "Catalog" in project content and drag and drop, "ItemSystems_DATA_Consumable_Catalog" into the scene
+        14) Deinstance the catalog and add a custom property that is a type of Asset Reference and assign, "ITEM_Consumable_XPPotion" to it.
+        15) Copy the name of your Item and create a new loot drop in the BasicMobTrash table.
+        16) Spawn your Item, Collect it, and use it by clicking on it in the Inventory.
     ------------------------------
 
     ------ Roll For Loot ------
@@ -280,6 +279,7 @@ Framework usage
         4) Loot your Item by pressing "L" and clicking on it in the loot window.
 
         There is numerous Events that can help you customize your players looting experience.
+        For more events open, "ItemSystems_LootSpawner".
         --------------------------------
         Drops for all players a random loot from a loot table at a position in the world.
         Events.Broadcast("DropLoot", dropKey : String, worldPosition: Vector3)
@@ -307,7 +307,7 @@ Framework usage
         2) Make a custom property on the script that is a CoreObjectReference and assign it the trigger box.
         3) Get the trigger property and add this line of code.
 
-            ACTIVATE_TRIGGER.interactedEvent:Connect(function(_,player)
+            yourTriggerPropHere.interactedEvent:Connect(function(_,player)
                 local statsSheet = player.serverUserData.statSheet
                 statsSheet:AddExperience(10)
             end)
@@ -327,6 +327,7 @@ Framework usage
                 * Icon : AssetReference (Icon)
                 * ItemType : String
                 * Rarity : String
+                @ LevelRequirement: Integer
                 @ StatKey : String (Should be required on equipables)
                 @ ConsumptionEffect : AssetReference (Script) (Only for consumables)
                 @ MaxStackableSize : Integer
@@ -351,8 +352,10 @@ Framework Components Details
     -------------------------
 
     ----- Item Catalog -----
-    Catalogs return tables with rows of MUIDs. The Item Database loads the
-    asset derived information to register it into the database.
+    Catalogs are objects that store Asset References to your Items that to register with the Item Database.
+    Anytime you create a new item for a type you must always add it to a catalog.
+    If you want you can techincally store all your items into a single catalog, but that will bloat the
+    custom properties window and make it hard to track what Items you're registering.
     ------------------------
 
     ----- Item Stats -----
@@ -374,9 +377,22 @@ Framework Components Details
         Likelihood = '100',
     ----------------------
 
+    ----- Inventory -----
+    The Inventory is the logical representation of an inventory. It stores your items and it has a bunch of public methods that allow you to leverage it for other uses.
+    There is a property on the script that enables Item dropping in-game and it's on by default. If you don't want Item dropping from players in-game then you can disable the boolean on the script
+    in project content.
+    ---------------------
+
+    ----- Loot Spawner -----
+    ItemSystems_LootSpawner contains various events that can be used to customize your players looting experience.
+    Refer to the script for more information.
+    ------------------------
+
 --------------------------------------
 Discord
 --------------------------------------
+
+
     If you find any bugs or problems with the Item System please direct your questions to
     my discord: Coderz#0441
 
@@ -384,4 +400,6 @@ Discord
 		discord.gg/core-creators
 	We are a friendly group of creators and players in the Core community. Everyone is welcome to play games together or
     learn about game dev!
+
+
 --]]

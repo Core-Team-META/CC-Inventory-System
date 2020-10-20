@@ -117,7 +117,7 @@ end
 local function init()
     -- We need to wait for the item data and roll id before we continue.
     script.parent.visibility = Visibility.FORCE_OFF
-    while not script.parent.clientUserData.ItemHash do print(script.parent.clientUserData.ItemHash) Task.Wait() end
+    while not script.parent.clientUserData.ItemHash do Task.Wait() end
     script.parent.visibility = Visibility.FORCE_ON
     local itemHash = script.parent.clientUserData.ItemHash
     local item = ItemDatabase:CreateItemFromHash(itemHash)

@@ -9,12 +9,16 @@ local Item = require(script:GetCustomProperty("Item"))
 -- Load the database over a fixed number of frames.
 local LOAD_FRAME_LIMIT = 10
 
+-- If true, when the game loads it will log all the catalogs and their items that are registered to that catalog.
+local LOGCATALOG = false 
+
 local DATA_CATALOGS = {}
 local DATA_STATS = {}
 for _,itemType in ipairs(Item.TYPES) do
     assert(script:GetCustomProperty(string.format("%s_Catalog", itemType)), "Could not load ItemSystems_DATA_"..itemType.."_Catalog script as it does not exist as a property of the database")
     assert(script:GetCustomProperty(string.format("%s_Stats", itemType)), "Could not load ItemSystems_DATA_"..itemType.."_Stats script as it does not exist as a property of the database")
-    table.insert(DATA_CATALOGS, require(script:GetCustomProperty(string.format("%s_Catalog", itemType))))
+    local catalog, _ = script:GetCustomProperty(string.format("%s_Catalog", itemType))
+    table.insert(DATA_CATALOGS, catalog)
     table.insert(DATA_STATS, require(script:GetCustomProperty(string.format("%s_Stats", itemType))))
 end
 
@@ -109,17 +113,21 @@ function Database:_LoadCatalog()
     self.itemDatasByName = {}
     self.itemDatasByMUID = {}
     local index = 1
-    for _,data in ipairs(DATA_CATALOGS) do
-        for _,muid in pairs(data) do
-
+    if LOGCATALOG then print("Loading Catalogs ----------------------------------------------- \n") end -- Debug
+    for _,catalog in ipairs(DATA_CATALOGS) do
+        local spawnedCatalog = World.SpawnAsset(catalog)
+        if LOGCATALOG then print(spawnedCatalog.name) end -- Debug
+        for _,muid in pairs(spawnedCatalog:GetCustomProperties()) do
             local tempItem = World.SpawnAsset(muid)
             local propName = tempItem:GetCustomProperty("Name")
+            if LOGCATALOG then print("|",muid, "    =",propName) end -- Debug
             local propIcon = tempItem:GetCustomProperty("Icon")
             local propMaxStackableSize = tempItem:GetCustomProperty("MaxStackableSize")
             local propItemType = tempItem:GetCustomProperty("ItemType")
             local propDescription = tempItem:GetCustomProperty("Description")
             local propRarity = tempItem:GetCustomProperty("Rarity")
             local propStatKey = tempItem:GetCustomProperty("StatKey")
+            local propLevelRequirement = tempItem:GetCustomProperty("LevelRequirement")
             local propEquipmentStance = tempItem:GetCustomProperty("EquipmentStance")
             local propConsumptionEffect = tempItem:GetCustomProperty("ConsumptionEffect")
             tempItem:Destroy()
@@ -150,6 +158,7 @@ function Database:_LoadCatalog()
                 iconMUID = propIcon,
                 type = propItemType,
                 rarity = propRarity,
+                levelRequirement = propLevelRequirement,
                 stance = stance,
                 isEquippable = isEquippable,
                 maxStackSize = maxStackSize,
@@ -159,13 +168,15 @@ function Database:_LoadCatalog()
                 consumptionEffect = propConsumptionEffect,
                 _RollStats = Database:_GetRollFunction(propStatKey)
             }
-
             index = index + 1
             self.itemDatasByIndex[itemData.index] = itemData
             self.itemDatasByName[itemData.name] = itemData
             self.itemDatasByMUID[itemData.muid] = itemData
         end
+        spawnedCatalog:Destroy()
+        if LOGCATALOG then print("\n") end -- Debug
     end
+    if LOGCATALOG then print("Loading Catalogs Ended -----------------------------------------------") end -- Debug
 end
 
 function Database:_RollItemStats(item)

@@ -28,7 +28,6 @@ Database:WaitUntilLoaded()
 ---------------------------------------------------------------------------------------------------------
 local function ServerLoadInventory()
     local playerData = Storage.GetPlayerData(OWNER)
-    --print("Loading inventory: ", playerData.inventoryHash)
     OWNER.serverUserData.inventory:LoadHash(playerData.inventoryHash)
     COMPONENT:SetNetworkedCustomProperty("LOAD", OWNER.serverUserData.inventory:RuntimeHash())
 end
@@ -103,6 +102,17 @@ local function ServerInitInventory()
             ServerSaveInventory(inventory)
         end
     end)
+
+    -- Whenever a client wants to drop an item from their inventory into the world for others to loot.
+    Events.ConnectForPlayer("IID", function(player, fromSlotIndex, toSlotIndex)
+        if player == OWNER then
+            local item = inventory:GetItem(fromSlotIndex)
+            -- Refer to ItemSystems_LootSpawner for more information about this event.
+            Events.Broadcast("OnDropSpecificHashLootForNearestPlayerWithPlayerExclusion", item:RuntimeHash(), player:GetWorldPosition() - Vector3.UP * 100, player)
+            inventory:MoveItem(fromSlotIndex, nil)
+            ServerSaveInventory(inventory)
+        end
+    end)
     -- Whenever a client consumes an item, update the server inventory.
     Events.ConnectForPlayer("IIC", function(player, slotIndex)
         if player == OWNER then
@@ -127,6 +137,9 @@ local function ClientInitInventoryLocal()
     -- Whenever a local rearrangement is made, broadcast to the server.
     inventory.itemMovedEvent:Connect(function(fromSlotIndex, toSlotIndex)
         ReliableEvents.BroadcastToServer("IIM", fromSlotIndex, toSlotIndex)
+    end)
+    inventory.itemDropEvent:Connect(function(fromSlotIndex, toSlotIndex)
+        ReliableEvents.BroadcastToServer("IID", fromSlotIndex, toSlotIndex)
     end)
     -- Whenever an item is consumed, broadcast to server.
     inventory.itemConsumedEvent:Connect(function(slotIndex)

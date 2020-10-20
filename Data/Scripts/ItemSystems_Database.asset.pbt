@@ -19,7 +19,7 @@
       Overrides {
         Name: "cs:Armor_Catalog"
         AssetReference {
-          Id: 4752750882512642554
+          Id: 7586498794295642216
         }
       }
       Overrides {
@@ -31,7 +31,7 @@
       Overrides {
         Name: "cs:Sword_Catalog"
         AssetReference {
-          Id: 10383933735817337523
+          Id: 10179254796191054899
         }
       }
       Overrides {
@@ -43,7 +43,7 @@
       Overrides {
         Name: "cs:Misc_Catalog"
         AssetReference {
-          Id: 256921777888398651
+          Id: 7121355028354297768
         }
       }
       Overrides {
@@ -55,7 +55,7 @@
       Overrides {
         Name: "cs:Consumable_Catalog"
         AssetReference {
-          Id: 14720198899823465628
+          Id: 5082220773614584328
         }
       }
       Overrides {
@@ -67,7 +67,7 @@
       Overrides {
         Name: "cs:Boots_Catalog"
         AssetReference {
-          Id: 13070671787079488428
+          Id: 6899140113743674912
         }
       }
       Overrides {
@@ -79,7 +79,7 @@
       Overrides {
         Name: "cs:Helmet_Catalog"
         AssetReference {
-          Id: 13556829886278988021
+          Id: 4949628883341833795
         }
       }
       Overrides {
@@ -91,7 +91,7 @@
       Overrides {
         Name: "cs:Shield_Catalog"
         AssetReference {
-          Id: 9506044528961657820
+          Id: 16736587259087253924
         }
       }
       Overrides {
@@ -103,7 +103,7 @@
       Overrides {
         Name: "cs:Trinket_Catalog"
         AssetReference {
-          Id: 17139135893062867600
+          Id: 2833234216908453683
         }
       }
       Overrides {
@@ -113,15 +113,15 @@
         }
       }
       Overrides {
-        Name: "cs:Ring_Catalog"
+        Name: "cs:Greatsword_Catalog"
         AssetReference {
-          Id: 14192121082240662754
+          Id: 11090039006585324683
         }
       }
       Overrides {
-        Name: "cs:Ring_Stats"
+        Name: "cs:Greatsword_Stats"
         AssetReference {
-          Id: 4091765668381715221
+          Id: 8111314223718877382
         }
       }
     }
