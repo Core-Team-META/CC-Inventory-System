@@ -7,7 +7,7 @@
 
     Description:
     ItemSystems is an item managment framework that has inventory management features you'd find in a MMO game like World of Warcraft.
-    It contains a plethora of awesome features to help jump start your RPG style game. 
+    It contains a plethora of awesome features to help jump start your RPG-style game. 
     It also removes the hassle of creating an inventory system from scratch, it's easy to use and extendable for programmers.
     
     This framework comes with:
@@ -28,8 +28,9 @@ Setup
 --------------------------------------
 
     1) Drag and drop "ItemSystems" from My Templates into the Hierarchy.
-    2) Import StandardCombo's A.I Kit from community content
-    3) Search For, "Combat Dependencies" and drop it into the Hierarchy
+    2) For NPC combat, import standardcombo's "NPC AI Kit" from community content.
+    3) Search For "Combat Dependencies" and drop it into the Hierarchy.
+
 
 --------------------------------------
 Framework usage
@@ -95,6 +96,7 @@ Framework usage
 
         To create custom stats and catalogs for your weapons please refer to "Creating Catalogs and Stats".
     ------------------------------
+
 
     ------ Creating Catalogs and Stats (Giving items stats) ------
         This tutorial will guide you through creating catalogs and stats for your items.
@@ -200,6 +202,7 @@ Framework usage
         for stats when you create it. 
     -----------------------------------------
 
+
     ------ Consumable Items ------
         Creating consumable Items is similar to creating regular Items except that you
         are creating a script for the consumable Item and that script must be on a custom property
@@ -236,6 +239,7 @@ Framework usage
         16) Spawn your Item, Collect it, and use it by clicking on it in the Inventory.
     ------------------------------
 
+
     ------ Roll For Loot ------
         Some programming knowledge is required to set this up.
         Just like in World of warcraft you may want players to roll for an Item after they defeated a really tough enemy.
@@ -261,6 +265,7 @@ Framework usage
             The code above will create a roll for loot for all players in the server, but if you want just a couple of players to participate
             then you can have a table with some players as the last parameter.
     ----------------------------
+
 
     -------- Loot Drops --------
         Loot drops are implemented the same as Rolling for loot as they use Events.Broadcast()
@@ -297,6 +302,7 @@ Framework usage
         Events.Broadcast("RollForLootDrop", dropKey : String, players : Table)
         --------------------------------
     ----------------------------
+    
 
     -------- Player Stats Sheet --------
         Modifying or getting information about a player stats is really easy to do as the player has the
@@ -314,6 +320,7 @@ Framework usage
 
         4) When you use the trigger you'll add XP to the player.
     ------------------------------------
+
 
     --------------------------------------
     Item Custom Properties
@@ -341,6 +348,7 @@ Framework usage
                     Then assign the root geometry object.
                     Reference all the sockets here: https://docs.coregames.com/api/animations/
     --------------------------------------
+
 
 --------------------------------------
 Framework Components Details
@@ -387,6 +395,7 @@ Framework Components Details
     ItemSystems_LootSpawner contains various events that can be used to customize your players looting experience.
     Refer to the script for more information.
     ------------------------
+
 
 --------------------------------------
 Discord
