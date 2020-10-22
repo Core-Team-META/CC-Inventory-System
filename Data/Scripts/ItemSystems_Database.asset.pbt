@@ -124,6 +124,18 @@
           Id: 8111314223718877382
         }
       }
+      Overrides {
+        Name: "cs:Dagger_Catalog"
+        AssetReference {
+          Id: 2132860588309551343
+        }
+      }
+      Overrides {
+        Name: "cs:Dagger_Stats"
+        AssetReference {
+          Id: 14556487511872554218
+        }
+      }
     }
   }
   SerializationVersion: 65

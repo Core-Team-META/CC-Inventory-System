@@ -45,6 +45,10 @@
         AssetReference {
         }
       }
+      Overrides {
+        Name: "cs:LootDestroyDelay"
+        Int: 60
+      }
     }
   }
   SerializationVersion: 65

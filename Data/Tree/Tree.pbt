@@ -19,14 +19,11 @@ Objects {
   ChildIds: 14713340454944924967
   ChildIds: 10005074784157121906
   ChildIds: 14982843161775482339
-  ChildIds: 8363478294546174192
   ChildIds: 17565214277585214929
   ChildIds: 971297737377531071
   ChildIds: 9477342016099356239
   ChildIds: 5012740452443113133
   ChildIds: 17933308923335840406
-  ChildIds: 10987063458967510570
-  ChildIds: 8061069249854180062
   ChildIds: 16376903361466163397
   UnregisteredParameters {
   }
@@ -75,96 +72,6 @@ Objects {
     StaticMesh {
       Physics {
       }
-    }
-  }
-}
-Objects {
-  Id: 8061069249854180062
-  Name: "ItemSystems_DATA_Misc_Catalog"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 13947527865187817843
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ItemSystems_DATA_Misc_Catalog"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: 167.175842
-            Y: 87.6018
-            Z: 41.4710159
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 7121355028354297768
-    }
-  }
-}
-Objects {
-  Id: 10987063458967510570
-  Name: "ItemSystems_DATA_Consumable_Catalog"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 17012769247157448710
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ItemSystems_DATA_Consumable_Catalog"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: 120.319809
-            Y: 188.934509
-            Z: 28.6470566
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 5082220773614584328
     }
   }
 }
@@ -1152,32 +1059,6 @@ Objects {
     }
     TemplateAsset {
       Id: 1337239855421309995
-    }
-  }
-}
-Objects {
-  Id: 8363478294546174192
-  Name: "Loot Drop Factory"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 15821373674062278737
-      value {
-        Overrides {
-          Name: "Name"
-          String: "Loot Drop Factory"
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 858028977475277288
     }
   }
 }

@@ -107,7 +107,7 @@ Framework usage
         To test your item in game we need to add the item name to a loot table.
         
         20) Reslect your item and Copy the Value for the Name property and open ItemSystems_DATA_Drops. 
-        The ItemName key is looked up in the Item database anytime the item is spawned and it should have the value of your item's name.
+        The ItemName key is looked up in the Item database anytime the item is spawned It should have the value of your item's name.
         Likelihood is weighted amount that your item will drop. The heavier the weight the more likely
         it'll drop. Set your item's likelihood key in the script to 500 so your item is more likely to drop compared to the other items.
 
