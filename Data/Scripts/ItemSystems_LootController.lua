@@ -9,9 +9,7 @@
 local Item = require(script:GetCustomProperty("ItemSystems_Item"))
 local ItemThemes = require(script:GetCustomProperty("ItemThemes"))
 local LOOT = script:GetCustomProperty("Loot"):WaitForObject()
-
-
-local LOOTDESTROY_TIME = 10 -- After a minute unregister the items
+local LOOTDESTROY_TIME = script:GetCustomProperty("LootDestroyDelay") -- Time in second till loot is destroyed.
 
 -- Wait for the networked property to be set.
 local OWNER = nil

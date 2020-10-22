@@ -29,76 +29,98 @@ Setup
 
     1) Drag and drop "ItemSystems" from My Templates into the Hierarchy.
     2) For NPC combat, import standardcombo's "NPC AI Kit" from community content.
-    3) For Loot Factory, import standardcombo's "Loot Factory" from community content.
-    4) Search for "Combat Dependencies" and drop it into the Hierarchy.
-    5) Search for "LootDropFactory" and drop it into the Hierarchy.
+    3) Search for "Combat Dependencies" and drop it into the Hierarchy.
 
 --------------------------------------
 Framework usage
 --------------------------------------
 
     ------ Creating Weapons ------
-        This tutorial is going to guide through the general way of creating weapons for your game
-        so they can register with the item database.
-        These methods also apply to creating any item, but this tutorial will just focus on creating a weapon. 
+        This tutorial will guide you through creating a starter weapon. 
+        We will create a level 1 type of weapon that players would hypothetically start with.
+        This is general way of creating weapons for your game so they can register with the item database and
+        These methods also apply to creating any other items besides weapons, but this tutorial will just focus on creating a weapon.
 
         1) Start by taking one of the example items from My Templates
-        Search for "ITEM_Sword_ExampleSword"
+        Search for "ITEM_Dagger_HighLevel"
 
         2) Drag and drop the item into the scene.
 
-        3) Right click the item in the hierarchy and select, "Create new template from this"
+        3) Right click the root of the item in the hierarchy and select, "Create new template from this"
 
-        4) Give your item a name that follows this convention "ITEM_<Type>_<Name>" 
-        <Type> being the type of item it will be. example: ITEM_Sword_SteelBlade.
+        4) Give your item the name "ITEM_Dagger_Starter"
 
-        5) Reselect the root object of the item in the scene and navigate to the custom tab in properties.
+        5) Right-click the root of item in the hierarchy and select "Deinstance This Object" so we can modify the custom properties.
+
+        6) Reselect the root of the item in the hierarchy and navigate to the custom tab in properties.
         There is tooltip information regarding what each property is intended to do.
         
         At this point you should see numerous custom properties. These properties
         determine how the item should register into the item database.
 
-        6) For now just change Name, Icon, Description, and Rarity.
-            Your rarity may be: Common, Uncommon, Rare, Epic, or Legendary
+        7) Adjust the custom properties of the weapon to make it feel like a low level dagger.
 
-        7) Adjust the colors of your item's geometry if there is any. The geometry is inside the
-        client context folder inside the geo group.
-        
-        Now that your new item is customized we must register it with the item database.
+        8) Set the level requirement property to have a value of 1.
+
+        9) Set the StatKey to "StarterDagger"
+
+        10) Set Rarity to "Common"
+
+        11) Adjust the colors of your item's geometry if there is any. The geometry is inside the
+        client context folder inside the geo group. Make it look like a starter dagger.
+
+        Now that your new item is customized we need to register it with the item database.
         The item database requires that your item is as asset reference of a catalog object.
-    
-        8) Once you've changed your item to your liking right-click the root of the object in the hierarchy
+
+        12) Once you've changed your item to your liking right-click the root of the object in the hierarchy
         and click "Update Template From This". (or click the checkmark in the properties window)
 
-        9) Search for, "Catalog" in project content and locate ItemSystems_DATA_Sword_Catalog
+        13) Search for, "Catalog" in project content and locate ItemSystems_DATA_Dagger_Catalog
 
-        10) Drag and drop the catalog into the scene
+        14) Drag and drop the catalog into the scene
 
-        11) Right-Click the catalog in the hierarchy and click, "Deinstance this object"
+        15) Right-Click the catalog in the hierarchy and click, "Deinstance this object"
+
+        16) Add a custom property that is a Asset Reference to your weapon.
+
+        17) Right-click the catalog in the Hierarchy and click, "Update Template from this".
+
+        You can delete the catalog and dagger from the hierarchy.
+        Your item is registered with the item database, but it is not imbued with stats.
+
+        18) Search for "ItemSystems_DATA_Dagger_Stats" and open the script
+
+        19) Copy and paste the code into the designated section of the script
+
+            {
+                StatKey = 'StarterDagger', -- Base stat key that the dagger looks for when rolling stats
+                Group = 'Base',
+                Stat = 'Attack',
+                Min = '3',
+                Max = '3',
+                Likelihood = '100', 
+                ['Author Notes (will be ignored by script)'] = 'example: the starter dagger we will give to new players.',
+            },
+
+        Your dagger will always have 3 attack damage when created. For Information regarding the properties of the keys
+        refer to "Framework Component Details" -> "Item Stats" section of this readme.
+        To test your item in game we need to add the item name to a loot table.
         
-        11) Add a custom property that is a Asset Reference to your weapon.
+        20) Reslect your item and Copy the Value for the Name property and open ItemSystems_DATA_Drops. 
+        The ItemName key is looked up in the Item database anytime the item is spawned and it should have the value of your item's name.
+        Likelihood is weighted amount that your item will drop. The heavier the weight the more likely
+        it'll drop. Set your item's likelihood key in the script to 500 so your item is more likely to drop compared to the other items.
 
-        11) Right-click the catalog in the Hierarchy and click, "Update Template from this".
+        21) Go into the game and press the down arrow until your item has spawned.
 
-        You're basically done! your item is now registered with the item database.
-        To test your item in game we have to add the Item name to a loot table.
-        
-        12) Reslect your Item and Copy the Value for the Name property and open ItemSystems_DATA_Drops. 
-        Add your item to the BasicMobTrash loot table. ItemName should be the name of your item and Likelihood
-        is weighted amount that your item will drop. The heavier the weight the more likely
-        it'll drop. Set your Item's likelihood to 500 so your item is more likely to drop.
+        22) Once you see your item has spawned on the ground press "L" or approach it and press "F" to open your loot window.
 
-        13) Go into the game and press the down arrow until your item has spawned.
+        23) Click the loot from the loot window to add it into your inventory.
 
-        14) Once you see your item spawn on the ground press "L" to open your loot window.
-
-        15) Click your loot to add it into your inventory.
-
-        16) Press "I" to open your inventory. You can click your item to equip it!
+        24) Press "I" to open your inventory. You can click your item or drag it to the slot to equip it!
 
         To create custom stats and catalogs for your weapons please refer to "Creating Catalogs and Stats".
     ------------------------------
-
 
     ------ Creating Catalogs and Stats (Giving items stats) ------
         This tutorial will guide you through creating catalogs and stats for your items.
@@ -217,7 +239,6 @@ Framework usage
         for stats when you create it. 
     -----------------------------------------
 
-
     ------ Consumable Items ------
         Creating consumable Items is similar to creating regular Items except that you
         are creating a script for the consumable Item and that script must be on a custom property
@@ -237,7 +258,7 @@ Framework usage
 
         7) Copy the entire script and paste it into your newly created script.
 
-        8) In project contents add a custom property to your new script that is a type of Asset Reference
+        8) In project contents add a custom property to your new script that is a type of Asset Reference.
         
         9) Name the custom property "RuntimeContextDetection"
 
@@ -412,6 +433,14 @@ Framework Components Details
         Max = '5',
         Likelihood = '100',
     ----------------------
+
+    ----- Item Themes -----
+    ItemSystems_ItemThemes contains helper functions to retrive theme information of different Item types.
+    You can get the color of a rarity or the sound of an item when interacted with inside the inventory.
+    You can customize the custom properties to change items should be displayed.
+    You can also change the dropped loot indicators for item rarties.
+    Avaliable Rarities: Common, Uncommon, Rare, Epic, or Legendary
+    -----------------------
 
     ----- Inventory -----
     The Inventory is the logical representation of an inventory. 

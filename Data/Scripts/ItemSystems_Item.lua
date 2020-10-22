@@ -23,6 +23,7 @@ Item.TYPES = Enum{
     "Armor",
     "Boots",
     "Trinket",
+    "Dagger",
     "Greatsword",
     --"Ring", -- For the catalog and stats tutorial. Remove the comment.
 

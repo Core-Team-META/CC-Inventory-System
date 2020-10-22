@@ -131,7 +131,7 @@ return {
     end,
 
     GetItemSFX = function(itemType)
-        local SuprressWarning = false -- Change this to true if you don't care about warning messages.
+        local SuprressWarning = false -- Change this to true if you don't care about the warning messages.
         if not ITEM_SFX[itemType] then
             if not SuprressWarning then
                 warn(string.format("Item type: %s does not have an associated SFX custom property. This will default to Misc SFX. Consider adding one to ItemThemes or supress the warning inside the script.",itemType))
