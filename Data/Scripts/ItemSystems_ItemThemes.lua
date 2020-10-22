@@ -81,7 +81,7 @@ local PLAYER_STAT_EXPLANATIONS = {
 }
 
 local ITEM_SFX = {
-    --Ring       = script:GetCustomProperty("SFX_EquipRing"),
+    --Ring       = script:GetCustomProperty("SFX_EquipRing"), -- Uncomment Me
     Armor      = script:GetCustomProperty("SFX_EquipArmor"),
     Axe        = script:GetCustomProperty("SFX_EquipAxe"),
     Boots      = script:GetCustomProperty("SFX_EquipBoots"),

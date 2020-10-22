@@ -29,16 +29,18 @@ Setup
 
     1) Drag and drop "ItemSystems" from My Templates into the Hierarchy.
     2) For NPC combat, import standardcombo's "NPC AI Kit" from community content.
-    3) Search For "Combat Dependencies" and drop it into the Hierarchy.
-
+    3) For Loot Factory, import standardcombo's "Loot Factory" from community content.
+    4) Search for "Combat Dependencies" and drop it into the Hierarchy.
+    5) Search for "LootDropFactory" and drop it into the Hierarchy.
 
 --------------------------------------
 Framework usage
 --------------------------------------
 
     ------ Creating Weapons ------
-        This tutorial is going to guide through the general way of creating weapons for your game so they can register with the item database.
-        These methods also apply to any item creation aswell, but this tutorial will just focus on creating a weapon. 
+        This tutorial is going to guide through the general way of creating weapons for your game
+        so they can register with the item database.
+        These methods also apply to creating any item, but this tutorial will just focus on creating a weapon. 
 
         1) Start by taking one of the example items from My Templates
         Search for "ITEM_Sword_ExampleSword"
@@ -59,7 +61,7 @@ Framework usage
         6) For now just change Name, Icon, Description, and Rarity.
             Your rarity may be: Common, Uncommon, Rare, Epic, or Legendary
 
-        7) Adjust the colors of your items geometry if there is any. The geometry is inside the
+        7) Adjust the colors of your item's geometry if there is any. The geometry is inside the
         client context folder inside the geo group.
         
         Now that your new item is customized we must register it with the item database.
@@ -107,17 +109,21 @@ Framework usage
         If you followed the creating items tutorial then this should be straight forward.
         
         3) Search in My Templates, "ITEM_Trinket_Example"
+
         4) Create a new template of that object and customize it, but this time change everything and rename it to
          "ITEM_Ring_DamageRing".
         
         5) For ItemType set it as, "Ring"
         
         6) For StatKey set it as, "Common_DamageRing"
+
         7) Right-Click the Item in the hierarchy and update your template.
+
         8) On your ring catalog in Hierarchy add a custom property that is a Asset Reference 
         and assign your Item template. (Update template after)
 
         9) Create a new script and name it "ItemSystems_DATA_Ring_Stats"
+
         10) Open the script and copy and paste what's below into the script.
 
         return {
@@ -153,7 +159,7 @@ Framework usage
         }
 
         When your ring Item is rolled it will look for a base stat to apply to the Item.
-        In the example above you can see the StatKey matches the StatKey value we have on our Ring.
+        In the example code above you can see the StatKey matches the StatKey value we have on our Ring.
         When the item is rolled it will have a 50% chance of having an attack stat or a magic stat 
         as those are the base stats for the item.
         The Bonus1 stat is an added bonus when the item is rolled. It will always have this bonus.
@@ -202,7 +208,8 @@ Framework usage
         1) Search for, "SFX_GenericPickup" and create a new template of it.
         2) Name it, "SFX_EquipRing" and change the sound to your liking.
         3) Update from this template after you're done.
-        4) Search for, "ItemSystems_ItemThemes" script in project content
+        4) Search for, "ItemSystems_ItemThemes" script in project content and open it
+        5) Uncomment the ring entry in ITEM_SFX
         5) Add a new custom property that is a AssetReference with the name, "SFX_EquipRing"
         6) Assign the custom property with SFX_EquipRing.
 
@@ -216,23 +223,23 @@ Framework usage
         are creating a script for the consumable Item and that script must be on a custom property
         on the object.
 
-        1) Search for, "ITEM_Consumable_ExamplePotion"
+        1) Search for "ITEM_Consumable_ExamplePotion"
 
         2) Create a new template from that Item.
 
-        3) Name it, "ITEM_Consumable_XPPotion"
+        3) Name it "ITEM_Consumable_XPPotion"
 
-        4) Change Name, Icon, MaxStackableSize, Description, and Rarity for this tutorial.
+        4) Change Name, Icon, MaxStackableSize, Description, Level Requirement, and Rarity for this tutorial.
 
-        5) Create a new script and call it, "ITEM_ConsumptionEffect_XPPotion"
+        5) Create a new script and call it "ITEM_ConsumptionEffect_XPPotion"
 
-        6) Search for, "ITEM_ConsumptionEffect_Example" and open the script.
+        6) Search for "ITEM_ConsumptionEffect_Example" and open the script.
 
         7) Copy the entire script and paste it into your newly created script.
 
-        8) In project contents add a custom property to your scipt that is a type of Asset Reference
+        8) In project contents add a custom property to your new script that is a type of Asset Reference
         
-        9) Name the custom property, "RuntimeContextDetection"
+        9) Name the custom property "RuntimeContextDetection"
 
         Runtime context detection detects the content of the script at runtime. Unfortunately
         using cores native way of checking the context is not good enough in this situation.
@@ -263,30 +270,21 @@ Framework usage
 
 
     ------ Roll For Loot ------
-        Some programming knowledge is required to set this up.
-        Just like in World of warcraft you may want players to roll for an Item after they defeated a really tough enemy.
-        This is a great way to fight an enemy and share really great loot with friends or other players.
+        You may want players to roll for an Item after they defeated a really tough enemy.
+        This is a great way for players to gamble together on a nice piece of loot or pass it along for others.
         Players can decide to roll for the loot or pass on it. They can also inspect the loot to see if the Item is any good.
-        In this tutorial you'll learn how to create simple roll for loot events.
+        In this tutorial you'll learn how to create simple roll for loot event.
 
-        1) Search for, "RPG Skeleton"
+        1) Search for "RPG Skeleton"
         2) Drag and drop the Sekelton into the scene
         3) Right-Click the skeleton in the Hierarchy and click, "Create new template from this" and give it a name.
         4) In the custom properties of the skeleton change LootId's value to BasicMobTrash
-        5) Create a new custom property of type AssetReference with the name, "ItemDatabase". Assign to it ItemSystems_Database
-        5) Open the root folder of the skeleton and open the script, "NPCAttackServer"
-        6) Scroll to the last function, "DropRewards"
+        5) Search for "ItemSystems_LootFactoryAdapter" and open it.
+        6) Uncomment the first broadcast.
+        7) Kill the skeleton to receive your loot!
         
         We're going to give everyone the chance to roll on the Item regardless of who did damage
         to the enemy. This is just to give you an idea how to create a roll for loot event.
-
-        7) Between Give resources and drop loot insert the following line:
-
-            Events.Broadcast("RollForLootDrop",LOOT_ID,Game:GetPlayers())
-
-            The code above will create a roll for loot for all players in the server, 
-            but if you want just a couple of players to participate
-            then you can have a table with some players as the last parameter.
     ----------------------------
 
 
@@ -294,17 +292,15 @@ Framework usage
         Loot drops are implemented the same as Rolling for loot as they use Events.Broadcast()
         If you've done the tutorial above you should be able to replace Events.Broadcast() with a loot drop one.
 
-        1) Open the script, "NPCattackServer"
-        2) Scroll to the last function
-        3) Between give resource and drop loot insert the following:
+        1) Search for "ItemSystems_LootFactoryAdapter" and open it.
+        2) Uncomment the second brodcast event.
+        3) Kill the skeleton to get your loot.
 
-            Events.Broadcast("DropLootForPlayers",LOOT_ID,killer,ROOT:GetWorldPosition())
+        All players have a chance to get this Item regardless of who killed the skeleton. 
+        You can put in a single player or a table of players. This is just an example on how to use the events
+        to create loot drops.
 
-            The killer of the NPC will get the item. You can put in a single player or a table of players.
-            I recommend avoiding roll for loot when a player is alone as it wouldn't make sense to roll on an Item
-            if you're the only one who killed the NPC.
-
-        4) Loot your Item by pressing "L" and clicking on it in the loot window.
+        4) Loot your Item by pressing "L" or approaching it and pressing "F" and clicking on it in the loot window.
 
         There is numerous Events that can help you customize your players looting experience.
         For more events open, "ItemSystems_LootSpawner".
@@ -313,13 +309,16 @@ Framework usage
         Events.Broadcast("DropLoot", dropKey : String, worldPosition: Vector3)
 
         Drops for a specific player or a table of players a random loot from a loot table at a position in the world.
+        If a table of players is provided it will randomly pick a player to receive that loot.
         Events.Broadcast("DropLootForPlayers", dropKey : String, players : Table or player, worldPosition : Vector3)
 
         Drops a specific loot for a specific player or players at a position in the world.
+        If a table of players is provided it will randomly pick a player to receive that loot.
         Events.Broadcast("DropLootSpecificForPlayers", itemName : String, players : Table or player, worldPosition : Vector3)
 
         When provided an item hash the Item database will create the Item and drop it for a specific player or table of players 
         at a position in the world.
+        If a table of players is provided it will randomly pick a player to receive that loot.
         Events.Broadcast("DropLootSpecificHashForPlayers", itemPersistentHash : String,
                              players : Table or player, worldPosition : Vector3)
 
@@ -417,7 +416,15 @@ Framework Components Details
     ----- Inventory -----
     The Inventory is the logical representation of an inventory. 
     It stores your items and it has a bunch of public methods that allow you to leverage it for other uses.
-    There is a property on the script that enables Item dropping in-game and it's on by default. 
+    You can access the inventory on either a client or server script by getting the player and accessing the coresponding data
+    for example: 
+        for client "local inventory = LOCAL_PLAYER.clientUserData.inventory"
+        for server "local inventory = player.serverUserData.inventory"
+
+    you can then call various public methods to get or set information for example:
+         "local slotIndex = inventory:GetFreeBackpackSlot()"
+    
+    There is a property on the ItemSystems_Inventory script that enables Item dropping in-game and it's on by default. 
     If you don't want Item dropping from players in-game then you can disable the boolean on the script
     in project content.
     ---------------------
@@ -427,11 +434,9 @@ Framework Components Details
     Refer to the script for more information.
     ------------------------
 
-
 --------------------------------------
 Discord
 --------------------------------------
-
 
     If you find any bugs or problems with the Item System please direct your questions to
     my discord: Coderz#0441

@@ -226,6 +226,7 @@ function Inventory:MoveItem(fromSlotIndex, toSlotIndex)
 end
 
 -- Adds an item to the backpack.
+-- Make sure you do this on both the client and server.
 function Inventory:AddItem(item)
     local emptySlotIndex = self:GetFreeBackpackSlot()
     if item:IsStackable() and emptySlotIndex then
