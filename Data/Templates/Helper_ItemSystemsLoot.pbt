@@ -88,6 +88,18 @@
               SubObjectId: 13938044465804070832
             }
           }
+          Overrides {
+            Name: "cs:ItemThemes"
+            AssetReference {
+              Id: 3464750411501585367
+            }
+          }
+          Overrides {
+            Name: "cs:OwningIndicator"
+            ObjectReference {
+              SubObjectId: 2730010688871071614
+            }
+          }
         }
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
@@ -116,6 +128,7 @@
           }
         }
         ParentId: 13938044465804070832
+        ChildIds: 8005468150583163358
         ChildIds: 11788056424733759797
         ChildIds: 11177406314880341480
         WantsNetworking: true
@@ -126,6 +139,39 @@
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
         NetworkContext {
+        }
+      }
+      Objects {
+        Id: 8005468150583163358
+        Name: "Trigger"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 12909080179993159603
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:forceon"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Trigger {
+          Interactable: true
+          InteractionLabel: "View Loot"
+          TeamSettings {
+            IsTeamCollisionEnabled: true
+            IsEnemyCollisionEnabled: true
+          }
+          TriggerShape_v2 {
+            Value: "mc:etriggershape:sphere"
+          }
         }
       }
       Objects {
@@ -148,6 +194,54 @@
             Name: "cs:Loot"
             ObjectReference {
               SubObjectId: 13938044465804070832
+            }
+          }
+          Overrides {
+            Name: "cs:IndicatorCommon"
+            AssetReference {
+              Id: 15631619586623121380
+            }
+          }
+          Overrides {
+            Name: "cs:IndicatorUncommon"
+            AssetReference {
+              Id: 15631619586623121380
+            }
+          }
+          Overrides {
+            Name: "cs:IndicatorEpic"
+            AssetReference {
+              Id: 12172072770097083710
+            }
+          }
+          Overrides {
+            Name: "cs:IndicatorRare"
+            AssetReference {
+              Id: 13625467364280639550
+            }
+          }
+          Overrides {
+            Name: "cs:IndicatorLegendary"
+            AssetReference {
+              Id: 13615535925942134142
+            }
+          }
+          Overrides {
+            Name: "cs:ItemThemes"
+            AssetReference {
+              Id: 3464750411501585367
+            }
+          }
+          Overrides {
+            Name: "cs:OwningIndicator"
+            ObjectReference {
+              SubObjectId: 2730010688871071614
+            }
+          }
+          Overrides {
+            Name: "cs:OpenLootViewTrigger"
+            ObjectReference {
+              SubObjectId: 8005468150583163358
             }
           }
         }
@@ -180,7 +274,6 @@
         ParentId: 12909080179993159603
         ChildIds: 9889476390810852008
         ChildIds: 2730010688871071614
-        ChildIds: 16761588910795450268
         ChildIds: 9110346938526630151
         ChildIds: 1428367281018295685
         Collidable_v2 {
@@ -325,56 +418,6 @@
         }
       }
       Objects {
-        Id: 16761588910795450268
-        Name: "Resurrection VFX"
-        Transform {
-          Location {
-          }
-          Rotation {
-          }
-          Scale {
-            X: 0.4
-            Y: 0.4
-            Z: 0.4
-          }
-        }
-        ParentId: 11177406314880341480
-        UnregisteredParameters {
-          Overrides {
-            Name: "bp:Life"
-            Float: 1.21345735
-          }
-          Overrides {
-            Name: "bp:Upward Velocity"
-            Float: 3.57122231
-          }
-          Overrides {
-            Name: "bp:Enable Beam"
-            Bool: true
-          }
-          Overrides {
-            Name: "bp:Enable Rings"
-            Bool: true
-          }
-        }
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:inheritfromparent"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        Blueprint {
-          BlueprintAsset {
-            Id: 1737725360769607932
-          }
-          TeamSettings {
-          }
-          Vfx {
-            AutoPlay: true
-          }
-        }
-      }
-      Objects {
         Id: 9110346938526630151
         Name: "Meta Fantasy Revive Life Choir 02 SFX"
         Transform {
@@ -470,15 +513,6 @@
       PrimaryAsset {
         AssetType: "VfxBlueprintAssetRef"
         AssetId: "fxbp_Swirling_Magic_Column"
-      }
-    }
-    Assets {
-      Id: 1737725360769607932
-      Name: "Resurrection VFX"
-      PlatformAssetType: 8
-      PrimaryAsset {
-        AssetType: "VfxBlueprintAssetRef"
-        AssetId: "fxbp_resurrection"
       }
     }
     Assets {

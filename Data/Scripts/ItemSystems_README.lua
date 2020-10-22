@@ -6,7 +6,7 @@
 	Adaption and Modification by: Coderz (Drake) (META) (https://www.coregames.com/user/d5daea732ee3422fbe85aecb900e73ec)
 
     Description:
-    ItemSystems is an item managment framework that has inventory management features you'd find in a MMO game like World of Warcraft.
+    ItemSystems is an item managment framework that has inventory management features you'd find in MMO games.
     It contains a plethora of awesome features to help jump start your RPG-style game. 
     It also removes the hassle of creating an inventory system from scratch, it's easy to use and extendable for programmers.
     
@@ -56,7 +56,7 @@ Framework usage
         At this point you should see numerous custom properties. These properties
         determine how the item should register into the item database.
 
-        6) For now just change Name, Icon, Description and Rarity.
+        6) For now just change Name, Icon, Description, and Rarity.
             Your rarity may be: Common, Uncommon, Rare, Epic, or Legendary
 
         7) Adjust the colors of your items geometry if there is any. The geometry is inside the
@@ -107,11 +107,16 @@ Framework usage
         If you followed the creating items tutorial then this should be straight forward.
         
         3) Search in My Templates, "ITEM_Trinket_Example"
-        4) Create a new template of that object and customize it, but this time change everything and rename it to, "ITEM_Ring_DamageRing".
+        4) Create a new template of that object and customize it, but this time change everything and rename it to
+         "ITEM_Ring_DamageRing".
+        
         5) For ItemType set it as, "Ring"
+        
         6) For StatKey set it as, "Common_DamageRing"
         7) Right-Click the Item in the hierarchy and update your template.
-        8) On your ring catalog in Hierarchy add a custom property that is a Asset Reference and assign your Item template. (Update template after)
+        8) On your ring catalog in Hierarchy add a custom property that is a Asset Reference 
+        and assign your Item template. (Update template after)
+
         9) Create a new script and name it "ItemSystems_DATA_Ring_Stats"
         10) Open the script and copy and paste what's below into the script.
 
@@ -149,7 +154,8 @@ Framework usage
 
         When your ring Item is rolled it will look for a base stat to apply to the Item.
         In the example above you can see the StatKey matches the StatKey value we have on our Ring.
-        When the item is rolled it will have a 50% chance of having an attack stat or a magic stat as those are the base stats for the item.
+        When the item is rolled it will have a 50% chance of having an attack stat or a magic stat 
+        as those are the base stats for the item.
         The Bonus1 stat is an added bonus when the item is rolled. It will always have this bonus.
         You can continue to add as many bonus stats to this item as you want. An example below.
         
@@ -164,7 +170,8 @@ Framework usage
         },
 
         Now the ring will have 1 base stat and 2 different bonus stats. For a total of 3 stats.
-        You can continue to add more bonuses to the item by copy and pasting what's above and incrementing the interger at the end of Bonus.
+        You can continue to add more bonuses to the item by copy and pasting what's above and incrementing
+        the interger at the end of Bonus.
         The Likelihood determines the odds of rolling for that stat. The larger the number is the better the odds for that stat.
 
         Now that the catalog and stats script are complete we need to tell the Item Database to register both scripts.
@@ -180,7 +187,8 @@ Framework usage
         be able to equip the item as the ring Item type is not recongized.
 
         17) Open ItemSystems_Item script and go to Item.TYPES and uncomment the ring entry.
-        18) Scroll down to Item.SLOT_CONTRAINTS and uncomment the ring entry. This will make it so you can equip rings in the accessory slot.
+        18) Scroll down to Item.SLOT_CONTRAINTS and uncomment the ring entry. 
+        This will make it so you can equip rings in the accessory slot.
         
         At this point you're done, but we need to test the Item to make sure it works. 
         So we need to add the Item to a loot table.
@@ -209,20 +217,30 @@ Framework usage
         on the object.
 
         1) Search for, "ITEM_Consumable_ExamplePotion"
+
         2) Create a new template from that Item.
+
         3) Name it, "ITEM_Consumable_XPPotion"
+
         4) Change Name, Icon, MaxStackableSize, Description, and Rarity for this tutorial.
+
         5) Create a new script and call it, "ITEM_ConsumptionEffect_XPPotion"
+
         6) Search for, "ITEM_ConsumptionEffect_Example" and open the script.
+
         7) Copy the entire script and paste it into your newly created script.
+
         8) In project contents add a custom property to your scipt that is a type of Asset Reference
+        
         9) Name the custom property, "RuntimeContextDetection"
 
         Runtime context detection detects the content of the script at runtime. Unfortunately
         using cores native way of checking the context is not good enough in this situation.
 
         10) Assign the custom property the RuntimeContextDetection script.
+        
         11) Assign the ConsumptionEffect property in your Item with your newly created script, "ITEM_ConsumptionEffect_XPPotion"
+        
         12) Replace player:Die() with
 
             local statsSheet = player.serverUserData.statSheet
@@ -234,8 +252,12 @@ Framework usage
             statsSheet:NewStatModifierAdd("Attack",100,false) -- Gives 100 damage to your player
 
         13) Search for, "Catalog" in project content and drag and drop, "ItemSystems_DATA_Consumable_Catalog" into the scene
-        14) Deinstance the catalog and add a custom property that is a type of Asset Reference and assign, "ITEM_Consumable_XPPotion" to it.
+        
+        14) Deinstance the catalog and add a custom property that is a type of Asset Reference and assign 
+        "ITEM_Consumable_XPPotion" to it.
+        
         15) Copy the name of your Item and create a new loot drop in the BasicMobTrash table.
+        
         16) Spawn your Item, Collect it, and use it by clicking on it in the Inventory.
     ------------------------------
 
@@ -262,7 +284,8 @@ Framework usage
 
             Events.Broadcast("RollForLootDrop",LOOT_ID,Game:GetPlayers())
 
-            The code above will create a roll for loot for all players in the server, but if you want just a couple of players to participate
+            The code above will create a roll for loot for all players in the server, 
+            but if you want just a couple of players to participate
             then you can have a table with some players as the last parameter.
     ----------------------------
 
@@ -295,8 +318,10 @@ Framework usage
         Drops a specific loot for a specific player or players at a position in the world.
         Events.Broadcast("DropLootSpecificForPlayers", itemName : String, players : Table or player, worldPosition : Vector3)
 
-        When provided an item hash the Item database will create the Item and drop it for a specific player or table of players at a position in the world.
-        Events.Broadcast("DropLootSpecificHashForPlayers", itemPersistentHash : String, players : Table or player, worldPosition : Vector3)
+        When provided an item hash the Item database will create the Item and drop it for a specific player or table of players 
+        at a position in the world.
+        Events.Broadcast("DropLootSpecificHashForPlayers", itemPersistentHash : String,
+                             players : Table or player, worldPosition : Vector3)
 
         When provided with a loot drop key and a table of players it will create a roll event for all the player to gamble for the Item.
         Events.Broadcast("RollForLootDrop", dropKey : String, players : Table)
@@ -371,8 +396,12 @@ Framework Components Details
     An Item can have multiple rollable stats and not just 1 base stat or 1 bonus stat. Get creative with your stats.
 
         StatKey = 'EpicBoots', -- The stat key an item will reference and roll from.
-        Group = 'Base', -- There must be a Base stat for items that reference a statKey. You can add additional stats to an item by changing this from Base to Bonus1, Bonus2, or Bonus3... etc.
-        Stat = 'Attack', -- The type of stat this Item will have. Reference ItemSystems_Item script and the Item.TYPES variable to see what kind of stats an Item can have.
+        Group = 'Base', -- There must be a Base stat for items that reference a statKey. 
+        You can add additional stats to an item by changing this from Base to Bonus1, Bonus2, or Bonus3... etc.
+       
+        Stat = 'Attack', 
+        -- The type of stat this Item will have. Reference ItemSystems_Item script 
+        and the Item.TYPES variable to see what kind of stats an Item can have.
         Min = '3', -- Min range of the stat
         Max = '5', -- Max range of the stat
         Likelihood = '100', -- The weight of this stat. 
@@ -386,8 +415,10 @@ Framework Components Details
     ----------------------
 
     ----- Inventory -----
-    The Inventory is the logical representation of an inventory. It stores your items and it has a bunch of public methods that allow you to leverage it for other uses.
-    There is a property on the script that enables Item dropping in-game and it's on by default. If you don't want Item dropping from players in-game then you can disable the boolean on the script
+    The Inventory is the logical representation of an inventory. 
+    It stores your items and it has a bunch of public methods that allow you to leverage it for other uses.
+    There is a property on the script that enables Item dropping in-game and it's on by default. 
+    If you don't want Item dropping from players in-game then you can disable the boolean on the script
     in project content.
     ---------------------
 

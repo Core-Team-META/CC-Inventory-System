@@ -19,8 +19,9 @@ Objects {
   ChildIds: 14713340454944924967
   ChildIds: 10005074784157121906
   ChildIds: 14982843161775482339
+  ChildIds: 8363478294546174192
   ChildIds: 17565214277585214929
-  ChildIds: 9036299474634217034
+  ChildIds: 971297737377531071
   ChildIds: 9477342016099356239
   ChildIds: 5012740452443113133
   ChildIds: 17933308923335840406
@@ -1069,13 +1070,9 @@ Objects {
   }
 }
 Objects {
-  Id: 9036299474634217034
+  Id: 971297737377531071
   Name: "ItemSystems"
   Transform {
-    Location {
-    }
-    Rotation {
-    }
     Scale {
       X: 1
       Y: 1
@@ -1089,16 +1086,29 @@ Objects {
   Visible_v2 {
     Value: "mc:evisibilitysetting:inheritfromparent"
   }
-  Folder {
-    IsFilePartition: true
-    FilePartitionName: "ItemSystems"
-  }
-  InstanceHistory {
-    SelfId: 9036299474634217034
-    SubobjectId: 2513051206216427631
-    InstanceId: 971297737377531071
-    TemplateId: 11272690134656118769
-    WasRoot: true
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 2513051206216427631
+      value {
+        Overrides {
+          Name: "Name"
+          String: "ItemSystems"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 11272690134656118769
+    }
   }
 }
 Objects {
@@ -1142,6 +1152,32 @@ Objects {
     }
     TemplateAsset {
       Id: 1337239855421309995
+    }
+  }
+}
+Objects {
+  Id: 8363478294546174192
+  Name: "Loot Drop Factory"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 15821373674062278737
+      value {
+        Overrides {
+          Name: "Name"
+          String: "Loot Drop Factory"
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 858028977475277288
     }
   }
 }

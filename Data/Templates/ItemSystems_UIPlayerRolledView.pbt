@@ -50,8 +50,8 @@
         Control {
           Width: 433
           Height: 52
-          UIX: 47.6970558
-          UIY: -35.7932129
+          UIX: 300
+          UIY: 200
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -62,7 +62,7 @@
           AnchorLayout {
             SelfAnchor {
               Anchor {
-                Value: "mc:euianchor:bottomleft"
+                Value: "mc:euianchor:bottomcenter"
               }
             }
             TargetAnchor {

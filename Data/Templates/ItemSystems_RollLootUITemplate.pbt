@@ -15,7 +15,7 @@
             Z: 1
           }
         }
-        ParentId: 3829052445877668271
+        ParentId: 13349686323860167526
         ChildIds: 17926828406850085153
         ChildIds: 13527127771606318925
         ChildIds: 1030690757649352132
@@ -23,11 +23,11 @@
         ChildIds: 7715652942814493825
         ChildIds: 16601678339049897057
         ChildIds: 12840240955320244629
-        ChildIds: 5450444021100422045
+        ChildIds: 11030100571739126339
         UnregisteredParameters {
           Overrides {
             Name: "cs:ItemHash"
-            String: "P0CFE0C59E5ADA039|ba|#Attack=saaa&CritChance=kaaa&Attack=daaa"
+            String: ""
           }
           Overrides {
             Name: "cs:ID"
@@ -43,7 +43,6 @@
         Control {
           Width: 470
           Height: 128
-          UIY: -115
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -156,7 +155,7 @@
           Overrides {
             Name: "cs:PanelItemHover"
             ObjectReference {
-              SubObjectId: 5450444021100422045
+              SubObjectId: 11030100571739126339
             }
           }
           Overrides {
@@ -168,7 +167,7 @@
           Overrides {
             Name: "cs:RollManager"
             ObjectReference {
-              SelfId: 17914490041441623834
+              SelfId: 3164338929500039412
             }
           }
         }
@@ -1167,7 +1166,7 @@
         }
       }
       Objects {
-        Id: 5450444021100422045
+        Id: 11030100571739126339
         Name: "ItemHoverView"
         Transform {
           Location {
@@ -1181,42 +1180,54 @@
           }
         }
         ParentId: 1369327332584532433
-        ChildIds: 2916578770743277656
+        ChildIds: 12257885727135760163
         UnregisteredParameters {
           Overrides {
             Name: "cs:Pointer"
             ObjectReference {
-              SubObjectId: 15262949027049281085
+              SubObjectId: 12565176907167522771
             }
           }
           Overrides {
             Name: "cs:Border"
             ObjectReference {
-              SubObjectId: 2957396245396043816
+              SubObjectId: 1908141528437113574
             }
           }
           Overrides {
             Name: "cs:Title"
             ObjectReference {
-              SubObjectId: 16854496535075064422
+              SubObjectId: 18068111490455283959
             }
           }
           Overrides {
             Name: "cs:Classification"
             ObjectReference {
-              SubObjectId: 17241036070288548112
+              SubObjectId: 16294083060743263929
             }
           }
           Overrides {
             Name: "cs:Description"
             ObjectReference {
-              SubObjectId: 14956044478288143712
+              SubObjectId: 3098551324373242426
             }
           }
           Overrides {
             Name: "cs:StatParent"
             ObjectReference {
-              SubObjectId: 2916578770743277656
+              SubObjectId: 12257885727135760163
+            }
+          }
+          Overrides {
+            Name: "cs:Level"
+            ObjectReference {
+              SubObjectId: 9512830333545363447
+            }
+          }
+          Overrides {
+            Name: "cs:LevelDivider"
+            ObjectReference {
+              SubObjectId: 1731733343510802021
             }
           }
           Overrides {
@@ -1245,10 +1256,8 @@
           Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
-          Width: 266
-          Height: 225
-          UIX: 13.798584
-          UIY: 21.465332
+          Width: 273
+          Height: 146
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -1271,7 +1280,7 @@
         }
       }
       Objects {
-        Id: 2916578770743277656
+        Id: 12257885727135760163
         Name: "Inner"
         Transform {
           Location {
@@ -1284,16 +1293,18 @@
             Z: 1
           }
         }
-        ParentId: 5450444021100422045
-        ChildIds: 13436460928087116765
-        ChildIds: 15262949027049281085
-        ChildIds: 2957396245396043816
-        ChildIds: 16854496535075064422
-        ChildIds: 10785695494260083738
-        ChildIds: 17241036070288548112
-        ChildIds: 14745773243640930779
-        ChildIds: 13584104453674744617
-        ChildIds: 14956044478288143712
+        ParentId: 11030100571739126339
+        ChildIds: 9003580649986593945
+        ChildIds: 12565176907167522771
+        ChildIds: 1908141528437113574
+        ChildIds: 18068111490455283959
+        ChildIds: 1129866482541719977
+        ChildIds: 16294083060743263929
+        ChildIds: 9512830333545363447
+        ChildIds: 11376900763083801079
+        ChildIds: 1731733343510802021
+        ChildIds: 14319505417798399892
+        ChildIds: 3098551324373242426
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -1302,7 +1313,7 @@
         }
         Control {
           Width: 266
-          Height: 145
+          Height: 172
           UIX: -30
           UIY: -25
           RenderTransformPivot {
@@ -1327,7 +1338,7 @@
         }
       }
       Objects {
-        Id: 13436460928087116765
+        Id: 9003580649986593945
         Name: "Background"
         Transform {
           Location {
@@ -1340,7 +1351,7 @@
             Z: 1
           }
         }
-        ParentId: 2916578770743277656
+        ParentId: 12257885727135760163
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -1381,7 +1392,7 @@
         }
       }
       Objects {
-        Id: 15262949027049281085
+        Id: 12565176907167522771
         Name: "Pointer"
         Transform {
           Location {
@@ -1394,7 +1405,7 @@
             Z: 1
           }
         }
-        ParentId: 2916578770743277656
+        ParentId: 12257885727135760163
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -1438,7 +1449,7 @@
         }
       }
       Objects {
-        Id: 2957396245396043816
+        Id: 1908141528437113574
         Name: "Border"
         Transform {
           Location {
@@ -1451,7 +1462,7 @@
             Z: 1
           }
         }
-        ParentId: 2916578770743277656
+        ParentId: 12257885727135760163
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -1496,7 +1507,7 @@
         }
       }
       Objects {
-        Id: 16854496535075064422
+        Id: 18068111490455283959
         Name: "ItemName"
         Transform {
           Location {
@@ -1509,7 +1520,7 @@
             Z: 1
           }
         }
-        ParentId: 2916578770743277656
+        ParentId: 12257885727135760163
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -1553,7 +1564,7 @@
         }
       }
       Objects {
-        Id: 10785695494260083738
+        Id: 1129866482541719977
         Name: "Divider"
         Transform {
           Location {
@@ -1566,7 +1577,7 @@
             Z: 1
           }
         }
-        ParentId: 2916578770743277656
+        ParentId: 12257885727135760163
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -1611,7 +1622,7 @@
         }
       }
       Objects {
-        Id: 17241036070288548112
+        Id: 16294083060743263929
         Name: "ItemClassification"
         Transform {
           Location {
@@ -1624,7 +1635,7 @@
             Z: 1
           }
         }
-        ParentId: 2916578770743277656
+        ParentId: 12257885727135760163
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -1645,6 +1656,63 @@
             Color {
               R: 0.48827824
               B: 0.73
+              A: 1
+            }
+            Size: 13
+            Justification {
+              Value: "mc:etextjustify:center"
+            }
+            AutoWrapText: true
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:topcenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:topcenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 9512830333545363447
+        Name: "Level"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 12257885727135760163
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 244
+          Height: 26
+          UIY: 73
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          Text {
+            Label: "Requires Level 10"
+            Color {
+              R: 1
+              G: 0.953642428
               A: 1
             }
             Size: 12
@@ -1668,7 +1736,7 @@
         }
       }
       Objects {
-        Id: 14745773243640930779
+        Id: 11376900763083801079
         Name: "Divider"
         Transform {
           Location {
@@ -1681,7 +1749,7 @@
             Z: 1
           }
         }
-        ParentId: 2916578770743277656
+        ParentId: 12257885727135760163
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -1726,7 +1794,65 @@
         }
       }
       Objects {
-        Id: 13584104453674744617
+        Id: 1731733343510802021
+        Name: "LevelDivider"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 12257885727135760163
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: -20
+          Height: 2
+          UIY: 99.1752319
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          UseParentWidth: true
+          Image {
+            Brush {
+            }
+            Color {
+              R: 1
+              G: 1
+              B: 1
+              A: 0.1
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:topcenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:topcenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 14319505417798399892
         Name: "Divider"
         Transform {
           Location {
@@ -1739,7 +1865,7 @@
             Z: 1
           }
         }
-        ParentId: 2916578770743277656
+        ParentId: 12257885727135760163
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -1784,7 +1910,7 @@
         }
       }
       Objects {
-        Id: 14956044478288143712
+        Id: 3098551324373242426
         Name: "ItemDescription"
         Transform {
           Location {
@@ -1797,7 +1923,7 @@
             Z: 1
           }
         }
-        ParentId: 2916578770743277656
+        ParentId: 12257885727135760163
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }

@@ -16,6 +16,8 @@ local PANEL_STATS = script:GetCustomProperty("StatsPanel"):WaitForObject()
 local PANEL_EQUIPPED = script:GetCustomProperty("EquippedSlotsPanel"):WaitForObject()
 local PANEL_BACKPACK = script:GetCustomProperty("BackpackSlotsPanel"):WaitForObject()
 local PANEL_ITEM_HOVER = script:GetCustomProperty("ItemHoverPanel"):WaitForObject()
+local REQUIRES_LEVEL_ALERT = script:GetCustomProperty("RequiresLevelAlert"):WaitForObject()
+local REQUIRES_LEVEL_TEXT = REQUIRES_LEVEL_ALERT:GetCustomProperty("AlertText"):WaitForObject()
 local HOLDING_ICON = script:GetCustomProperty("HeldIcon"):WaitForObject()
 local CLICK_TIMEOUT = script:GetCustomProperty("ClickTimeout")
 local CLICK_DEADZONE_RADIUS = script:GetCustomProperty("ClickDeadzoneRadius")
@@ -191,17 +193,23 @@ function view:InitStats()
         statElement.clientUserData.defaultTextColor = statElement.clientUserData.name:GetColor()
         -- Certain elements come and go with hover buttons.
         local explanation = statElement:GetCustomProperty("Explanation"):WaitForObject()
+        local value = statElement:GetCustomProperty("Value"):WaitForObject()
+        local name = statElement:GetCustomProperty("Name"):WaitForObject()
         explanation.text = ItemThemes.GetPlayerStatExplanation(statName)
         local hoverHighlight = statElement:GetCustomProperty("HoverHighlight"):WaitForObject()
         local hoverButton = statElement:GetCustomProperty("HoverButton"):WaitForObject()
         hoverButton.hoveredEvent:Connect(function()
             hoverHighlight.visibility = Visibility.INHERIT
             explanation.visibility = Visibility.INHERIT
+            value.visibility = Visibility.FORCE_OFF
+            name.visibility = Visibility.FORCE_OFF
             statElement.clientUserData.previewDelta.visibility = Visibility.FORCE_OFF
         end)
         hoverButton.unhoveredEvent:Connect(function()
             hoverHighlight.visibility = Visibility.FORCE_OFF
             explanation.visibility = Visibility.FORCE_OFF
+            value.visibility = Visibility.INHERIT
+            name.visibility = Visibility.INHERIT
             statElement.clientUserData.previewDelta.visibility = Visibility.INHERIT
         end)
     end
@@ -256,6 +264,24 @@ function view:InitItemHover()
     self.itemHoverStatEntries = {}
 end
 
+function view:DisplayLevelAlert(itemLevel)
+    -- Interupt the existing alert to display a new one
+    print("Displaying",itemLevel)
+    if REQUIRES_LEVEL_ALERT.clientUserData.existingAlert
+    then REQUIRES_LEVEL_ALERT.clientUserData.existingAlert:Cancel() end
+    REQUIRES_LEVEL_TEXT.text = string.format("Requires Level %s", itemLevel)
+    local mousePos = UI.GetCursorPosition()
+    local screenSize = UI.GetScreenSize()
+    local xRef, yRef = GetTopLeftPositionInParent(INVENTORY_VIEW, INVENTORY_VIEW.width, INVENTORY_VIEW.height)
+    REQUIRES_LEVEL_ALERT.x = mousePos.x - xRef
+    REQUIRES_LEVEL_ALERT.y = mousePos.y - yRef
+    REQUIRES_LEVEL_ALERT.clientUserData.existingAlert = Task.Spawn(function()
+        REQUIRES_LEVEL_ALERT.visibility = Visibility.FORCE_ON
+        Task.Wait(3)
+        REQUIRES_LEVEL_ALERT.visibility = Visibility.FORCE_OFF
+    end)
+end
+
 -----------------------------------------------------------------------------------------------------------------
 function view:AttemptMoveItem(fromSlotIndex, toSlotIndex)
     if inventory:CanMoveItem(fromSlotIndex, toSlotIndex) then
@@ -265,6 +291,7 @@ function view:AttemptMoveItem(fromSlotIndex, toSlotIndex)
             local playerLevel = LOCAL_PLAYER.clientUserData.statSheet:GetLevel()
             if itemLevel and playerLevel < itemLevel then
                 if toSlotIndex ~= nil and inventory:IsEquipSlot(toSlotIndex) then
+                    self:DisplayLevelAlert(itemLevel)
                     PlaySound(SFX_DENIED)
                     return
                 end
@@ -357,6 +384,7 @@ function view:PerformClickAction()
     local clickedItem = inventory:GetItem(self.clickSlotIndex)
     local itemLevel = clickedItem:GetLevelRequirement()
     if itemLevel and playerLevel < itemLevel then
+        self:DisplayLevelAlert(itemLevel)
         PlaySound(SFX_DENIED)
         return
     end
@@ -642,7 +670,7 @@ function view:DrawHoverStatCompare()
             local previewItem = self.itemUnderCursor
             local targetEquipSlotIndex = inventory:ConvertEquipSlotIndex(previewItem:GetEquipSlotType())
             local exchangeItem = inventory:GetItem(targetEquipSlotIndex)
-            -- First we check to make sure we're going to 
+            -- First we're going to check to see if the item is an accessory. If so then we will get the weakest accessory to compare to.
             if previewItem:GetEquipSlotType() == "Accessory" and inventory:HasAvaliableAccessorySlots() then
                 local weakestAccessory, slot = inventory:GetWeakestAccessory()
                 exchangeItem = weakestAccessory
@@ -679,6 +707,8 @@ function view:DrawHoverStatCompare()
                 if statDelta ~= 0 then
                     local compareColor = statDelta > 0 and Color.GREEN or Color.RED
                     local compareToken = statDelta > 0 and "+ " or "- "
+                    statElement.clientUserData.value.text = ItemThemes.GetPlayerStatFormattedValue(statName,statValue)
+                    statElement.clientUserData.value:SetColor(compareColor)
                     statElement.clientUserData.previewDelta.text = compareToken .. ItemThemes.GetPlayerStatFormattedValue(statName, math.abs(statDelta))
                     statElement.clientUserData.previewDelta:SetColor(compareColor)
                 end

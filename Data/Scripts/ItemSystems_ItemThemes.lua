@@ -13,6 +13,14 @@ local RARITY_COLORS = {
     Legendary   = script:GetCustomProperty("RarityLegendary"),
 }
 
+local RARITY_INDICATORS = {
+    Common      = script:GetCustomProperty("RarityCommonIndicator"),
+    Uncommon    = script:GetCustomProperty("RarityUncommonIndicator"),
+    Rare        = script:GetCustomProperty("RarityRareIndicator"),
+    Epic        = script:GetCustomProperty("RarityEpicIndicator"),
+    Legendary   = script:GetCustomProperty("RarityLegendaryIndicator"),
+}
+
 local STAT_ICONS = {
     Health          = script:GetCustomProperty("StatIconHealth"),
     HealthPercent   = script:GetCustomProperty("StatIconHealth"),
@@ -62,14 +70,14 @@ local PLAYER_STAT_DISPLAY_NAMES = {
 }
 
 local PLAYER_STAT_EXPLANATIONS = {
-    Health          = "amount of damage your character can survive",
-    Defense         = "reduces incoming damage",
-    Attack          = "increases damage with weapons",
-    Magic           = "increases damage with abilities",
-    CritChance      = "increases your chance to critically strike",
-    Haste           = "increases the speed of your actions",
-    CDR             = "makes abilities recharge faster",
-    Tenacity        = "makes crowd control durations shorter",
+    Health          = "Increases hitpoints",
+    Defense         = "Reduces damage taken",
+    Attack          = "Increases physical damage dealt",
+    Magic           = "Increases magical damage dealt",
+    CritChance      = "Increases critical strike chance",
+    Haste           = "Increases running speed",
+    CDR             = "Reduces ability cooldown time",
+    Tenacity        = "Reduces hostile status effect duration",
 }
 
 local ITEM_SFX = {
@@ -96,6 +104,10 @@ local ITEM_SFX = {
 return {
     GetRarityColor = function(rarity)
         return Color.New(RARITY_COLORS[rarity])
+    end,
+
+    GetRarityLootIndicator = function(rarity)
+        return RARITY_INDICATORS[rarity]
     end,
 
     GetStatIcon = function(statName)

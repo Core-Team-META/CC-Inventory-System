@@ -201,6 +201,36 @@
           Id: 14625542863664929846
         }
       }
+      Overrides {
+        Name: "cs:RarityCommonIndicator"
+        AssetReference {
+          Id: 1667967654323407458
+        }
+      }
+      Overrides {
+        Name: "cs:RarityUncommonIndicator"
+        AssetReference {
+          Id: 15631619586623121380
+        }
+      }
+      Overrides {
+        Name: "cs:RarityRareIndicator"
+        AssetReference {
+          Id: 13625467364280639550
+        }
+      }
+      Overrides {
+        Name: "cs:RarityEpicIndicator"
+        AssetReference {
+          Id: 12172072770097083710
+        }
+      }
+      Overrides {
+        Name: "cs:RarityLegendaryIndicator"
+        AssetReference {
+          Id: 13615535925942134142
+        }
+      }
     }
     Assets {
       Id: 1285653368607626957

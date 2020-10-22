@@ -9,6 +9,8 @@ local ItemDatabase = require(script:GetCustomProperty("ItemSystems_Database"))
 local ItemThemes = require(script:GetCustomProperty("ItemSystems_ItemThemes"))
 local ReliableEvents = require(script:GetCustomProperty("ReliableEvents"))
 
+local LOCAL_PLAYER = Game.GetLocalPlayer()
+
 ItemDatabase:WaitUntilLoaded()
 
 local function DrawLoot(item)
@@ -49,6 +51,8 @@ local function InitHoverStats()
     FRAME_ITEM_HOVER.clientUserData.border = FRAME_ITEM_HOVER:GetCustomProperty("Border"):WaitForObject()
     FRAME_ITEM_HOVER.clientUserData.title = FRAME_ITEM_HOVER:GetCustomProperty("Title"):WaitForObject()
     FRAME_ITEM_HOVER.clientUserData.classification = FRAME_ITEM_HOVER:GetCustomProperty("Classification"):WaitForObject()
+    FRAME_ITEM_HOVER.clientUserData.level = FRAME_ITEM_HOVER:GetCustomProperty("Level"):WaitForObject()
+    FRAME_ITEM_HOVER.clientUserData.leveldivider = FRAME_ITEM_HOVER:GetCustomProperty("LevelDivider"):WaitForObject()
     FRAME_ITEM_HOVER.clientUserData.description = FRAME_ITEM_HOVER:GetCustomProperty("Description"):WaitForObject()
     FRAME_ITEM_HOVER.clientUserData.statOffsetY = FRAME_ITEM_HOVER:GetCustomProperty("StatOffsetY")
     FRAME_ITEM_HOVER.clientUserData.statOffsetXBase = FRAME_ITEM_HOVER:GetCustomProperty("StatOffsetXBase")
@@ -57,14 +61,25 @@ end
 
 local function DrawHoverStats(item)
     -- Text
+    local playerLevel = LOCAL_PLAYER.clientUserData.statSheet:GetLevel()
+    local itemLevel = item:GetLevelRequirement()
+    FRAME_ITEM_HOVER.clientUserData.title.text = item:GetName()
+    FRAME_ITEM_HOVER.clientUserData.classification.text = string.format("%s %s", item:GetRarity(), item:GetType())
+    FRAME_ITEM_HOVER.clientUserData.description.text = item:GetDescription()
+    FRAME_ITEM_HOVER.clientUserData.level.text =  string.format("Requires Level %i",itemLevel or 0)
+    FRAME_ITEM_HOVER.clientUserData.level.visibility = itemLevel ~= nil and Visibility.FORCE_ON or Visibility.FORCE_OFF
+    FRAME_ITEM_HOVER.clientUserData.leveldivider.visibility = itemLevel ~= nil and Visibility.FORCE_ON or Visibility.FORCE_OFF
+    if itemLevel then
+        FRAME_ITEM_HOVER.clientUserData.level:SetColor(itemLevel <= playerLevel and Color.WHITE or Color.RED)
+    end
     FRAME_ITEM_HOVER.clientUserData.title.text = item:GetName()
     FRAME_ITEM_HOVER.clientUserData.classification.text = string.format("%s %s", item:GetRarity(), item:GetType())
     FRAME_ITEM_HOVER.clientUserData.description.text = item:GetDescription()
     -- Attributes
     local stats = item:GetStats()
     local entries = EnsureSufficientHoverStatEntries(#stats)
-    local offsetYBase = 0
-    local offsetYBonus = 0
+    local offsetYBase = itemLevel and 30 or 0
+    local offsetYBonus = itemLevel and 30 or 0
     for i,entry in ipairs(entries) do
         local statInfo = stats[i]
         if statInfo then

@@ -18,10 +18,13 @@
         ParentId: 4781671109827199097
         ChildIds: 16951583355283164680
         ChildIds: 11867304209714654386
+        ChildIds: 13333868567698361300
         ChildIds: 8389847401878296273
         ChildIds: 16786691322256055340
         ChildIds: 5214734602193195560
         ChildIds: 4727595043561606872
+        UnregisteredParameters {
+        }
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -100,6 +103,41 @@
         Script {
           ScriptAsset {
             Id: 2579447573661021839
+          }
+        }
+      }
+      Objects {
+        Id: 13333868567698361300
+        Name: "ItemSystems_LootFactoryAdapter"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 2513051206216427631
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:ModuleManager"
+            AssetReference {
+              Id: 5020659879017544757
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Script {
+          ScriptAsset {
+            Id: 16213065261197084811
           }
         }
       }
@@ -401,6 +439,7 @@
         ParentId: 13584056395366607677
         ChildIds: 13873178339405401511
         ChildIds: 4937065861443688807
+        ChildIds: 3503960998874980936
         ChildIds: 6371287119399694509
         ChildIds: 5770246250270503568
         ChildIds: 16628653512102372675
@@ -563,6 +602,53 @@
         }
       }
       Objects {
+        Id: 3503960998874980936
+        Name: "ItemSystems_RolledUI"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 10666507417088681355
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:RollEntriesGroup"
+            ObjectReference {
+              SubObjectId: 8389847401878296273
+            }
+          }
+          Overrides {
+            Name: "cs:RolledUITemplate"
+            AssetReference {
+              Id: 9600591366794889133
+            }
+          }
+          Overrides {
+            Name: "cs:ItemDatabase"
+            AssetReference {
+              Id: 4685988691808682848
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Script {
+          ScriptAsset {
+            Id: 15807519725997266328
+          }
+        }
+      }
+      Objects {
         Id: 6371287119399694509
         Name: "LootWorldTags"
         Transform {
@@ -628,17 +714,18 @@
         ChildIds: 15574006051158894162
         ChildIds: 2708410713474997563
         ChildIds: 2825520013248131669
+        ChildIds: 3218368903461634113
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
-          Value: "mc:evisibilitysetting:forceoff"
+          Value: "mc:evisibilitysetting:forceon"
         }
         Control {
           Width: 300
           Height: 353
-          UIX: -810
-          UIY: -650
+          UIX: -712.033936
+          UIY: -519.147339
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -698,6 +785,12 @@
             Name: "cs:InventoryFullWarning"
             ObjectReference {
               SubObjectId: 18239411910723949794
+            }
+          }
+          Overrides {
+            Name: "cs:PanelItemHover"
+            ObjectReference {
+              SubObjectId: 11409478602042788583
             }
           }
           Overrides {
@@ -1216,6 +1309,237 @@
         }
       }
       Objects {
+        Id: 3218368903461634113
+        Name: "UI_ItemSystems_ForceCloseButton"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 5770246250270503568
+        ChildIds: 10207617286230279581
+        ChildIds: 4855823745148974823
+        ChildIds: 16146827630686400954
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:ViewName"
+            String: "LootView"
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 28
+          Height: 28
+          UIX: -10
+          UIY: 8
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          Button {
+            FontColor {
+              A: 1
+            }
+            FontSize: 20
+            ButtonColor {
+              R: 1
+              G: 1
+              B: 1
+            }
+            HoveredColor {
+              R: 1
+              G: 1
+              B: 1
+              A: 0.1
+            }
+            PressedColor {
+              R: 1
+              G: 1
+              B: 1
+              A: 0.2
+            }
+            DisabledColor {
+              R: 1
+              G: 1
+              B: 1
+              A: 1
+            }
+            Brush {
+              Id: 841534158063459245
+            }
+            IsButtonEnabled: true
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:topright"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:topright"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 10207617286230279581
+        Name: "ItemSystems_ForceCloseButtonController"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3218368903461634113
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Script {
+          ScriptAsset {
+            Id: 12225150278131726386
+          }
+        }
+      }
+      Objects {
+        Id: 4855823745148974823
+        Name: "X"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3218368903461634113
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: -10
+          Height: -10
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          UseParentWidth: true
+          UseParentHeight: true
+          Image {
+            Brush {
+              Id: 10228402580311138825
+            }
+            Color {
+              R: 1
+              G: 1
+              B: 1
+              A: 0.5
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 16146827630686400954
+        Name: "Border"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3218368903461634113
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 200
+          Height: 200
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          UseParentWidth: true
+          UseParentHeight: true
+          Image {
+            Brush {
+              Id: 5635343760568520525
+            }
+            Color {
+              R: 1
+              G: 1
+              B: 1
+              A: 0.5
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:topleft"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:topleft"
+              }
+            }
+          }
+        }
+      }
+      Objects {
         Id: 16628653512102372675
         Name: "InventoryView"
         Transform {
@@ -1241,6 +1565,9 @@
         ChildIds: 14889619525020252990
         ChildIds: 11045364126680115658
         ChildIds: 11409478602042788583
+        ChildIds: 14090297594030088831
+        ChildIds: 7437546174301074742
+        ChildIds: 16065424246448488857
         UnregisteredParameters {
           Overrides {
             Name: "cs:Anchor"
@@ -1259,9 +1586,9 @@
         }
         Control {
           Width: 660
-          Height: 800
-          UIX: -140
-          UIY: -200
+          Height: 694
+          UIX: -31.7595215
+          UIY: -239.475922
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -1363,6 +1690,12 @@
             Name: "cs:HeldIcon"
             ObjectReference {
               SubObjectId: 17253534603924342843
+            }
+          }
+          Overrides {
+            Name: "cs:RequiresLevelAlert"
+            ObjectReference {
+              SubObjectId: 16065424246448488857
             }
           }
           Overrides {
@@ -2056,8 +2389,8 @@
         }
         Control {
           Width: -20
-          Height: 2
-          UIY: 90
+          Height: 3
+          UIY: 88
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -2069,10 +2402,9 @@
             Brush {
             }
             Color {
-              R: 1
-              G: 0.745165586
-              B: 0.26
-              A: 0.4
+              R: 0.992156923
+              G: 0.690196097
+              A: 0.298039228
             }
             TeamSettings {
             }
@@ -2124,8 +2456,8 @@
         }
         Control {
           Width: 100
-          Height: 135
-          UIY: 95
+          Height: 134
+          UIY: 97.2466736
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -2221,7 +2553,7 @@
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
         Control {
-          Width: -40
+          Width: -359
           Height: 30
           UIX: 20
           RenderTransformPivot {
@@ -2413,8 +2745,8 @@
               Id: 1285653368607626957
             }
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             TeamSettings {
@@ -2468,8 +2800,8 @@
           Text {
             Label: "Health"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -2516,7 +2848,7 @@
         Control {
           Width: 60
           Height: 30
-          UIX: 190
+          UIX: 210
           UIY: 1
           RenderTransformPivot {
             Anchor {
@@ -2526,8 +2858,8 @@
           Text {
             Label: "1337"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -2572,9 +2904,8 @@
           Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
-          Width: 315
+          Width: 273
           Height: 30
-          UIX: -10
           UIY: 3
           RenderTransformPivot {
             Anchor {
@@ -2584,13 +2915,13 @@
           Text {
             Label: "What does this stat do?"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 12
             Justification {
-              Value: "mc:etextjustify:right"
+              Value: "mc:etextjustify:left"
             }
             ClipTextToSize: true
           }
@@ -2641,8 +2972,8 @@
           }
           Text {
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -2738,7 +3069,7 @@
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
         Control {
-          Width: -40
+          Width: -359
           Height: 30
           UIX: 20
           UIY: 30
@@ -2931,8 +3262,8 @@
               Id: 1285653368607626957
             }
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             TeamSettings {
@@ -2986,8 +3317,8 @@
           Text {
             Label: "Health"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -3034,7 +3365,7 @@
         Control {
           Width: 60
           Height: 30
-          UIX: 190
+          UIX: 210
           UIY: 1
           RenderTransformPivot {
             Anchor {
@@ -3044,8 +3375,8 @@
           Text {
             Label: "1337"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -3090,9 +3421,8 @@
           Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
-          Width: 315
+          Width: 273
           Height: 30
-          UIX: -10
           UIY: 3
           RenderTransformPivot {
             Anchor {
@@ -3102,13 +3432,13 @@
           Text {
             Label: "What does this stat do?"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 12
             Justification {
-              Value: "mc:etextjustify:right"
+              Value: "mc:etextjustify:left"
             }
             ClipTextToSize: true
           }
@@ -3159,8 +3489,8 @@
           }
           Text {
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -3256,7 +3586,7 @@
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
         Control {
-          Width: -40
+          Width: -359
           Height: 30
           UIX: 20
           UIY: 60
@@ -3449,8 +3779,8 @@
               Id: 1285653368607626957
             }
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             TeamSettings {
@@ -3504,8 +3834,8 @@
           Text {
             Label: "Health"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -3552,7 +3882,7 @@
         Control {
           Width: 60
           Height: 30
-          UIX: 190
+          UIX: 210
           UIY: 1
           RenderTransformPivot {
             Anchor {
@@ -3562,8 +3892,8 @@
           Text {
             Label: "1337"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -3608,9 +3938,8 @@
           Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
-          Width: 315
+          Width: 273
           Height: 30
-          UIX: -10
           UIY: 3
           RenderTransformPivot {
             Anchor {
@@ -3620,13 +3949,13 @@
           Text {
             Label: "What does this stat do?"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 12
             Justification {
-              Value: "mc:etextjustify:right"
+              Value: "mc:etextjustify:left"
             }
             ClipTextToSize: true
           }
@@ -3677,8 +4006,8 @@
           }
           Text {
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -3774,7 +4103,7 @@
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
         Control {
-          Width: -40
+          Width: -359
           Height: 30
           UIX: 20
           UIY: 90
@@ -3967,8 +4296,8 @@
               Id: 1285653368607626957
             }
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             TeamSettings {
@@ -4022,8 +4351,8 @@
           Text {
             Label: "Health"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -4070,7 +4399,7 @@
         Control {
           Width: 60
           Height: 30
-          UIX: 190
+          UIX: 210
           UIY: 1
           RenderTransformPivot {
             Anchor {
@@ -4080,8 +4409,8 @@
           Text {
             Label: "1337"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -4126,9 +4455,8 @@
           Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
-          Width: 315
+          Width: 273
           Height: 30
-          UIX: -10
           UIY: 3
           RenderTransformPivot {
             Anchor {
@@ -4138,13 +4466,13 @@
           Text {
             Label: "What does this stat do?"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 12
             Justification {
-              Value: "mc:etextjustify:right"
+              Value: "mc:etextjustify:left"
             }
             ClipTextToSize: true
           }
@@ -4195,8 +4523,8 @@
           }
           Text {
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -4292,10 +4620,9 @@
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
         Control {
-          Width: -40
+          Width: -359
           Height: 30
-          UIX: 20
-          UIY: 120
+          UIX: -20
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -4308,12 +4635,12 @@
           AnchorLayout {
             SelfAnchor {
               Anchor {
-                Value: "mc:euianchor:topleft"
+                Value: "mc:euianchor:topright"
               }
             }
             TargetAnchor {
               Anchor {
-                Value: "mc:euianchor:topleft"
+                Value: "mc:euianchor:topright"
               }
             }
           }
@@ -4485,8 +4812,8 @@
               Id: 1285653368607626957
             }
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             TeamSettings {
@@ -4540,8 +4867,8 @@
           Text {
             Label: "Health"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -4588,7 +4915,7 @@
         Control {
           Width: 60
           Height: 30
-          UIX: 190
+          UIX: 210
           UIY: 1
           RenderTransformPivot {
             Anchor {
@@ -4598,8 +4925,8 @@
           Text {
             Label: "1337"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -4644,9 +4971,8 @@
           Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
-          Width: 315
+          Width: 273
           Height: 30
-          UIX: -10
           UIY: 3
           RenderTransformPivot {
             Anchor {
@@ -4656,13 +4982,13 @@
           Text {
             Label: "What does this stat do?"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 12
             Justification {
-              Value: "mc:etextjustify:right"
+              Value: "mc:etextjustify:left"
             }
             ClipTextToSize: true
           }
@@ -4713,8 +5039,8 @@
           }
           Text {
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -4810,10 +5136,10 @@
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
         Control {
-          Width: -40
+          Width: -359
           Height: 30
-          UIX: 20
-          UIY: 150
+          UIX: -20
+          UIY: 30
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -4826,12 +5152,12 @@
           AnchorLayout {
             SelfAnchor {
               Anchor {
-                Value: "mc:euianchor:topleft"
+                Value: "mc:euianchor:topright"
               }
             }
             TargetAnchor {
               Anchor {
-                Value: "mc:euianchor:topleft"
+                Value: "mc:euianchor:topright"
               }
             }
           }
@@ -5003,8 +5329,8 @@
               Id: 1285653368607626957
             }
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             TeamSettings {
@@ -5058,8 +5384,8 @@
           Text {
             Label: "Health"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -5106,7 +5432,7 @@
         Control {
           Width: 60
           Height: 30
-          UIX: 190
+          UIX: 210
           UIY: 1
           RenderTransformPivot {
             Anchor {
@@ -5116,8 +5442,8 @@
           Text {
             Label: "1337"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -5162,9 +5488,8 @@
           Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
-          Width: 315
+          Width: 273
           Height: 30
-          UIX: -10
           UIY: 3
           RenderTransformPivot {
             Anchor {
@@ -5174,13 +5499,13 @@
           Text {
             Label: "What does this stat do?"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 12
             Justification {
-              Value: "mc:etextjustify:right"
+              Value: "mc:etextjustify:left"
             }
             ClipTextToSize: true
           }
@@ -5231,8 +5556,8 @@
           }
           Text {
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -5328,10 +5653,10 @@
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
         Control {
-          Width: -40
+          Width: -359
           Height: 30
-          UIX: 20
-          UIY: 180
+          UIX: -20
+          UIY: 60
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -5344,12 +5669,12 @@
           AnchorLayout {
             SelfAnchor {
               Anchor {
-                Value: "mc:euianchor:topleft"
+                Value: "mc:euianchor:topright"
               }
             }
             TargetAnchor {
               Anchor {
-                Value: "mc:euianchor:topleft"
+                Value: "mc:euianchor:topright"
               }
             }
           }
@@ -5521,8 +5846,8 @@
               Id: 1285653368607626957
             }
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             TeamSettings {
@@ -5576,8 +5901,8 @@
           Text {
             Label: "Health"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -5624,7 +5949,7 @@
         Control {
           Width: 60
           Height: 30
-          UIX: 190
+          UIX: 210
           UIY: 1
           RenderTransformPivot {
             Anchor {
@@ -5634,8 +5959,8 @@
           Text {
             Label: "1337"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -5680,9 +6005,8 @@
           Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
-          Width: 315
+          Width: 273
           Height: 30
-          UIX: -10
           UIY: 3
           RenderTransformPivot {
             Anchor {
@@ -5692,13 +6016,13 @@
           Text {
             Label: "What does this stat do?"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 12
             Justification {
-              Value: "mc:etextjustify:right"
+              Value: "mc:etextjustify:left"
             }
             ClipTextToSize: true
           }
@@ -5749,8 +6073,8 @@
           }
           Text {
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -5846,10 +6170,10 @@
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
         Control {
-          Width: -40
+          Width: -359
           Height: 30
-          UIX: 20
-          UIY: 210
+          UIX: -20
+          UIY: 90
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -5862,12 +6186,12 @@
           AnchorLayout {
             SelfAnchor {
               Anchor {
-                Value: "mc:euianchor:topleft"
+                Value: "mc:euianchor:topright"
               }
             }
             TargetAnchor {
               Anchor {
-                Value: "mc:euianchor:topleft"
+                Value: "mc:euianchor:topright"
               }
             }
           }
@@ -6039,8 +6363,8 @@
               Id: 1285653368607626957
             }
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             TeamSettings {
@@ -6094,8 +6418,8 @@
           Text {
             Label: "Health"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -6142,7 +6466,7 @@
         Control {
           Width: 60
           Height: 30
-          UIX: 190
+          UIX: 210
           UIY: 1
           RenderTransformPivot {
             Anchor {
@@ -6152,8 +6476,8 @@
           Text {
             Label: "1337"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -6198,9 +6522,8 @@
           Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
-          Width: 315
+          Width: 273
           Height: 30
-          UIX: -10
           UIY: 3
           RenderTransformPivot {
             Anchor {
@@ -6210,13 +6533,13 @@
           Text {
             Label: "What does this stat do?"
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 12
             Justification {
-              Value: "mc:etextjustify:right"
+              Value: "mc:etextjustify:left"
             }
             ClipTextToSize: true
           }
@@ -6267,8 +6590,8 @@
           }
           Text {
             Color {
-              R: 0.669999957
-              G: 0.372715205
+              R: 0.831372619
+              G: 0.494117677
               A: 1
             }
             Size: 14
@@ -6314,8 +6637,8 @@
         }
         Control {
           Width: -20
-          Height: 2
-          UIY: -455
+          Height: 4
+          UIY: -465
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -6327,10 +6650,9 @@
             Brush {
             }
             Color {
-              R: 1
-              G: 0.745165586
-              B: 0.26
-              A: 0.4
+              R: 0.992156923
+              G: 0.690196097
+              A: 0.298039228
             }
             TeamSettings {
             }
@@ -6381,7 +6703,7 @@
         Control {
           Width: 660
           Height: 60
-          UIY: -420
+          UIY: -344
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -6438,10 +6760,9 @@
               Id: 1800484346299675619
             }
             Color {
-              R: 1
-              G: 1
-              B: 1
-              A: 0.3
+              R: 0.992156923
+              G: 0.690196276
+              A: 0.565
             }
             TeamSettings {
             }
@@ -6495,10 +6816,9 @@
               Id: 14739427260152500224
             }
             Color {
-              R: 1
-              G: 1
-              B: 1
-              A: 0.3
+              R: 0.992156923
+              G: 0.690196276
+              A: 0.565
             }
             TeamSettings {
             }
@@ -6552,10 +6872,9 @@
               Id: 16634052309904547918
             }
             Color {
-              R: 1
-              G: 1
-              B: 1
-              A: 0.3
+              R: 0.992156923
+              G: 0.690196276
+              A: 0.565
             }
             TeamSettings {
             }
@@ -6609,10 +6928,9 @@
               Id: 7957169483103266877
             }
             Color {
-              R: 1
-              G: 1
-              B: 1
-              A: 0.3
+              R: 0.992156923
+              G: 0.690196276
+              A: 0.565
             }
             TeamSettings {
             }
@@ -6666,10 +6984,9 @@
               Id: 10277004524862014404
             }
             Color {
-              R: 1
-              G: 1
-              B: 1
-              A: 0.3
+              R: 0.992156923
+              G: 0.690196276
+              A: 0.565
             }
             TeamSettings {
             }
@@ -6723,10 +7040,9 @@
               Id: 8125907229295996063
             }
             Color {
-              R: 1
-              G: 1
-              B: 1
-              A: 0.3
+              R: 0.992156923
+              G: 0.690196276
+              A: 0.565
             }
             TeamSettings {
             }
@@ -6780,10 +7096,9 @@
               Id: 8125907229295996063
             }
             Color {
-              R: 1
-              G: 1
-              B: 1
-              A: 0.3
+              R: 0.992156923
+              G: 0.690196276
+              A: 0.565
             }
             TeamSettings {
             }
@@ -6837,10 +7152,9 @@
               Id: 8125907229295996063
             }
             Color {
-              R: 1
-              G: 1
-              B: 1
-              A: 0.3
+              R: 0.992156923
+              G: 0.690196276
+              A: 0.565
             }
             TeamSettings {
             }
@@ -6901,7 +7215,7 @@
         Control {
           Width: 660
           Height: 60
-          UIY: -360
+          UIY: -400
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -10970,7 +11284,7 @@
         }
         Control {
           Width: -20
-          Height: 2
+          Height: 5
           UIY: -335
           RenderTransformPivot {
             Anchor {
@@ -10983,10 +11297,9 @@
             Brush {
             }
             Color {
-              R: 1
-              G: 0.745165586
-              B: 0.26
-              A: 0.4
+              R: 0.992156923
+              G: 0.690196097
+              A: 0.298039228
             }
             TeamSettings {
             }
@@ -26764,13 +27077,13 @@
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
-          Value: "mc:evisibilitysetting:forceoff"
+          Value: "mc:evisibilitysetting:forceon"
         }
         Control {
-          Width: 266
-          Height: 225
-          UIX: -283.833435
-          UIY: 220.409058
+          Width: 273
+          Height: 146
+          UIX: -8.53448486
+          UIY: 253.448792
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -27171,7 +27484,7 @@
               B: 0.73
               A: 1
             }
-            Size: 12
+            Size: 13
             Justification {
               Value: "mc:etextjustify:center"
             }
@@ -27215,7 +27528,7 @@
         Control {
           Width: 244
           Height: 26
-          UIY: 75
+          UIY: 73
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -27478,6 +27791,513 @@
             TargetAnchor {
               Anchor {
                 Value: "mc:euianchor:bottomcenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 14090297594030088831
+        Name: "Divider"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 16628653512102372675
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: -655
+          Height: 133
+          UIY: 91.3766632
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          UseParentWidth: true
+          Image {
+            Brush {
+            }
+            Color {
+              R: 0.992156923
+              G: 0.690196097
+              A: 0.200000018
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:topcenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:topcenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 7437546174301074742
+        Name: "UI_ItemSystems_ForceCloseButton"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 16628653512102372675
+        ChildIds: 16989916440332712585
+        ChildIds: 8289179331336005030
+        ChildIds: 1888582198581961994
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:ViewName"
+            String: "InventoryView"
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 28
+          Height: 28
+          UIX: -10
+          UIY: 8
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          Button {
+            FontColor {
+              A: 1
+            }
+            FontSize: 20
+            ButtonColor {
+              R: 1
+              G: 1
+              B: 1
+            }
+            HoveredColor {
+              R: 1
+              G: 1
+              B: 1
+              A: 0.1
+            }
+            PressedColor {
+              R: 1
+              G: 1
+              B: 1
+              A: 0.2
+            }
+            DisabledColor {
+              R: 1
+              G: 1
+              B: 1
+              A: 1
+            }
+            Brush {
+              Id: 841534158063459245
+            }
+            IsButtonEnabled: true
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:topright"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:topright"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 16989916440332712585
+        Name: "ItemSystems_ForceCloseButtonController"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 7437546174301074742
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Script {
+          ScriptAsset {
+            Id: 12225150278131726386
+          }
+        }
+      }
+      Objects {
+        Id: 8289179331336005030
+        Name: "X"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 7437546174301074742
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: -10
+          Height: -10
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          UseParentWidth: true
+          UseParentHeight: true
+          Image {
+            Brush {
+              Id: 10228402580311138825
+            }
+            Color {
+              R: 1
+              G: 1
+              B: 1
+              A: 0.5
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 1888582198581961994
+        Name: "Border"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 7437546174301074742
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 200
+          Height: 200
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          UseParentWidth: true
+          UseParentHeight: true
+          Image {
+            Brush {
+              Id: 5635343760568520525
+            }
+            Color {
+              R: 1
+              G: 1
+              B: 1
+              A: 0.5
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:topleft"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:topleft"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 16065424246448488857
+        Name: "RequireLevelAlert"
+        Transform {
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 16628653512102372675
+        ChildIds: 13922692261276173783
+        ChildIds: 17694842383659223172
+        ChildIds: 418710441063247057
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:AlertText"
+            ObjectReference {
+              SubObjectId: 418710441063247057
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:forceoff"
+        }
+        Control {
+          Width: 205
+          Height: 44
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          Panel {
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:topleft"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 13922692261276173783
+        Name: "UI Image"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 16065424246448488857
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 200
+          Height: 200
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          UseParentWidth: true
+          UseParentHeight: true
+          Image {
+            Brush {
+            }
+            Color {
+              A: 0.661
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:topleft"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:topleft"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 17694842383659223172
+        Name: "UI Image"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 16065424246448488857
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 200
+          Height: 200
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          UseParentWidth: true
+          UseParentHeight: true
+          Image {
+            Brush {
+              Id: 13827917162168388463
+            }
+            Color {
+              R: 0.98
+              A: 1
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:topleft"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:topleft"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 418710441063247057
+        Name: "UI Text Box"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 16065424246448488857
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 232
+          Height: 60
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          UseParentWidth: true
+          UseParentHeight: true
+          Text {
+            Label: "Requires Level 10"
+            Color {
+              R: 0.950000048
+              A: 1
+            }
+            Size: 20
+            Justification {
+              Value: "mc:etextjustify:center"
+            }
+            AutoWrapText: true
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:topleft"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:topleft"
               }
             }
           }
@@ -28585,6 +29405,15 @@
       }
     }
     Assets {
+      Id: 10228402580311138825
+      Name: "Icon Close"
+      PlatformAssetType: 9
+      PrimaryAsset {
+        AssetType: "PlatformBrushAssetRef"
+        AssetId: "Icon_Close"
+      }
+    }
+    Assets {
       Id: 5635343760568520525
       Name: "Frame Outlined Thick 002"
       PlatformAssetType: 9
@@ -28753,6 +29582,15 @@
       PrimaryAsset {
         AssetType: "PlatformBrushAssetRef"
         AssetId: "UI_Fantasy_Frame_007"
+      }
+    }
+    Assets {
+      Id: 13827917162168388463
+      Name: "UI Basic Frame 001"
+      PlatformAssetType: 9
+      PrimaryAsset {
+        AssetType: "PlatformBrushAssetRef"
+        AssetId: "UI_Basic_Frame_001"
       }
     }
     Assets {

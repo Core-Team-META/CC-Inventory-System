@@ -67,7 +67,6 @@ function view:PrepareLootEntry(lootIndex, lootInfo, isBackpackFull)
         entry.clientUserData.button:SetHoveredColor(color)
         color.a = 0.7
         entry.clientUserData.button:SetPressedColor(color)
-        -- Set the button interactability in case the backpack is full.
         entry.clientUserData.button.isInteractable = not isBackpackFull
     end
     return entry
@@ -132,7 +131,7 @@ function view:OnClick(button)
         PlaySound(SFX_CLAIM)
         local wasLastLoot = self.numEntries == 1
         if wasLastLoot then
-            LOOT_VIEW.clientUserData.isVisible = false
+            Events.Broadcast("ForceCloseViewByName","LootView")
         end
     end
 end

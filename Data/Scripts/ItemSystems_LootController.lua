@@ -7,9 +7,11 @@
 ]]
 
 local Item = require(script:GetCustomProperty("ItemSystems_Item"))
+local ItemThemes = require(script:GetCustomProperty("ItemThemes"))
 local LOOT = script:GetCustomProperty("Loot"):WaitForObject()
 
-local LOOTDESTROY_TIME = 60 -- After a minute unregister the items
+
+local LOOTDESTROY_TIME = 10 -- After a minute unregister the items
 
 -- Wait for the networked property to be set.
 local OWNER = nil
@@ -47,10 +49,36 @@ if script.isServerOnly then
     -- If it's not claimed for some time we should unregister it.
     OWNER.serverUserData.inventory:UnRegisterLootItem(lootIndex)
 else
-    local item = Item.FromHash(OWNER.clientUserData.inventory.database, ITEM_HASH)
-    local lootIndex = OWNER.clientUserData.inventory:RegisterLootItem(item, LOOT)
-    Task.Wait(LOOTDESTROY_TIME)
-    -- If it's not claimed for some time we should unregister it.
-    OWNER.clientUserData.inventory:UnRegisterLootItem(lootIndex)
+    local OpenLootViewTrigger = script:GetCustomProperty("OpenLootViewTrigger"):WaitForObject()
+    local OwningIndicator = script:GetCustomProperty("OwningIndicator"):WaitForObject()
+    local LOCAL_PLAYER = Game.GetLocalPlayer()
+    if LOCAL_PLAYER == OWNER then
+        OpenLootViewTrigger.interactedEvent:Connect(function(_,player) 
+            Events.Broadcast("ForceCloseViewByName","LootView")
+        end)
+
+        local item = Item.FromHash(OWNER.clientUserData.inventory.database, ITEM_HASH)
+        local lootIndex = OWNER.clientUserData.inventory:RegisterLootItem(item, LOOT)
+        local rarity = item:GetRarity()
+        local indicator = ItemThemes.GetRarityLootIndicator(rarity)
+        assert(indicator, "Spawned loot does not have rarity indicator")
+        World.SpawnAsset(indicator,{ parent = script.parent })
+        Task.Spawn(function() 
+            Task.Wait(LOOTDESTROY_TIME)
+            -- If it's not claimed for some time we should unregister it.
+            OWNER.clientUserData.inventory:UnRegisterLootItem(lootIndex)
+        end)
+
+    elseif LOCAL_PLAYER ~= OWNER then
+        OpenLootViewTrigger.isInteractable = false
+        OwningIndicator.visibility = Visibility.FORCE_OFF
+        local item = Item.FromHash(OWNER.clientUserData.inventory.database, ITEM_HASH)
+        local lootIndex = OWNER.clientUserData.inventory:RegisterLootItem(item, LOOT)
+        Task.Spawn(function() 
+            Task.Wait(LOOTDESTROY_TIME)
+            -- If it's not claimed for some time we should unregister it.
+            OWNER.clientUserData.inventory:UnRegisterLootItem(lootIndex)
+        end)
+    end
 end
 

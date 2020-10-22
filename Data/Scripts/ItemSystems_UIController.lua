@@ -10,16 +10,28 @@ local function PlaySound(sfx)
     World.SpawnAsset(sfx, { parent = script })
 end
 
+local function CanChangeMouseVisiblity()
+    if INVENTORY_VIEW.clientUserData.isVisible or LOOT_VIEW.clientUserData.isVisible then
+        return false
+    end
+    return true
+end
+
+local function ChangeMouseVisiblity(isVisible)
+    UI.SetCursorVisible(isVisible)
+    UI.SetCursorLockedToViewport(not isVisible)
+    UI.SetCanCursorInteractWithUI(isVisible)
+end
+
 local function ToggleView(view)
     view.clientUserData.isVisible = not view.clientUserData.isVisible
-    local activeCamera = LOCALPLAYER:GetActiveCamera()
     if view.clientUserData.isVisible then
-        UI.SetCursorVisible(view.clientUserData.isVisible)
-        UI.SetCursorLockedToViewport(not view.clientUserData.isVisible)
+        ChangeMouseVisiblity(true)
         PlaySound(SFX_OPEN)
     else
-        UI.SetCursorVisible(view.clientUserData.isVisible)
-        UI.SetCursorLockedToViewport(not view.clientUserData.isVisible)
+        if CanChangeMouseVisiblity() then
+            ChangeMouseVisiblity(false)
+        end
         PlaySound(SFX_CLOSE)
     end
 end
@@ -29,5 +41,13 @@ LOCALPLAYER.bindingPressedEvent:Connect(function(_,binding)
         ToggleView(LOOT_VIEW)
     elseif binding == INVENTORY_VIEW_HOTKEY then
         ToggleView(INVENTORY_VIEW)
+    end
+end)
+
+Events.Connect("ForceCloseViewByName",function(viewName)
+    if viewName == INVENTORY_VIEW.name then
+        ToggleView(INVENTORY_VIEW)
+    elseif viewName == LOOT_VIEW.name then
+        ToggleView(LOOT_VIEW)
     end
 end)
