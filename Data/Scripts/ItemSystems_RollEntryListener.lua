@@ -46,8 +46,14 @@ local function OnPlayerRolled(_,child)
     local name = playerName == LOCALPLAYER.name and "You" or playerName
     local roll = child:GetCustomProperty("Rolled")
     local extraSpace = name ~= "You" and 40 or 0
-    UI.ShowFlyUpText( string.format( "%s Rolled: %s For %s", name, roll, child.parent.clientUserData.item:GetName() ), 
+    if roll == 0 then
+        UI.ShowFlyUpText( string.format( "%s Passed For %s", name, child.parent.clientUserData.item:GetName() ), 
         LOCALPLAYER:GetWorldPosition() + Vector3.UP * 110 + extraSpace, { isBig = true, color = Color.New(extraSpace,1,0), duration = 3 } )
+    else
+        UI.ShowFlyUpText( string.format( "%s Rolled %s For %s", name, roll, child.parent.clientUserData.item:GetName() ), 
+        LOCALPLAYER:GetWorldPosition() + Vector3.UP * 110 + extraSpace, { isBig = true, color = Color.New(extraSpace,1,0), duration = 3 } )
+    end
+
 
     
 end

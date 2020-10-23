@@ -15,11 +15,3 @@
     }
   }
 }
-Entries {
-  Key {
-    StringVar: "inventoryHash"
-  }
-  SimpleValue {
-    StringVar: "P"
-  }
-}
