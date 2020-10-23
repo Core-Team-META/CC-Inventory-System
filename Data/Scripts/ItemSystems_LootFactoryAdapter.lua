@@ -8,6 +8,6 @@ _G["standardcombo.NPCKit.LootDropFactory"] = {}
 
 -- Wait for the loot factory to register the drop function to the global table and replace it as soon as it registers.
 _G["standardcombo.NPCKit.LootDropFactory"].Drop = function(lootId, position)
-    --Events.Broadcast("RollForLootDrop", lootId, Game:GetPlayers()) -- Uncomment Me on roll for loot tutorial
-    Events.Broadcast("DropLoot", lootId, position - Vector3.UP * 100) -- Uncomment Me on loot drops tutorial
+    --Events.Broadcast("RollForLootDrop", lootId, Game:GetPlayers()) -- Uncomment Me for roll for loop drops
+    Events.Broadcast("DropLoot", lootId, position - Vector3.UP * 100) -- Loot Drops
 end

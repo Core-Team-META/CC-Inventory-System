@@ -47,7 +47,7 @@ Framework usage
 
         2) Drag and drop the item into the scene.
 
-        3) Right click the root of the item in the hierarchy and select, "Create new template from this".
+        3) Right-click the root of the item in the hierarchy and select, "Create new template from this".
 
         4) Give your item the name "ITEM_Dagger_Starter".
 
@@ -105,17 +105,20 @@ Framework usage
 
         Your dagger will always have 3 attack damage when created. For Information regarding the properties of the keys
         refer to "Framework Component Details" -> "Item Stats" section of this readme.
-        
+
         To test your item in game we need to add the item name to a loot table.
-        
-! This step seems confusing and has words that are capitalized randomly
-        21) Reselect your item (((WHERE?))). Copy the value of the Name property and open ItemSystems_DATA_Drops.
-        The ItemName key is looked up in the Item database anytime the item is spawned It should have the value of your item's name.
-        Likelihood is weighted amount that your item will drop. The heavier the weight the more likely
+
+        21) Reselect your item in the hierarchy. 
+
+        22) Copy the value of the name property of your dagger and open "ItemSystems_DATA_Drops" script from project content.
+
+        23) Paste your name key 
+
+        The ItemName key is looked up in the item database anytime the item is spawned It should have the value of your item's name.
+        likelihood is weighted amount that your item will drop. The heavier the weight the more likely
         it'll drop. Set your item's likelihood key in the script to 500 so your item is more likely to drop compared to the other items.
 
-? Down arrow? What does "Go into the game" mean? What do these last few steps have to do with item creation?
-        22) Go into the game and press the down arrow until your item has spawned.
+        22) Go in-game and press the down arrow key on your keyboard until your item has spawned.
 
         23) Once you see your item has spawned on the ground press "L" or approach it and press "F" to open your loot window.
 
@@ -127,20 +130,23 @@ Framework usage
     ------------------------------
 
 
-    ------ Creating Catalogs and Stats (Giving items stats) ------
-? What are catalogs and stats?
-        This tutorial will guide you through creating catalogs and stats for your items.
+    ------ Creating Item Catalogs and Stats ------
+    Catalogs are templates that store Asset References to your items that can register with the Item Database.
+    Stats scripts store information regrading how an item will be rolled when an item is created with a paired
+    stat key. Your item will be stored in a catalog and will reference a stat key in the stats script when it rolls
+    for stats.
 
-        1) Create an empty Group in the Hierarchy and name it "ItemSystems_DATA_Ring_Catalog".
-        
-        We're going to need an item for this so make sure you create one.
-        If you followed the creating items tutorial then this should be straight forward.
-        
-        3) In My Templates search for "ITEM_Trinket_Example".
+        This tutorial will guide you through creating catalogs templates and stats for your items.
 
-? Change everything?
-        4) Create a new template from that object and customize it, but this time change everything and rename it to
-         "ITEM_Ring_DamageRing".
+        1) Create an empty group in the hierarchy and name it "ItemSystems_DATA_Ring_Catalog".
+        
+        If you followed the item creation tutorial then this should straight forward.
+        
+        3) In project contents search for "ITEM_Trinket_Example".
+
+        4) Drag and drop the item into the scene and create a new template from that object.
+
+        5) Name the template "ITEM_Ring_DamageRing".
         
         5) For ItemType set "Ring".
         
@@ -189,8 +195,8 @@ Framework usage
             },
         }
 
-        When your ring item is rolled it will look for a base stat to apply to the item.
-        In the example code above you can see the StatKey matches the StatKey value we have on our ring.
+        When your ring item rolls its stats it will look for all the stat keys that apply to the item.
+        In the example meta-data above you can see the StatKey matches the StatKey value we have on our ring.
         When the item is rolled it will have a 50% chance of having an attack stat or a magic stat 
         as those are the base stats for the item.
         The Bonus1 stat is an added bonus when the item is rolled. It will always have this bonus.
@@ -206,43 +212,44 @@ Framework usage
             ['Author Notes (will be ignored by script)'] = 'Another bonus stat!',
         },
 
-        Now the ring will have 1 base stat and 2 different bonus stats, for a total of 3.
-        You can continue to add more bonuses to the item by copy and pasting what's above and incrementing
+        Now the ring will have 1 base stat and 2 different bonus stats, for a total of 3 stats on the item.
+        You can continue to add more bonuses to the item by copying and pasting what's above and incrementing
         the interger at the end of Bonus.
-        The Likelihood determines the odds of rolling for that stat. The larger the number is the better the odds for that stat.
+        The likelihood determines the odds of rolling for that stat. The larger the number is the better the odds for that stat.
 
-        Now that the catalog and stats script are complete we need to tell the Item Database to register both scripts.
+        Now that the catalog and stats script are complete we need to tell the item database to register our catalog template and stats script.
 
-        12) Search for, "ItemSystems_Database" and navigate to the custom properties.
-        13) Click the, "Add Custom Property" button.
-        14) For the property name put "Ring_Catalog" and make sure the type is an Asset Reference.
-        15) Do this again for the Stats. Name the property, "Ring_Stats".
+        12) Search for "ItemSystems_Database" in project content and locate custom properties.
+        13) Click the "Add Custom Property" button.
+        14) For the property name put "Ring_Catalog" as an Asset Reference.
+        15) Do this again for the Stats. Name the property "Ring_Stats".
         16) Assign Ring_Catalog, ItemSystems_DATA_Ring_Catalog (Object).
         17) Assign Ring_Stats, ItemSystems_DATA_Ring_Stats (Script).
 
         The Item will register now and can be added to a loot table for spawning, but you won't
-        be able to equip the item as the ring Item type is not recongized.
+        be able to equip the item as the ring item type is not recongized.
 
-        18) Open ItemSystems_Item script and go to Item.TYPES and uncomment the ring entry.
+        18) Search for "ItemSystems_Item" script and open it. Go to Item.TYPES and uncomment the ring entry.
+
         19) Scroll down to Item.SLOT_CONTRAINTS and uncomment the ring entry. 
         This will make it so you can equip rings in the accessory slot.
         
         At this point you're done, but we need to test the Item to make sure it works. 
-        So we need to add the Item to a loot table.
+        So we need to add the item to a loot table.
 
-        20) Open ItemSystems_DATA_Drops and add your item to the BasicMobTrash table.
-        21) Spawn your item by pressing the down arrow, loot it, and equip it.
+        20) Search for "ItemSystems_DATA_Drops" script and open it. Add your item to the "BasicMobTrash" table.
+        21) Spawn your item by pressing the down arrow on your keyboard in-game, loot it, and equip it.
 
-        This part is Optional, but I recommend continuing if you want to better understand some parts of this system.
-        The Item is added to the system, but it does not have a custom interact SFX associated with that item type.
+        The next part is optional, but I recommend continuing if you want to better understand some parts of this system.
+        The item is added to the system, but it does not have a custom interact SFX associated with that item type.
 
-        1) Search for, "SFX_GenericPickup" and create a new template of it.
+        1) Search for "SFX_GenericPickup" and create a new template of it.
         2) Name it, "SFX_EquipRing" and change the sound to your liking.
         3) Update from this template after you're done.
         4) Search for, "ItemSystems_ItemThemes" script in project content and open it.
         5) Uncomment the ring entry in ITEM_SFX.
-        6) Add a new custom property that is a AssetReference with the name, "SFX_EquipRing".
-        7) Assign the custom property with SFX_EquipRing.
+        6) Add a custom property to "ItemSystems_ItemThemes" that is an asset reference with the name "SFX_EquipRing"
+        7) Assign the custom property with SFX_EquipRing template.
 
         You're all done now any ring you make will have that sound effect and the ring you created during this tutorial will always roll
         for stats when you create it. 
@@ -260,7 +267,7 @@ Framework usage
 
         3) Name it "ITEM_Consumable_XPPotion".
 
-        4) Change Name, Icon, MaxStackableSize, Description, Level Requirement, and Rarity for this tutorial.
+        4) Change Name, Icon, MaxStackableSize, Description, and Rarity property for this tutorial.
 
         5) Create a new script and call it "ITEM_ConsumptionEffect_XPPotion"
 
@@ -299,41 +306,21 @@ Framework usage
         16) Spawn your item, collect it, and use it by clicking on it in the Inventory.
     ------------------------------
 
-
-    ------ Roll For Loot ------
-        You may want players to roll for an item after they defeated a really tough enemy.
-        This is a great way for players to gamble together on a nice piece of loot or pass it along for others.
-        Players can decide to roll for the loot or pass on it. They can also inspect the loot to see if the Item is any good.
-        In this tutorial you'll learn how to create simple roll for loot event.
-
-        1) Search for "RPG Skeleton".
-        2) Drag and drop the Skeleton into the scene.
-        3) Right-click the skeleton in the Hierarchy and click "Create new template from this" and give it a name.
-        4) In the custom properties of the skeleton change LootId's value to "BasicMobTrash".
-        5) Search for "ItemSystems_LootFactoryAdapter" and open it.
-        6) Uncomment the first broadcast.
-        7) Kill the skeleton to receive your loot!
-        
-        We're going to give everyone the chance to roll on the Item regardless of who did damage to the enemy.
-        This is just to give you an idea how to create a roll for loot event.
-    ----------------------------
-
-
     -------- Loot Drops --------
-! This should be the default implementation. Would be best if the creator doesn't need to do anything to get this behavior,
-except only add the adapter to the hierarchy. This tutorial should come before the Roll one.
-        Loot drops are implemented the same as Rolling for loot as they use Events.Broadcast()
-        If you've done the tutorial above you should be able to replace Events.Broadcast() with a loot drop one.
+        Loot drops are collectable items that can be spawned into the world. They are an effective way of rewarding.
+        Loot drops utilize core's events for spawning loot as they provide an easy to way commuinicate with
+        the loot spawner script. 
 
-        1) Search for "ItemSystems_LootFactoryAdapter" and open it.
-        2) Uncomment the second brodcast event.
-        3) Kill the skeleton to get your loot.
+        1) Make a trigger box in the scene and create a script that is a parent of the trigger box.
+        2) Enable interactable on the trigger.
+        3) Make a custom property on the script that is a CoreObjectReference and assign it the trigger box.
+        4) Get the trigger property and add this line of code to the script.
 
-        All players have a chance to get this item regardless of who killed the skeleton. 
-        You can put in a single player or a table of players. This is just an example on how to use the events
-        to create loot drops.
+            yourTriggerPropHere.interactedEvent:Connect(function(_,player)
+                Events.Broadcast("DropLootForPlayers", "BasicMobTrash", player, player:GetWorldPosition() - Vector3.Up * 100)
+            end)
 
-        4) Loot your Item by pressing "L" or approaching it and pressing "F" and clicking on it in the loot window.
+        When you use the trigger a random loot will be dropped from the "BasicMobTrash" loot table at the player position.
 
         There is numerous Events that can help you customize your players looting experience.
         For more events open, "ItemSystems_LootSpawner".
@@ -349,7 +336,7 @@ except only add the adapter to the hierarchy. This tutorial should come before t
         If a table of players is provided it will randomly pick a player to receive that loot.
         Events.Broadcast("DropLootSpecificForPlayers", itemName : String, players : Table or player, worldPosition : Vector3)
 
-        When provided an item hash the Item database will create the Item and drop it for a specific player or table of players 
+        When provided an item hash the item database will create the Item and drop it for a specific player or table of players 
         at a position in the world.
         If a table of players is provided it will randomly pick a player to receive that loot.
         Events.Broadcast("DropLootSpecificHashForPlayers", itemPersistentHash : String,
@@ -358,10 +345,30 @@ except only add the adapter to the hierarchy. This tutorial should come before t
         When provided with a loot drop key and a table of players it will create a roll event for all the player to gamble for the Item.
         Events.Broadcast("RollForLootDrop", dropKey : String, players : Table)
     ----------------------------
-    
+
+    ------ Roll For Loot ------
+        You may want players to roll for an item after they defeated a really tough enemy.
+        This is a great way for players to gamble together on a nice piece of loot or pass it along for others.
+        Players can decide to roll for the loot or pass on it. They can also inspect the loot to see if the Item is any good.
+        In this tutorial you'll learn how to create simple roll for loot event.
+
+        1) Search for "RPG Skeleton".
+        2) Drag and drop the Skeleton into the scene.
+        3) Right-click the skeleton in the Hierarchy and click "Create new template from this" and give it a name.
+        4) In the custom properties of the skeleton change LootId's value to "BasicMobTrash".
+        5) Search for "ItemSystems_LootFactoryAdapter" and open it.
+        6) Uncomment the first broadcast.
+        7) Kill the skeleton to call the roll for loot event.
+        
+        We're going to give everyone the chance to roll on the Item regardless of who did damage to the enemy.
+        This is just to give you an idea on how to create a roll for loot event.
+    ----------------------------
+
 
     -------- Player Stats Sheet --------
-?What is/are Player Stats Sheet? Why do they exist or what's their function?
+        Player stats sheet hold all the information about the players stats.
+        Health, defense, crit-chance, and the player's level are stored on the player stats sheet
+        and are used by "PlayerStats_Combat" to calculate damage.
         Modifying or getting information about a player stats is really easy to do as the player has the
         the stat sheet stored in both serverUserData and clientUserData.
         Check out the public methods of the players stats sheet in, "PlayerStats_StatSheet" script.
@@ -382,7 +389,7 @@ except only add the adapter to the hierarchy. This tutorial should come before t
     --------------------------------------
     Item Custom Properties
     --------------------------------------
-        Here is a list of custom properties that can go on an item.
+        Here is a list of custom properties that need or can be added to an item.
         Refer to the tooltips of the custom properties for more information about a property on the example items.
             * is required
             @ is optional
@@ -402,7 +409,7 @@ except only add the adapter to the hierarchy. This tutorial should come before t
                     x is the socket we're going to attach the geometry to when
                     the player equips this item. If you want your boots to go on both feet then
                     make sure to have the name of your custom property, "Socket_both_feet".
-                    Then assign the root geometry object.
+                    Then assign the root object for the property.
                     Reference all the sockets here: https://docs.coregames.com/api/animations/
     --------------------------------------
 
@@ -418,14 +425,19 @@ Framework Components Details
 
     ----- Item Catalog -----
     Catalogs are objects that store Asset References to your items that are registered with the Item Database.
-    Anytime you create a new item for a type you must always add it to a catalog or it won't appear.
+    Anytime you create an item you must always add it to a catalog so it can be registered with the item database.
     If you want, you could store all your items in a single catalog, but that will bloat the custom properties
-    window and make it hard to track what Items you're registering.
+    window and make it hard to track what items you're registering.
     ------------------------
 
+    ----- Item Drops (ItemSystems_DATA_Drops) -----
+    "ItemSystems_DATA_Drops" script contains tables that hold loot information about an items name that can drop and the likelihood.
+    You must always insert your item into a loot table if you want the item to spawn as loot into the world using the Loot spawner events.
+    -----------------------------------------------
+
     ----- Item Stats -----
-    Stats return entries of rollable stats. An item is usually paired with a stat key to imbue the item with stats.
-    An item can have multiple rollable stats and not just 1 base stat or 1 bonus stat. Get creative with your stats.
+    Stats scripts return entries of rollable stats. An item is usually paired with a stat key to imbue the item with stats.
+    An item can have multiple rollable stats.
 
         StatKey = 'EpicBoots', -- The stat key an item will reference and roll from.
         Group = 'Base', -- There must be a Base stat for items that reference a statKey. 
@@ -438,12 +450,15 @@ Framework Components Details
         Max = '5', -- Max range of the stat
         Likelihood = '100', -- The weight of this stat. 
 
-        StatKey = 'EpicBoots',
-        Group = 'Bonus1',
-        Stat = 'Defense',
-        Min = '3',
-        Max = '5',
-        Likelihood = '100',
+        {
+            StatKey = 'EpicBoots',
+            Group = 'Bonus1',
+            Stat = 'Defense',
+            Min = '3',
+            Max = '5',
+            Likelihood = '100',
+        }
+
     ----------------------
 
     ----- Item Themes -----
@@ -455,8 +470,8 @@ Framework Components Details
     -----------------------
 
     ----- Inventory -----
-    The Inventory is the logical representation of an inventory. 
-    It stores your items and it has several public methods that allow you to leverage it for other uses.
+    ItemSystems_Inventory contains the logical representation of an inventory. 
+    It stores your items and has several public methods that allow you to leverage it for your own implementations.
     You can access the inventory on either a client or server script by getting the player and accessing the coresponding data
     for example: 
         for client "local inventory = Game.GetLocalPlayer().clientUserData.inventory"

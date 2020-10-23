@@ -147,7 +147,7 @@ local function OnDropLootForPlayers(dropKey, players, dropWorldPosition) -- stri
         winner = players
     end
     -- Drop a specific item
-    local item = Database:CreateItemDropFromName(dropKey)
+    local item = Database:CreateItemFromDrop(dropKey)
     CreateLootObject(item, dropWorldPosition, winner)
 end
 
@@ -165,7 +165,7 @@ local function OnDropLootForNearbyPlayers(dropKey, dropWorldPosition, maxDistanc
     winner = winner[math.random(1,#winner)]
     if not winner then warn("No nearby player to give loot to.") return end
     -- Drop a specific item
-    local item = Database:CreateItemDropFromName(dropKey)
+    local item = Database:CreateItemFromDrop(dropKey)
     CreateLootObject(item, dropWorldPosition, winner)
 end
 
@@ -178,14 +178,14 @@ local function OnDropLootForNearestPlayer(dropKey, dropWorldPosition) -- string,
     for _, player in pairs(players) do
         local dist = (player:GetWorldPosition() - dropWorldPosition).sizeSquared
         if not nearestPlayer then nearestPlayer = {player = player, distance = dist} end
-        if nearestPlayer.distance < dist then
+        if nearestPlayer.distance > dist then
             nearestPlayer = { player = player, distance = dist }
         end
     end
     if not nearestPlayer then warn("No nearby player to give loot to.") return end
     local winner = nearestPlayer.player
     -- Drop a specific item
-    local item = Database:CreateItemDropFromName(dropKey)
+    local item = Database:CreateItemFromDrop(dropKey)
     CreateLootObject(item, dropWorldPosition, winner)
 end
 
@@ -198,7 +198,7 @@ local function OnDropSpecificLootForNearestPlayer(dropName, dropWorldPosition) -
     for _, player in pairs(players) do
         local dist = (player:GetWorldPosition() - dropWorldPosition).sizeSquared
         if not nearestPlayer then nearestPlayer = {player = player, distance = dist} end
-        if nearestPlayer.distance < dist then
+        if nearestPlayer.distance > dist then
             nearestPlayer = { player = player, distance = dist }
         end
     end
@@ -218,7 +218,7 @@ local function OnDropSpecificHashLootForNearestPlayer(itemHash, dropWorldPositio
     for _, player in pairs(players) do
         local dist = (player:GetWorldPosition() - dropWorldPosition).sizeSquared
         if not nearestPlayer then nearestPlayer = {player = player, distance = dist} end
-        if nearestPlayer.distance < dist then
+        if nearestPlayer.distance > dist then
             nearestPlayer = { player = player, distance = dist }
         end
     end
@@ -229,7 +229,7 @@ local function OnDropSpecificHashLootForNearestPlayer(itemHash, dropWorldPositio
     CreateLootObject(item, dropWorldPosition, winner)
 end
 
--- Drops a specific hash item at a worldposition for the nearest player at the loot position while excluding
+-- Drops a specific hash item at a worldposition for the nearest player at the loot position while excluding a player.
 -- P.S: Yes, long function name indeed. This is for players Item dropping stuff into the world.
 local function OnDropSpecificHashLootForNearestPlayerWithPlayerExclusion(itemHash, dropWorldPosition, excludedPlayer) -- string, vector3, player
     -- If for some crazy reason the database has yet to load and loot is already dropping, ignore it.
@@ -239,7 +239,7 @@ local function OnDropSpecificHashLootForNearestPlayerWithPlayerExclusion(itemHas
     for _, player in pairs(players) do
         local dist = (player:GetWorldPosition() - dropWorldPosition).sizeSquared
         if not nearestPlayer and player ~= excludedPlayer then nearestPlayer = {player = player, distance = dist} end
-        if player ~= excludedPlayer and nearestPlayer.distance < dist  then
+        if player ~= excludedPlayer and nearestPlayer.distance > dist  then
             nearestPlayer = { player = player, distance = dist }
         end
     end
