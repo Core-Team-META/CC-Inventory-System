@@ -655,12 +655,6 @@ Objects {
         SelfId: 7083834742207966819
       }
     }
-    Overrides {
-      Name: "cs:Database"
-      AssetReference {
-        Id: 4685988691808682848
-      }
-    }
   }
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
