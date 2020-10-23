@@ -15,7 +15,7 @@
             Z: 1
           }
         }
-        ParentId: 4781671109827199097
+        ParentId: 17933308923335840406
         ChildIds: 12639199116676428464
         ChildIds: 9927192082764146384
         ChildIds: 9213205246501619092
@@ -112,13 +112,7 @@
           }
           Overrides {
             Name: "cs:LootId"
-            String: "BasicMobTrash"
-          }
-          Overrides {
-            Name: "cs:ItemDatabase"
-            AssetReference {
-              Id: 4685988691808682848
-            }
+            String: "GoodMobLoot"
           }
           Overrides {
             Name: "cs:CurrentState:isrep"

@@ -100,6 +100,9 @@ Objects {
   ChildIds: 10170914700949068836
   ChildIds: 15801377084994020063
   ChildIds: 17481497204636877117
+  ChildIds: 8720339022854164571
+  ChildIds: 11948336768491710111
+  ChildIds: 15912692059922915004
   WantsNetworking: true
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
@@ -109,6 +112,179 @@ Objects {
   }
   Folder {
     IsGroup: true
+  }
+}
+Objects {
+  Id: 15912692059922915004
+  Name: "RPG Skeleton - Full Armed Test"
+  Transform {
+    Location {
+      X: -1923.10938
+      Y: 172.474426
+      Z: 2.28881836e-05
+    }
+    Rotation {
+      Yaw: -173.329666
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 17933308923335840406
+  WantsNetworking: true
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 9913815135764235794
+      value {
+        Overrides {
+          Name: "Name"
+          String: "RPG Skeleton - Full Armed Test"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: -2780.49146
+            Y: -118.46524
+            Z: 2.28881836e-05
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+            Yaw: -173.329666
+          }
+        }
+        Overrides {
+          Name: "Scale"
+          Vector {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 15999979663030433163
+    }
+  }
+}
+Objects {
+  Id: 11948336768491710111
+  Name: "RPG Skeleton - Full Armed Test"
+  Transform {
+    Location {
+      X: -1923.10938
+      Y: 380.369446
+      Z: 2.28881836e-05
+    }
+    Rotation {
+      Yaw: -173.329712
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 17933308923335840406
+  WantsNetworking: true
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 9913815135764235794
+      value {
+        Overrides {
+          Name: "Name"
+          String: "RPG Skeleton - Full Armed Test"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: -2780.49146
+            Y: 107.85508
+            Z: 2.28881836e-05
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+            Yaw: -173.329681
+          }
+        }
+        Overrides {
+          Name: "Scale"
+          Vector {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 15999979663030433163
+    }
+  }
+}
+Objects {
+  Id: 8720339022854164571
+  Name: "RPG Skeleton - Full Armed Test"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 17933308923335840406
+  WantsNetworking: true
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 9913815135764235794
+      value {
+        Overrides {
+          Name: "Name"
+          String: "RPG Skeleton - Full Armed Test"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: -2780.49146
+            Y: 315.750092
+            Z: 2.28881836e-05
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+            Yaw: -173.329727
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 15999979663030433163
+    }
   }
 }
 Objects {
@@ -164,6 +340,10 @@ Objects {
             Y: 1
             Z: 1
           }
+        }
+        Overrides {
+          Name: "cs:LootId"
+          String: "BasicMobTrash"
         }
       }
     }
@@ -226,6 +406,10 @@ Objects {
             Z: 1
           }
         }
+        Overrides {
+          Name: "cs:LootId"
+          String: "BasicMobTrash"
+        }
       }
     }
     TemplateAsset {
@@ -286,6 +470,10 @@ Objects {
             Y: 1
             Z: 1
           }
+        }
+        Overrides {
+          Name: "cs:LootId"
+          String: "BasicMobTrash"
         }
       }
     }
@@ -348,6 +536,10 @@ Objects {
             Z: 1
           }
         }
+        Overrides {
+          Name: "cs:LootId"
+          String: "BasicMobTrash"
+        }
       }
     }
     TemplateAsset {
@@ -408,6 +600,10 @@ Objects {
             Y: 1
             Z: 1
           }
+        }
+        Overrides {
+          Name: "cs:LootId"
+          String: "BasicMobTrash"
         }
       }
     }
@@ -470,6 +666,10 @@ Objects {
             Z: 1
           }
         }
+        Overrides {
+          Name: "cs:LootId"
+          String: "BasicMobTrash"
+        }
       }
     }
     TemplateAsset {
@@ -531,6 +731,10 @@ Objects {
             Z: 1
           }
         }
+        Overrides {
+          Name: "cs:LootId"
+          String: "BasicMobTrash"
+        }
       }
     }
     TemplateAsset {
@@ -584,6 +788,10 @@ Objects {
             Y: 1
             Z: 1
           }
+        }
+        Overrides {
+          Name: "cs:LootId"
+          String: "BasicMobTrash"
         }
       }
     }

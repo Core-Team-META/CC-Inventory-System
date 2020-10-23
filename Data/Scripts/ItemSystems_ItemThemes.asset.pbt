@@ -196,12 +196,6 @@
         }
       }
       Overrides {
-        Name: "cs:SFX_EquipRing"
-        AssetReference {
-          Id: 14625542863664929846
-        }
-      }
-      Overrides {
         Name: "cs:RarityCommonIndicator"
         AssetReference {
           Id: 1667967654323407458
