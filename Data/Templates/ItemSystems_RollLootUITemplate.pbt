@@ -38,11 +38,12 @@
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
-          Value: "mc:evisibilitysetting:forceoff"
+          Value: "mc:evisibilitysetting:forceon"
         }
         Control {
           Width: 470
           Height: 128
+          UIY: -100
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"

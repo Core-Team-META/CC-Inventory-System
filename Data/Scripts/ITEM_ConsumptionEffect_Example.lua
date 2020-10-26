@@ -1,4 +1,11 @@
-﻿local RuntimeContextDetection = require(script:GetCustomProperty("RuntimeContextDetection"))
+﻿--[[
+    Consumption Effect
+
+    When you click to consume a consumable item in the inventory. This code will execute on both
+    the server and client.
+]]
+
+local RuntimeContextDetection = require(script:GetCustomProperty("RuntimeContextDetection"))
 
 return function(player)
     if RuntimeContextDetection.IsClientSide() then

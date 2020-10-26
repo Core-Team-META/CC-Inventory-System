@@ -2,7 +2,6 @@
     Player Stats - Comabat Stats
     
     Contains a few functions for crunching damage stats on PVP and just general attack damage.
-    Must be used on the server.
 --]]
 
 local CombatStats = {}

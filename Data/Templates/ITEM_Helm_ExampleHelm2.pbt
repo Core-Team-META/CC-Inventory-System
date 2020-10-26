@@ -15,7 +15,8 @@
             Z: 1
           }
         }
-        ParentId: 133980638560380573
+        ParentId: 4649353316498909807
+        ChildIds: 16882561981336380388
         ChildIds: 15673133818328271334
         UnregisteredParameters {
           Overrides {
@@ -39,10 +40,6 @@
           Overrides {
             Name: "cs:Rarity"
             String: "Epic"
-          }
-          Overrides {
-            Name: "cs:StatKey"
-            String: "EpicHelmet"
           }
           Overrides {
             Name: "cs:SOCKET_head"
@@ -77,10 +74,6 @@
             String: "The lore for this item when viewed from the Inventory"
           }
           Overrides {
-            Name: "cs:StatKey:tooltip"
-            String: "The stat key this item points to when when rolling for stats. Usually assoicated with the Item type. ItemSystems_DATA_TYPEHERE_Stats."
-          }
-          Overrides {
             Name: "cs:SOCKET_head:tooltip"
             String: "the socket we\'re going to attach the geomtry to when  the player equips this item. If you want your boots to go on both feet then make sure to have the name of your custom property, \"Socket_both_feet\". Then assign the root geometry object. Reference all the sockets here: https://docs.coregames.com/api/animations/"
           }
@@ -90,6 +83,242 @@
           }
         }
         WantsNetworking: true
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 16882561981336380388
+        Name: "Stats"
+        Transform {
+          Location {
+            X: -23.6889343
+            Y: -79.6553726
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 1103300475510269383
+        ChildIds: 14246782963709987599
+        ChildIds: 13313672236903112115
+        WantsNetworking: true
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        NetworkContext {
+          Type: RuntimeStatic
+        }
+      }
+      Objects {
+        Id: 14246782963709987599
+        Name: "Base"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 16882561981336380388
+        ChildIds: 2019960882352121287
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 2019960882352121287
+        Name: "Defense"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 14246782963709987599
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:Min"
+            Int: 8
+          }
+          Overrides {
+            Name: "cs:Max"
+            Int: 30
+          }
+          Overrides {
+            Name: "cs:Likelihood"
+            Int: 200
+          }
+          Overrides {
+            Name: "cs:Min:tooltip"
+            String: "Minimum possible value we can roll for this stat"
+          }
+          Overrides {
+            Name: "cs:Max:tooltip"
+            String: "Maximum possible value we can roll for this stat"
+          }
+          Overrides {
+            Name: "cs:Likelihood:tooltip"
+            String: "The likelihood that we can roll for this stat."
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 13313672236903112115
+        Name: "Bonus1"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 16882561981336380388
+        ChildIds: 16570282261306677444
+        ChildIds: 6203442185530104891
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 16570282261306677444
+        Name: "Defense"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 13313672236903112115
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:Min"
+            Int: 5
+          }
+          Overrides {
+            Name: "cs:Max"
+            Int: 10
+          }
+          Overrides {
+            Name: "cs:Likelihood"
+            Int: 100
+          }
+          Overrides {
+            Name: "cs:Min:tooltip"
+            String: "Minimum possible value we can roll for this stat"
+          }
+          Overrides {
+            Name: "cs:Max:tooltip"
+            String: "Maximum possible value we can roll for this stat"
+          }
+          Overrides {
+            Name: "cs:Likelihood:tooltip"
+            String: "The likelihood that we can roll for this stat."
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 6203442185530104891
+        Name: "Haste"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 13313672236903112115
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:Min"
+            Int: 2
+          }
+          Overrides {
+            Name: "cs:Max"
+            Int: 8
+          }
+          Overrides {
+            Name: "cs:Likelihood"
+            Int: 100
+          }
+          Overrides {
+            Name: "cs:Min:tooltip"
+            String: "Minimum possible value we can roll for this stat"
+          }
+          Overrides {
+            Name: "cs:Max:tooltip"
+            String: "Maximum possible value we can roll for this stat"
+          }
+          Overrides {
+            Name: "cs:Likelihood:tooltip"
+            String: "The likelihood that we can roll for this stat."
+          }
+        }
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }

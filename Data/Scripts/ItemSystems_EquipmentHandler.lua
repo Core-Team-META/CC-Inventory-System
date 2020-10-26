@@ -14,6 +14,7 @@ local OWNER = nil
 
 -- Cleans up old equipment
 local function CleanUpEquipment()
+    if not Object.IsValid(OWNER) then return end
     local equipments = OWNER:GetEquipment()
     for _, equipment in pairs(equipments) do
         if Object.IsValid(equipment) then

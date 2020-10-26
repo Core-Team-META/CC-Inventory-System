@@ -5,6 +5,7 @@
     Logical representation of an item.
 ]]
 local Base64 = require(script:GetCustomProperty("Base64"))
+local ITEM_TYPES_FOLDER = script:GetCustomProperty("ItemTypesFolder"):WaitForObject()
 
 local Item = {}
 Item.__index = Item
@@ -13,24 +14,6 @@ Item.__index = Item
 -- CONSTANTS
 ---------------------------------------------------------------------------------------------------------
 local function Enum(values) for i,v in ipairs(values) do values[v] = i end return values end
-
-Item.TYPES = Enum{
-    -- Add item types here. Create the catalog and stats script for it then add it to the database as a custom property. You may also assign it a loot table.
-    -- Refer to Item.SLOT_CONSTRAINTS below if you want your type to have an equipable slot.
-    "Sword",
-    "Shield",
-    "Helmet",
-    "Armor",
-    "Boots",
-    "Trinket",
-    "Dagger",
-    "Greatsword",
-    --"Ring", -- For the catalog and stats tutorial. Remove the comment.
-
-    -- Specials (Non-Equipables)
-    "Misc",
-    "Consumable",
-}
 
 Item.STATS = Enum{
     "Health",
@@ -54,22 +37,31 @@ Item.RARITIES = Enum{
 }
 
 -- These are paired with Item.TYPES. If you want your item to be equippable then add your type here.
-Item.SLOT_CONSTRAINTS = {
-    --Ring        = { slotType = "Accessory" }, -- Remove the comment.
-    Armor       = { slotType = "Chest" },
-    Axe         = { slotType = "MainHand" },
-    Boots       = { slotType = "Feet" },
-    Dagger      = { slotType = "MainHand" },
-    Greatsword  = { slotType = "MainHand", isOffHandDisabled = true }, -- isOffHandDisabled unequips your shield item in favor of this weapon.
-    Helmet      = { slotType = "Head" },
-    Mace        = { slotType = "MainHand" },
-    Shield      = { slotType = "OffHand" },
-    Staff       = { slotType = "MainHand", isOffHandDisabled = true },
-    Sword       = { slotType = "MainHand" },
-    Trinket     = { slotType = "Accessory" },
-    Warhammer   = { slotType = "MainHand", isOffHandDisabled = true },
-    Wand        = { slotType = "MainHand" },
-}
+-- Item.SLOT_CONSTRAINTS = {
+--     --Ring        = { slotType = "Accessory" }, -- Remove the comment.
+--     Armor       = { slotType = "Chest" },
+--     Axe         = { slotType = "MainHand" },
+--     Boots       = { slotType = "Feet" },
+--     Dagger      = { slotType = "MainHand" },
+--     Greatsword  = { slotType = "MainHand", isOffHandDisabled = true }, -- isOffHandDisabled unequips your shield item in favor of this weapon.
+--     Helmet      = { slotType = "Head" },
+--     Mace        = { slotType = "MainHand" },
+--     Shield      = { slotType = "OffHand" },
+--     Staff       = { slotType = "MainHand", isOffHandDisabled = true },
+--     Sword       = { slotType = "MainHand" },
+--     Trinket     = { slotType = "Accessory" },
+--     Warhammer   = { slotType = "MainHand", isOffHandDisabled = true },
+--     Wand        = { slotType = "MainHand" },
+-- }
+
+Item.SLOT_CONSTRAINTS = {}
+
+for _, item in pairs(ITEM_TYPES_FOLDER:GetChildren()) do
+    local typeName = item.name
+    Item.SLOT_CONSTRAINTS[typeName] = { slotType = item:GetCustomProperty("EquipSlotType"),
+                                        isOffHandDisabled = item:GetCustomProperty("IsOffHandDisabled"), }
+end
+
 
 ---------------------------------------------------------------------------------------------------------
 -- PUBLIC
@@ -117,10 +109,6 @@ function Item:GetRarity()
     return self.data.rarity
 end
 
-function Item:GetStatKey()
-    return self.data.statKey
-end
-
 function Item:IsEquippable()
     return self.data.isEquippable
 end
@@ -132,7 +120,7 @@ function Item:GetEquipSlotType()
 end
 
 function Item:IsTwoHanded()
-    return self.SLOT_CONSTRAINTS[self:GetType()].isTwoHanded
+    return self.SLOT_CONSTRAINTS[self:GetType()].isOffHandDisabled
 end
 
 function Item:IsStackable()
@@ -256,15 +244,17 @@ function Item:_IntoHash(isRuntime)
     table.insert(hashParts, HASH_DELIM_INTRO)
     table.insert(hashParts, Base64.Encode12(self:GetStackSize()))
     table.insert(hashParts, HASH_DELIM_INTRO)
-    for _,stat in ipairs(self.stats) do
-        local statIndex = self.STATS[stat.name]
-        local statDelimiter = stat.isBase and HASH_DELIM_STAT_BASE or HASH_DELIM_STAT_BONUS
-        local statKey = isRuntime and Base64.Encode6(statIndex) or stat.name
-        local statValue = Base64.Encode24(stat.value)
-        table.insert(hashParts, statDelimiter)
-        table.insert(hashParts, statKey)
-        table.insert(hashParts, HASH_DELIM_STAT_EQUALS)
-        table.insert(hashParts, statValue)
+    if self.stats ~= nil then
+        for _,stat in ipairs(self.stats) do
+            local statIndex = self.STATS[stat.name]
+            local statDelimiter = stat.isBase and HASH_DELIM_STAT_BASE or HASH_DELIM_STAT_BONUS
+            local statKey = isRuntime and Base64.Encode6(statIndex) or stat.name
+            local statValue = Base64.Encode24(stat.value)
+            table.insert(hashParts, statDelimiter)
+            table.insert(hashParts, statKey)
+            table.insert(hashParts, HASH_DELIM_STAT_EQUALS)
+            table.insert(hashParts, statValue)
+        end
     end
     return table.concat(hashParts)
 end
@@ -304,6 +294,7 @@ function Item._FromHash(database, hash)
 end
 
 function Item:_RecalculateStatTotals()
+    if self.stats == nil then return end
     for _,statName in ipairs(Item.STATS) do self.statTotals[statName] = 0 end
     for i,stat in ipairs(self.stats) do
         self.statTotals[stat.name] = self.statTotals[stat.name] + stat.value

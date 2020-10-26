@@ -31,7 +31,8 @@ end
 
 -- Creates a UI element that shows what the player rolled or if they passed.
 local function CreateUIEntry(playerName,roll,itemName)
-    local uiEntry = World.SpawnAsset(ROLLENTRY_TEMPLATE,{parent=script})
+    local uiEntry = World.SpawnAsset(ROLLENTRY_TEMPLATE,{parent = script})
+    uiEntry.visibility = Visibility.FORCE_ON
     table.insert(entries,uiEntry)
     RestructureList()
     local rolledText = uiEntry:GetCustomProperty("RolledText"):GetObject()

@@ -16,13 +16,14 @@
           }
         }
         ParentId: 4781671109827199097
+        ChildIds: 16526517120015267363
+        ChildIds: 4727595043561606872
+        ChildIds: 16786691322256055340
+        ChildIds: 5214734602193195560
         ChildIds: 16951583355283164680
         ChildIds: 11867304209714654386
         ChildIds: 13333868567698361300
         ChildIds: 8389847401878296273
-        ChildIds: 16786691322256055340
-        ChildIds: 5214734602193195560
-        ChildIds: 4727595043561606872
         UnregisteredParameters {
         }
         Collidable_v2 {
@@ -37,8 +38,8 @@
         }
       }
       Objects {
-        Id: 16951583355283164680
-        Name: "InventoryComponentSpawner"
+        Id: 16526517120015267363
+        Name: "ItemRegistry"
         Transform {
           Location {
           }
@@ -51,11 +52,1439 @@
           }
         }
         ParentId: 2513051206216427631
+        ChildIds: 5272499463947292801
+        ChildIds: 13410731098223101472
+        ChildIds: 5729208062230785615
+        ChildIds: 2402620585165388190
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 5272499463947292801
+        Name: "LootTables"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 16526517120015267363
+        ChildIds: 3712022602023523733
+        ChildIds: 18251658914653897911
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 3712022602023523733
+        Name: "BasicMobTrash"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 5272499463947292801
+        ChildIds: 17771007279367527580
+        ChildIds: 3559195070213563857
+        ChildIds: 5810202692317561728
+        ChildIds: 14716436705892476472
+        ChildIds: 16147520564051455344
+        ChildIds: 16176307594811026235
+        ChildIds: 10999901682133748840
+        ChildIds: 2317094304124194884
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 17771007279367527580
+        Name: "Example_Dagger"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3712022602023523733
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:Item"
+            AssetReference {
+              Id: 1230074856330478231
+            }
+          }
+          Overrides {
+            Name: "cs:Likelihood"
+            Float: 100
+          }
+          Overrides {
+            Name: "cs:Likelihood:tooltip"
+            String: "The likelihood this drop weight of the item. The higher this number the better the chance this will drop out of the rest of the items in the loot table."
+          }
+          Overrides {
+            Name: "cs:Item:tooltip"
+            String: "The item to drop"
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 3559195070213563857
+        Name: "Example_Trinket"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3712022602023523733
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:Item"
+            AssetReference {
+              Id: 14350940540964847784
+            }
+          }
+          Overrides {
+            Name: "cs:Likelihood"
+            Float: 100
+          }
+          Overrides {
+            Name: "cs:Likelihood:tooltip"
+            String: "The likelihood this drop weight of the item. The higher this number the better the chance this will drop out of the rest of the items in the loot table."
+          }
+          Overrides {
+            Name: "cs:Item:tooltip"
+            String: "The item to drop"
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 5810202692317561728
+        Name: "Example_Chest"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3712022602023523733
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:Item"
+            AssetReference {
+              Id: 13788153809270582534
+            }
+          }
+          Overrides {
+            Name: "cs:Likelihood"
+            Float: 100
+          }
+          Overrides {
+            Name: "cs:Likelihood:tooltip"
+            String: "The likelihood this drop weight of the item. The higher this number the better the chance this will drop out of the rest of the items in the loot table."
+          }
+          Overrides {
+            Name: "cs:Item:tooltip"
+            String: "The item to drop"
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 14716436705892476472
+        Name: "Example_Helm"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3712022602023523733
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:Item"
+            AssetReference {
+              Id: 1054608940502046058
+            }
+          }
+          Overrides {
+            Name: "cs:Likelihood"
+            Float: 100
+          }
+          Overrides {
+            Name: "cs:Likelihood:tooltip"
+            String: "The likelihood this drop weight of the item. The higher this number the better the chance this will drop out of the rest of the items in the loot table."
+          }
+          Overrides {
+            Name: "cs:Item:tooltip"
+            String: "The item to drop"
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 16147520564051455344
+        Name: "Example_Boots"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3712022602023523733
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:Item"
+            AssetReference {
+              Id: 14306718394135860943
+            }
+          }
+          Overrides {
+            Name: "cs:Likelihood"
+            Float: 100
+          }
+          Overrides {
+            Name: "cs:Likelihood:tooltip"
+            String: "The likelihood this drop weight of the item. The higher this number the better the chance this will drop out of the rest of the items in the loot table."
+          }
+          Overrides {
+            Name: "cs:Item:tooltip"
+            String: "The item to drop"
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 16176307594811026235
+        Name: "Example_Resource"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3712022602023523733
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:Item"
+            AssetReference {
+              Id: 15055086068281261176
+            }
+          }
+          Overrides {
+            Name: "cs:Likelihood"
+            Float: 300
+          }
+          Overrides {
+            Name: "cs:Likelihood:tooltip"
+            String: "The likelihood this drop weight of the item. The higher this number the better the chance this will drop out of the rest of the items in the loot table."
+          }
+          Overrides {
+            Name: "cs:Item:tooltip"
+            String: "The item to drop"
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 10999901682133748840
+        Name: "Example_Resource"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3712022602023523733
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:Item"
+            AssetReference {
+              Id: 11970271170336702900
+            }
+          }
+          Overrides {
+            Name: "cs:Likelihood"
+            Float: 1000
+          }
+          Overrides {
+            Name: "cs:Likelihood:tooltip"
+            String: "The likelihood this drop weight of the item. The higher this number the better the chance this will drop out of the rest of the items in the loot table."
+          }
+          Overrides {
+            Name: "cs:Item:tooltip"
+            String: "The item to drop"
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 2317094304124194884
+        Name: "Example_Resource"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3712022602023523733
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:Item"
+            AssetReference {
+              Id: 11970271170336702900
+            }
+          }
+          Overrides {
+            Name: "cs:Likelihood"
+            Float: 1000
+          }
+          Overrides {
+            Name: "cs:Likelihood:tooltip"
+            String: "The likelihood this drop weight of the item. The higher this number the better the chance this will drop out of the rest of the items in the loot table."
+          }
+          Overrides {
+            Name: "cs:Item:tooltip"
+            String: "The item to drop"
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 18251658914653897911
+        Name: "GoodMobLoot"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 5272499463947292801
+        ChildIds: 16327729818376522215
+        ChildIds: 11059065845705073950
+        ChildIds: 13426302864392773323
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 16327729818376522215
+        Name: "Example_Resource"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 18251658914653897911
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:Item"
+            AssetReference {
+              Id: 11970271170336702900
+            }
+          }
+          Overrides {
+            Name: "cs:Likelihood"
+            Float: 1000
+          }
+          Overrides {
+            Name: "cs:Likelihood:tooltip"
+            String: "The likelihood this drop weight of the item. The higher this number the better the chance this will drop out of the rest of the items in the loot table."
+          }
+          Overrides {
+            Name: "cs:Item:tooltip"
+            String: "The item to drop"
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 11059065845705073950
+        Name: "Example_Resource"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 18251658914653897911
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:Item"
+            AssetReference {
+              Id: 11970271170336702900
+            }
+          }
+          Overrides {
+            Name: "cs:Likelihood"
+            Float: 1000
+          }
+          Overrides {
+            Name: "cs:Likelihood:tooltip"
+            String: "The likelihood this drop weight of the item. The higher this number the better the chance this will drop out of the rest of the items in the loot table."
+          }
+          Overrides {
+            Name: "cs:Item:tooltip"
+            String: "The item to drop"
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 13426302864392773323
+        Name: "Example_Resource"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 18251658914653897911
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:Item"
+            AssetReference {
+              Id: 15055086068281261176
+            }
+          }
+          Overrides {
+            Name: "cs:Likelihood"
+            Float: 300
+          }
+          Overrides {
+            Name: "cs:Likelihood:tooltip"
+            String: "The likelihood this drop weight of the item. The higher this number the better the chance this will drop out of the rest of the items in the loot table."
+          }
+          Overrides {
+            Name: "cs:Item:tooltip"
+            String: "The item to drop"
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 13410731098223101472
+        Name: "ItemTypes"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 16526517120015267363
+        ChildIds: 9536103882680851621
+        ChildIds: 13961634567899622264
+        ChildIds: 7566650291377081917
+        ChildIds: 680586975431618151
+        ChildIds: 9294490745315572172
+        ChildIds: 8351089693938492501
+        ChildIds: 2310920968827150707
+        ChildIds: 14468303977197130812
+        ChildIds: 1215803343728598175
+        ChildIds: 278118906123364039
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 9536103882680851621
+        Name: "Helmet"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 13410731098223101472
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:EquipSlotType"
+            String: "Head"
+          }
+          Overrides {
+            Name: "cs:EquipSFX"
+            AssetReference {
+              Id: 1538004691548728471
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 13961634567899622264
+        Name: "Armor"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 13410731098223101472
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:EquipSlotType"
+            String: "Chest"
+          }
+          Overrides {
+            Name: "cs:EquipSFX"
+            AssetReference {
+              Id: 1538004691548728471
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 7566650291377081917
+        Name: "Sword"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 13410731098223101472
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:EquipSlotType"
+            String: "MainHand"
+          }
+          Overrides {
+            Name: "cs:EquipSFX"
+            AssetReference {
+              Id: 16757952733114463039
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 680586975431618151
+        Name: "Shield"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 13410731098223101472
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:EquipSlotType"
+            String: "OffHand"
+          }
+          Overrides {
+            Name: "cs:EquipSFX"
+            AssetReference {
+              Id: 12893355638564104218
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 9294490745315572172
+        Name: "Boots"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 13410731098223101472
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:EquipSlotType"
+            String: "Feet"
+          }
+          Overrides {
+            Name: "cs:EquipSFX"
+            AssetReference {
+              Id: 1538004691548728471
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 8351089693938492501
+        Name: "Trinket"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 13410731098223101472
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:EquipSlotType"
+            String: "Accessory"
+          }
+          Overrides {
+            Name: "cs:EquipSFX"
+            AssetReference {
+              Id: 1246853273103719825
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 2310920968827150707
+        Name: "Dagger"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 13410731098223101472
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:EquipSlotType"
+            String: "MainHand"
+          }
+          Overrides {
+            Name: "cs:EquipSFX"
+            AssetReference {
+              Id: 12893355638564104218
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 14468303977197130812
+        Name: "Greatsword"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 13410731098223101472
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:EquipSlotType"
+            String: "MainHand"
+          }
+          Overrides {
+            Name: "cs:EquipSFX"
+            AssetReference {
+              Id: 1538004691548728471
+            }
+          }
+          Overrides {
+            Name: "cs:IsOffHandDisabled"
+            Bool: true
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 1215803343728598175
+        Name: "Misc"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 13410731098223101472
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:EquipSlotType"
+            String: "None"
+          }
+          Overrides {
+            Name: "cs:EquipSFX"
+            AssetReference {
+              Id: 17630497794136200610
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 278118906123364039
+        Name: "Consumable"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 13410731098223101472
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:EquipSlotType"
+            String: "None"
+          }
+          Overrides {
+            Name: "cs:EquipSFX"
+            AssetReference {
+              Id: 2710581938246947078
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 5729208062230785615
+        Name: "ItemRarities"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 16526517120015267363
+        ChildIds: 388971794233155719
+        ChildIds: 16186429816755195932
+        ChildIds: 12772075987170082005
+        ChildIds: 11913522111811868207
+        ChildIds: 4318264243561247735
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 388971794233155719
+        Name: "Common"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 5729208062230785615
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:RarityColor"
+            Color {
+              R: 1
+              G: 1
+              B: 1
+              A: 1
+            }
+          }
+          Overrides {
+            Name: "cs:LootRarityIndicator"
+            AssetReference {
+              Id: 1667967654323407458
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 16186429816755195932
+        Name: "Uncommon"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 5729208062230785615
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:RarityColor"
+            Color {
+              R: 0.0313725509
+              G: 1
+              A: 1
+            }
+          }
+          Overrides {
+            Name: "cs:LootRarityIndicator"
+            AssetReference {
+              Id: 15631619586623121380
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 12772075987170082005
+        Name: "Rare"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 5729208062230785615
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:RarityColor"
+            Color {
+              G: 0.13333334
+              B: 0.921568692
+              A: 1
+            }
+          }
+          Overrides {
+            Name: "cs:LootRarityIndicator"
+            AssetReference {
+              Id: 13625467364280639550
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 11913522111811868207
+        Name: "Epic"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 5729208062230785615
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:RarityColor"
+            Color {
+              R: 0.960784376
+              B: 0.898039281
+              A: 1
+            }
+          }
+          Overrides {
+            Name: "cs:LootRarityIndicator"
+            AssetReference {
+              Id: 12172072770097083710
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 4318264243561247735
+        Name: "Legendary"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 5729208062230785615
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:RarityColor"
+            Color {
+              R: 0.941176534
+              G: 0.337254912
+              A: 1
+            }
+          }
+          Overrides {
+            Name: "cs:LootRarityIndicator"
+            AssetReference {
+              Id: 13615535925942134142
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 2402620585165388190
+        Name: "RegisteredItems"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 16526517120015267363
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:ITEM_Armor_ExampleBoots"
+            AssetReference {
+              Id: 17226259549463923582
+            }
+          }
+          Overrides {
+            Name: "cs:ITEM_Armor_ExampleChest"
+            AssetReference {
+              Id: 9838926182254776715
+            }
+          }
+          Overrides {
+            Name: "cs:ITEM_Armor_ExampleChest2"
+            AssetReference {
+              Id: 13788153809270582534
+            }
+          }
+          Overrides {
+            Name: "cs:ITEM_Armor_ExampleHelm"
+            AssetReference {
+              Id: 12889700838915016367
+            }
+          }
+          Overrides {
+            Name: "cs:ITEM_Boots_ExampleBoots2"
+            AssetReference {
+              Id: 14306718394135860943
+            }
+          }
+          Overrides {
+            Name: "cs:ITEM_Consumable_ExamplePotion"
+            AssetReference {
+              Id: 5151373499733762021
+            }
+          }
+          Overrides {
+            Name: "cs:ITEM_Dagger_HighLevel"
+            AssetReference {
+              Id: 1230074856330478231
+            }
+          }
+          Overrides {
+            Name: "cs:ITEM_Helm_ExampleHelm2"
+            AssetReference {
+              Id: 1054608940502046058
+            }
+          }
+          Overrides {
+            Name: "cs:ITEM_Shield_Example"
+            AssetReference {
+              Id: 801508354706908814
+            }
+          }
+          Overrides {
+            Name: "cs:ITEM_Sword_ExampleSuperSword"
+            AssetReference {
+              Id: 12213754262020759560
+            }
+          }
+          Overrides {
+            Name: "cs:ITEM_Sword_ExampleSword"
+            AssetReference {
+              Id: 1553740639607464950
+            }
+          }
+          Overrides {
+            Name: "cs:ITEM_Trinket_Example"
+            AssetReference {
+              Id: 14350940540964847784
+            }
+          }
+          Overrides {
+            Name: "cs:ITEM_Misc_IronBar"
+            AssetReference {
+              Id: 15055086068281261176
+            }
+          }
+          Overrides {
+            Name: "cs:ITEM_Misc_Gem"
+            AssetReference {
+              Id: 11970271170336702900
+            }
+          }
+          Overrides {
+            Name: "cs:ITEM_Misc_WoodScrap"
+            AssetReference {
+              Id: 13507126423793713404
+            }
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 4727595043561606872
+        Name: "PlayerStats"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 2513051206216427631
+        ChildIds: 3369176744134295809
+        ChildIds: 8010886883027965559
+        ChildIds: 9108674364317494819
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsFilePartition: true
+          FilePartitionName: "PlayerStats"
+        }
+      }
+      Objects {
+        Id: 3369176744134295809
+        Name: "Stats"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 4727595043561606872
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 8010886883027965559
+        Name: "StatSheetComponentSpawner"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 4727595043561606872
         UnregisteredParameters {
           Overrides {
             Name: "cs:ComponentTemplate"
             AssetReference {
-              Id: 3392029348791641646
+              Id: 12559898450615284556
             }
           }
         }
@@ -72,8 +1501,8 @@
         }
       }
       Objects {
-        Id: 11867304209714654386
-        Name: "ItemSystems_LootSpawner"
+        Id: 9108674364317494819
+        Name: "Client"
         Transform {
           Location {
           }
@@ -85,30 +1514,20 @@
             Z: 1
           }
         }
-        ParentId: 2513051206216427631
-        UnregisteredParameters {
-          Overrides {
-            Name: "cs:ItemSystems_Database"
-            AssetReference {
-              Id: 4685988691808682848
-            }
-          }
-        }
+        ParentId: 4727595043561606872
+        ChildIds: 12180749836260665073
         Collidable_v2 {
-          Value: "mc:ecollisionsetting:inheritfromparent"
+          Value: "mc:ecollisionsetting:forceoff"
         }
         Visible_v2 {
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
-        Script {
-          ScriptAsset {
-            Id: 2579447573661021839
-          }
+        NetworkContext {
         }
       }
       Objects {
-        Id: 13333868567698361300
-        Name: "ItemSystems_LootFactoryAdapter"
+        Id: 12180749836260665073
+        Name: "PlayerStats_LevelUpFXSpawner"
         Transform {
           Location {
           }
@@ -120,12 +1539,18 @@
             Z: 1
           }
         }
-        ParentId: 2513051206216427631
+        ParentId: 9108674364317494819
         UnregisteredParameters {
           Overrides {
-            Name: "cs:ModuleManager"
+            Name: "cs:VFX_LocalPlayer"
             AssetReference {
-              Id: 5020659879017544757
+              Id: 16439493886394696103
+            }
+          }
+          Overrides {
+            Name: "cs:VFX_OtherPlayer"
+            AssetReference {
+              Id: 16488843040722869207
             }
           }
         }
@@ -137,64 +1562,7 @@
         }
         Script {
           ScriptAsset {
-            Id: 16213065261197084811
-          }
-        }
-      }
-      Objects {
-        Id: 8389847401878296273
-        Name: "ItemSystems_RollLootManager"
-        Transform {
-          Location {
-          }
-          Rotation {
-          }
-          Scale {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        ParentId: 2513051206216427631
-        UnregisteredParameters {
-          Overrides {
-            Name: "cs:RollEntryTemplate"
-            AssetReference {
-              Id: 18054600764996060667
-            }
-          }
-          Overrides {
-            Name: "cs:RollerTemplate"
-            AssetReference {
-              Id: 16620370987805266511
-            }
-          }
-          Overrides {
-            Name: "cs:ItemSystems_Database"
-            AssetReference {
-              Id: 4685988691808682848
-            }
-          }
-          Overrides {
-            Name: "cs:ReliableEvents"
-            AssetReference {
-              Id: 1680988108412715813
-            }
-          }
-          Overrides {
-            Name: "cs:RollExpireTime"
-            Int: 30
-          }
-        }
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:inheritfromparent"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        Script {
-          ScriptAsset {
-            Id: 17745311491484179514
+            Id: 6058394291063560538
           }
         }
       }
@@ -449,7 +1817,7 @@
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
+          Value: "mc:evisibilitysetting:forceon"
         }
         Control {
           Width: 100
@@ -7258,6 +8626,7 @@
         ChildIds: 3346088258019081153
         ChildIds: 14335245689172875644
         ChildIds: 15527251068179576438
+        ChildIds: 16375357089078840000
         UnregisteredParameters {
           Overrides {
             Name: "cs:Anchor"
@@ -7293,6 +8662,12 @@
           }
           Overrides {
             Name: "cs:NotAllowed"
+            ObjectReference {
+              SubObjectId: 15527251068179576438
+            }
+          }
+          Overrides {
+            Name: "cs:Disabled"
             ObjectReference {
               SubObjectId: 15527251068179576438
             }
@@ -7686,6 +9061,122 @@
       }
       Objects {
         Id: 15527251068179576438
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 15190583091540561734
+        ChildIds: 3542357532790294619
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:forceon"
+        }
+        Control {
+          Width: 50
+          Height: 50
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 2461529389641718171
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 3542357532790294619
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 15527251068179576438
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 40
+          Height: 8
+          RotationAngle: -45
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 13778967266379385506
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 16375357089078840000
         Name: "NotAllowed"
         Transform {
           Location {
@@ -7703,7 +9194,7 @@
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
+          Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
           Width: 7
@@ -7761,6 +9252,7 @@
         ChildIds: 3388387881812823784
         ChildIds: 12708314161515565044
         ChildIds: 10102690750245716113
+        ChildIds: 16337204210083508524
         UnregisteredParameters {
           Overrides {
             Name: "cs:Anchor"
@@ -7798,6 +9290,12 @@
             Name: "cs:NotAllowed"
             ObjectReference {
               SubObjectId: 10102690750245716113
+            }
+          }
+          Overrides {
+            Name: "cs:Disabled"
+            ObjectReference {
+              SubObjectId: 16337204210083508524
             }
           }
         }
@@ -8206,7 +9704,7 @@
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
+          Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
           Width: 7
@@ -8225,6 +9723,122 @@
             }
             Color {
               A: 0.8
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 16337204210083508524
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 6231560278544785440
+        ChildIds: 3936038560222740330
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:forceon"
+        }
+        Control {
+          Width: 50
+          Height: 50
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 2461529389641718171
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 3936038560222740330
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 16337204210083508524
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 40
+          Height: 8
+          RotationAngle: -45
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 13778967266379385506
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
             }
             TeamSettings {
             }
@@ -8264,6 +9878,7 @@
         ChildIds: 12661133516407829457
         ChildIds: 9485484391800126698
         ChildIds: 2007868029183234569
+        ChildIds: 9371858841980707831
         UnregisteredParameters {
           Overrides {
             Name: "cs:Anchor"
@@ -8301,6 +9916,12 @@
             Name: "cs:NotAllowed"
             ObjectReference {
               SubObjectId: 2007868029183234569
+            }
+          }
+          Overrides {
+            Name: "cs:Disabled"
+            ObjectReference {
+              SubObjectId: 9371858841980707831
             }
           }
         }
@@ -8709,7 +10330,7 @@
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
+          Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
           Width: 7
@@ -8728,6 +10349,122 @@
             }
             Color {
               A: 0.8
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 9371858841980707831
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 1998127622848915037
+        ChildIds: 3667625063747435837
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:forceon"
+        }
+        Control {
+          Width: 50
+          Height: 50
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 2461529389641718171
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 3667625063747435837
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 9371858841980707831
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 40
+          Height: 8
+          RotationAngle: -45
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 13778967266379385506
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
             }
             TeamSettings {
             }
@@ -8767,6 +10504,7 @@
         ChildIds: 6224071505406623259
         ChildIds: 18150094817486305017
         ChildIds: 15969210499958342128
+        ChildIds: 1194156535526628403
         UnregisteredParameters {
           Overrides {
             Name: "cs:Anchor"
@@ -8804,6 +10542,12 @@
             Name: "cs:NotAllowed"
             ObjectReference {
               SubObjectId: 15969210499958342128
+            }
+          }
+          Overrides {
+            Name: "cs:Disabled"
+            ObjectReference {
+              SubObjectId: 1194156535526628403
             }
           }
         }
@@ -9212,7 +10956,7 @@
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
+          Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
           Width: 7
@@ -9231,6 +10975,122 @@
             }
             Color {
               A: 0.8
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 1194156535526628403
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 14530807624943997085
+        ChildIds: 542021850897835893
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:forceon"
+        }
+        Control {
+          Width: 50
+          Height: 50
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 2461529389641718171
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 542021850897835893
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 1194156535526628403
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 40
+          Height: 8
+          RotationAngle: -45
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 13778967266379385506
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
             }
             TeamSettings {
             }
@@ -9270,6 +11130,7 @@
         ChildIds: 2389852647681347806
         ChildIds: 16328185273022900039
         ChildIds: 15282392496670995330
+        ChildIds: 3903475302650674387
         UnregisteredParameters {
           Overrides {
             Name: "cs:Anchor"
@@ -9307,6 +11168,12 @@
             Name: "cs:NotAllowed"
             ObjectReference {
               SubObjectId: 15282392496670995330
+            }
+          }
+          Overrides {
+            Name: "cs:Disabled"
+            ObjectReference {
+              SubObjectId: 3903475302650674387
             }
           }
         }
@@ -9715,7 +11582,7 @@
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
+          Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
           Width: 7
@@ -9734,6 +11601,122 @@
             }
             Color {
               A: 0.8
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 3903475302650674387
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 1163527811466317311
+        ChildIds: 2532985231554562808
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:forceon"
+        }
+        Control {
+          Width: 50
+          Height: 50
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 2461529389641718171
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 2532985231554562808
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3903475302650674387
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 40
+          Height: 8
+          RotationAngle: -45
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 13778967266379385506
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
             }
             TeamSettings {
             }
@@ -9773,6 +11756,7 @@
         ChildIds: 9384742117514686194
         ChildIds: 3015205867156539598
         ChildIds: 12645130279010193601
+        ChildIds: 6216588735271186756
         UnregisteredParameters {
           Overrides {
             Name: "cs:Anchor"
@@ -9810,6 +11794,12 @@
             Name: "cs:NotAllowed"
             ObjectReference {
               SubObjectId: 12645130279010193601
+            }
+          }
+          Overrides {
+            Name: "cs:Disabled"
+            ObjectReference {
+              SubObjectId: 6216588735271186756
             }
           }
         }
@@ -10218,7 +12208,7 @@
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
+          Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
           Width: 7
@@ -10237,6 +12227,122 @@
             }
             Color {
               A: 0.8
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 6216588735271186756
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 9524695641568714558
+        ChildIds: 3468681396064888559
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:forceon"
+        }
+        Control {
+          Width: 50
+          Height: 50
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 2461529389641718171
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 3468681396064888559
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 6216588735271186756
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 40
+          Height: 8
+          RotationAngle: -45
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 13778967266379385506
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
             }
             TeamSettings {
             }
@@ -10276,6 +12382,7 @@
         ChildIds: 1122937173526859201
         ChildIds: 7900050822741259797
         ChildIds: 3282208509824008323
+        ChildIds: 17203360956592907038
         UnregisteredParameters {
           Overrides {
             Name: "cs:Anchor"
@@ -10313,6 +12420,12 @@
             Name: "cs:NotAllowed"
             ObjectReference {
               SubObjectId: 3282208509824008323
+            }
+          }
+          Overrides {
+            Name: "cs:Disabled"
+            ObjectReference {
+              SubObjectId: 17203360956592907038
             }
           }
         }
@@ -10721,7 +12834,7 @@
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
+          Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
           Width: 7
@@ -10740,6 +12853,122 @@
             }
             Color {
               A: 0.8
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 17203360956592907038
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3954963680382834809
+        ChildIds: 12006581365113781095
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:forceon"
+        }
+        Control {
+          Width: 50
+          Height: 50
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 2461529389641718171
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 12006581365113781095
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 17203360956592907038
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 40
+          Height: 8
+          RotationAngle: -45
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 13778967266379385506
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
             }
             TeamSettings {
             }
@@ -10779,6 +13008,7 @@
         ChildIds: 8892505012783489413
         ChildIds: 9059119504417449150
         ChildIds: 3628625853433079950
+        ChildIds: 3241788910646056186
         UnregisteredParameters {
           Overrides {
             Name: "cs:Anchor"
@@ -10816,6 +13046,12 @@
             Name: "cs:NotAllowed"
             ObjectReference {
               SubObjectId: 3628625853433079950
+            }
+          }
+          Overrides {
+            Name: "cs:Disabled"
+            ObjectReference {
+              SubObjectId: 3241788910646056186
             }
           }
         }
@@ -11224,7 +13460,7 @@
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
+          Value: "mc:evisibilitysetting:forceoff"
         }
         Control {
           Width: 7
@@ -11243,6 +13479,122 @@
             }
             Color {
               A: 0.8
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 3241788910646056186
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 9145417112354750108
+        ChildIds: 16473615862560004004
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:forceon"
+        }
+        Control {
+          Width: 50
+          Height: 50
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 2461529389641718171
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:middlecenter"
+              }
+            }
+          }
+        }
+      }
+      Objects {
+        Id: 16473615862560004004
+        Name: "Disabled"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3241788910646056186
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 40
+          Height: 8
+          RotationAngle: -45
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          AddSizeToParentIfUsingParentSize: true
+          Image {
+            Brush {
+              Id: 13778967266379385506
+            }
+            Color {
+              R: 1
+              G: 0.0199999809
+              B: 0.0199999809
+              A: 1
             }
             TeamSettings {
             }
@@ -29257,8 +31609,8 @@
         }
       }
       Objects {
-        Id: 4727595043561606872
-        Name: "PlayerStats"
+        Id: 16951583355283164680
+        Name: "InventoryComponentSpawner"
         Transform {
           Location {
           }
@@ -29271,39 +31623,11 @@
           }
         }
         ParentId: 2513051206216427631
-        ChildIds: 8010886883027965559
-        ChildIds: 9108674364317494819
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:inheritfromparent"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        Folder {
-          IsFilePartition: true
-          FilePartitionName: "PlayerStats"
-        }
-      }
-      Objects {
-        Id: 8010886883027965559
-        Name: "StatSheetComponentSpawner"
-        Transform {
-          Location {
-          }
-          Rotation {
-          }
-          Scale {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        ParentId: 4727595043561606872
         UnregisteredParameters {
           Overrides {
             Name: "cs:ComponentTemplate"
             AssetReference {
-              Id: 12559898450615284556
+              Id: 3392029348791641646
             }
           }
         }
@@ -29320,8 +31644,8 @@
         }
       }
       Objects {
-        Id: 9108674364317494819
-        Name: "Client"
+        Id: 11867304209714654386
+        Name: "ItemSystems_LootSpawner"
         Transform {
           Location {
           }
@@ -29333,20 +31657,24 @@
             Z: 1
           }
         }
-        ParentId: 4727595043561606872
-        ChildIds: 12180749836260665073
+        ParentId: 2513051206216427631
+        UnregisteredParameters {
+        }
         Collidable_v2 {
-          Value: "mc:ecollisionsetting:forceoff"
+          Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
-        NetworkContext {
+        Script {
+          ScriptAsset {
+            Id: 2579447573661021839
+          }
         }
       }
       Objects {
-        Id: 12180749836260665073
-        Name: "PlayerStats_LevelUpFXSpawner"
+        Id: 13333868567698361300
+        Name: "ItemSystems_LootFactoryAdapter"
         Transform {
           Location {
           }
@@ -29358,18 +31686,12 @@
             Z: 1
           }
         }
-        ParentId: 9108674364317494819
+        ParentId: 2513051206216427631
         UnregisteredParameters {
           Overrides {
-            Name: "cs:VFX_LocalPlayer"
+            Name: "cs:ModuleManager"
             AssetReference {
-              Id: 16439493886394696103
-            }
-          }
-          Overrides {
-            Name: "cs:VFX_OtherPlayer"
-            AssetReference {
-              Id: 16488843040722869207
+              Id: 5020659879017544757
             }
           }
         }
@@ -29381,7 +31703,58 @@
         }
         Script {
           ScriptAsset {
-            Id: 6058394291063560538
+            Id: 16213065261197084811
+          }
+        }
+      }
+      Objects {
+        Id: 8389847401878296273
+        Name: "ItemSystems_RollLootManager"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 2513051206216427631
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:RollEntryTemplate"
+            AssetReference {
+              Id: 18054600764996060667
+            }
+          }
+          Overrides {
+            Name: "cs:RollerTemplate"
+            AssetReference {
+              Id: 16620370987805266511
+            }
+          }
+          Overrides {
+            Name: "cs:ReliableEvents"
+            AssetReference {
+              Id: 1680988108412715813
+            }
+          }
+          Overrides {
+            Name: "cs:RollExpireTime"
+            Int: 30
+          }
+        }
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Script {
+          ScriptAsset {
+            Id: 17745311491484179514
           }
         }
       }
@@ -29555,6 +31928,15 @@
       PrimaryAsset {
         AssetType: "PlatformBrushAssetRef"
         AssetId: "FrameSolid4px_019"
+      }
+    }
+    Assets {
+      Id: 2461529389641718171
+      Name: "Center Circle 001 Outline"
+      PlatformAssetType: 9
+      PrimaryAsset {
+        AssetType: "PlatformBrushAssetRef"
+        AssetId: "CenterCircle_001Outline"
       }
     }
     Assets {

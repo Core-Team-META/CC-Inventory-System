@@ -5,47 +5,6 @@
   TextAsset {
     CustomParameters {
       Overrides {
-        Name: "cs:RarityCommon"
-        Color {
-          R: 1
-          G: 1
-          B: 1
-          A: 1
-        }
-      }
-      Overrides {
-        Name: "cs:RarityUncommon"
-        Color {
-          R: 0.0331125259
-          G: 1
-          A: 1
-        }
-      }
-      Overrides {
-        Name: "cs:RarityRare"
-        Color {
-          G: 0.134039372
-          B: 0.919999957
-          A: 1
-        }
-      }
-      Overrides {
-        Name: "cs:RarityEpic"
-        Color {
-          R: 0.960000038
-          B: 0.896423519
-          A: 1
-        }
-      }
-      Overrides {
-        Name: "cs:RarityLegendary"
-        Color {
-          R: 0.940000057
-          G: 0.336158961
-          A: 1
-        }
-      }
-      Overrides {
         Name: "cs:StatIconHealth"
         AssetReference {
           Id: 1285653368607626957
@@ -100,129 +59,21 @@
         }
       }
       Overrides {
-        Name: "cs:SFX_EquipArmor"
+        Name: "cs:Item"
         AssetReference {
-          Id: 1538004691548728471
+          Id: 13866541763018299709
         }
       }
       Overrides {
-        Name: "cs:SFX_EquipAxe"
-        AssetReference {
-          Id: 12893355638564104218
+        Name: "cs:ItemThemeFolder"
+        ObjectReference {
+          SelfId: 15086660078459822280
         }
       }
       Overrides {
-        Name: "cs:SFX_EquipBoots"
-        AssetReference {
-          Id: 1538004691548728471
-        }
-      }
-      Overrides {
-        Name: "cs:SFX_EquipDagger"
-        AssetReference {
-          Id: 12893355638564104218
-        }
-      }
-      Overrides {
-        Name: "cs:SFX_EquipGreatsword"
-        AssetReference {
-          Id: 12893355638564104218
-        }
-      }
-      Overrides {
-        Name: "cs:SFX_EquipFocus"
-        AssetReference {
-          Id: 3961394470878237143
-        }
-      }
-      Overrides {
-        Name: "cs:SFX_EquipHelmet"
-        AssetReference {
-          Id: 1538004691548728471
-        }
-      }
-      Overrides {
-        Name: "cs:SFX_EquipMace"
-        AssetReference {
-          Id: 16757952733114463039
-        }
-      }
-      Overrides {
-        Name: "cs:SFX_EquipShield"
-        AssetReference {
-          Id: 3961394470878237143
-        }
-      }
-      Overrides {
-        Name: "cs:SFX_EquipStaff"
-        AssetReference {
-          Id: 3961394470878237143
-        }
-      }
-      Overrides {
-        Name: "cs:SFX_EquipSword"
-        AssetReference {
-          Id: 12893355638564104218
-        }
-      }
-      Overrides {
-        Name: "cs:SFX_EquipTrinket"
-        AssetReference {
-          Id: 1246853273103719825
-        }
-      }
-      Overrides {
-        Name: "cs:SFX_EquipWarhammer"
-        AssetReference {
-          Id: 16757952733114463039
-        }
-      }
-      Overrides {
-        Name: "cs:SFX_EquipWand"
-        AssetReference {
-          Id: 3961394470878237143
-        }
-      }
-      Overrides {
-        Name: "cs:SFX_MiscPickup"
-        AssetReference {
-          Id: 17630497794136200610
-        }
-      }
-      Overrides {
-        Name: "cs:SFX_ConsumablePickup"
-        AssetReference {
-          Id: 2710581938246947078
-        }
-      }
-      Overrides {
-        Name: "cs:RarityCommonIndicator"
-        AssetReference {
-          Id: 1667967654323407458
-        }
-      }
-      Overrides {
-        Name: "cs:RarityUncommonIndicator"
-        AssetReference {
-          Id: 15631619586623121380
-        }
-      }
-      Overrides {
-        Name: "cs:RarityRareIndicator"
-        AssetReference {
-          Id: 13625467364280639550
-        }
-      }
-      Overrides {
-        Name: "cs:RarityEpicIndicator"
-        AssetReference {
-          Id: 12172072770097083710
-        }
-      }
-      Overrides {
-        Name: "cs:RarityLegendaryIndicator"
-        AssetReference {
-          Id: 13615535925942134142
+        Name: "cs:ItemTypesFolder"
+        ObjectReference {
+          SelfId: 2648351777898137767
         }
       }
     }

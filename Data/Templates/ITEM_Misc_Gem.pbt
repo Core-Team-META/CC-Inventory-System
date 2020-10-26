@@ -1,13 +1,13 @@
 ﻿Assets {
-  Id: 15055086068281261176
-  Name: "ITEM_Misc_ExampleCandle"
+  Id: 11970271170336702900
+  Name: "ITEM_Misc_Gem"
   PlatformAssetType: 5
   TemplateAsset {
     ObjectBlock {
       RootId: 1558197855077483019
       Objects {
         Id: 1558197855077483019
-        Name: "ITEM_Misc_ExampleCandle"
+        Name: "ITEM_Misc_Gem"
         Transform {
           Scale {
             X: 1
@@ -17,21 +17,20 @@
         }
         ParentId: 4781671109827199097
         ChildIds: 4755894725365256958
-        ChildIds: 12916001317274604236
         UnregisteredParameters {
           Overrides {
             Name: "cs:Name"
-            String: "Example Misc Candle"
+            String: "Crafting Resource Gem"
           }
           Overrides {
             Name: "cs:Icon"
             AssetReference {
-              Id: 14664897474530513931
+              Id: 13343979761047951729
             }
           }
           Overrides {
             Name: "cs:MaxStackableSize"
-            Int: 1
+            Int: 5
           }
           Overrides {
             Name: "cs:ItemType"
@@ -39,11 +38,11 @@
           }
           Overrides {
             Name: "cs:Description"
-            String: "A useless burnt out candle."
+            String: "Used in crafting mechanical stuff."
           }
           Overrides {
             Name: "cs:Rarity"
-            String: "Common"
+            String: "Uncommon"
           }
           Overrides {
             Name: "cs:Name:tooltip"
@@ -88,7 +87,6 @@
           Location {
           }
           Rotation {
-            Pitch: 10.0505953
           }
           Scale {
             X: 1
@@ -97,7 +95,7 @@
           }
         }
         ParentId: 1558197855077483019
-        ChildIds: 286054055824311789
+        ChildIds: 1648101658357956748
         WantsNetworking: true
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
@@ -109,20 +107,29 @@
         }
       }
       Objects {
-        Id: 286054055824311789
-        Name: "Candle 01"
+        Id: 1648101658357956748
+        Name: "Gem - Baguette Polished"
         Transform {
           Location {
+            Z: 11.3803329
           }
           Rotation {
           }
           Scale {
-            X: 1
-            Y: 1
-            Z: 1
+            X: 0.833780706
+            Y: 0.833780706
+            Z: 0.833780706
           }
         }
         ParentId: 4755894725365256958
+        UnregisteredParameters {
+          Overrides {
+            Name: "ma:Shared_BaseMaterial:id"
+            AssetReference {
+              Id: 13457900790578345057
+            }
+          }
+        }
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -131,7 +138,7 @@
         }
         CoreMesh {
           MeshAsset {
-            Id: 18243333251623460988
+            Id: 566098347886128093
           }
           Teams {
             IsTeamCollisionEnabled: true
@@ -144,58 +151,32 @@
           }
         }
       }
-      Objects {
-        Id: 12916001317274604236
-        Name: "Trigger"
-        Transform {
-          Location {
-            X: 683.833252
-            Y: -1950.21545
-          }
-          Rotation {
-            Yaw: -63.3271484
-          }
-          Scale {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        ParentId: 1558197855077483019
-        WantsNetworking: true
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:inheritfromparent"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        Trigger {
-          TeamSettings {
-            IsTeamCollisionEnabled: true
-            IsEnemyCollisionEnabled: true
-          }
-          TriggerShape_v2 {
-            Value: "mc:etriggershape:box"
-          }
-        }
-      }
     }
     Assets {
-      Id: 14664897474530513931
-      Name: "Fantasy Candle 001"
+      Id: 13343979761047951729
+      Name: "Fantasy Craft Gem 009"
       PlatformAssetType: 9
       PrimaryAsset {
         AssetType: "PlatformBrushAssetRef"
-        AssetId: "UI_Fantasy_Equip_Candle_001"
+        AssetId: "UI_Fantasy_Crafting_Gem_009"
       }
     }
     Assets {
-      Id: 18243333251623460988
-      Name: "Candle 01"
+      Id: 566098347886128093
+      Name: "Gem - Trillion Polished"
       PlatformAssetType: 1
       PrimaryAsset {
         AssetType: "StaticMeshAssetRef"
-        AssetId: "sm_prop_fantasy_candle_003"
+        AssetId: "sm_gem_trillion_polished_001"
+      }
+    }
+    Assets {
+      Id: 13457900790578345057
+      Name: "Amethyst"
+      PlatformAssetType: 2
+      PrimaryAsset {
+        AssetType: "MaterialAssetRef"
+        AssetId: "fxmi_amethyst"
       }
     }
     PrimaryAssetId {

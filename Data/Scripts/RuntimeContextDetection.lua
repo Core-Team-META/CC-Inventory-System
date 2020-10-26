@@ -1,4 +1,11 @@
-﻿-- Crazy that there isn't a builtin way to do this...
+﻿--[[
+    RuntimeContextDetection
+
+    Detects the context at runtime since script.isClient or script.isServer does not help us in certain
+    situations
+]]
+
+-- Crazy that there isn't a builtin way to do this...
 
 return {
     IsClientSide = function()

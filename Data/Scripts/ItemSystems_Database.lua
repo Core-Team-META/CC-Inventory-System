@@ -5,21 +5,20 @@
     Reads and indexes the raw data scripts. Provides factory methods for creating items.
 ]]
 local Item = require(script:GetCustomProperty("Item"))
+local LOOT_TABLE = script:GetCustomProperty("LootTable"):WaitForObject()
+local REGISTERED_ITEMS = script:GetCustomProperty("RegisteredItems"):WaitForObject()
+
 
 -- Load the database over a fixed number of frames.
 local LOAD_FRAME_LIMIT = 10
 
 -- If true, when the game loads it will log all the catalogs and their items that are registered to that catalog.
-local LOGCATALOG = false 
+local DEBUGLOGLOAD = true 
 
-local DATA_CATALOGS = {}
-local DATA_STATS = {}
-for _,itemType in ipairs(Item.TYPES) do
-    assert(script:GetCustomProperty(string.format("%s_Catalog", itemType)), "Could not load ItemSystems_DATA_"..itemType.."_Catalog script as it does not exist as a property of the database")
-    assert(script:GetCustomProperty(string.format("%s_Stats", itemType)), "Could not load ItemSystems_DATA_"..itemType.."_Stats script as it does not exist as a property of the database")
-    local catalog, _ = script:GetCustomProperty(string.format("%s_Catalog", itemType))
-    table.insert(DATA_CATALOGS, catalog)
-    table.insert(DATA_STATS, require(script:GetCustomProperty(string.format("%s_Stats", itemType))))
+local DATA_ITEMS = {}
+
+for _, item in pairs(REGISTERED_ITEMS:GetCustomProperties()) do
+    table.insert(DATA_ITEMS,item)
 end
 
 ---------------------------------------------------------------------------------------------------------
@@ -42,6 +41,7 @@ end
 
 function Database:CreateItemFromDrop(dropKey)
     local itemData = self:_RollDrop(dropKey)
+    assert(itemData, string.format("Could not drop item from %s group as the group may not exist in LootTables group.", dropKey))
     local item = Item.New(itemData)
     self:_RollItemStats(item)
     return item 
@@ -78,116 +78,119 @@ end
 -- PRIVATE
 ---------------------------------------------------------------------------------------------------------
 function Database:_Init()
+    self.itemStatRollInfos = {}
     Task.Spawn(function()
-        self:_LoadStats()
-        self:_LoadCatalog()
+        self:_LoadItems()
         self:_LoadDrops()
         self:_LoadAssetDerivedInformation()
         self.isLoaded = true
     end)
 end
 
-function Database:_LoadStats()
-    self.itemStatRollInfos = {}
-    for _,data in ipairs(DATA_STATS) do
-        for _,row in ipairs(data) do
-            assert(Item.STATS[row.Stat], string.format("unrecognized item stat %s", row.Stat))
-            self.itemStatRollInfos[row.StatKey] = self.itemStatRollInfos[row.StatKey] or { base = {}, bonus = {} }
-            local statRollInfos = self.itemStatRollInfos[row.StatKey]
-            local rollInfo = { statName = row.Stat, rollMin = tonumber(row.Min), rollMax = tonumber(row.Max), likelihood = tonumber(row.Likelihood) }
-            if row.Group == "Base" then
+-- Finds the stats folder of an item and loads it.
+function Database:_LoadStats(item)
+    local stats = item:FindChildByName("Stats")
+    if stats == nil then return end
+    --assert(stats,string.format("%s does not have a stats folder. Add a stats folder and populate it with stats. Use example items as a reference.",item.name))
+    self.itemStatRollInfos[item.name] = self.itemStatRollInfos[item.name] or { base = {}, bonus = {} }
+    local statRollInfos = self.itemStatRollInfos[item.name]
+    for _,statFolder in ipairs(stats:GetChildren()) do
+        if statFolder.name == "Base" then
+            for _, stat in ipairs(statFolder:GetChildren()) do
+                local min = stat:GetCustomProperty("Min")
+                local max = stat:GetCustomProperty("Max")
+                local likelihood = stat:GetCustomProperty("Likelihood")
+                local rollInfo = { statName = stat.name, rollMin = tonumber(min), rollMax = tonumber(max), likelihood = tonumber(likelihood) }
                 table.insert(statRollInfos.base, rollInfo)
-            else
-                assert(rollInfo.likelihood, "bonus stat missing likelihood")
-                statRollInfos.bonus[row.Group] = statRollInfos.bonus[row.Group] or { cumulativeLikelihood = 0 }
-                local bonusGroup = statRollInfos.bonus[row.Group]
-                bonusGroup.cumulativeLikelihood = bonusGroup.cumulativeLikelihood + rollInfo.likelihood
+            end
+        else
+            for _, stat in ipairs(statFolder:GetChildren()) do
+                local min = stat:GetCustomProperty("Min")
+                local max = stat:GetCustomProperty("Max")
+                local likelihood = stat:GetCustomProperty("Likelihood")
+                statRollInfos.bonus[statFolder.name] = statRollInfos.bonus[statFolder.name] or { cumulativeLikelihood = 0 }
+                local bonusGroup = statRollInfos.bonus[statFolder.name]
+                bonusGroup.cumulativeLikelihood = bonusGroup.cumulativeLikelihood + likelihood
+                local rollInfo = { statName = stat.name, rollMin = tonumber(min), rollMax = tonumber(max), likelihood = tonumber(likelihood) }
                 table.insert(bonusGroup, rollInfo)
             end
         end
     end
 end
 
-function Database:_LoadCatalog()
+function Database:_LoadItems()
     self.itemDatasByIndex = {}
     self.itemDatasByName = {}
     self.itemDatasByMUID = {}
     local index = 1
-    if LOGCATALOG then print("Loading Catalogs ----------------------------------------------- \n") end -- Debug
-    for _,catalog in ipairs(DATA_CATALOGS) do
-        local spawnedCatalog = World.SpawnAsset(catalog)
-        if LOGCATALOG then print(spawnedCatalog.name) end -- Debug
-        for _,muid in pairs(spawnedCatalog:GetCustomProperties()) do
-            local tempItem = World.SpawnAsset(muid)
-            local propName = tempItem:GetCustomProperty("Name")
-            if LOGCATALOG then print("|",muid, "    =",propName) end -- Debug
-            local propIcon = tempItem:GetCustomProperty("Icon")
-            local propMaxStackableSize = tempItem:GetCustomProperty("MaxStackableSize")
-            local propItemType = tempItem:GetCustomProperty("ItemType")
-            local propDescription = tempItem:GetCustomProperty("Description")
-            local propRarity = tempItem:GetCustomProperty("Rarity")
-            local propStatKey = tempItem:GetCustomProperty("StatKey")
-            local propLevelRequirement = tempItem:GetCustomProperty("LevelRequirement")
-            local propEquipmentStance = tempItem:GetCustomProperty("EquipmentStance")
-            local propConsumptionEffect = tempItem:GetCustomProperty("ConsumptionEffect")
-            tempItem:Destroy()
+    if DEBUGLOGLOAD then print("Loading Items ----------------------------------------------------- \n") end -- Debug
+    for _, itemTemplate in ipairs(DATA_ITEMS) do
+        local tempItem = World.SpawnAsset(itemTemplate)
+        local muid = tempItem.sourceTemplateId
+        local name = tempItem.name
+        local propName = tempItem:GetCustomProperty("Name")
+        local propIcon = tempItem:GetCustomProperty("Icon")
+        local propMaxStackableSize = tempItem:GetCustomProperty("MaxStackableSize")
+        local propItemType = tempItem:GetCustomProperty("ItemType")
+        local propDescription = tempItem:GetCustomProperty("Description")
+        local propRarity = tempItem:GetCustomProperty("Rarity")
+        local propLevelRequirement = tempItem:GetCustomProperty("LevelRequirement")
+        local propEquipmentStance = tempItem:GetCustomProperty("EquipmentStance")
+        local propConsumptionEffect = tempItem:GetCustomProperty("ConsumptionEffect")
+        self:_LoadStats(tempItem)
+        tempItem:Destroy()
 
-            if propMaxStackableSize then
-                assert(tonumber(propMaxStackableSize) <= 2^12, string.format("item stack size is too large - %s", propName))
-            end
+        if DEBUGLOGLOAD then print(name) end -- Debug
+        if DEBUGLOGLOAD then print("|",muid, "    =",propName) end -- Debug
 
-            if propConsumptionEffect then
-                assert(require(propConsumptionEffect), "Could not require consumption effect script from item - %s", propName)
-            end
-
-            assert(not self.itemDatasByName[propName], string.format("duplicate item name is not allowed - %s check your catalogs for duplicate names.", propName))
-            assert(not self.itemDatasByMUID[muid], string.format("duplicate item MUID is not allowed - %s", muid))
-            assert(Item.TYPES[propItemType], string.format("unrecognized item type - %s from %s you'll need to add the type to ItemSystems_Item script", propItemType, propName))
-            assert(Item.RARITIES[propRarity], string.format("unrecognized item rarity - %s check ItemSystems_ItemThemes to make sure this rarity exist.", propRarity))
-
-            if propStatKey ~= nil then
-                assert(self.itemStatRollInfos[propStatKey], string.format("unrecognized item stat key - %s ensure %s has the %s key in the ItemSystems_%s_Stats", propStatKey, propName, propStatKey, propItemType))
-            end
-
-            local isEquippable = Item.SLOT_CONSTRAINTS[propItemType] and true or false
-            local stance = propEquipmentStance or nil
-            local maxStackSize = propMaxStackableSize ~= nil and propMaxStackableSize > 1 and propMaxStackableSize or nil
-            local itemData = {
-                index = index,
-                name = propName,
-                iconMUID = propIcon,
-                type = propItemType,
-                rarity = propRarity,
-                levelRequirement = propLevelRequirement,
-                stance = stance,
-                isEquippable = isEquippable,
-                maxStackSize = maxStackSize,
-                muid = muid:match("^(.+):"), -- these MUIDs are used as keys; strip the irrelevant name part.
-                description = propDescription or "",
-                statKey = propStatKey,
-                consumptionEffect = propConsumptionEffect,
-                _RollStats = Database:_GetRollFunction(propStatKey)
-            }
-            index = index + 1
-            self.itemDatasByIndex[itemData.index] = itemData
-            self.itemDatasByName[itemData.name] = itemData
-            self.itemDatasByMUID[itemData.muid] = itemData
+        if propMaxStackableSize then
+            assert(tonumber(propMaxStackableSize) <= 2^12, string.format("item stack size is too large - %s", propName))
         end
-        spawnedCatalog:Destroy()
-        if LOGCATALOG then print("\n") end -- Debug
+
+        if propConsumptionEffect then
+            assert(require(propConsumptionEffect), "Could not require consumption effect script from item - %s", propName)
+        end
+
+        assert(not self.itemDatasByName[propName], string.format("duplicate item name is not allowed - %s check your registered items for duplicates", propName))
+        assert(not self.itemDatasByMUID[muid], string.format("duplicate item MUID is not allowed - %s", muid))
+        assert(Item.SLOT_CONSTRAINTS[propItemType], string.format("unrecognized item type - %s from %s add your item type to the ItemTypes folder in ItemRegistry", propItemType, propName))
+        assert(Item.RARITIES[propRarity], string.format("unrecognized item rarity - %s check ItemSystems_ItemThemes to make sure this rarity exist.", propRarity))
+
+        local isEquippable = Item.SLOT_CONSTRAINTS[propItemType] and true or false
+        local stance = propEquipmentStance or nil
+        local maxStackSize = propMaxStackableSize ~= nil and propMaxStackableSize > 1 and propMaxStackableSize or nil
+        local itemData = {
+            index = index,
+            name = propName,
+            iconMUID = propIcon,
+            type = propItemType,
+            rarity = propRarity,
+            levelRequirement = propLevelRequirement,
+            stance = stance,
+            isEquippable = isEquippable,
+            maxStackSize = maxStackSize,
+            muid = muid,
+            description = propDescription or "",
+            consumptionEffect = propConsumptionEffect,
+            _RollStats = Database:_GetRollFunction(name)
+        }
+        index = index + 1
+        self.itemDatasByIndex[itemData.index] = itemData
+        self.itemDatasByName[itemData.name] = itemData
+        self.itemDatasByMUID[itemData.muid] = itemData
+        if DEBUGLOGLOAD then print("\n") end -- Debug
     end
-    if LOGCATALOG then print("Loading Catalogs Ended -----------------------------------------------") end -- Debug
+    if DEBUGLOGLOAD then print("Loading Items Ended -----------------------------------------------\n") end -- Debug
 end
 
 function Database:_RollItemStats(item)
-    if item:GetStatKey() ~= nil then
-        item:RollStats()
-    end
+    item:RollStats()
 end
 
 function Database:_GetRollFunction(StatKey)
     local _RollStats = function()
         local statRollInfos = self.itemStatRollInfos[StatKey]
+        if statRollInfos == nil then return end -- If the item does not have stats.
         local stats = {}
         for _,rollInfo in ipairs(statRollInfos.base) do
             local statInfo = Item._StatInfo{
@@ -218,25 +221,45 @@ function Database:_GetRollFunction(StatKey)
 end
 
 function Database:_LoadDrops()
-    local data = require(script:GetCustomProperty("Drops"))
     self.itemDropTables = {}
     self.itemDropKeys = {}
-    for dropKey,lootTable in pairs(data) do
-        if not self.itemDropTables[dropKey] then
-            self.itemDropTables[dropKey] = { cumulativeLikelihood = 0 }
-            table.insert(self.itemDropKeys, dropKey)
+    for _, lootTable in pairs(LOOT_TABLE:GetChildren()) do
+        if not self.itemDropTables[lootTable.name] then
+            self.itemDropTables[lootTable.name] = { cumulativeLikelihood = 0 }
+            table.insert(self.itemDropKeys, lootTable.name)
         end
-        for i, row in pairs(lootTable) do
-            assert(row.ItemName, string.format("loot drop missing name at row - %d at loot table - %s", i, dropKey))
-            assert(self:FindItemDataByName(row.ItemName), string.format("loot drop references unknown item - %s at loot table - %s", row.ItemName, dropKey))
-            assert(row.Likelihood, string.format("loot drop missing likelihood - %s at loot table - %s", row.ItemName, dropKey))
-
-            local dropTable = self.itemDropTables[dropKey]
-            local dropInfo = { itemName = row.ItemName, likelihood = tonumber(row.Likelihood) }
+        for _, lootDrop in pairs(lootTable:GetChildren()) do
+            local item = lootDrop:GetCustomProperty("Item")
+            local likelihood = lootDrop:GetCustomProperty("Likelihood")
+            local tempObject = World.SpawnAsset(item)
+            local itemName = tempObject:GetCustomProperty("Name")
+            assert(self:FindItemDataByName(itemName), string.format("loot drop references unknown item - %s at loot table - %s make sure your item is registered.", itemName, lootTable.name))
+            assert(likelihood, string.format("loot drop missing likelihood custom property - %s at loot table - %s", itemName, lootTable.name))
+            local dropTable = self.itemDropTables[lootTable.name]
+            local dropInfo = { itemName = itemName, likelihood = tonumber(likelihood) }
             table.insert(dropTable, dropInfo)
             dropTable.cumulativeLikelihood = dropTable.cumulativeLikelihood + dropInfo.likelihood
+            tempObject:Destroy()
         end
     end
+
+    -- for dropKey,lootTable in pairs() do
+
+    --     if not self.itemDropTables[dropKey] then
+    --         self.itemDropTables[dropKey] = { cumulativeLikelihood = 0 }
+    --         table.insert(self.itemDropKeys, dropKey)
+    --     end
+    --     for i, row in pairs(lootTable) do
+    --         assert(row.ItemName, string.format("loot drop missing name at row - %d at loot table - %s", i, dropKey))
+    --         assert(self:FindItemDataByName(row.ItemName), string.format("loot drop references unknown item - %s at loot table - %s", row.ItemName, dropKey))
+    --         assert(row.Likelihood, string.format("loot drop missing likelihood - %s at loot table - %s", row.ItemName, dropKey))
+
+    --         local dropTable = self.itemDropTables[dropKey]
+    --         local dropInfo = { itemName = row.ItemName, likelihood = tonumber(row.Likelihood) }
+    --         table.insert(dropTable, dropInfo)
+    --         dropTable.cumulativeLikelihood = dropTable.cumulativeLikelihood + dropInfo.likelihood
+    --     end
+    -- end
 end
 
 function Database:_LoadAssetDerivedInformation()

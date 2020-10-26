@@ -3,23 +3,53 @@
     ================
 
     The Customizable properties of the Item System.
+    You can modify item themes and sounds from the ItemTypes or ItemThemes folder in the ItemRegistry folder
+    located in the hierarchy.
 ]]
 
-local RARITY_COLORS = {
-    Common      = script:GetCustomProperty("RarityCommon"),
-    Uncommon    = script:GetCustomProperty("RarityUncommon"),
-    Rare        = script:GetCustomProperty("RarityRare"),
-    Epic        = script:GetCustomProperty("RarityEpic"),
-    Legendary   = script:GetCustomProperty("RarityLegendary"),
-}
+local Item = script:GetCustomProperty("Item")
+local ITEM_THEME_FOLDER = script:GetCustomProperty("ItemThemeFolder"):WaitForObject()
+local ITEM_TYPES_FOLDER = script:GetCustomProperty("ItemTypesFolder"):WaitForObject()
 
-local RARITY_INDICATORS = {
-    Common      = script:GetCustomProperty("RarityCommonIndicator"),
-    Uncommon    = script:GetCustomProperty("RarityUncommonIndicator"),
-    Rare        = script:GetCustomProperty("RarityRareIndicator"),
-    Epic        = script:GetCustomProperty("RarityEpicIndicator"),
-    Legendary   = script:GetCustomProperty("RarityLegendaryIndicator"),
-}
+local RARITY_COLORS = {}
+local RARITY_INDICATORS = {}
+local ITEM_SFX = {}
+
+-- local ITEM_SFX = {
+--     Armor      = script:GetCustomProperty("SFX_EquipArmor"),
+--     Axe        = script:GetCustomProperty("SFX_EquipAxe"),
+--     Boots      = script:GetCustomProperty("SFX_EquipBoots"),
+--     Dagger     = script:GetCustomProperty("SFX_EquipDagger"),
+--     Greatsword = script:GetCustomProperty("SFX_EquipGreatsword"),
+--     Focus      = script:GetCustomProperty("SFX_EquipFocus"),
+--     Helmet     = script:GetCustomProperty("SFX_EquipHelmet"),
+--     Mace       = script:GetCustomProperty("SFX_EquipMace"),
+--     Shield     = script:GetCustomProperty("SFX_EquipShield"),
+--     Staff      = script:GetCustomProperty("SFX_EquipStaff"),
+--     Sword      = script:GetCustomProperty("SFX_EquipSword"),
+--     Trinket    = script:GetCustomProperty("SFX_EquipTrinket"),
+--     Warhammer  = script:GetCustomProperty("SFX_EquipWarhammer"),
+--     Wand       = script:GetCustomProperty("SFX_EquipWand"),
+--     Misc       = script:GetCustomProperty("SFX_MiscPickup"),
+--     Consumable = script:GetCustomProperty("SFX_ConsumablePickup"),
+-- }
+
+
+for _, rarity in pairs(ITEM_THEME_FOLDER:GetChildren()) do
+    local rarityName = rarity.name
+    local rarityColor = rarity:GetCustomProperty("RarityColor")
+    local lootDropIndiactor = rarity:GetCustomProperty("LootRarityIndicator")
+    assert(rarityColor, string.format("%s in ItemRarities folder is missing RarityColor custom property.", rarityName))
+    RARITY_COLORS[rarityName] = rarityColor
+    RARITY_INDICATORS[rarityName] = lootDropIndiactor
+end
+
+for _, type in pairs(ITEM_TYPES_FOLDER:GetChildren()) do
+    local typeName = type.name
+    local typeSFX = type:GetCustomProperty("EquipSFX")
+    assert(typeSFX,string.format("%s in ItemTypes does not have a EquipSFX custom property.",typeName))
+    ITEM_SFX[typeName] = typeSFX
+end
 
 local STAT_ICONS = {
     Health          = script:GetCustomProperty("StatIconHealth"),
@@ -80,26 +110,7 @@ local PLAYER_STAT_EXPLANATIONS = {
     Tenacity        = "Reduces hostile status effect duration",
 }
 
-local ITEM_SFX = {
-    --Ring       = script:GetCustomProperty("SFX_EquipRing"), -- Uncomment Me
-    Armor      = script:GetCustomProperty("SFX_EquipArmor"),
-    Axe        = script:GetCustomProperty("SFX_EquipAxe"),
-    Boots      = script:GetCustomProperty("SFX_EquipBoots"),
-    Dagger     = script:GetCustomProperty("SFX_EquipDagger"),
-    Greatsword = script:GetCustomProperty("SFX_EquipGreatsword"),
-    Focus      = script:GetCustomProperty("SFX_EquipFocus"),
-    Helmet     = script:GetCustomProperty("SFX_EquipHelmet"),
-    Mace       = script:GetCustomProperty("SFX_EquipMace"),
-    Shield     = script:GetCustomProperty("SFX_EquipShield"),
-    Staff      = script:GetCustomProperty("SFX_EquipStaff"),
-    Sword      = script:GetCustomProperty("SFX_EquipSword"),
-    Trinket    = script:GetCustomProperty("SFX_EquipTrinket"),
-    Warhammer  = script:GetCustomProperty("SFX_EquipWarhammer"),
-    Wand       = script:GetCustomProperty("SFX_EquipWand"),
-    Misc       = script:GetCustomProperty("SFX_MiscPickup"),
-    Consumable = script:GetCustomProperty("SFX_ConsumablePickup"),
 
-}
 
 return {
     GetRarityColor = function(rarity)

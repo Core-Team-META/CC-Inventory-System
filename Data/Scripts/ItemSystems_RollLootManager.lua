@@ -49,7 +49,6 @@ local function RollingComplete(entry) -- CoreObject
     local winner = nil
     if not Object.IsValid(entry) then return end 
     for _, playerEntry in pairs(entry.serverUserData.replies) do
-        --print(playerEntry.player, playerEntry.roll, playerEntry.participated)
         if playerEntry.roll > highestRoller and playerEntry.participated then 
             highestRoller = playerEntry.roll
             winner = playerEntry.player

@@ -10,6 +10,12 @@
           Id: 10470424565904250692
         }
       }
+      Overrides {
+        Name: "cs:ItemTypesFolder"
+        ObjectReference {
+          SelfId: 2648351777898137767
+        }
+      }
     }
   }
   SerializationVersion: 65

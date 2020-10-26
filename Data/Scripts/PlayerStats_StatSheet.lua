@@ -211,7 +211,7 @@ function StatSheet:_UpdateLevel()
         end
     end
     local newLevel = self.level
-    if newLevel ~= oldLevel then
+    if oldLevel and newLevel and newLevel ~= oldLevel and newLevel - oldLevel == 1 then
         -- Tells the client to create the cool level up VFX
         Events.Broadcast("StatSheet_LevelChanged", self, newLevel, oldLevel)
     end

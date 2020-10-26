@@ -1,13 +1,13 @@
 ﻿Assets {
-  Id: 5151373499733762021
-  Name: "ITEM_Consumable_ExamplePotion"
+  Id: 15055086068281261176
+  Name: "ITEM_Misc_IronBar"
   PlatformAssetType: 5
   TemplateAsset {
     ObjectBlock {
       RootId: 1558197855077483019
       Objects {
         Id: 1558197855077483019
-        Name: "ITEM_Consumable_ExamplePotion"
+        Name: "ITEM_Misc_IronBar"
         Transform {
           Scale {
             X: 1
@@ -20,39 +20,29 @@
         UnregisteredParameters {
           Overrides {
             Name: "cs:Name"
-            String: "Example Consumable"
+            String: "Crafting Resource Bar"
           }
           Overrides {
             Name: "cs:Icon"
             AssetReference {
-              Id: 12827538106333085954
+              Id: 9637757516311729663
             }
-          }
-          Overrides {
-            Name: "cs:LevelRequirement"
-            Int: 4
           }
           Overrides {
             Name: "cs:MaxStackableSize"
-            Int: 2
+            Int: 4000
           }
           Overrides {
             Name: "cs:ItemType"
-            String: "Consumable"
+            String: "Misc"
           }
           Overrides {
             Name: "cs:Description"
-            String: "A harmless potion! Click to use!"
+            String: "Used in crafting mechanical stuff."
           }
           Overrides {
             Name: "cs:Rarity"
-            String: "Uncommon"
-          }
-          Overrides {
-            Name: "cs:ConsumptionEffect"
-            AssetReference {
-              Id: 15665912626586225084
-            }
+            String: "Common"
           }
           Overrides {
             Name: "cs:Name:tooltip"
@@ -78,14 +68,6 @@
             Name: "cs:Rarity:tooltip"
             String: "The theme of this item. This does not affect stats in anyways, but gives it a nice look in the inventory and loot view."
           }
-          Overrides {
-            Name: "cs:ConsumptionEffect:tooltip"
-            String: "Only for the Consumable Item type. Read the Consumable Items section of the readme for details on how to implement this."
-          }
-          Overrides {
-            Name: "cs:LevelRequirement:tooltip"
-            String: "The level required to use this consumable"
-          }
         }
         WantsNetworking: true
         Collidable_v2 {
@@ -105,7 +87,6 @@
           Location {
           }
           Rotation {
-            Pitch: 10.0505953
           }
           Scale {
             X: 1
@@ -114,7 +95,7 @@
           }
         }
         ParentId: 1558197855077483019
-        ChildIds: 16516006589110556212
+        ChildIds: 1648101658357956748
         WantsNetworking: true
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
@@ -126,24 +107,29 @@
         }
       }
       Objects {
-        Id: 16516006589110556212
-        Name: "Bottle 06"
+        Id: 1648101658357956748
+        Name: "Gem - Baguette Polished"
         Transform {
           Location {
-            X: 6.6573233e-07
+            Z: 11.3803329
           }
           Rotation {
-            Pitch: -8.13918781
-            Yaw: 36.2024
-            Roll: -5.91641521
           }
           Scale {
-            X: 1
-            Y: 1
-            Z: 1
+            X: 0.833780706
+            Y: 0.833780706
+            Z: 0.833780706
           }
         }
         ParentId: 4755894725365256958
+        UnregisteredParameters {
+          Overrides {
+            Name: "ma:Shared_BaseMaterial:id"
+            AssetReference {
+              Id: 10724768283419220357
+            }
+          }
+        }
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -152,7 +138,7 @@
         }
         CoreMesh {
           MeshAsset {
-            Id: 16409216176786813860
+            Id: 10283743880838515553
           }
           Teams {
             IsTeamCollisionEnabled: true
@@ -167,21 +153,30 @@
       }
     }
     Assets {
-      Id: 12827538106333085954
-      Name: "Fantasy Spell Potion 006"
+      Id: 9637757516311729663
+      Name: "Fantasy Craft Bar 010"
       PlatformAssetType: 9
       PrimaryAsset {
         AssetType: "PlatformBrushAssetRef"
-        AssetId: "UI_Fantasy_Potion_006"
+        AssetId: "UI_Fantasy_Crafting_Bar_010"
       }
     }
     Assets {
-      Id: 16409216176786813860
-      Name: "Bottle 06"
+      Id: 10283743880838515553
+      Name: "Gem - Baguette Polished"
       PlatformAssetType: 1
       PrimaryAsset {
         AssetType: "StaticMeshAssetRef"
-        AssetId: "sm_prop_fantasy_bottle_006"
+        AssetId: "sm_gem_baguette_polished_001"
+      }
+    }
+    Assets {
+      Id: 10724768283419220357
+      Name: "Advanced Material"
+      PlatformAssetType: 2
+      PrimaryAsset {
+        AssetType: "MaterialAssetRef"
+        AssetId: "universal_material_001"
       }
     }
     PrimaryAssetId {

@@ -1,7 +1,7 @@
 ﻿--[[
 ---------------------------------------------------------------------------------------------------------------------------------------
     ItemSystems - README
-    1.0.0 - 10/16/2020
+    0.9.0 - 10/23/2020
     Creation by: structfoo (Kevin) (Manticore) (https://www.coregames.com/user/b9a4f899f12946f1b467f671f0fc0410)
     Adaptation and Modification by: Coderz (Drake) (META) (https://www.coregames.com/user/d5daea732ee3422fbe85aecb900e73ec)
  
@@ -56,7 +56,7 @@ Framework usage
         6) Reselect the root of the item in the hierarchy and navigate to the custom tab in properties.
         
         TIP: At this point you should see numerous custom properties. Each of them have additional help and information in their
-        tooltips that can be useful to examine.These properties determine how the item should register into the item database. 
+        tooltips that can be useful to examine. These properties determine how the item should register into the item database. 
         
         7) Set the level requirement property to have a value of 1.
         

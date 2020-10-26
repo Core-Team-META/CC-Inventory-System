@@ -42,6 +42,9 @@ local inventory = LOCAL_PLAYER.clientUserData.inventory
 while not LOCAL_PLAYER.clientUserData.statSheet do Task.Wait() end
 local statSheet = LOCAL_PLAYER.clientUserData.statSheet
 
+-- Players current level
+local currentLevel = nil
+
 -----------------------------------------------------------------------------------------------------------------
 PLAYER_NAME.text = LOCAL_PLAYER.name
 PLAYER_ICON:SetImage(LOCAL_PLAYER)
@@ -124,6 +127,9 @@ local function SetupControl(control, processSlot)
         assert(control.clientUserData.icon and control.clientUserData.border)
         if control:GetCustomProperty("NotAllowed") then
             control.clientUserData.notAllowed = control:GetCustomProperty("NotAllowed"):WaitForObject()
+        end
+        if control:GetCustomProperty("Disabled") then
+            control.clientUserData.disabled = control:GetCustomProperty("Disabled"):WaitForObject()
         end
         if control:GetCustomProperty("CounterRoot") then
             control.clientUserData.counterRoot = control:GetCustomProperty("CounterRoot"):WaitForObject()
@@ -266,7 +272,6 @@ end
 
 function view:DisplayLevelAlert(itemLevel)
     -- Interupt the existing alert to display a new one
-    print("Displaying",itemLevel)
     if REQUIRES_LEVEL_ALERT.clientUserData.existingAlert
     then REQUIRES_LEVEL_ALERT.clientUserData.existingAlert:Cancel() end
     REQUIRES_LEVEL_TEXT.text = string.format("Requires Level %s", itemLevel)
@@ -405,7 +410,12 @@ function view:PerformClickAction()
                 equipSlotIndex = slot
             end
             if equipSlotIndex then
-                self:AttemptMoveItem(self.clickSlotIndex, equipSlotIndex)
+                if inventory:IsSlotEnabled(equipSlotIndex) then
+                    self:AttemptMoveItem(self.clickSlotIndex, equipSlotIndex)
+                else
+                    PlaySound(SFX_DENIED)
+                end
+
             end
         end
     elseif clickedItem:HasConsumptionEffect() then
@@ -416,7 +426,11 @@ end
 function view:PerformDragDropAction()
     if self.slotUnderCursor or not self.isCursorInBounds then
         local toSlotIndex = self.slotUnderCursor and self.slotUnderCursor.clientUserData.slotIndex or nil
-        self:AttemptMoveItem(self.fromSlotIndex, toSlotIndex)
+        if inventory:IsSlotEnabled(toSlotIndex) then
+            self:AttemptMoveItem(self.fromSlotIndex, toSlotIndex)
+        else
+            PlaySound(SFX_DENIED)
+        end
     end
 end
 
@@ -505,6 +519,13 @@ function view:UpdatePlayerInfo()
 end
 
 function view:Draw()
+    -- TODO: Find a better place to track this.
+    local playerLevel = statSheet:GetLevel()
+    if currentLevel and currentLevel < playerLevel then
+        Events.Broadcast("DisplayLocalPlayerLevelUp")
+    end
+    currentLevel = playerLevel
+    --
     if not self:IsVisible() then
         self:Close()
     else
@@ -548,6 +569,7 @@ function view:DrawSlots()
             slot.clientUserData.border:SetImage(slot.clientUserData.borderDefaultImage)
             slot.clientUserData.border:SetColor(rarityColor)
             -- Backpacks have counter indicators.
+            
             if inventory:IsBackpackSlot(slot.clientUserData.slotIndex) then
                 if item:IsStackable() then
                     slot.clientUserData.counterRoot.visibility = Visibility.INHERIT
@@ -566,6 +588,11 @@ function view:DrawSlots()
             if inventory:IsBackpackSlot(slot.clientUserData.slotIndex) then
                 slot.clientUserData.counterRoot.visibility = Visibility.FORCE_OFF
             end
+        end
+
+        if inventory:IsEquipSlot(slot.clientUserData.slotIndex) then
+            -- An additional graphic shows when the slot is not enabled.
+            slot.clientUserData.disabled.visibility = inventory:IsSlotEnabled(slot.clientUserData.slotIndex) and Visibility.FORCE_OFF or Visibility.INHERIT
         end
     end
 end

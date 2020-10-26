@@ -97,6 +97,30 @@ function Inventory:IsEmptySlot(slotIndex)
 end
 
 -- True if the slot is the primary weapon slot.
+function Inventory:IsMainHandSlot(slotIndex)
+    return slotIndex == 1
+end
+
+-- True if the slot is the offhand weapons slot.
+function Inventory:IsOffHandSlot(slotIndex)
+    return slotIndex == 2
+end 
+
+-- True if the slot is a trinket slot.
+function Inventory:IsTrinketSlot(slotIndex)
+    return slotIndex >= 6 and slotIndex <= 8
+end 
+
+-- True if the offhand slot is disabled.
+function Inventory:IsSlotEnabled(slotIndex)
+    if self:IsOffHandSlot(slotIndex) then
+        return not self.isOffHandDisabled
+    else
+        return true
+    end
+end
+
+-- True if the slot is the primary weapon slot.
 function Inventory:IsPrimaryWeaponSlot(slotIndex)
     return slotIndex == 1
 end
@@ -339,6 +363,7 @@ function Inventory:_Init(database, owner)
     self.owner = owner
     self.lootInfos = {}
     self:_ClearSlots()
+    self:_UpdateSlotStatus()
     self:_RecalculateStatTotals()
 end
 
@@ -470,8 +495,17 @@ function Inventory:_SetSlotItem(slotIndex, item)
             local constraints = Item.SLOT_CONSTRAINTS[item:GetType()]
             self.isOffhandDisabled = constraints.isOffhandDisabled or false
         end
+        self:_UpdateSlotStatus()
         self:_RecalculateStatTotals()
         self:_FireEvent("itemEquippedEvent", slotIndex, item)
+    end
+end
+
+function Inventory:_UpdateSlotStatus()
+    self.isOffHandDisabled = false
+    local mainHandItem = self:GetItem(1)
+    if mainHandItem and mainHandItem:IsTwoHanded() then
+        self.isOffHandDisabled = true
     end
 end
 
@@ -483,7 +517,8 @@ function Inventory:_RecalculateStatTotals()
     for slotIndex = 1,#Inventory.EQUIP_SLOTS do
         local item = self:GetItem(slotIndex)
         if item then
-            if Inventory.EQUIP_SLOTS[slotIndex].slotType == "OffHand" and self.isOffhandDisabled then
+            if Inventory.EQUIP_SLOTS[slotIndex].slotType == "OffHand" and self.isOffHandDisabled then
+                -- Prevents stat calculation on OffHand equipment when holding a two handed weapon.
                 -- We have to be careful to not include offhand stats when they are disabled (by having a 2H weapon in mainhand).
             else
                 -- Accumulate stat contribution.

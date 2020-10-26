@@ -18,13 +18,13 @@ Objects {
   ChildIds: 16813558807825262224
   ChildIds: 14713340454944924967
   ChildIds: 10005074784157121906
-  ChildIds: 14982843161775482339
+  ChildIds: 16420670164568016775
   ChildIds: 17565214277585214929
-  ChildIds: 971297737377531071
-  ChildIds: 9477342016099356239
+  ChildIds: 4141054479326510490
+  ChildIds: 7366708697375746312
   ChildIds: 5012740452443113133
   ChildIds: 17933308923335840406
-  ChildIds: 16376903361466163397
+  ChildIds: 4649353316498909807
   UnregisteredParameters {
   }
   Collidable_v2 {
@@ -37,13 +37,12 @@ Objects {
   }
 }
 Objects {
-  Id: 16376903361466163397
-  Name: "Bench Full"
+  Id: 4649353316498909807
+  Name: "Items"
   Transform {
     Location {
-      X: -120.028107
-      Y: -346.329773
-      Z: -3.05175781e-05
+      X: -22.6154156
+      Y: 18.1475067
     }
     Rotation {
     }
@@ -54,25 +53,15 @@ Objects {
     }
   }
   ParentId: 4781671109827199097
+  WantsNetworking: true
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
   Visible_v2 {
     Value: "mc:evisibilitysetting:inheritfromparent"
   }
-  CoreMesh {
-    MeshAsset {
-      Id: 3166309416474212553
-    }
-    Teams {
-      IsTeamCollisionEnabled: true
-      IsEnemyCollisionEnabled: true
-    }
-    EnableCameraCollision: true
-    StaticMesh {
-      Physics {
-      }
-    }
+  Folder {
+    IsGroup: true
   }
 }
 Objects {
@@ -802,7 +791,7 @@ Objects {
 }
 Objects {
   Id: 5012740452443113133
-  Name: "Cube - Arcade 01"
+  Name: "RollForLootExample"
   Transform {
     Location {
       X: 178.203644
@@ -913,13 +902,52 @@ Objects {
   }
 }
 Objects {
-  Id: 9477342016099356239
-  Name: "Grass"
+  Id: 7366708697375746312
+  Name: "ItemSystems"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 2513051206216427631
+      value {
+        Overrides {
+          Name: "Name"
+          String: "ItemSystems"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 11272690134656118769
+    }
+  }
+}
+Objects {
+  Id: 4141054479326510490
+  Name: "ItemSystems_README"
   Transform {
     Location {
-      X: 92.2367706
-      Y: -729.673523
-      Z: -6.10351563e-05
     }
     Rotation {
     }
@@ -930,6 +958,150 @@ Objects {
     }
   }
   ParentId: 4781671109827199097
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Script {
+    ScriptAsset {
+      Id: 8874021884682456042
+    }
+  }
+}
+Objects {
+  Id: 17565214277585214929
+  Name: "Combat Dependencies"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 8014650375856875642
+      value {
+        Overrides {
+          Name: "Name"
+          String: "Combat Dependencies"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+        Overrides {
+          Name: "Scale"
+          Vector {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 1337239855421309995
+    }
+  }
+}
+Objects {
+  Id: 16420670164568016775
+  Name: "World"
+  Transform {
+    Location {
+      X: -9.26377869
+      Y: -358.667786
+      Z: -50
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  ChildIds: 14982843161775482339
+  ChildIds: 9477342016099356239
+  ChildIds: 16376903361466163397
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Folder {
+    IsGroup: true
+  }
+}
+Objects {
+  Id: 16376903361466163397
+  Name: "Bench Full"
+  Transform {
+    Location {
+      X: -110.764328
+      Y: 12.3380127
+      Z: 49.9999695
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 16420670164568016775
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  CoreMesh {
+    MeshAsset {
+      Id: 3166309416474212553
+    }
+    Teams {
+      IsTeamCollisionEnabled: true
+      IsEnemyCollisionEnabled: true
+    }
+    EnableCameraCollision: true
+    StaticMesh {
+      Physics {
+      }
+    }
+  }
+}
+Objects {
+  Id: 9477342016099356239
+  Name: "Grass"
+  Transform {
+    Location {
+      X: 101.500549
+      Y: -371.005737
+      Z: 49.999939
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 16420670164568016775
   ChildIds: 13811865037253714669
   ChildIds: 15443308409098645483
   ChildIds: 5580244099416714190
@@ -1179,97 +1351,12 @@ Objects {
   }
 }
 Objects {
-  Id: 971297737377531071
-  Name: "ItemSystems"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 2513051206216427631
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ItemSystems"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 11272690134656118769
-    }
-  }
-}
-Objects {
-  Id: 17565214277585214929
-  Name: "Combat Dependencies"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 8014650375856875642
-      value {
-        Overrides {
-          Name: "Name"
-          String: "Combat Dependencies"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 1337239855421309995
-    }
-  }
-}
-Objects {
   Id: 14982843161775482339
   Name: "Default Floor"
   Transform {
     Location {
-      Z: -50
+      X: 9.26377869
+      Y: 358.667786
     }
     Rotation {
     }
@@ -1279,7 +1366,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 4781671109827199097
+  ParentId: 16420670164568016775
   UnregisteredParameters {
     Overrides {
       Name: "ma:Shared_BaseMaterial:id"

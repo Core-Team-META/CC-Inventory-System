@@ -14,12 +14,11 @@ local function OnLocalPlayerLevelUp()
 end
 
 local function OnStatSheetLevelChanged(statSheet, newLevel, oldLevel)
-    if not statSheet then return end
-    if not newLevel or not oldLevel then return end
-    if newLevel - oldLevel > 1 then return end
+    if not statSheet or not newLevel or not oldLevel then return end
+    if newLevel <= oldLevel then return end
 
     for _,player in ipairs(Game.GetPlayers()) do
-        if player == LOCAL_PLAYER and player.clientUserData.statSheet == statSheet then
+        if player ~= LOCAL_PLAYER and player.clientUserData.statSheet == statSheet then
             SpawnLevelUpForPlayer(player)
             return
         end

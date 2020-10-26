@@ -5,15 +5,15 @@
   TextAsset {
     CustomParameters {
       Overrides {
-        Name: "cs:ItemSystems_Database"
-        AssetReference {
-          Id: 4685988691808682848
-        }
-      }
-      Overrides {
         Name: "cs:LootTemplate"
         AssetReference {
           Id: 7976155364275761170
+        }
+      }
+      Overrides {
+        Name: "cs:ItemSystems_Database"
+        AssetReference {
+          Id: 4685988691808682848
         }
       }
     }

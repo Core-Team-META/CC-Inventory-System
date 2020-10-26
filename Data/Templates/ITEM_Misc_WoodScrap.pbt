@@ -1,13 +1,13 @@
 ﻿Assets {
-  Id: 5151373499733762021
-  Name: "ITEM_Consumable_ExamplePotion"
+  Id: 13507126423793713404
+  Name: "ITEM_Misc_WoodScrap"
   PlatformAssetType: 5
   TemplateAsset {
     ObjectBlock {
       RootId: 1558197855077483019
       Objects {
         Id: 1558197855077483019
-        Name: "ITEM_Consumable_ExamplePotion"
+        Name: "ITEM_Misc_WoodScrap"
         Transform {
           Scale {
             X: 1
@@ -20,39 +20,29 @@
         UnregisteredParameters {
           Overrides {
             Name: "cs:Name"
-            String: "Example Consumable"
+            String: "Wood Scrap"
           }
           Overrides {
             Name: "cs:Icon"
             AssetReference {
-              Id: 12827538106333085954
+              Id: 1705111680353529718
             }
-          }
-          Overrides {
-            Name: "cs:LevelRequirement"
-            Int: 4
           }
           Overrides {
             Name: "cs:MaxStackableSize"
-            Int: 2
+            Int: 64
           }
           Overrides {
             Name: "cs:ItemType"
-            String: "Consumable"
+            String: "Misc"
           }
           Overrides {
             Name: "cs:Description"
-            String: "A harmless potion! Click to use!"
+            String: "Wood."
           }
           Overrides {
             Name: "cs:Rarity"
-            String: "Uncommon"
-          }
-          Overrides {
-            Name: "cs:ConsumptionEffect"
-            AssetReference {
-              Id: 15665912626586225084
-            }
+            String: "Legendary"
           }
           Overrides {
             Name: "cs:Name:tooltip"
@@ -78,14 +68,6 @@
             Name: "cs:Rarity:tooltip"
             String: "The theme of this item. This does not affect stats in anyways, but gives it a nice look in the inventory and loot view."
           }
-          Overrides {
-            Name: "cs:ConsumptionEffect:tooltip"
-            String: "Only for the Consumable Item type. Read the Consumable Items section of the readme for details on how to implement this."
-          }
-          Overrides {
-            Name: "cs:LevelRequirement:tooltip"
-            String: "The level required to use this consumable"
-          }
         }
         WantsNetworking: true
         Collidable_v2 {
@@ -105,7 +87,6 @@
           Location {
           }
           Rotation {
-            Pitch: 10.0505953
           }
           Scale {
             X: 1
@@ -114,7 +95,7 @@
           }
         }
         ParentId: 1558197855077483019
-        ChildIds: 16516006589110556212
+        ChildIds: 1648101658357956748
         WantsNetworking: true
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
@@ -126,24 +107,38 @@
         }
       }
       Objects {
-        Id: 16516006589110556212
-        Name: "Bottle 06"
+        Id: 1648101658357956748
+        Name: "Gem - Baguette Polished"
         Transform {
           Location {
-            X: 6.6573233e-07
+            X: -42.0132599
+            Z: 1.22114563
           }
           Rotation {
-            Pitch: -8.13918781
-            Yaw: 36.2024
-            Roll: -5.91641521
           }
           Scale {
-            X: 1
-            Y: 1
-            Z: 1
+            X: 0.301771939
+            Y: 0.301771939
+            Z: 0.301771939
           }
         }
         ParentId: 4755894725365256958
+        UnregisteredParameters {
+          Overrides {
+            Name: "ma:Shared_BaseMaterial:id"
+            AssetReference {
+              Id: 14237976478604476050
+            }
+          }
+          Overrides {
+            Name: "ma:Shared_BaseMaterial:color"
+            Color {
+              R: 0.77
+              G: 0.336556286
+              A: 1
+            }
+          }
+        }
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -152,7 +147,7 @@
         }
         CoreMesh {
           MeshAsset {
-            Id: 16409216176786813860
+            Id: 8153476362469942911
           }
           Teams {
             IsTeamCollisionEnabled: true
@@ -167,21 +162,30 @@
       }
     }
     Assets {
-      Id: 12827538106333085954
-      Name: "Fantasy Spell Potion 006"
+      Id: 1705111680353529718
+      Name: "Fantasy Wood 003"
       PlatformAssetType: 9
       PrimaryAsset {
         AssetType: "PlatformBrushAssetRef"
-        AssetId: "UI_Fantasy_Potion_006"
+        AssetId: "UI_Fantasy_Equip_Wood_003"
       }
     }
     Assets {
-      Id: 16409216176786813860
-      Name: "Bottle 06"
+      Id: 8153476362469942911
+      Name: "Wood 2x4 4m"
       PlatformAssetType: 1
       PrimaryAsset {
         AssetType: "StaticMeshAssetRef"
-        AssetId: "sm_prop_fantasy_bottle_006"
+        AssetId: "sm_two-by-four_3m"
+      }
+    }
+    Assets {
+      Id: 14237976478604476050
+      Name: "Bark Redwood 01"
+      PlatformAssetType: 2
+      PrimaryAsset {
+        AssetType: "MaterialAssetRef"
+        AssetId: "mi_bark_redwood_001_uv"
       }
     }
     PrimaryAssetId {

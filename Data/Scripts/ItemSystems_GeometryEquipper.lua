@@ -55,7 +55,12 @@ local function UpdateItemGeometry(slotIndex, item)
     DestroyGeometry(slotIndex)
     if item then
         local itemRoot = nil
-        if slotIndex ~= 1 then -- If not equipment
+        if item:IsTwoHanded() and not inventory:IsSlotEnabled(2) and inventory:GetItem(2) then
+            DestroyGeometry(2)
+            return
+        end
+        if slotIndex ~= 1 then -- We're equiping the weapon not adding it as geometry.
+            if not inventory:IsSlotEnabled(2) and inventory:GetItem(2) then return end
             itemRoot = World.SpawnAsset(item:GetMUID(), { parent = COMPONENT })
         else
             return
@@ -78,6 +83,7 @@ local function UpdateItemGeometry(slotIndex, item)
             end
         end
         currentEquippedGeometry[slotIndex] = itemRoot
+
     end
 end
 
