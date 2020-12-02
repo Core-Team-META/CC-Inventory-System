@@ -2,7 +2,7 @@
   Id: 10500461731014761394
   Name: "ArrowTrail"
   PlatformAssetType: 13
-  SerializationVersion: 65
+  SerializationVersion: 68
   CustomMaterialAsset {
     BaseMaterialId: 2721411165435899975
     ParameterOverrides {

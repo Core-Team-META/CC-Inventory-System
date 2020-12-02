@@ -36,24 +36,6 @@ Item.RARITIES = Enum{
     "Legendary",
 }
 
--- These are paired with Item.TYPES. If you want your item to be equippable then add your type here.
--- Item.SLOT_CONSTRAINTS = {
---     --Ring        = { slotType = "Accessory" }, -- Remove the comment.
---     Armor       = { slotType = "Chest" },
---     Axe         = { slotType = "MainHand" },
---     Boots       = { slotType = "Feet" },
---     Dagger      = { slotType = "MainHand" },
---     Greatsword  = { slotType = "MainHand", isOffHandDisabled = true }, -- isOffHandDisabled unequips your shield item in favor of this weapon.
---     Helmet      = { slotType = "Head" },
---     Mace        = { slotType = "MainHand" },
---     Shield      = { slotType = "OffHand" },
---     Staff       = { slotType = "MainHand", isOffHandDisabled = true },
---     Sword       = { slotType = "MainHand" },
---     Trinket     = { slotType = "Accessory" },
---     Warhammer   = { slotType = "MainHand", isOffHandDisabled = true },
---     Wand        = { slotType = "MainHand" },
--- }
-
 Item.SLOT_CONSTRAINTS = {}
 
 for _, item in pairs(ITEM_TYPES_FOLDER:GetChildren()) do
@@ -62,14 +44,13 @@ for _, item in pairs(ITEM_TYPES_FOLDER:GetChildren()) do
                                         isOffHandDisabled = item:GetCustomProperty("IsOffHandDisabled"), }
 end
 
-
 ---------------------------------------------------------------------------------------------------------
 -- PUBLIC
 ---------------------------------------------------------------------------------------------------------
-function Item.New(itemData, stackSize, enhancementLevel)
+function Item.New(itemData, stackSize)
     local o = {}
     setmetatable(o, Item)
-    o:_Init(itemData, stackSize, enhancementLevel)
+    o:_Init(itemData, stackSize)
     return o
 end
 
@@ -81,12 +62,37 @@ function Item.StatGreaterThan(item1, item2, statName)
     return item1:GetStatTotal(statName) > item2:GetStatTotal(statName) or false
 end
 
+function Item:NewBackpackInventory(Inventory, database, owner, inventoryHash)
+    if self:IsBackpack() then
+        if not owner then return end
+        local newInventory = Inventory.New(database,owner,self.data.backpackSlotCount,0)
+        newInventory:LoadHash(inventoryHash)
+        self:SetBackpackInventory(newInventory)
+    end
+end
+
+function Item:GetBackpackInventory()
+    if self:IsBackpack() then
+        return self.backpackInventory
+    end
+end
+
+function Item:SetBackpackInventory(inventory)
+    if self:IsBackpack() then
+        self.backpackInventory = inventory
+    end
+end
+
 function Item:RuntimeHash()
     return self:_IntoHash(true)
 end
 
 function Item:PersistentHash()
     return self:_IntoHash(false)
+end
+
+function Item:GetID()
+    return self.data.index
 end
 
 function Item:GetName()
@@ -113,14 +119,18 @@ function Item:IsEquippable()
     return self.data.isEquippable
 end
 
+function Item:IsTwoHanded()
+    return self.SLOT_CONSTRAINTS[self:GetType()].isOffHandDisabled
+end
+
+function Item:IsBackpack()
+    return self.data.isBackpack
+end
+
 function Item:GetEquipSlotType()
     if self:IsEquippable() then
         return self.SLOT_CONSTRAINTS[self:GetType()].slotType
     end
-end
-
-function Item:IsTwoHanded()
-    return self.SLOT_CONSTRAINTS[self:GetType()].isOffHandDisabled
 end
 
 function Item:IsStackable()
@@ -132,7 +142,7 @@ function Item:GetStackSize()
 end
 
 function Item:SetStackSize(stackSize)
-    assert(self:IsStackable() and 1 <= stackSize and stackSize <= self:GetMaxStackSize())
+    assert(self:IsStackable() and stackSize >= 0)
     self.stackSize = stackSize
 end
 
@@ -145,7 +155,9 @@ function Item:IsFullStack()
 end
 
 function Item:WillStackWith(otherItem)
-    return otherItem and self:GetMUID() == otherItem:GetMUID() and self:IsStackable()
+    return otherItem and 
+    self:GetMUID() == otherItem:GetMUID() and 
+    self:IsStackable()
 end
 
 function Item:GetAvailableStackSpace()
@@ -171,10 +183,6 @@ function Item:GetAbilityNames()
     return self.data.abilityNames
 end
 
-function Item:GetPassives()
-    return self.data.passives
-end
-
 function Item:GetDescription()
     return self.data.description
 end
@@ -185,6 +193,15 @@ end
 
 function Item:GetStatTotal(statName)
     return self.statTotals[statName] or 0
+end
+
+function Item:GetSalvageComponents()
+    -- Returns a table containg salavage data of the item
+    -- {
+    --      componentItem = assetRef,
+    --      amount = int, 
+    -- }
+    return self.data.salvageComponents
 end
 
 function Item:CopyStats(other)
@@ -216,11 +233,13 @@ end
 local HASH_RUNTIME = "R"
 local HASH_PERSISTENT = "P"
 local HASH_DELIM_INTRO = "|"
+local HASH_DELIM_SUBINV = ">"
 local HASH_DELIM_STAT_BASE = "#"
 local HASH_DELIM_STAT_BONUS = "&"
 local HASH_DELIM_STAT_EQUALS = "="
-local HASH_PATTERN_FULL = "^(.*)|(.*)|(.*)$"
+local HASH_PATTERN_FULL = "^(.*)|(.*)|(.*)|(.*)$"
 local HASH_PATTERN_STAT = "([#&])([^#&=]+)=(....)"
+local HASH_INVENTORY_PATTERN = "<([^<>;]+)>([^<>;]+)<([^<>;]+)>;"
 
 function Item._StatInfo(statInfo)
     assert(statInfo.name, "stat info missing name")
@@ -229,12 +248,12 @@ function Item._StatInfo(statInfo)
     return statInfo
 end
 
-function Item:_Init(itemData, stackSize, enhancementLevel)
+function Item:_Init(itemData, stackSize)
     self.data = itemData
     self.stackSize = stackSize or 1
-    self.enhancementLevel = enhancementLevel or 0
     self.stats = {}
     self.statTotals = {}
+    self.backpackInventory = nil
 end
 
 function Item:_IntoHash(isRuntime)
@@ -256,6 +275,30 @@ function Item:_IntoHash(isRuntime)
             table.insert(hashParts, statValue)
         end
     end
+
+    table.insert(hashParts, HASH_DELIM_INTRO)
+    local subItemCount = 0
+    if self:IsBackpack() then
+        local backpackInventory = self:GetBackpackInventory()
+        if backpackInventory and self:IsBackpack() then
+            for i, item in backpackInventory:IterateEntireInventory() do
+                if item then
+                    subItemCount = subItemCount + 1
+                end
+            end
+        end
+        local inventoryHash = isRuntime and HASH_RUNTIME or HASH_PERSISTENT
+        if isRuntime and backpackInventory then
+            inventoryHash = backpackInventory:RuntimeHash()
+        elseif backpackInventory then
+            inventoryHash = backpackInventory:PersistentHash()
+        end
+        table.insert(hashParts, string.format("<%i>", subItemCount))
+        table.insert(hashParts, ";")
+        table.insert(hashParts, inventoryHash:sub(2))
+    else
+        table.insert(hashParts, string.format("<%i>", subItemCount))
+    end
     return table.concat(hashParts)
 end
 
@@ -275,8 +318,7 @@ function Item._FromHash(database, hash)
         return
     end
     local stackSize = hashStackSize and Base64.Decode12(hashStackSize) or nil
-    local enhancementLevel = hashEnhancementLevel and Base64.Decode6(hashEnhancementLevel) or nil 
-    local item = Item.New(itemData, stackSize, enhancementLevel)
+    local item = Item.New(itemData, stackSize)
     for statDelimiter,statNameHash,statValueHash in hashItemStats:gmatch(HASH_PATTERN_STAT) do
         local statIsBase = statDelimiter == HASH_DELIM_STAT_BASE or nil
         local statName = isRuntime and Item.STATS[Base64.Decode6(statNameHash)] or statNameHash
@@ -306,9 +348,11 @@ function Item:__tostring()
     table.insert(s, "ITEM:\n")
     table.insert(s, string.format("\tname:   %s\n", self.data.name))
     table.insert(s, string.format("\trarity: %s\n", self.data.rarity))
-    for _,stat in ipairs(self.stats) do
-        local statType = stat.isBase and "BASE" or "BONUS"
-        table.insert(s, string.format("\tstat:   %-5s %-9s %d\n", statType, stat.name, stat.value))
+    if self.stats then
+        for _,stat in ipairs(self.stats) do
+            local statType = stat.isBase and "BASE" or "BONUS"
+            table.insert(s, string.format("\tstat:   %-5s %-9s %d\n", statType, stat.name, stat.value))
+        end
     end
     table.insert(s, string.format("\thash-R: %s\n", self:RuntimeHash()))
     table.insert(s, string.format("\thash-P: %s\n", self:PersistentHash()))

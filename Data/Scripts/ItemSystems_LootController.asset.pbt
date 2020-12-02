@@ -49,7 +49,13 @@
         Name: "cs:LootDestroyDelay"
         Int: 60
       }
+      Overrides {
+        Name: "cs:ItemSystems_Database"
+        AssetReference {
+          Id: 4685988691808682848
+        }
+      }
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 68
 }

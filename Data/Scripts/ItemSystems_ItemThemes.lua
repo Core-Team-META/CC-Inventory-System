@@ -1,7 +1,6 @@
 ﻿--[[
     ItemSystems.ItemThemes
     ================
-
     The Customizable properties of the Item System.
     You can modify item themes and sounds from the ItemTypes or ItemThemes folder in the ItemRegistry folder
     located in the hierarchy.
@@ -12,35 +11,17 @@ local ITEM_THEME_FOLDER = script:GetCustomProperty("ItemThemeFolder"):WaitForObj
 local ITEM_TYPES_FOLDER = script:GetCustomProperty("ItemTypesFolder"):WaitForObject()
 
 local RARITY_COLORS = {}
+local RARITY_INDEX = {}
 local RARITY_INDICATORS = {}
 local ITEM_SFX = {}
 
--- local ITEM_SFX = {
---     Armor      = script:GetCustomProperty("SFX_EquipArmor"),
---     Axe        = script:GetCustomProperty("SFX_EquipAxe"),
---     Boots      = script:GetCustomProperty("SFX_EquipBoots"),
---     Dagger     = script:GetCustomProperty("SFX_EquipDagger"),
---     Greatsword = script:GetCustomProperty("SFX_EquipGreatsword"),
---     Focus      = script:GetCustomProperty("SFX_EquipFocus"),
---     Helmet     = script:GetCustomProperty("SFX_EquipHelmet"),
---     Mace       = script:GetCustomProperty("SFX_EquipMace"),
---     Shield     = script:GetCustomProperty("SFX_EquipShield"),
---     Staff      = script:GetCustomProperty("SFX_EquipStaff"),
---     Sword      = script:GetCustomProperty("SFX_EquipSword"),
---     Trinket    = script:GetCustomProperty("SFX_EquipTrinket"),
---     Warhammer  = script:GetCustomProperty("SFX_EquipWarhammer"),
---     Wand       = script:GetCustomProperty("SFX_EquipWand"),
---     Misc       = script:GetCustomProperty("SFX_MiscPickup"),
---     Consumable = script:GetCustomProperty("SFX_ConsumablePickup"),
--- }
-
-
-for _, rarity in pairs(ITEM_THEME_FOLDER:GetChildren()) do
+for i, rarity in pairs(ITEM_THEME_FOLDER:GetChildren()) do
     local rarityName = rarity.name
     local rarityColor = rarity:GetCustomProperty("RarityColor")
     local lootDropIndiactor = rarity:GetCustomProperty("LootRarityIndicator")
     assert(rarityColor, string.format("%s in ItemRarities folder is missing RarityColor custom property.", rarityName))
     RARITY_COLORS[rarityName] = rarityColor
+    RARITY_INDEX[rarityName] = i
     RARITY_INDICATORS[rarityName] = lootDropIndiactor
 end
 
@@ -110,14 +91,26 @@ local PLAYER_STAT_EXPLANATIONS = {
     Tenacity        = "Reduces hostile status effect duration",
 }
 
-
-
+-- Helper functions to getting information related to an item
 return {
     GetRarityColor = function(rarity)
+        if not RARITY_COLORS[rarity] then
+            warn(string.format("%s rarity type does not exist. Check item rarities folder in item registry and make sure it exist.",rarity))
+        end
         return Color.New(RARITY_COLORS[rarity])
+    end,
+    
+    GetRarityIndex = function(rarityName)
+        if not RARITY_INDEX[rarityName] then
+            warn(string.format("%s rarity index does not exist. Check item rarities folder in item registry and make sure it exist.",rarityName))
+        end
+    	return RARITY_INDEX[rarityName]
     end,
 
     GetRarityLootIndicator = function(rarity)
+        if not RARITY_INDICATORS[rarity] then
+            warn(string.format("%s rarity indicator does not exist. Check item rarities folder in item registry and make sure it exist.",rarity))
+        end
         return RARITY_INDICATORS[rarity]
     end,
 
@@ -142,9 +135,9 @@ return {
     end,
 
     GetItemSFX = function(itemType)
-        local SuprressWarning = false -- Change this to true if you don't care about the warning messages.
+        local suppressWarning = true -- Change this to true if you don't care about the warning messages.
         if not ITEM_SFX[itemType] then
-            if not SuprressWarning then
+            if not suppressWarning then
                 warn(string.format("Item type: %s does not have an associated SFX custom property. This will default to Misc SFX. Consider adding one to ItemThemes or supress the warning inside the script.",itemType))
             end
             return ITEM_SFX["Misc"]

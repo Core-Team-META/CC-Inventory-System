@@ -20,11 +20,11 @@
         ChildIds: 12909080179993159603
         UnregisteredParameters {
           Overrides {
-            Name: "cs:INFO"
+            Name: "cs:LOOTINFO"
             String: ""
           }
           Overrides {
-            Name: "cs:INFO:isrep"
+            Name: "cs:LOOTINFO:isrep"
             Bool: true
           }
         }
@@ -128,7 +128,6 @@
           }
         }
         ParentId: 13938044465804070832
-        ChildIds: 8005468150583163358
         ChildIds: 11788056424733759797
         ChildIds: 11177406314880341480
         WantsNetworking: true
@@ -139,39 +138,6 @@
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
         NetworkContext {
-        }
-      }
-      Objects {
-        Id: 8005468150583163358
-        Name: "Trigger"
-        Transform {
-          Location {
-          }
-          Rotation {
-          }
-          Scale {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        ParentId: 12909080179993159603
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:forceon"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        Trigger {
-          Interactable: true
-          InteractionLabel: "View Loot"
-          TeamSettings {
-            IsTeamCollisionEnabled: true
-            IsEnemyCollisionEnabled: true
-          }
-          TriggerShape_v2 {
-            Value: "mc:etriggershape:sphere"
-          }
         }
       }
       Objects {
@@ -236,12 +202,6 @@
             Name: "cs:OwningIndicator"
             ObjectReference {
               SubObjectId: 2730010688871071614
-            }
-          }
-          Overrides {
-            Name: "cs:OpenLootViewTrigger"
-            ObjectReference {
-              SubObjectId: 8005468150583163358
             }
           }
         }
@@ -538,5 +498,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 68
 }

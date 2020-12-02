@@ -1,5 +1,6 @@
-﻿-- Do not use in a release build of your game!
-if not script:GetCustomProperty("Enabled") then return end
+﻿local isEnabled = script:GetCustomProperty("Enabled")
+if not isEnabled then return end
+if not Environment.IsPreview() then return end
 
 local CHEATDROPKEY = script:GetCustomProperty("CheatDropKey")
 
@@ -7,17 +8,38 @@ local Database = require(script:GetCustomProperty("ItemSystems_Database"))
 
 print([[
 ------------------------------------------------------------------------------------
-!!! DEVELOPER CHEATS ENABLED !!!
+!!! DEVELOPER CHEATS ENABLED !!! ( Preview Only )
 ------------------------------------------------------------------------------------
 
 DROP LOOT
 [down-arrow]
 Spawns a fully randomized loot drop at the position of the player.
 
+TOGGLE FLY
+[v]
+Toggle fly mode.
+
+KILL YOURSELF
+[up-arrow]
+Needless to say.
+
 CLEAR INVENTORY
 [delete]
 Clears all items from the player's inventory. The game must be restarted in order
 to take effect.
+
+QUICK SAVE INVENTORY
+[F1]
+Save your current inventory so you can load it quickly from the editor.
+
+QUICK LOAD INVENTORY
+[F2]
+Load the quick save of your inventory.
+
+CLEAR INVENTORY QUICK SAVE 
+[F3]
+Load the quick save of your inventory.
+
 
 PRINT INVENTORY
 [F8]
@@ -28,7 +50,7 @@ ADD EXPERIENCE
 Increments the player experience by 50.
 
 ADD LEVEL
-[up-arrow]
+[left-arrow]
 Increments the player level by 1.
 
 RESET LEVEL
@@ -46,16 +68,55 @@ local BINDING_DROP_LOOT         = "ability_extra_47"    -- [down-arrow]
 local BINDING_INVENTORY_CLEAR   = "ability_extra_66"    -- [delete]
 local BINDING_INVENTORY_PRINT   = "ability_extra_57"    -- [F8]
 local BINDING_EXPERIENCE_ADD    = "ability_extra_49"    -- [right-arrow]
-local BINDING_LEVEL_ADD         = "ability_extra_46"    -- [up-arrow]
+local BINDING_LEVEL_ADD         = "ability_extra_48"    -- [left-arrow]
 local BINDING_LEVEL_RESET       = "ability_extra_63"    -- [home]
 local BINDING_STATSHEET_PRINT   = "ability_extra_56"    -- [F7]
+local BINDING_KILL              = "ability_extra_46"    -- [up-arrow]
+local BINDING_FLY               = "ability_extra_42"    -- [V]
+local BINDING_QUICKSAVE         = "ability_extra_50"    -- [F1]
+local BINDING_QUICKLOAD         = "ability_extra_51"    -- [F2]
+local BINDING_CLEARQUICKSAVE    = "ability_extra_52"    -- [F3]
+
 
 local function OnBindingPressed(player, binding)
     if binding == BINDING_DROP_LOOT then
         Database:WaitUntilLoaded()
         local playerPosition = player:GetWorldPosition()
-        Events.Broadcast("DropLoot", CHEATDROPKEY, playerPosition - 100 * Vector3.UP)
+        Events.Broadcast("OnDropLoot", CHEATDROPKEY, playerPosition - 100 * Vector3.UP)
         print("CHEAT: DROP LOOT")
+    elseif binding == BINDING_QUICKSAVE then
+        local inventory = player.serverUserData.inventory
+        local hash = inventory:PersistentHash()
+        local playerData = Storage.GetPlayerData(player)
+        playerData.QSinventory = hash
+        Storage.SetPlayerData(player, playerData)
+        print("CHEAT: QUICK SAVE INVENTORY")
+    elseif binding == BINDING_QUICKLOAD then
+        local inventory = player.serverUserData.inventory
+        local playerData = Storage.GetPlayerData(player)
+        if playerData.QSinventory then
+            inventory:LoadHash(playerData.QSinventory)
+            print("CHEAT: QUICK LOAD INVENTORY")
+        else
+            warn("CHEAT: Could not load inventory with quick save hash as there is no quick save.")
+        end
+    elseif binding == BINDING_CLEARQUICKSAVE then
+        local inventory = player.serverUserData.inventory
+        local playerData = Storage.GetPlayerData(player)
+        playerData.QSinventory = nil
+        Storage.SetPlayerData(player, playerData)
+        print("CHEAT: QUICK SAVE CLEARED")
+    elseif binding == BINDING_FLY then
+        if player.isFlying then
+            print("CHEAT: WALKING MODE")
+            player:ActivateWalking()
+        else
+            print("CHEAT: FLYING MODE")
+            player:ActivateFlying()
+        end
+    elseif binding == BINDING_KILL then
+        player:Die()
+        print("CHEAT: KILL YOURSELF")
     elseif binding == BINDING_INVENTORY_CLEAR then
         local playerData = Storage.GetPlayerData(player)
         playerData.inventoryHash = nil
@@ -81,5 +142,5 @@ local function OnBindingPressed(player, binding)
         print(player.serverUserData.statSheet)
     end
 end
-
+    
 Game.playerJoinedEvent:Connect(function(player) player.bindingPressedEvent:Connect(OnBindingPressed) end)

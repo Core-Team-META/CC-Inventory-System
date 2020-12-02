@@ -13,7 +13,7 @@
       Overrides {
         Name: "cs:RegisteredItems"
         ObjectReference {
-          SelfId: 13802261518226110233
+          SelfId: 7856194731303563242
         }
       }
       Overrides {
@@ -22,7 +22,13 @@
           SelfId: 15561915128000536070
         }
       }
+      Overrides {
+        Name: "cs:SalvageTable"
+        ObjectReference {
+          SelfId: 9831645784876922823
+        }
+      }
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 68
 }

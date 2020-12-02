@@ -16,7 +16,13 @@
           Id: 4685988691808682848
         }
       }
+      Overrides {
+        Name: "cs:LootFolder"
+        ObjectReference {
+          SelfId: 9271963386153527131
+        }
+      }
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 68
 }

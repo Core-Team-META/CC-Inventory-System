@@ -2,7 +2,7 @@
   Id: 1247493420454027953
   Name: "Kustom ArmourSet1 Base Metal"
   PlatformAssetType: 13
-  SerializationVersion: 65
+  SerializationVersion: 68
   CustomMaterialAsset {
     BaseMaterialId: 14212988502358508072
     ParameterOverrides {

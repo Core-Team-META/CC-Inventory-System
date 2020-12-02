@@ -21,7 +21,7 @@ Objects {
   ChildIds: 16420670164568016775
   ChildIds: 17565214277585214929
   ChildIds: 4141054479326510490
-  ChildIds: 7366708697375746312
+  ChildIds: 13563874273447012072
   ChildIds: 5012740452443113133
   ChildIds: 17933308923335840406
   ChildIds: 4649353316498909807
@@ -902,9 +902,13 @@ Objects {
   }
 }
 Objects {
-  Id: 7366708697375746312
+  Id: 13563874273447012072
   Name: "ItemSystems"
   Transform {
+    Location {
+    }
+    Rotation {
+    }
     Scale {
       X: 1
       Y: 1
@@ -912,35 +916,17 @@ Objects {
     }
   }
   ParentId: 4781671109827199097
+  UnregisteredParameters {
+  }
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
   Visible_v2 {
     Value: "mc:evisibilitysetting:inheritfromparent"
   }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 2513051206216427631
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ItemSystems"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 11272690134656118769
-    }
+  Folder {
+    IsFilePartition: true
+    FilePartitionName: "ItemSystems"
   }
 }
 Objects {
@@ -1902,6 +1888,9 @@ Objects {
       AppearanceChannelingTime: 2
       MountChannelingTime: 2
       FlipOnMultiJump: true
+      CanMoveUp: true
+      CanMoveDown: true
+      IsMountEnabled: true
     }
   }
 }
@@ -1964,6 +1953,23 @@ Objects {
         Value: "mc:echatmode:allonly"
       }
       EnablePlayModeProfiler: true
+      ChatSettings {
+        ChatMode {
+        }
+        ChatPosition {
+          X: 40
+        }
+        ChatSize {
+          X: 450
+          Y: 400
+        }
+        ChatHorizontalAlignment {
+          Value: "mc:ecorehorizontalalign:left"
+        }
+        ChatVerticalAlignment {
+          Value: "mc:ecorehorizontalalign:center"
+        }
+      }
     }
   }
 }

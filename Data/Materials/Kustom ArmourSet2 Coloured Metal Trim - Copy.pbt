@@ -2,7 +2,7 @@
   Id: 7943316154070914036
   Name: "Kustom ArmourSet2 Coloured Metal Trim - Copy"
   PlatformAssetType: 13
-  SerializationVersion: 65
+  SerializationVersion: 68
   CustomMaterialAsset {
     BaseMaterialId: 12610911751312903656
     ParameterOverrides {

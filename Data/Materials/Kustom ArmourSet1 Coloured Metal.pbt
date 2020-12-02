@@ -2,7 +2,7 @@
   Id: 12909729295927048223
   Name: "Kustom ArmourSet1 Coloured Metal "
   PlatformAssetType: 13
-  SerializationVersion: 65
+  SerializationVersion: 68
   CustomMaterialAsset {
     BaseMaterialId: 12610911751312903656
     ParameterOverrides {

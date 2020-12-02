@@ -2,13 +2,15 @@
 
 local txQueue = Deque.New()
 
-local function Retry()
+function Retry()
     while not txQueue:Empty() do
         local method = txQueue:Front().method
         local broadcast = Events[method]
         local result = broadcast(table.unpack(txQueue:Front()))
-        if result == BroadcastEventResultCode.SUCCESS then
+        if result ~= BroadcastEventResultCode.EXCEEDED_RATE_LIMIT then
             txQueue:PopFront()
+        else
+            Task.Wait(1)
         end
     end
 end
@@ -31,6 +33,5 @@ function ReliableEvents.BroadcastToAllPlayers(...)
 end
 
 local txTask = Task.Spawn(function() Retry() end)
-txTask.repeatCount = -1
 
 return ReliableEvents
