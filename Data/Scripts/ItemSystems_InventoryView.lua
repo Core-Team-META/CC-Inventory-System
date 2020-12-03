@@ -382,6 +382,23 @@ function view:ApplyLoadoutCooldowns()
     end)
 end
 
+function view:DisplayLevelAlert(itemLevel)
+    -- Interupt the existing alert to display a new one
+    if REQUIRES_LEVEL_ALERT.clientUserData.existingAlert
+    then REQUIRES_LEVEL_ALERT.clientUserData.existingAlert:Cancel() end
+    REQUIRES_LEVEL_TEXT.text = string.format("Requires Level %s", itemLevel)
+    local mousePos = UI.GetCursorPosition()
+    local screenSize = UI.GetScreenSize()
+    local xRef, yRef = GetTopLeftPositionInParent(INVENTORY_VIEW, INVENTORY_VIEW.width, INVENTORY_VIEW.height)
+    REQUIRES_LEVEL_ALERT.x = mousePos.x - xRef
+    REQUIRES_LEVEL_ALERT.y = mousePos.y - yRef
+    REQUIRES_LEVEL_ALERT.clientUserData.existingAlert = Task.Spawn(function()
+        REQUIRES_LEVEL_ALERT.visibility = Visibility.FORCE_ON
+        Task.Wait(3)
+        REQUIRES_LEVEL_ALERT.visibility = Visibility.FORCE_OFF
+    end)
+end
+
 function view:IsLoadoutOnCooldown()
     return self.onLoadoutCooldown
 end
