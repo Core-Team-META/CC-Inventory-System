@@ -57,7 +57,7 @@ local function RollingComplete(entry) -- CoreObject
     if winner ~= nil and Object.IsValid(winner) then
         local winnerInventory = winner.serverUserData.inventory
         if winnerInventory:IsBackpackFull() then
-            Events.Broadcast("DropLootSpecificHashForPlayers",entry.serverUserData.rolledItem:PersistentHash(),winner,winner:GetWorldPosition() + Vector3.UP * -100)
+            Events.Broadcast("OnDropSpecificHashLoot",entry.serverUserData.rolledItem:PersistentHash(),winner:GetWorldPosition() - Vector3.UP * 100)
         else
             winnerInventory:AddItem(entry.serverUserData.rolledItem)
             ReliableEvents.BroadcastToPlayer(winner,"AddWonItem",entry.serverUserData.rolledItem:PersistentHash())
@@ -106,7 +106,7 @@ end
 -- Create a rolled loot entry that specified clients will receive to roll upon.
 local function CreateRollForLootEntry(dropKey, players) -- string, table of players
     --assert(#players > 1, "You need more than 1 player to create rollable loot.")
-    local rolledItem = Database:CreateItemFromDrop(dropKey)
+    local rolledItem = Database:CreateLootItemFromDropKey(dropKey)
     local rollEntry = World.SpawnAsset(ROLLENTRY_TEMPLATE,{ parent = script })
     local ID = #entries+1
     local playerIds = PlayersToIDTable(players)

@@ -9,6 +9,7 @@ local Database = require(script:GetCustomProperty("ItemSystems_Database"))
 local ReliableEvents = require(script:GetCustomProperty("ReliableEvents"))
 local COMPONENT = script:GetCustomProperty("InventoryComponent"):WaitForObject()
 
+-- TODO: Move this to the Hierarchy as this would be easier to edit later.
 local equipSlotTypes = {
     { slotType = "MainHand" },
     { slotType = "OffHand" },
@@ -65,7 +66,6 @@ local function ClientLoadInventory()
         local newHash = COMPONENT:GetCustomProperty("LOAD")
         if currentHash ~= newHash then
             currentHash = newHash
-            print("LOAD NEW HASH")
             OWNER.clientUserData.inventory:LoadHash(newHash)
         end
     end
@@ -117,14 +117,13 @@ end
 ---------------------------------------------------------------------------------------------------------
 -- Initalizes the server-side inventory replication events.
 local function ServerInitInventory()
-    OWNER.serverUserData.inventory = Inventory.New(Database, OWNER, nil, nil, equipSlotTypes)
+    OWNER.serverUserData.inventory = Inventory.New(Database, OWNER, nil, equipSlotTypes)
     local inventory = OWNER.serverUserData.inventory
     -- Prepare a set of stat modifiers for each equipped item.
     local statModifiers = {}
     -- Whenever an item is equipped by the server inventory, replicate to all clients.
     inventory.itemEquippedEvent:Connect(function(equipIndex, equipItem)   
         if not equipIndex and not equipItem then
-            ReliableEvents.BroadcastToPlayer(OWNER,"IFE",nil)
             COMPONENT:SetNetworkedCustomProperty("E1", "")
             ServerUpdateStatSheet(inventory, statModifiers)
             return
@@ -135,8 +134,7 @@ local function ServerInitInventory()
         -- Update the player's stat sheet.
         ServerUpdateStatSheet(inventory, statModifiers)
         -- Update the player's animation stance depending on the item.
-        if equipItem and equipItem:IsEquippable() and inventory:IsLoadoutSlot(equipIndex) then
-            ReliableEvents.BroadcastToPlayer(OWNER,"IFE",equipIndex)
+        if equipItem and equipItem:IsEquippable() and prop == "E1" then
             OWNER.animationStance = equipItem and equipItem:GetAnimationStance() or "unarmed_stance"
         end
     end)
@@ -212,17 +210,17 @@ local function ServerInitInventory()
             ServerSaveInventory(inventory)
         end
     end)
-    -- Whenever a client equips an item in the loadout, equip the item.
-    Events.ConnectForPlayer("IFE", function(player, equipSlot)
-        if player == OWNER then
-            local item = inventory:GetItem(equipSlot)
-            if item then
-                COMPONENT:SetNetworkedCustomProperty("E1", item:RuntimeHash())
-            else
-                COMPONENT:SetNetworkedCustomProperty("E1", "")
-            end
-        end
-    end)
+    -- -- Whenever a client equips an item in the loadout, equip the item.
+    -- Events.ConnectForPlayer("IFE", function(player, equipSlot)
+    --     if player == OWNER then
+    --         local item = inventory:GetItem(equipSlot)
+    --         if item then
+    --             COMPONENT:SetNetworkedCustomProperty("E1", item:RuntimeHash())
+    --         else
+    --             COMPONENT:SetNetworkedCustomProperty("E1", "")
+    --         end
+    --     end
+    -- end)
     -- Whenever a client rearranges their local inventory, update the server inventory and persist.
     Events.ConnectForPlayer("IIM", function(player, fromSlotIndex, toSlotIndex)
         if player == OWNER then
@@ -281,12 +279,12 @@ end
 
 -- Initalizes the client-side inventory replication events.
 local function ClientInitInventoryLocal()
-    OWNER.clientUserData.inventory = Inventory.New(Database, OWNER, nil, nil, equipSlotTypes)
+    OWNER.clientUserData.inventory = Inventory.New(Database, OWNER, nil, equipSlotTypes)
     local inventory = OWNER.clientUserData.inventory
-    -- When the server forces the client to set an equip loadout.
-    Events.Connect("IFE",function(itemSlot)
-        inventory:SetEquipedLoadout(itemSlot)
-    end)
+    -- -- When the server forces the client to set an equip loadout.
+    -- Events.Connect("IFE",function(itemSlot)
+    --     inventory:SetEquipedLoadout(itemSlot)
+    -- end)
     -- When the server adds an item to the players inventory replicate that to the client.
     Events.Connect("IAI",function(itemHash, quantity)
         local item = Database:CreateItemFromHash(itemHash)
@@ -339,10 +337,10 @@ local function ClientInitInventoryLocal()
     inventory.itemRemoveAll:Connect(function() 
         ReliableEvents.BroadcastToServer("IRA")
     end)
-    -- Whenever an item is equipped, Broadcast to server.
-    inventory.itemEquippedEvent:Connect(function(equipIndex, equipItem)
-        ReliableEvents.BroadcastToServer("IFE", equipIndex)
-    end)
+    -- -- Whenever an item is equipped, Broadcast to server.
+    -- inventory.itemEquippedEvent:Connect(function(equipIndex, equipItem)
+    --     ReliableEvents.BroadcastToServer("IFE", equipIndex)
+    -- end)
     -- Whenever a local rearrangement is made, broadcast to server.
     inventory.itemMovedEvent:Connect(function(fromSlotIndex, toSlotIndex)
         ReliableEvents.BroadcastToServer("IIM", fromSlotIndex, toSlotIndex)

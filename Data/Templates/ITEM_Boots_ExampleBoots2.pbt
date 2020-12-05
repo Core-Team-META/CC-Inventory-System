@@ -15,32 +15,10 @@
             Z: 1.15003169
           }
         }
-        ParentId: 4649353316498909807
+        ParentId: 4781671109827199097
         ChildIds: 8368475805096733658
         ChildIds: 3058378324772844662
         UnregisteredParameters {
-          Overrides {
-            Name: "cs:Name"
-            String: "Promised Retribution Boots"
-          }
-          Overrides {
-            Name: "cs:Icon"
-            AssetReference {
-              Id: 703957094748170813
-            }
-          }
-          Overrides {
-            Name: "cs:ItemType"
-            String: "Boots"
-          }
-          Overrides {
-            Name: "cs:Description"
-            String: "Forged by Mucusinator."
-          }
-          Overrides {
-            Name: "cs:Rarity"
-            String: "Epic"
-          }
           Overrides {
             Name: "cs:SOCKET_both_feet"
             ObjectReference {
@@ -48,38 +26,8 @@
             }
           }
           Overrides {
-            Name: "cs:DropRotation"
-            Vector {
-              X: 90
-            }
-          }
-          Overrides {
-            Name: "cs:Name:tooltip"
-            String: "The name of the Item that will be displayed in the inventory, loot view, and referenced in the drops table."
-          }
-          Overrides {
-            Name: "cs:Icon:tooltip"
-            String: "The Icon that will be displayed"
-          }
-          Overrides {
-            Name: "cs:ItemType:tooltip"
-            String: "The type of Item this is. This will reference a type from ItemSystems_Item -> Item.TYPES."
-          }
-          Overrides {
-            Name: "cs:Description:tooltip"
-            String: "The lore for this item when viewed from the Inventory"
-          }
-          Overrides {
-            Name: "cs:Rarity:tooltip"
-            String: "The theme of this item. This does not affect stats in anyways, but gives it a nice look in the inventory and loot view."
-          }
-          Overrides {
             Name: "cs:SOCKET_both_feet:tooltip"
             String: "the socket we\'re going to attach the geomtry to when  the player equips this item. If you want your boots to go on both feet then make sure to have the name of your custom property, \"Socket_both_feet\". Then assign the root geometry object. Reference all the sockets here: https://docs.coregames.com/api/animations/"
-          }
-          Overrides {
-            Name: "cs:DropRotation:tooltip"
-            String: "The drop rotation that is applied to the object dropped."
           }
         }
         WantsNetworking: true
@@ -1362,15 +1310,6 @@
         Folder {
           IsGroup: true
         }
-      }
-    }
-    Assets {
-      Id: 703957094748170813
-      Name: "Fantasy Boot 009"
-      PlatformAssetType: 9
-      PrimaryAsset {
-        AssetType: "PlatformBrushAssetRef"
-        AssetId: "UI_Fantasy_Gear_Boot_009"
       }
     }
     Assets {

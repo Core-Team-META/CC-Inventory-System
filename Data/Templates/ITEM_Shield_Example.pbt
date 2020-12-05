@@ -15,32 +15,10 @@
             Z: 1
           }
         }
-        ParentId: 4649353316498909807
+        ParentId: 4781671109827199097
         ChildIds: 8368475805096733658
         ChildIds: 15684667149666860602
         UnregisteredParameters {
-          Overrides {
-            Name: "cs:Name"
-            String: "Example Shield"
-          }
-          Overrides {
-            Name: "cs:Icon"
-            AssetReference {
-              Id: 8406414470576079988
-            }
-          }
-          Overrides {
-            Name: "cs:ItemType"
-            String: "Shield"
-          }
-          Overrides {
-            Name: "cs:Description"
-            String: "Defensive mode!"
-          }
-          Overrides {
-            Name: "cs:Rarity"
-            String: "Uncommon"
-          }
           Overrides {
             Name: "cs:SOCKET_left_wrist"
             ObjectReference {
@@ -48,38 +26,8 @@
             }
           }
           Overrides {
-            Name: "cs:DropRotation"
-            Vector {
-              X: 90
-            }
-          }
-          Overrides {
-            Name: "cs:Name:tooltip"
-            String: "The name of the Item that will be displayed in the inventory, loot view, and referenced in the drops table."
-          }
-          Overrides {
-            Name: "cs:Icon:tooltip"
-            String: "The Icon that will be displayed"
-          }
-          Overrides {
-            Name: "cs:ItemType:tooltip"
-            String: "The type of Item this is. This will reference a type from ItemSystems_Item -> Item.TYPES."
-          }
-          Overrides {
-            Name: "cs:Description:tooltip"
-            String: "The lore for this item when viewed from the Inventory"
-          }
-          Overrides {
-            Name: "cs:Rarity:tooltip"
-            String: "The theme of this item. This does not affect stats in anyways, but gives it a nice look in the inventory and loot view."
-          }
-          Overrides {
             Name: "cs:SOCKET_left_wrist:tooltip"
             String: "is the socket we\'re going to attach the geometry to when the player equips this item. If you want your boots to go on both feet then make sure to have the name of your custom property, \"Socket_both_feet\". Then assign the root geometry object. Reference all the sockets here: https://docs.coregames.com/api/animations/"
-          }
-          Overrides {
-            Name: "cs:DropRotation:tooltip"
-            String: "The drop rotation that is applied to the object dropped."
           }
         }
         WantsNetworking: true
@@ -394,15 +342,6 @@
         Folder {
           IsGroup: true
         }
-      }
-    }
-    Assets {
-      Id: 8406414470576079988
-      Name: "Fantasy Shield 008"
-      PlatformAssetType: 9
-      PrimaryAsset {
-        AssetType: "PlatformBrushAssetRef"
-        AssetId: "UI_Fantasy_Weapon_Shield_008"
       }
     }
     Assets {

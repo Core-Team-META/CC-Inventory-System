@@ -15,30 +15,14 @@
             Z: 1
           }
         }
-        ParentId: 4649353316498909807
-        ChildIds: 7740892563696243909
+        ParentId: 4781671109827199097
+        ChildIds: 4453921070036894618
         UnregisteredParameters {
           Overrides {
-            Name: "cs:Name"
-            String: "Example Trinket"
-          }
-          Overrides {
-            Name: "cs:Icon"
-            AssetReference {
-              Id: 3271618261984736390
+            Name: "cs:SOCKET_head"
+            ObjectReference {
+              SubObjectId: 18299769885140533039
             }
-          }
-          Overrides {
-            Name: "cs:ItemType"
-            String: "Trinket"
-          }
-          Overrides {
-            Name: "cs:Description"
-            String: "Luck is on your side! Have a higher chance to perform a critical strike!"
-          }
-          Overrides {
-            Name: "cs:Rarity"
-            String: "Rare"
           }
         }
         WantsNetworking: true
@@ -53,12 +37,11 @@
         }
       }
       Objects {
-        Id: 7740892563696243909
-        Name: "Stats"
+        Id: 4453921070036894618
+        Name: "Hearts Volume VFX"
         Transform {
           Location {
-            X: 88.1671448
-            Y: 144.887909
+            Z: -2.28881836e-05
           }
           Rotation {
           }
@@ -69,7 +52,38 @@
           }
         }
         ParentId: 18299769885140533039
-        ChildIds: 2939681118950655420
+        UnregisteredParameters {
+          Overrides {
+            Name: "bp:color"
+            Color {
+              G: 0.892913759
+              B: 0.97
+              A: 1
+            }
+          }
+          Overrides {
+            Name: "bp:Volume Type"
+            Enum {
+              Value: "mc:evfxvolumetype:1"
+            }
+          }
+          Overrides {
+            Name: "bp:Emissive Boost"
+            Float: 50
+          }
+          Overrides {
+            Name: "bp:Life"
+            Float: 0.467989385
+          }
+          Overrides {
+            Name: "bp:Particle Scale Multiplier"
+            Float: 0.4049851
+          }
+          Overrides {
+            Name: "bp:Density"
+            Float: 1.76701927
+          }
+        }
         WantsNetworking: true
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
@@ -77,95 +91,25 @@
         Visible_v2 {
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
-        NetworkContext {
-          Type: RuntimeStatic
-        }
-      }
-      Objects {
-        Id: 2939681118950655420
-        Name: "Base"
-        Transform {
-          Location {
+        Blueprint {
+          BlueprintAsset {
+            Id: 4414719375719053614
           }
-          Rotation {
+          TeamSettings {
           }
-          Scale {
-            X: 1
-            Y: 1
-            Z: 1
+          Vfx {
+            AutoPlay: true
           }
-        }
-        ParentId: 7740892563696243909
-        ChildIds: 12471745645880781599
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:inheritfromparent"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        Folder {
-          IsGroup: true
-        }
-      }
-      Objects {
-        Id: 12471745645880781599
-        Name: "CritChance"
-        Transform {
-          Location {
-          }
-          Rotation {
-          }
-          Scale {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        ParentId: 2939681118950655420
-        UnregisteredParameters {
-          Overrides {
-            Name: "cs:Min"
-            Int: 5
-          }
-          Overrides {
-            Name: "cs:Max"
-            Int: 10
-          }
-          Overrides {
-            Name: "cs:Likelihood"
-            Int: 100
-          }
-          Overrides {
-            Name: "cs:Min:tooltip"
-            String: "Minimum possible value we can roll for this stat"
-          }
-          Overrides {
-            Name: "cs:Max:tooltip"
-            String: "Maximum possible value we can roll for this stat"
-          }
-          Overrides {
-            Name: "cs:Likelihood:tooltip"
-            String: "The likelihood that we can roll for this stat."
-          }
-        }
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:inheritfromparent"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        Folder {
-          IsGroup: true
         }
       }
     }
     Assets {
-      Id: 3271618261984736390
-      Name: "Fantasy Card 001"
-      PlatformAssetType: 9
+      Id: 4414719375719053614
+      Name: "Hearts Volume VFX"
+      PlatformAssetType: 8
       PrimaryAsset {
-        AssetType: "PlatformBrushAssetRef"
-        AssetId: "UI_Fantasy_Equip_Card_001"
+        AssetType: "VfxBlueprintAssetRef"
+        AssetId: "fxbp_heart_volume"
       }
     }
     PrimaryAssetId {

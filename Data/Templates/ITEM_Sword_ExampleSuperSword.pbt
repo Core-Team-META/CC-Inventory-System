@@ -15,7 +15,7 @@
             Z: 1
           }
         }
-        ParentId: 4649353316498909807
+        ParentId: 4781671109827199097
         ChildIds: 5271815672052294904
         ChildIds: 196839836578414246
         ChildIds: 12124757009665222282
@@ -23,36 +23,6 @@
         ChildIds: 17153366650183265284
         ChildIds: 3415856443368370976
         UnregisteredParameters {
-          Overrides {
-            Name: "cs:Name"
-            String: "Super Cool Sword"
-          }
-          Overrides {
-            Name: "cs:Icon"
-            AssetReference {
-              Id: 9678763224777123780
-            }
-          }
-          Overrides {
-            Name: "cs:LevelRequirement"
-            Int: 15
-          }
-          Overrides {
-            Name: "cs:ItemType"
-            String: "Greatsword"
-          }
-          Overrides {
-            Name: "cs:Description"
-            String: "What a great sword!"
-          }
-          Overrides {
-            Name: "cs:Rarity"
-            String: "Legendary"
-          }
-          Overrides {
-            Name: "cs:EquipmentStance"
-            String: "2hand_sword_stance"
-          }
           Overrides {
             Name: "cs:PickupSound"
             AssetReference {
@@ -72,16 +42,6 @@
             }
           }
           Overrides {
-            Name: "cs:DropRotation"
-            Vector {
-              X: 90
-            }
-          }
-          Overrides {
-            Name: "cs:EquipmentStance:tooltip"
-            String: "The stance animation when a player picks up the equipment."
-          }
-          Overrides {
             Name: "cs:PlayerImpact:tooltip"
             String: "Template that is spawned at the location where the hitbox hit the player."
           }
@@ -92,34 +52,6 @@
           Overrides {
             Name: "cs:SwingSound:tooltip"
             String: "Template that is spawned at the equipment owner location when a melee ability is executed."
-          }
-          Overrides {
-            Name: "cs:Name:tooltip"
-            String: "The name of the Item that will be displayed in the inventory, loot view, and referenced in the drops table."
-          }
-          Overrides {
-            Name: "cs:Icon:tooltip"
-            String: "he Icon that will be displayed"
-          }
-          Overrides {
-            Name: "cs:ItemType:tooltip"
-            String: "The type of Item this is. This must point to a type from ItemSystems_Item -> Item.TYPES."
-          }
-          Overrides {
-            Name: "cs:Rarity:tooltip"
-            String: "The theme of this item. This does not affect stats in anyways, but gives it a nice look in the inventory and loot view."
-          }
-          Overrides {
-            Name: "cs:Description:tooltip"
-            String: "The lore for this item when viewed from the Inventory"
-          }
-          Overrides {
-            Name: "cs:DropRotation:tooltip"
-            String: "The drop rotation that is applied to the object when dropped."
-          }
-          Overrides {
-            Name: "cs:LevelRequirement:tooltip"
-            String: "The required level that a player must be at to equip this item or use it."
           }
         }
         WantsNetworking: true
@@ -1354,15 +1286,6 @@
             Id: 12971704803185333098
           }
         }
-      }
-    }
-    Assets {
-      Id: 9678763224777123780
-      Name: "Fantasy Sword 011"
-      PlatformAssetType: 9
-      PrimaryAsset {
-        AssetType: "PlatformBrushAssetRef"
-        AssetId: "UI_Fantasy_Weapon_Sword_011"
       }
     }
     Assets {

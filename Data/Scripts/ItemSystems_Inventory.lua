@@ -23,7 +23,7 @@ Inventory.DROP_ITEM_INSTEAD_OF_DELETE = script:GetCustomProperty("DropItemInstea
 ---------------------------------------------------------------------------------------------------------
 
 -- Inventory Constructor
-function Inventory.New(database, owner, backpackSize, loadoutSize, equipSlots)
+function Inventory.New(database, owner, backpackSize, equipSlots)
     local o = {}
     setmetatable(o, Inventory)
     o.EQUIP_SLOTS = not equipSlots and {} or equipSlots
@@ -82,10 +82,9 @@ function Inventory:AddItem(item, quantity, _hasRepeated) -- item, int, bool (ign
         item:SetStackSize(quantity)
         self:_AddItemToBackpack(item)
     elseif item:IsBackpack() then
+        item:ClearStats()
         item:NewBackpackInventory(Inventory,self.database,self.owner,item:RuntimeHash())
         self:_AddItemToBackpack(item)
-    elseif item:IsEquippable() then
-        self:_TryToEquipItem(item)
     elseif emptySlotIndex then
         self:_SetSlotItem(emptySlotIndex, item) 
     end
@@ -102,6 +101,9 @@ function Inventory:SetItemToSlot(item,quantity,slot,_hasRepeated) -- Item item, 
     local storedQuantity = quantity or 1
     if item:IsStackable() then
         item:SetStackSize(quantity)
+    end
+    if item:IsBackpack() then
+        item:ClearStats()
     end
     self:_SetSlotItem(slot, item)
     if not _hasRepeated then -- Prevents an infinite context loop.
@@ -121,9 +123,6 @@ function Inventory:RemoveItem(item, quantity, _hasRepeated) -- Item item, int qu
         quantity = quantity > 0 and quantity or 1
         item:SetStackSize(quantity)
         self:_RemoveItemFromBackpack(item)
-    elseif hasItem then
-        if(slotIndex == self:GetEquipedLoadout()) then self:UnEquipSlotItem() end
-        self:_SetSlotItem(slotIndex, nil) 
     end
     if not _hasRepeated then -- Prevents an infinite context loop.
         -- Replicate the state of the inventory to either client or server.
@@ -260,19 +259,6 @@ function Inventory:IterateBackpackSlots()
         slotIndex = slotIndex == 0 and startingSlot or slotIndex
         slotIndex = slotIndex + 1
         if slotIndex <= self.BACKPACK_CAPACITY + startingSlot then
-            return slotIndex, self:GetItem(slotIndex)
-        end
-    end
-    return iter, nil, 0 
-end
-
--- Get a table of loadout items
-function Inventory:IterateLoadoutSlots()
-    local startingSlot = #self.EQUIP_SLOTS + self.BACKPACK_CAPACITY
-    local function iter(_, slotIndex)
-        slotIndex = slotIndex == 0 and startingSlot or slotIndex
-        slotIndex = slotIndex + 1
-        if slotIndex <= self.TOTAL_CAPACITY then
             return slotIndex, self:GetItem(slotIndex)
         end
     end
@@ -463,6 +449,8 @@ function Inventory:MoveItem(fromSlotIndex, toSlotIndex) -- int fromSlotIndex, in
         self:_FireEvent("OnInventoryChanged",self.owner)
         self:_SetSlotItem(fromSlotIndex, nil)
         return
+    elseif not self.DROP_ITEM_INSTEAD_OF_DELETE and toSlotIndex == nil then
+        self:_SetSlotItem(fromSlotIndex, nil)
     -- If zero is provided then the item is not dropped and it will instead be deleted.
     elseif toSlotIndex == 0 then
         self:_SetSlotItem(fromSlotIndex, nil)
@@ -539,10 +527,9 @@ function Inventory:ClaimLoot(lootID) -- int lootID
         if lootInfo.item:IsStackable() then
             self:_AddItemToBackpack(lootInfo.item)
         elseif lootInfo.item:IsBackpack() then
+            lootInfo.item:ClearStats()
             lootInfo.item:NewBackpackInventory(Inventory,self.database,self.owner,lootInfo.hash)
             self:_AddItemToBackpack(lootInfo.item)
-        --elseif lootInfo.item:IsEquippable() then
-        --    self:_TryToEquipItem(lootInfo.item)
         else
             local slotIndex = self:GetFreeBackpackSlot()
             self:_SetSlotItem(slotIndex, lootInfo.item)
@@ -563,29 +550,10 @@ function Inventory:GetLootInfos()
     return self.lootInfos
 end
 
--- Force equip an item from the inventory.
-function Inventory:EquipSlotItem(slotIndex) -- int slotIndex
-    local item = self:GetItem(slotIndex)
-    self:SetEquipedLoadout(slotIndex)
-    if item then
-        if item:IsEquippable() then
-            self:_FireEvent("itemEquippedEvent", slotIndex, item)
-            self:_FireEvent("OnInventoryChanged",self.owner)
-        end
-    end
-end
-
--- Force Unequip whatever the character is holding
-function Inventory:UnEquipSlotItem()
-    self:SetEquipedLoadout(nil)
-    self:_FireEvent("itemUnequippedEvent")
-    self:_FireEvent("itemEquippedEvent")
-    self:_FireEvent("OnInventoryChanged",self.owner)
-end
-
 -- Salvages an item from a slot.
 function Inventory:SalvageItem(slotIndex) -- int slotIndex
     local item = self:GetItem(slotIndex)
+    if not item then return end
     self:_FireEvent("itemSalvage",slotIndex)
     self:_FireEvent("OnInventoryChanged",self.owner)
     if item:IsStackable() then
@@ -803,6 +771,7 @@ function Inventory:_LoadHash(hash)
 
 
         if newItem and copyItem and copyItem:IsBackpack() then -- Constructs an inventory for the backpack
+            copyItem:ClearStats() -- Backpacks can not have stats.
             copyItem:NewBackpackInventory(Inventory,self.database,self.owner,itemHash)
             currentBackpack = copyItem:GetBackpackInventory()
             currentCount = tonumber(subItemCount) 
@@ -1049,6 +1018,7 @@ function Inventory:_SetSlotItem(slotIndex, item)
         end
         self:_UpdateSlotStatus()
         self:_RecalculateStatTotals()
+        self:_FireEvent("itemEquippedEvent", slotIndex, item)
     end
 end
 

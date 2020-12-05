@@ -1,0 +1,6 @@
+﻿Game.playerJoinedEvent:Connect(function(player)
+    player.diedEvent:Connect(function(_,_)
+        Task.Wait(3)
+        player:Respawn()
+    end)
+end)

@@ -83,7 +83,6 @@ end
 local function AddWonItem(itemHash)
     local wonItem = ItemDatabase:CreateItemFromHash(itemHash)
     UI.ShowFlyUpText(string.format("You won %s!",wonItem:GetName()),LOCALPLAYER:GetWorldPosition() + Vector3.UP * 100, { isBig = true, duration = 2, color = Color.BLUE })
-    LOCALPLAYER.clientUserData.inventory:AddItem(wonItem)
 end
 
 ROLLENTRIES_GROUP.childAddedEvent:Connect(OnEntryCreated)

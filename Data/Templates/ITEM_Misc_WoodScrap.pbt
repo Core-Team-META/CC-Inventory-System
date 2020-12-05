@@ -18,56 +18,6 @@
         ParentId: 4781671109827199097
         ChildIds: 4755894725365256958
         UnregisteredParameters {
-          Overrides {
-            Name: "cs:Name"
-            String: "Wood Scrap"
-          }
-          Overrides {
-            Name: "cs:Icon"
-            AssetReference {
-              Id: 1705111680353529718
-            }
-          }
-          Overrides {
-            Name: "cs:MaxStackableSize"
-            Int: 64
-          }
-          Overrides {
-            Name: "cs:ItemType"
-            String: "Misc"
-          }
-          Overrides {
-            Name: "cs:Description"
-            String: "Wood."
-          }
-          Overrides {
-            Name: "cs:Rarity"
-            String: "Legendary"
-          }
-          Overrides {
-            Name: "cs:Name:tooltip"
-            String: "The name of the Item that will be displayed in the inventory, loot view, and referenced in the drops table."
-          }
-          Overrides {
-            Name: "cs:Icon:tooltip"
-            String: "The Icon that will be displayed"
-          }
-          Overrides {
-            Name: "cs:MaxStackableSize:tooltip"
-            String: "The amount of items that can stack into this object in the inventory."
-          }
-          Overrides {
-            Name: "cs:ItemType:tooltip"
-            String: "The type of Item this is. This will reference a type from ItemSystems_Item -> Item.TYPES."
-          }
-          Overrides {
-            Name: "cs:Description:tooltip"
-            String: "The lore for this item when viewed from the Inventory"
-          }
-          Overrides {
-            Name: "cs:Rarity:tooltip"
-            String: "The theme of this item. This does not affect stats in anyways, but gives it a nice look in the inventory and loot view."
-          }
         }
         WantsNetworking: true
         Collidable_v2 {
@@ -159,15 +109,6 @@
             }
           }
         }
-      }
-    }
-    Assets {
-      Id: 1705111680353529718
-      Name: "Fantasy Wood 003"
-      PlatformAssetType: 9
-      PrimaryAsset {
-        AssetType: "PlatformBrushAssetRef"
-        AssetId: "UI_Fantasy_Equip_Wood_003"
       }
     }
     Assets {

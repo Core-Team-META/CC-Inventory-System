@@ -15,71 +15,15 @@
             Z: 1.20542693
           }
         }
-        ParentId: 4649353316498909807
+        ParentId: 4781671109827199097
         ChildIds: 13560792262809683540
         ChildIds: 15673133818328271334
         UnregisteredParameters {
-          Overrides {
-            Name: "cs:Name"
-            String: "Warden Eterna Helm"
-          }
-          Overrides {
-            Name: "cs:Icon"
-            AssetReference {
-              Id: 5171043325198665113
-            }
-          }
-          Overrides {
-            Name: "cs:ItemType"
-            String: "Helmet"
-          }
-          Overrides {
-            Name: "cs:Description"
-            String: "Forged by Mucusinator in the depths of Eterna."
-          }
-          Overrides {
-            Name: "cs:Rarity"
-            String: "Epic"
-          }
           Overrides {
             Name: "cs:SOCKET_head"
             ObjectReference {
               SubObjectId: 1103300475510269383
             }
-          }
-          Overrides {
-            Name: "cs:DropRotation"
-            Vector {
-              X: 90
-            }
-          }
-          Overrides {
-            Name: "cs:Name:tooltip"
-            String: "The name of the Item that will be displayed in the inventory, loot view, and referenced in the drops table."
-          }
-          Overrides {
-            Name: "cs:Icon:tooltip"
-            String: "The Icon that will be displayed"
-          }
-          Overrides {
-            Name: "cs:ItemType:tooltip"
-            String: "The type of Item this is. This will reference a type from ItemSystems_Item -> Item.TYPES."
-          }
-          Overrides {
-            Name: "cs:Rarity:tooltip"
-            String: "The theme of this item. This does not affect stats in anyways, but gives it a nice look in the inventory and loot view."
-          }
-          Overrides {
-            Name: "cs:Description:tooltip"
-            String: "The lore for this item when viewed from the Inventory"
-          }
-          Overrides {
-            Name: "cs:SOCKET_head:tooltip"
-            String: "the socket we\'re going to attach the geomtry to when  the player equips this item. If you want your boots to go on both feet then make sure to have the name of your custom property, \"Socket_both_feet\". Then assign the root geometry object. Reference all the sockets here: https://docs.coregames.com/api/animations/"
-          }
-          Overrides {
-            Name: "cs:DropRotation:tooltip"
-            String: "The drop rotation that is applied to the object dropped."
           }
         }
         WantsNetworking: true
@@ -1657,15 +1601,6 @@
             }
           }
         }
-      }
-    }
-    Assets {
-      Id: 5171043325198665113
-      Name: "Fantasy Gear Head 010"
-      PlatformAssetType: 9
-      PrimaryAsset {
-        AssetType: "PlatformBrushAssetRef"
-        AssetId: "UI_Fantasy_Gear_Head_010"
       }
     }
     Assets {

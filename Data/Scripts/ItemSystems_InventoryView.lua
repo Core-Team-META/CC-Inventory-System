@@ -7,7 +7,7 @@
 local ItemThemes = require(script:GetCustomProperty("ItemSystems_ItemThemes"))
 local ItemDatabase = require(script:GetCustomProperty("ItemSystems_Database"))
 local INVENTORY_VIEW = script:GetCustomProperty("InventoryView"):WaitForObject()
---local CONTAINER_VIEW = script:GetCustomProperty("ContainerView"):WaitForObject()
+local CONTAINER_VIEW = script:GetCustomProperty("ContainerView"):WaitForObject()
 local PLAYER_NAME = script:GetCustomProperty("PlayerName"):WaitForObject()
 local PLAYER_ICON = script:GetCustomProperty("PlayerIcon"):WaitForObject()
 local PLAYER_LEVEL = script:GetCustomProperty("PlayerLevel"):WaitForObject()
@@ -15,9 +15,8 @@ local PLAYER_LEVEL_PROGRESS = script:GetCustomProperty("PlayerLevelProgress"):Wa
 local PANEL_STATS = script:GetCustomProperty("StatsPanel"):WaitForObject()
 local PANEL_EQUIPPED = script:GetCustomProperty("EquippedSlotsPanel"):WaitForObject()
 local PANEL_BACKPACK = script:GetCustomProperty("BackpackSlotsPanel"):WaitForObject()
---local PANEL_LOADOUTS = script:GetCustomProperty("LoadoutSlots"):WaitForObject()
 local PANEL_ITEM_HOVER = script:GetCustomProperty("ItemHoverPanel"):WaitForObject()
---local PANEL_SALVAGE = script:GetCustomProperty("SalvagePanel"):WaitForObject()
+local PANEL_SALVAGE = script:GetCustomProperty("SalvagePanel"):WaitForObject()
 local REQUIRES_LEVEL_ALERT = script:GetCustomProperty("RequiresLevelAlert"):WaitForObject()
 local REQUIRES_LEVEL_TEXT = REQUIRES_LEVEL_ALERT:GetCustomProperty("AlertText"):WaitForObject()
 local HOLDING_ICON = script:GetCustomProperty("HeldIcon"):WaitForObject()
@@ -28,7 +27,7 @@ local SFX_EQUIP = script:GetCustomProperty("SFX_Equip")
 local SFX_MOVE = script:GetCustomProperty("SFX_Move")
 local SFX_DISCARD = script:GetCustomProperty("SFX_Discard")
 local SFX_DENIED = script:GetCustomProperty("SFX_Denied")
-local TEMP_SFX_SALVAGE = script:GetCustomProperty("TEMP_SFX_Salvage")
+local SFX_SALVAGE = script:GetCustomProperty("SFX_Salvage")
 local SLOT_HIGHLIGHT_COLOR = script:GetCustomProperty("SlotHighlightColor")
 local LOADOUT_COOLDOWN_TIME = script:GetCustomProperty("LoadoutCooldownInSeconds")
 local LOCAL_PLAYER = Game.GetLocalPlayer()
@@ -80,7 +79,6 @@ local function ShouldConsiderControl(control) -- UIControl control
     return control == INVENTORY_VIEW or
            control == PANEL_EQUIPPED or
            control == PANEL_BACKPACK or
-           control == PANEL_LOADOUTS or
            control == PANEL_SALVAGE or
             IsSlotControl(control)
 end
@@ -153,6 +151,9 @@ local function SetupControl(control, processSlot)
         if control:GetCustomProperty("NotAllowed") then
             control.clientUserData.notAllowed = control:GetCustomProperty("NotAllowed"):WaitForObject()
         end
+        if control:GetCustomProperty("Disabled") then
+            control.clientUserData.disabled = control:GetCustomProperty("Disabled"):WaitForObject()
+        end
         if control:GetCustomProperty("CooldownBar") then
             control.clientUserData.cooldownBar = control:GetCustomProperty("CooldownBar"):WaitForObject()
         end
@@ -221,7 +222,7 @@ function view:Init()
     self:InitEquippedSlots()
     self:InitBackpackSlots()
     self:InitItemHover()
-    --self:InitSalvageTray()
+    self:InitSalvageTray()
     self:Close()
 end
 
@@ -275,8 +276,6 @@ function view:InitSalvageTray()
     PANEL_SALVAGE.clientUserData.resourceScrollPanel = PANEL_SALVAGE:GetCustomProperty("ResourceScrollPanel"):GetObject()
     PANEL_SALVAGE.clientUserData.resourceEntry = PANEL_SALVAGE:GetCustomProperty("ResourceEntry")
     PANEL_SALVAGE.clientUserData.resourceScrollPanel = PANEL_SALVAGE:GetCustomProperty("ResourceScrollPanel"):GetObject()
-    PANEL_SALVAGE.clientUserData.salvageProgressBar = PANEL_SALVAGE:GetCustomProperty("SalvageProgress"):GetObject()
-    PANEL_SALVAGE.clientUserData.salvageSpinner = PANEL_SALVAGE:GetCustomProperty("Spinner"):GetObject()
 end
 
 -- Initalizes equip slots
@@ -407,7 +406,7 @@ end
 function view:AttemptSalvage(fromSlotIndex)
     local canSalvage = inventory:CanAddSalvageProducts(fromSlotIndex)
     if canSalvage then
-        PlaySound(TEMP_SFX_SALVAGE)
+        PlaySound(SFX_SALVAGE)
         inventory:SalvageItem(fromSlotIndex)
         return true
     else
@@ -417,7 +416,6 @@ end
 
 function view:AttemptMoveItem(fromSlotIndex, toSlotIndex)
     if inventory:CanMoveItem(fromSlotIndex, toSlotIndex) then
-        
         local movingItem = inventory:GetItem(fromSlotIndex)
         if movingItem and movingItem:GetLevelRequirement() then
             local itemLevel = movingItem:GetLevelRequirement()
@@ -448,6 +446,11 @@ function view:AttemptMoveItem(fromSlotIndex, toSlotIndex)
                 PlaySound(SFX_DISCARD)
                 Events.Broadcast("InventoryView.Discarded")
             end
+        end
+    else
+        if toSlotIndex == 0 then
+            PlaySound(SFX_MOVE)
+            inventory:MoveItem(fromSlotIndex, 0)
         end
     end
 end
@@ -533,49 +536,9 @@ function view:ClearHoverState()
     self.itemUnderCursor = nil
 end
 
-function view:PerformClickAction()
-    -- Now go ahead an perform the appropriate action.
-    local playerLevel = LOCAL_PLAYER.clientUserData.statSheet:GetLevel()
-    local clickedItem = inventory:GetItem(self.clickSlotIndex)
-    local itemLevel = clickedItem:GetLevelRequirement()
-    if itemLevel and playerLevel < itemLevel then
-        self:DisplayLevelAlert(itemLevel)
-        PlaySound(SFX_DENIED)
-        return
-    end
-    if clickedItem:IsEquippable() then
-        -- Equippable item.
-        if inventory:IsEquipSlot(self.clickSlotIndex) then
-            local emptyBackpackSlotIndex = inventory:GetFreeBackpackSlot()
-            if emptyBackpackSlotIndex then
-                self:AttemptMoveItem(self.clickSlotIndex, emptyBackpackSlotIndex)
-            end
-        else
-            local equipSlotType = clickedItem:GetEquipSlotType()
-            local equipSlotOffset = nil
-            local equipSlotIndex = inventory:GetFreeEquipSlot(equipSlotType) or inventory:ConvertEquipSlotIndex(equipSlotType, equipSlotOffset)
-            -- Check for the weakest accessory that we should replace if there is any.
-            if equipSlotType == "Accessory" then
-                local _, slot = inventory:GetWeakestAccessory()
-                equipSlotIndex = slot
-            end
-            if equipSlotIndex then
-                if inventory:IsSlotEnabled(equipSlotIndex) then
-                    self:AttemptMoveItem(self.clickSlotIndex, equipSlotIndex)
-                else
-                    PlaySound(SFX_DENIED)
-                end
-
-            end
-        end
-    elseif clickedItem:HasConsumptionEffect() then
-        inventory:ConsumeItem(self.clickSlotIndex)
-    end
-end
-
-
 -- When a slot is clicked try to add it to the inventory.
 function view:PerformClickAction()
+    if self.isCursorInContainer then return end
     -- Now go ahead and perform the appropriate action.
     local playerLevel = LOCAL_PLAYER.clientUserData.statSheet:GetLevel()
     local clickedItem = inventory:GetItem(self.clickSlotIndex)
@@ -585,9 +548,7 @@ function view:PerformClickAction()
         PlaySound(SFX_DENIED)
         return
     end
-    print("Attempting to move into a valid slot")
-    if clickedItem:IsEquippable() and not self.isCursorInContainer then
-        print("Is equippable")
+    if clickedItem:IsEquippable() and not clickedItem:HasConsumptionEffect() and not clickedItem:IsBackpack() then
         -- Equippable item.
         if inventory:IsEquipSlot(self.clickSlotIndex) then
             local emptyBackpackSlotIndex = inventory:GetFreeBackpackSlot()
@@ -607,11 +568,11 @@ function view:PerformClickAction()
                 self:AttemptMoveItem(self.clickSlotIndex, equipSlotIndex)
             end
         end
-    elseif clickedItem:IsBackpack() and not self.isCursorInContainer then
+    elseif clickedItem:IsBackpack() then
         -- If a backpack item has clicked on in the inventory
         PlaySound(ItemThemes:GetItemSFX(clickedItem))
         inventory:OpenBackpack(self.clickSlotIndex)
-    elseif clickedItem:HasConsumptionEffect() and not self.isCursorInContainer then
+    elseif clickedItem:HasConsumptionEffect() then
         -- If a consumable item is clicked on in the inventory
         inventory:ConsumeItem(self.clickSlotIndex)
         PlaySound(ItemThemes.GetItemSFX(clickedItem:GetType()))
@@ -623,18 +584,6 @@ function view:PerformDragDropAction()
 
     if self.slotUnderCursor or not self.isCursorInBounds and not self.isHoveringOnSalvage then
         local toSlotIndex = self.containerSlot or self.slotUnderCursor and self.slotUnderCursor.clientUserData.slotIndex or nil
-
-
-        -- For equipment slots
-        if self.slotUnderCursor or not self.isCursorInBounds then
-            if inventory:IsSlotEnabled(toSlotIndex) then
-                self:AttemptMoveItem(self.fromSlotIndex, toSlotIndex)
-            else
-                PlaySound(SFX_DENIED)
-            end
-            return
-        end
-        
 
         -- If it's a container slot then move the item to the container.
         if self.isCursorInContainer and self.containerSlots and self.containerSlot and not self.fromContainerSlot then
@@ -651,7 +600,7 @@ function view:PerformDragDropAction()
                 if newSlottedStackSize then
                     -- Stack item onto slot with matching item
                     if currentItem:GetStackSize() == 0 then
-                        self:AttemptMoveItem(self.fromSlotIndex, nil)
+                        self:AttemptMoveItem(self.fromSlotIndex, 0)
                         containerInventory:SetItemToSlot(currentItem,newSlottedStackSize,toSlotIndex)
                     else
                         inventory:SetItemToSlot(currentItem,currentItem:GetStackSize(),self.fromSlotIndex)
@@ -663,20 +612,16 @@ function view:PerformDragDropAction()
                     local containerItem = containerInventory:GetItem(toSlotIndex)
                     local swapItem = containerInventory:_Copy(containerItem)
                     local fromItem = inventory:GetItem(self.fromSlotIndex)
-                    if inventory:IsLoadoutSlot(self.fromSlotIndex) and not (containerItem:GetEquipSlotType() == "Loadout") then
-                        PlaySound(SFX_DENIED)
-                        return
-                    end
                     containerInventory:SetItemToSlot(fromItem,fromItem:GetStackSize(),toSlotIndex)
                     inventory:SetItemToSlot(swapItem,swapItem:GetStackSize(),self.fromSlotIndex)
                 end
                 PlaySound(ItemThemes:GetItemSFX(currentItem))
             else
                 containerInventory:SetItemToSlot(item,item:GetStackSize(),toSlotIndex)
-                self:AttemptMoveItem(self.fromSlotIndex, nil)
+                self:AttemptMoveItem(self.fromSlotIndex, 0)
             end
         
-        elseif not self.isCursorInContainer and  not self.fromContainerSlot then
+        elseif not self.isCursorInContainer and not self.fromContainerSlot then
             local item = inventory:GetItem(self.fromSlotIndex)
             self:AttemptMoveItem(self.fromSlotIndex, toSlotIndex)
             if item and item:IsBackpack() then
@@ -684,13 +629,8 @@ function view:PerformDragDropAction()
                 Events.Broadcast("CloseMovedBackpack",self.fromSlotIndex)
             end
         end
-
-    -- TODO: UNCOMMENT ME FOR SALVAGE
-    --elseif self.isHoveringOnSalvage and self.canSalvageItem then
-        -- local hasSalvaged = self:AttemptSalvage(self.fromSlotIndex)
-        -- if(self.fromSlotIndex == inventory:GetEquipedLoadout() and hasSalvaged) then 
-        --     inventory:UnEquipSlotItem() 
-        -- end
+    elseif self.isHoveringOnSalvage and self.canSalvageItem then
+        local hasSalvaged = self:AttemptSalvage(self.fromSlotIndex)
     end
 end
 
@@ -730,8 +670,7 @@ function view:Close()
     if self.isClosed then return end
     self.isClosed = true
     INVENTORY_VIEW.visibility = Visibility.FORCE_OFF
-    -- TODO: UNCOMMENT ME WITH BACKPACKS
-    --CONTAINER_VIEW.visibility = Visibility.FORCE_OFF
+    CONTAINER_VIEW.visibility = Visibility.FORCE_OFF
     self:UnInitContainerSlots()
     self:ClearHoverState()
     self:ClearClickState()
@@ -770,10 +709,9 @@ function view:UpdateCursorState()
         end
     end
     -- Are they hovering over the salvage tray?
-    -- TODO: UNCOMMENT ME FOR SALVAGE
-    --if IsInsideHitbox(PANEL_SALVAGE, cursorPosition, xRef, yRef) then
-    --    self.isHoveringOnSalvage = true
-    --end
+    if IsInsideHitbox(PANEL_SALVAGE, cursorPosition, xRef, yRef) then
+        self.isHoveringOnSalvage = true
+    end
     -- Click logic.
     if not self.isCursorInContainer and self.clickTime then
         local elapsed = time() - self.clickTime
@@ -802,7 +740,6 @@ end
 
 function view:Draw()
     self:DrawSlots()
-    -- TEMP DIST
     if self.playerStashPosition and (self.playerStashPosition - LOCAL_PLAYER:GetWorldPosition()).size > 100 then
         Events.Broadcast("ForceCloseViewByName","InventoryView")
         Events.Broadcast("ForceCloseViewByName","LootView")
@@ -849,7 +786,7 @@ function view:DrawSlots()
             slot.clientUserData.icon.visibility = Visibility.INHERIT
             item:ApplyIconImageSettings(slot.clientUserData.icon)
             slot.clientUserData.gradient.visibility = Visibility.INHERIT
-            --slot.clientUserData.gradientColored:SetColor(rarityColor)
+            slot.clientUserData.gradientColored:SetColor(rarityColor)
             slot.clientUserData.border:SetImage(slot.clientUserData.borderDefaultImage)
             slot.clientUserData.border:SetColor(rarityColor)
             -- Backpacks have counter indicators.
@@ -873,10 +810,10 @@ function view:DrawSlots()
             end
         end
 
-        -- if inventory:IsEquipSlot(slot.clientUserData.slotIndex) then
-        --     -- An additional graphic shows when the slot is not enabled.
-        --     slot.clientUserData.disabled.visibility = inventory:IsSlotEnabled(slot.clientUserData.slotIndex) and Visibility.FORCE_OFF or Visibility.INHERIT
-        -- end
+        if inventory:IsEquipSlot(slot.clientUserData.slotIndex) then
+            -- An additional graphic shows when the slot is not enabled.
+            slot.clientUserData.disabled.visibility = inventory:IsSlotEnabled(slot.clientUserData.slotIndex) and Visibility.FORCE_OFF or Visibility.INHERIT
+        end
     end
 end
 
@@ -941,9 +878,8 @@ function view:DrawSalvageComponents()
             end
         end
     else
-        -- TODO: Uncomment for SALVAGE
-        --PANEL_SALVAGE.clientUserData.resourceHeader.visibility = Visibility.FORCE_OFF
-        --self:ClearSalvageComponents()
+        PANEL_SALVAGE.clientUserData.resourceHeader.visibility = Visibility.FORCE_OFF
+        self:ClearSalvageComponents()
     end
 end
 
@@ -1003,6 +939,7 @@ function view:DrawHoverInfo()
 end
 
 function view:DrawHoverStatCompare()
+    if self.isCursorInContainer then return end
     -- Lazy initialize a set of modifiers used to test out our hypothetical weapon swap.
     if not self.previewModifiers then
         self.cachedStats = {}
@@ -1024,6 +961,7 @@ function view:DrawHoverStatCompare()
     if self.itemUnderCursor and not self.isDragging then
         if inventory:IsBackpackSlot(self.slotUnderCursor.clientUserData.slotIndex) then
             local previewItem = self.itemUnderCursor
+            if previewItem:IsBackpack() then return end -- Don't display stats for backpacks.
             local targetEquipSlotIndex = inventory:ConvertEquipSlotIndex(previewItem:GetEquipSlotType())
             local exchangeItem = inventory:GetItem(targetEquipSlotIndex)
             -- First we're going to check to see if the item is an accessory. If so then we will get the weakest accessory to compare to.
@@ -1096,14 +1034,11 @@ LOCAL_PLAYER.bindingPressedEvent:Connect(function(_, binding) view:OnBindingPres
 LOCAL_PLAYER.bindingReleasedEvent:Connect(function(_, binding) view:OnBindingReleased(binding) end)
 
 Events.Connect("RegisterContainer",function(container) 
-    -- If the container is already registered then don't register another one.
-    if not view.containerView then
-        Events.Broadcast("ForceOpenViewByName","InventoryView")
-        Events.Broadcast("ForceCloseViewByName","LootView")
-        ChangeMouseVisiblity(true)
-        view:UnInitContainerSlots()
-        view:InitContainerSlots(container)
-    end
+    Events.Broadcast("ForceOpenViewByName","InventoryView")
+    Events.Broadcast("ForceCloseViewByName","LootView")
+    ChangeMouseVisiblity(true)
+    view:UnInitContainerSlots()
+    view:InitContainerSlots(container)
 end)
 
 Events.Connect("UnRegisterContainer",function()

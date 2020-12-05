@@ -58,7 +58,7 @@ function Regions:AddValue(position, object)
     local indexs = self:ConvertToIndex(position)
     assert(indexs.x <= self.count and indexs.x > 0 and
             indexs.y <= self.count and indexs.y > 0,
-    "Tried to get an element that is out of bounds of regions. Consider expanding the area of regions and enable debug draw to see the regions coverage.")
+    "Tried to get an element that is out of bounds of regions. Consider expanding the area of regions and enable debug draw (debug draw is a custom property on ItemSystems_Regions script in project content) to see the regions coverage. Adjust the properties on ItemSystems_LootRegions script in project content to ensure you are within the regions.")
     table.insert(self.array[indexs.x][indexs.y],object)
 end
 
@@ -69,7 +69,7 @@ function Regions:RemoveValue(position,object)
         if element == object then
             assert(indexs.x <= self.count and indexs.x > 0 and
             indexs.y <= self.count and indexs.y > 0,
-            "Tried to get an element that is out of bounds of regions. Consider expanding the area of regions and enable debug draw to see the regions coverage.")            
+            "Tried to get an element that is out of bounds of regions. Consider expanding the area of regions and enable debug draw (debug draw is a custom property on ItemSystems_Regions script in project content) to see the regions coverage. Adjust the properties on ItemSystems_LootRegions script in project content to ensure you are within the regions.")            
             table.remove(self.array[indexs.x][indexs.y], i)
             return
         end
@@ -81,7 +81,7 @@ function Regions:GetElements(pos)
     local indexs = self:ConvertToIndex(pos)
     assert(indexs.x <= self.count and indexs.x > 0 and
             indexs.y <= self.count and indexs.y > 0,
-    "Tried to get an element that is out of bounds of regions. Consider expanding the area of regions and enable debug draw to see the regions coverage.")
+    "Tried to get an element that is out of bounds of regions. Consider expanding the area of regions and enable debug draw (debug draw is a custom property on ItemSystems_Regions script in project content) to see the regions coverage. Adjust the properties on ItemSystems_LootRegions script in project content to ensure you are within the regions.")
     return self.array[indexs.x][indexs.y]
 end
 
@@ -90,7 +90,7 @@ function Regions:GetElement(pos,object)
     local indexs = self:ConvertToIndex(pos)
     assert(indexs.x <= self.count and indexs.x > 0 and
             indexs.y <= self.count and indexs.y > 0,
-    "Tried to get an element that is out of bounds of regions. Consider expanding the area of regions and enable debug draw to see the regions coverage.") 
+    "Tried to get an element that is out of bounds of regions. Consider expanding the area of regions and enable debug draw (debug draw is a custom property on ItemSystems_Regions script in project content) to see the regions coverage. Adjust the properties on ItemSystems_LootRegions script in project content to ensure you are within the regions.") 
     for _, element in pairs(self.array[indexs.x][indexs.y]) do
         if element == object then
             return self.array[indexs.x][indexs.y]

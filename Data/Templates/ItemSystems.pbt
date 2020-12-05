@@ -145,7 +145,7 @@
           Overrides {
             Name: "cs:Item"
             AssetReference {
-              Id: 1230074856330478231
+              Id: 841534158063459245
             }
           }
           Overrides {
@@ -370,7 +370,7 @@
           Overrides {
             Name: "cs:Item"
             AssetReference {
-              Id: 15055086068281261176
+              Id: 841534158063459245
             }
           }
           Overrides {
@@ -415,7 +415,7 @@
           Overrides {
             Name: "cs:Item"
             AssetReference {
-              Id: 11970271170336702900
+              Id: 841534158063459245
             }
           }
           Overrides {
@@ -460,7 +460,7 @@
           Overrides {
             Name: "cs:Item"
             AssetReference {
-              Id: 11970271170336702900
+              Id: 841534158063459245
             }
           }
           Overrides {
@@ -533,7 +533,7 @@
           Overrides {
             Name: "cs:Item"
             AssetReference {
-              Id: 11970271170336702900
+              Id: 841534158063459245
             }
           }
           Overrides {
@@ -578,7 +578,7 @@
           Overrides {
             Name: "cs:Item"
             AssetReference {
-              Id: 11970271170336702900
+              Id: 841534158063459245
             }
           }
           Overrides {
@@ -623,7 +623,7 @@
           Overrides {
             Name: "cs:Item"
             AssetReference {
-              Id: 15055086068281261176
+              Id: 841534158063459245
             }
           }
           Overrides {
@@ -1343,13 +1343,13 @@
           Overrides {
             Name: "cs:ITEM_Consumable_ExamplePotion"
             AssetReference {
-              Id: 5151373499733762021
+              Id: 841534158063459245
             }
           }
           Overrides {
             Name: "cs:ITEM_Dagger_HighLevel"
             AssetReference {
-              Id: 1230074856330478231
+              Id: 841534158063459245
             }
           }
           Overrides {
@@ -1385,13 +1385,13 @@
           Overrides {
             Name: "cs:ITEM_Misc_IronBar"
             AssetReference {
-              Id: 15055086068281261176
+              Id: 841534158063459245
             }
           }
           Overrides {
             Name: "cs:ITEM_Misc_Gem"
             AssetReference {
-              Id: 11970271170336702900
+              Id: 841534158063459245
             }
           }
           Overrides {

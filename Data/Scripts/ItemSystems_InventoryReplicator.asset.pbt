@@ -27,6 +27,12 @@
         ObjectReference {
         }
       }
+      Overrides {
+        Name: "cs:EquippedSlots"
+        ObjectReference {
+          SelfId: 17688350356972689068
+        }
+      }
     }
   }
   SerializationVersion: 68

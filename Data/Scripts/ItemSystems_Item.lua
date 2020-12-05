@@ -65,7 +65,7 @@ end
 function Item:NewBackpackInventory(Inventory, database, owner, inventoryHash)
     if self:IsBackpack() then
         if not owner then return end
-        local newInventory = Inventory.New(database,owner,self.data.backpackSlotCount,0)
+        local newInventory = Inventory.New(database,owner,self.data.backpackSlotCount,nil)
         newInventory:LoadHash(inventoryHash)
         self:SetBackpackInventory(newInventory)
     end
@@ -210,6 +210,10 @@ function Item:CopyStats(other)
         self.stats[i] = { name = other.stats[i].name, value = other.stats[i].value }
     end
     self:_RecalculateStatTotals()
+end
+
+function Item:ClearStats()
+    self.stats = {}
 end
 
 function Item:RollStats()

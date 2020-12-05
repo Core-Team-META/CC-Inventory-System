@@ -201,12 +201,11 @@ function Database:_Init()
 end
 
 -- Finds the stats folder of an item and loads it.
-function Database:_LoadStats(item)
+function Database:_LoadStats(item,itemPropName)
     local stats = item:FindChildByName("Stats")
     if stats == nil then return end
-    --assert(stats,string.format("%s does not have a stats folder. Add a stats folder and populate it with stats. Use example items as a reference.",item.name))
-    self.itemStatRollInfos[item.name] = self.itemStatRollInfos[item.name] or { base = {}, bonus = {} }
-    local statRollInfos = self.itemStatRollInfos[item.name]
+    self.itemStatRollInfos[itemPropName] = self.itemStatRollInfos[itemPropName] or { base = {}, bonus = {} }
+    local statRollInfos = self.itemStatRollInfos[itemPropName]
     for _,statFolder in ipairs(stats:GetChildren()) do
         if statFolder.name == "Base" then
             for _, stat in ipairs(statFolder:GetChildren()) do
@@ -270,7 +269,7 @@ function Database:_LoadItems()
         local propBackpackSlotCount = item:GetCustomProperty("BackpackSlotCount")
         local isBackpack = propBackpackSlotCount and true or false
         local salvageComponents = self:_LoadSalvageComponents(itemMUID) -- Load salvage components for the item
-        self:_LoadStats(item) -- Load stats from the item
+        self:_LoadStats(item,propName) -- Load stats from the item
 
         if DEBUGLOGLOAD then print(propName) end -- Debug
         if DEBUGLOGLOAD then print("|",itemMUID, "    =",propName) end -- Debug
@@ -284,7 +283,7 @@ function Database:_LoadItems()
         end
 
         assert(not self.itemDatasByName[propName], string.format("duplicate item name is not allowed - %s check your registered items for duplicates", propName))
-        assert(not self.itemDatasByMUIDFull[muid], string.format("duplicate item MUID is not allowed - %s", muid))
+        assert(not self.itemDatasByMUIDFull[itemMUID], string.format("duplicate item MUID is not allowed - %s on item: %s", itemMUID, propName))
         assert(Item.SLOT_CONSTRAINTS[propItemType], string.format("unrecognized item type - %s from %s add your item type to the ItemTypes folder in ItemRegistry", propItemType, propName))
         assert(Item.RARITIES[propRarity], string.format("unrecognized item rarity - %s check ItemSystems_ItemThemes to make sure this rarity exist.", propRarity))
 
@@ -324,9 +323,9 @@ function Database:_RollItemStats(item)
     item:RollStats()
 end
 
-function Database:_GetRollFunction(StatKey)
+function Database:_GetRollFunction(itemName)
     local _RollStats = function()
-        local statRollInfos = self.itemStatRollInfos[StatKey]
+        local statRollInfos = self.itemStatRollInfos[itemName]
         if statRollInfos == nil then return end -- If the item does not have stats.
         local stats = {}
         for _,rollInfo in ipairs(statRollInfos.base) do

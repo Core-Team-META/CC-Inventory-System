@@ -1,9 +1,12 @@
 ﻿--[[
 ---------------------------------------------------------------------------------------------------------------------------------------
     ItemSystems - README
-    0.9.0 - 10/23/2020
+    v0.9.4
     Creation by: structfoo (Kevin) (Manticore) (https://www.coregames.com/user/b9a4f899f12946f1b467f671f0fc0410)
     Adaptation and Modification by: Coderz (Drake) (META) (https://www.coregames.com/user/d5daea732ee3422fbe85aecb900e73ec)
+    Testing and Bug fixing by: blaking707 (Blake) (META) ( TODO: Insert profile here. )
+    UI Design by: KonzZwodrei (META) (https://www.coregames.com/user/fdb45035857a4e87b17344cd891c48c5)
+    Stash search progress circle by: waffle (Manticore) ( TODO: Insert profile here. )
  
     Description:
     ItemSystems is a framework for inventory and item management such that you'd find in MMO games.
@@ -15,339 +18,226 @@
         2) Loot Spawner
         3) Geometry Equipper
         4) Player Stats Sheet
-        5) Roll for loot
         6) Consumable Items
         7) Customizable Item Themes
-        8) Example Items and Weapons
+        8) Lootable Stashes
+        9) Backpacks
+        10) Roll for loot Mechanic
  
     Please refer to the "Framework usage" section of this readme for information on how to get the most out of this framework.
----------------------------------------------------------------------------------------------------------------------------------------
- 
- 
---------------------------------------
-Setup
---------------------------------------
- 
-    1) Drag and drop "ItemSystems" from My Templates into the Hierarchy.
-    2) For NPC combat, import standardcombo's "NPC AI Kit" from community content.
-    3) Search for "Combat Dependencies" and drop it into the Hierarchy.
- 
+--------------------------------------------------------------------------------------------------------------------------------------- 
  
 --------------------------------------
 Framework usage
 --------------------------------------
  
     ------ Creating Weapons ------
-        This tutorial will guide you through creating a starter weapon. 
-        We will create a level 1 type of weapon that players would hypothetically begin with.
-        This method can be generalized and applies to creating other items besides weapons.
- 
-        1) Start by taking one of the example items from My Templates.
-        Search for "ITEM_Dagger_HighLevel".
- 
-        2) Drag and drop the item into the scene.
- 
-        3) Right-click the root of the item in the hierarchy and select, "Create new template from this".
- 
-        4) Give your item the name "ITEM_Dagger_Starter".
- 
-        5) Right-click the root of item in the hierarchy and select "Deinstance This Object" so we can modify the custom properties.
- 
-        6) Reselect the root of the item in the hierarchy and navigate to the custom tab in properties.
+        This tutorial will show you how to create weapons.
+
+        1) Inside the Gameplay systems folder open the ItemSystems folder and then open the ItemRegistry folder.
+
+        2) Open the RegisteredItems folder and find a weapon in one of the weapons folders.
+
+        3) Duplicate a weapon group.
+
+        4) Change the name of the duplicated group to something similar to the weapon you duplicated.
         
-        TIP: At this point you should see numerous custom properties. Each of them have additional help and information in their
-        tooltips that can be useful to examine. These properties determine how the item should register into the item database. 
+        5) Inside the ItemTypes folder in ItemRegistery, duplicate one of the groups and rename it to the type of your item.
+
+        6) Change EquipSlotType property on the group to "Loadout" and for the EquipSFX change that to a SFX asset.
+
+        Customization of the item is trivial as all the information of a weapon is derived from the group.
         
-        7) Set the level requirement property to have a value of 1.
-        
-        8) Set the StatKey to "StarterDagger".
-        
-        9) Set Rarity to "Common".
-        
-        10) Adjust other custom properties of the weapon to make it feel like a low level dagger.
-        
-        11) Adjust the colors of your item's geometry if there is any. The geometry is inside the
-        client context folder inside the geo group. Make it look like a starter dagger.
-        
-        Now that your new item is customized we need to register it with the item database.
-        The item database requires that your item is an asset reference of a catalog object.
-        
-        12) Right-click the root of the object in the hierarchy and click "Update Template From This".
-        
-        13) In the Project Content view search for "Catalog" and locate "ItemSystems_DATA_Dagger_Catalog".
-        
-        14) Drag and drop the catalog into the scene.
-        
-        15) Right-click the catalog in the hierarchy and select "Deinstance this object".
-        
-        16) With the catalog still selected, locate your new dagger template in Project Content.
-        
-        17) Drag your dagger template into the Properties view, to add a custom property that is an Asset Reference to your dagger.
- 
-        18) Right-click the catalog in the Hierarchy and select "Update Template from this".
- 
-        You can now delete the catalog and dagger from the hierarchy.
-        Your item is registered with the item database, but it is not imbued with stats.
- 
-        19) Search for "ItemSystems_DATA_Dagger_Stats" and open the script
- 
-        20) Copy and paste the following meta-data into the designated section of the script:
- 
-            {
-                StatKey = 'StarterDagger', -- Base stat key that the dagger looks for when rolling stats
-                Group = 'Base',
-                Stat = 'Attack',
-                Min = '3',
-                Max = '3',
-                Likelihood = '100', 
-                ['Author Notes (will be ignored by script)'] = 'example: the starter dagger we will give to new players.',
-            },
- 
-        Your dagger will always have 3 attack damage when created. For Information regarding the properties of the keys
-        refer to "Framework Component Details" -> "Item Stats" section of this readme.
- 
-        To test your item in game we need to add the item name to a loot table.
- 
-        21) Reselect your item in the hierarchy. 
- 
-        22) Copy the value of the name property of your dagger and open the "ItemSystems_DATA_Drops" script from project content.
- 
-        23) Paste your name key 
- 
-        The ItemName key is looked up in the item database anytime the item is spawned. It should have the value of your item's name.
-        likelihood is the weighted amount that your item will drop. The heavier the weight the more likely
-        it'll drop. Set your item's likelihood key in the script to 500 so your item is more likely to drop compared to the other items.
- 
-        22) Go in-game and press the down arrow key on your keyboard until your item has spawned.
- 
-        23) Once you see your item has spawned on the ground press "L" or approach it and press "F" to open your loot window.
- 
-        24) Click the loot from the loot window to add it into your inventory.
- 
-        25) Press "I" to open your inventory. You can click your item or drag it to the slot to equip it!
- 
-        To create custom stats and catalogs for your weapons please refer to "Creating Catalogs and Stats".
+        5) Change all custom properties except for the Item property.
+
+        6) For the Item property click and search for a weapon that you will want the player to equip when in the loadout.
+
+        Once you've assigned your item the registration is complete. The item will load into the item database
+        and you can assign this item to a loot table for spawning.
+
     ------------------------------
  
- 
-    ------ Creating Item Catalogs and Stats ------
-    Catalogs are templates that store Asset References to your items that can register with the Item Database.
-    Stats scripts store information regarding how an item will be rolled when an item is created with a paired
-    stat key. Your item will be stored in a catalog and will reference a stat key in the stats script when it rolls
-    for stats.
- 
-        This tutorial will guide you through creating catalogs templates and stats for your items.
- 
-        1) Create an empty group in the hierarchy and name it "ItemSystems_DATA_Ring_Catalog".
+    -- CHANGE ME
+    ------ Creating Consumable Items ------
+        This tutorial will show you how to create consumable items
+
+        1) Inside the Gameplay systems folder open the ItemSystems folder and then open the ItemRegistry folder.
+
+        2) Open the RegisteredItems folder and find a consumable item in the consumables folders.
+
+        3) Duplicate a consumable group.
         
-        If you followed the item creation tutorial then this should be straight forward.
-        
-        3) In project contents search for "ITEM_Trinket_Example".
- 
-        4) Drag and drop the item into the scene and create a new template from that object.
- 
-        5) Name the template "ITEM_Ring_DamageRing".
-        
-        5) For ItemType set "Ring".
-        
-        6) For StatKey set "Common_DamageRing".
- 
-        7) Right-click the item in the hierarchy and update the template.
- 
-        8) In the Hierarchy, select the ring catalog. Locate your item template in Project Content and add it as a custom property
-        of the catalog.
-        
-        9) Update the catalog template.
-        
-        10) Create a new script and name it "ItemSystems_DATA_Ring_Stats".
- 
-        11) Open the script and copy/paste the following:
- 
-        return {
-            -- Base Stats --
-            {
-                StatKey = 'Common_DamageRing',
-                Group = 'Base',
-                Stat = 'Attack',
-                Min = '5',
-                Max = '10',
-                Likelihood = '100',
-                ['Author Notes (will be ignored by script)'] = 'The base stat will either be this or Magic which is below.',
-            },
-            {
-                StatKey = 'Common_DamageRing',
-                Group = 'Base',
-                Stat = 'Magic',
-                Min = '3',
-                Max = '5',
-                Likelihood = '100',
-                ['Author Notes (will be ignored by script)'] = 'Your ring has a 50% chance of being either Attack or Magic',
-            },
-            -- Bonus Stats --
-            {
-                StatKey = 'Common_DamageRing',
-                Group = 'Bonus1',
-                Stat = 'Attack',
-                Min = '1',
-                Max = '4',
-                Likelihood = '100',
-                ['Author Notes (will be ignored by script)'] = 'An added bonus stat that is always going to be on the item when rolled.',
-            },
-        }
- 
-        When your ring item rolls its stats it will look for all the stat keys that apply to the item.
-        In the example meta-data above you can see the StatKey matches the StatKey value we have on our ring.
-        When the item is rolled it will have a 50% chance of having an attack stat or a magic stat 
-        as those are the base stats for the item.
-        The Bonus1 stat is an added bonus when the item is rolled. It will always have this bonus.
-        You can continue to add as many bonus stats to this item as you want. For example:
-        
-        {
-            StatKey = 'Common_DamageRing',
-            Group = 'Bonus2',
-            Stat = 'Haste',
-            Min = '10',
-            Max = '20',
-            Likelihood = '100',
-            ['Author Notes (will be ignored by script)'] = 'Another bonus stat!',
-        },
- 
-        Now the ring will have 1 base stat and 2 different bonus stats, for a total of 3 stats on the item.
-        You can continue to add more bonuses to the item by copying and pasting what's above and incrementing
-        the integer at the end of Bonus.
-        The likelihood determines the odds of rolling for that stat. The larger the number is the better the odds for that stat.
- 
-        Now that the catalog and stats script are complete we need to tell the item database to register our catalog template and stats script.
- 
-        12) Search for "ItemSystems_Database" in project content and locate custom properties.
-        13) Click the "Add Custom Property" button.
-        14) For the property name put "Ring_Catalog" as an Asset Reference.
-        15) Do this again for the Stats. Name the property "Ring_Stats".
-        16) Assign Ring_Catalog, ItemSystems_DATA_Ring_Catalog (Object).
-        17) Assign Ring_Stats, ItemSystems_DATA_Ring_Stats (Script).
- 
-        The Item will register now and can be added to a loot table for spawning, but you won't
-        be able to equip the item as the ring item type is not recognized.
- 
-        18) Search for "ItemSystems_Item" script and open it. Go to Item.TYPES and uncomment the ring entry.
- 
-        19) Scroll down to Item.SLOT_CONTRAINTS and uncomment the ring entry. 
-        This will make it so you can equip rings in the accessory slot.
-        
-        At this point you're done, but we need to test the Item to make sure it works. 
-        So we need to add the item to a loot table.
- 
-        20) Search for "ItemSystems_DATA_Drops" script and open it. Add your item to the "BasicMobTrash" table.
-        21) Spawn your item by pressing the down arrow on your keyboard in-game, loot it, and equip it.
- 
-        The next part is optional, but I recommend continuing if you want to better understand some parts of this system.
-        The item is added to the system, but it does not have a custom interact SFX associated with that item type.
- 
-        1) Search for "SFX_GenericPickup" and create a new template of it.
-        2) Name it, "SFX_EquipRing" and change the sound to your liking.
-        3) Update from this template after you're done.
-        4) Search for, "ItemSystems_ItemThemes" script in project content and open it.
-        5) Uncomment the ring entry in ITEM_SFX.
-        6) Add a custom property to "ItemSystems_ItemThemes" that is an asset reference with the name "SFX_EquipRing"
-        7) Assign the custom property with SFX_EquipRing template.
- 
-        You're all done now any ring you make will have that sound effect and the ring you created during this tutorial will always roll
-        for stats when you create it. 
-    -----------------------------------------
- 
- 
-    ------ Consumable Items ------
-        Creating consumable items is similar to creating regular items except that you
-        are creating a script for the consumable item and that script must be on a custom property
-        on the object.
- 
-        1) Search for "ITEM_Consumable_ExamplePotion"
- 
-        2) Create a new template from that Item.
- 
-        3) Name it "ITEM_Consumable_XPPotion".
- 
-        4) Change Name, Icon, MaxStackableSize, Description, and Rarity property for this tutorial.
- 
-        5) Create a new script and call it "ITEM_ConsumptionEffect_XPPotion"
- 
-        6) Search for "ITEM_ConsumptionEffect_Example" and open the script.
- 
-        7) Copy the entire script and paste it into your newly created script.
- 
-        8) In project contents add a custom property to your new script that is a type of Asset Reference.
-        
-        9) Name the custom property "RuntimeContextDetection".
- 
-        Runtime context detection detects the content of the script at runtime. Unfortunately
-        using cores native way of checking the context is not good enough in this situation.
- 
-        10) Assign the custom property the RuntimeContextDetection script.
-        
-        11) Assign the ConsumptionEffect property in your Item with your newly created script, "ITEM_ConsumptionEffect_XPPotion".
-        
-        12) Replace player:Die() with:
- 
-            local statsSheet = player.serverUserData.statSheet
-            statsSheet:AddExperience(100)
-        
-        If you want to buff your character here is another example:
-        
-            local statsSheet = player.serverUserData.statSheet
-            statsSheet:NewStatModifierAdd("Attack",100,false) -- Gives 100 damage to your player
- 
-        13) Search for, "Catalog" in project content and drag and drop, "ItemSystems_DATA_Consumable_Catalog" into the scene.
-        
-        14) Deinstance the catalog and add a custom property that is a type of Asset Reference and assign the
-        "ITEM_Consumable_XPPotion" template
-        
-        15) Copy the name of your item and create a new loot drop in the BasicMobTrash table.
-        
-        16) Spawn your item, collect it, and use it by clicking on it in the Inventory.
+        4) Change all custom properties except for the Item and ConsumptionEffect property.
+
+        5) Search for "ITEM_Consumable_Fruit" in project content.
+
+        6) Drag and drop the asset into the world and adjust the model to your liking.
+
+        7) Right-click your asset in the hierarchy and click, "Create new template from this" and name it something related to your item.
+
+        8) Go back to your newly created consumable in registered items and assign your new asset to the Item property.
+
+        Now anytime your consumable is spawned into the world it'll have that asset.
+
+        9) Create a new script and name it, "ITEM_ConsumptionEffect_xxx" xxx being your item name. (This is for organizational reasons.)
+
+        9) Search for, "ITEM_ConsumptionEffect_Bandages" script in project content and open it.
+
+        10) Copy and paste the entire script into the new script you created.
+
+        11) Assign your script to the ConsumptionEffect property of your consumable item.
+
+        Anytime you use the item you created you'll be executing code in both server and client context.
+
+    ---------------------------------------
+
+    ------ TODO: Creating or Removing Equipment Slots ------
+    --------------------------------------------------------
+
+    ------ Creating Stashes ------
+        In this tutorial, you'll create stashes that players can loot in the world.
+
+        1) Inside the ItemSystems folder search for the "Searchable Loots" folder
+
+        2) Duplicate one of the existing groups.
+
+        3) Move your duplicated object somewhere where you can access it in-game.
+
+        4) Change the LootTable property to match an existing table in the LootTable folder inside ItemRegistry.
+
+        5) Change the ItemCountMin, ItemCountMax, and SecondsToSearch property to something different.
+
+        Optionally you can change the SFX
+        Now your stash is ready to be looted by players.
     ------------------------------
- 
-    -------- Loot Drops --------
-        Loot drops are collectable items that can be spawned into the world. They are an effective way of rewarding.
-        Loot drops utilize core's events for spawning loot as they provide an easy to way communicate with
-        the loot spawner script. 
- 
-        1) Make a trigger box in the scene and create a script that is a parent of the trigger box.
-        2) Enable interactable on the trigger.
-        3) Make a custom property on the script that is a CoreObjectReference and assign it the trigger box.
-        4) Get the trigger property and add this line of code to the script.
- 
-            yourTriggerPropHere.interactedEvent:Connect(function(_,player)
-                Events.Broadcast("DropLootForPlayers", "BasicMobTrash", player, player:GetWorldPosition() - Vector3.Up * 100)
-            end)
- 
-        When you use the trigger a random loot will be dropped from the "BasicMobTrash" loot table at the player position.
- 
-        There are numerous Events that can help you customize your players' looting experience.
-        For more events open, "ItemSystems_LootSpawner".
-        --------------------------------
-        Drops for all players a random loot from a loot table at a position in the world.
-        Events.Broadcast("DropLoot", dropKey : String, worldPosition: Vector3)
- 
-        Drops for a specific player or a table of players a random loot from a loot table at a position in the world.
-        If a table of players is provided it will randomly pick a player to receive that loot.
-        Events.Broadcast("DropLootForPlayers", dropKey : String, players : Table or player, worldPosition : Vector3)
- 
-        Drops a specific loot for a specific player or players at a position in the world.
-        If a table of players is provided it will randomly pick a player to receive that loot.
-        Events.Broadcast("DropLootSpecificForPlayers", itemName : String, players : Table or player, worldPosition : Vector3)
- 
-        When provided an item hash the item database will create the Item and drop it for a specific player or table of players 
-        at a position in the world.
-        If a table of players is provided it will randomly pick a player to receive that loot.
-        Events.Broadcast("DropLootSpecificHashForPlayers", itemPersistentHash : String,
-                             players : Table or player, worldPosition : Vector3)
- 
-        When provided with a loot drop key and a table of players it will create a roll event for all the players to gamble for the Item.
-        Events.Broadcast("RollForLootDrop", dropKey : String, players : Table)
-    ----------------------------
- 
+
+    ------ Creating Loot Tables ------
+        In this tutorial, you'll create loot tables where your items can roll from.
+
+        1) Inside the Gameplay systems folder open the ItemRegistry folder and then open LootTables folder.
+
+        2) Duplicate one of the existing loot tables.
+
+        3) Change the duplicates folder name to something else.
+
+        4) Delete everything in the loot table folder except for 3 of any of the items.
+
+        5) Set the likelihood of all the items to 100
+
+        You should have 3 items with likelihoods of 100. 100/3 = 33.33%.
+        Tables are weighted so having 3 items with a likelihood of 100 means that each item
+        has a 33.33% chance to drop from that table.
+
+        6) Pick the first item in the loot table and go to the custom properties
+
+        7) Assign the Item property with an item from RegisteredItems
+
+        8) Increase the Likelihood to 500 (So when you test your item you have a better chance of getting it.)
+
+        9) Change the name of the item in the loot table to something recognizable.
+
+        These next steps are not required, but this is a good way to test your loot table.
+
+        1) Search for, "DeveloperCheats" in the hierarchy.
+
+        2) Assign CheatDropKey property with your loot table name.
+
+        3) Play your game and press the down arrow on your keyboard to spawn the loot below your feet until you get your items.
+
+    ----------------------------------
+
+    -------- Equippable Armor --------
+        In this tutorial you'll create equippable armor for your players.
+
+        1) Inside the ItemRegistry folder open RegisteredItems and then find an armor item
+
+        2) Duplicate the armor you've found in registered items.
+
+        3) Customize the properties of your duplicate item. (Except for the item and ItemType property)
+
+        4) Search for an armor item in project content to insert into the scene. (Example: ITEM_Helm_ExampleHelm2)
+
+        5) Change the geometry of the armor to your liking.
+
+        6) Right-click the root of your object in the hierarchy and select, "Create New Template From This"
+
+        7) Assign your new template to the Item property of your item in registered items.
+
+    ----------------------------------
+
+    -------- Stats For Weapons or Armor  --------
+        In this tutorial you'll add stats to weapons or armor of your choice.
+        One thing to be aware of is that there is no use for these stats in this system as those
+        are suppose to be implemented by you. Refer to Player Stats section of this readme if you
+        want to learn more about accessing and using the stats.
+
+        1) Inside the ItemRegistry folder open RegisteredItems and then find an armor or weapon item.
+
+        2) Look for the Stats folder of the item. (The stats folder is a child of the item.)
+
+        3) Inside the stats folder copy and paste a Base stat
+
+        There is 2 types of stats to be aware of. Base and Bonus stats.
+        Base stats are stats that will always be on the item regardless as they are not rolled.
+        Bonus stats are unique as there can only be 1 bonus stat per a bonus increment.
+
+        Example folder structure below.
+
+        Example Sword
+            Stats
+                Base
+                    Attack
+                Bonus1
+                    Magic
+                Bonus1
+                    Haste
+
+        When the Example Sword is rolled it will have the base stat and 1 bonus stat.
+        So the sword is guarenteed to get an attack base stat and it will either have a Magic or Haste bonus, but not both.
+
+        4) Duplicate the base stat
+
+        5) Inside the base stat folder change the name of the stat to "Magic"
+
+        Now when your item is rolled it will have 2 base stats and 1 bonus stat.
+
+        These stats alone are not useful when not implemented which is why their implementation relies on you.
+        Refer to Player Stats section of this readme if you want to learn more about accessing and using the stats.
+
+    ----------------------------------------
+
+    -------- Accessing Player Stats --------
+        In this tutorial you'll access player stats for your own custom implementions.
+        If you know what you're doing then refer to PlayerStats_StatSheet script for all methods.
+
+        1) Create a script and make sure it's in a client context in the hierarchy.
+
+        Inside your new script make sure you have the following code below.
+        --------------------------------------------------------------------
+        local statSheet = game.GetLocalPlayer().clientUserData.statSheet
+
+        -- This will return total stat value for Attack
+        local totalAttack = statSheet:GetStatTotalValue("Attack")
+        print(totalAttack)
+        --------------------------------------------------------------------
+        
+        The script above will get the stat sheet from your player and you'll get the total attack value
+        for your attack stat. Refer to PlayerStats_StatSheet script for all the methods for player stats.
+
+        Avaliable stats:
+            "Health",
+            "Attack",
+            "Defense",
+            "Magic",
+            "CritChance",
+            "CDR",
+            "Haste",
+            "Tenacity"
+
+    ------------------------------
+
     ------ Roll For Loot ------
-        You may want players to roll for an item after they defeated a really tough enemy.
+        You may want players to roll for an item after they defeated a really tough enemy or just for rewarding players to a gamble.
         This is a great way for players to gamble together on a nice piece of loot or pass it along for others.
         Players can decide to roll for the loot or pass on it. They can also inspect the loot to see if the Item is any good.
         In this tutorial you'll learn how to create a simple roll for loot event.
@@ -363,29 +253,38 @@ Framework usage
         We're going to give everyone the chance to roll on the Item regardless of who did damage to the enemy.
         This is just to give you an idea on how to create a roll for loot event.
     ----------------------------
- 
- 
-    -------- Player Stats Sheet --------
-        Player stats sheet holds all the information about the players stats.
-        Health, defense, crit-chance, and the player's level are stored on the player stats sheet
-        and are used by "PlayerStats_Combat" to calculate damage.
-        Modifying or getting information about a player stats is really easy to do as the player has the
-        the stat sheet stored in both serverUserData and clientUserData.
-        Check out the public methods of the players stats sheet in, "PlayerStats_StatSheet" script.
+
+    -------- Loot Drops --------
+        Loot drops are collectible items that can be spawned into the world. They are an effective way of rewarding the player.
+        Loot drops utilize Core's events for spawning loot as they provide an easy to way communicate with
+        the loot spawner script. 
+
+        This example is to give you an idea of how to leverage loot drops for your game. You don't have to use triggers, but
+        we will for this example.
  
         1) Make a trigger box in the scene and create a script that is a parent of the trigger box.
-        2) Make a custom property on the script that is a CoreObjectReference and assign it the trigger box.
-        3) Get the trigger property and add this line of code.
+        2) Enable interactable on the trigger.
+        3) Make a custom property on the script that is a CoreObjectReference and assign it to the trigger box.
+        4) Get the trigger property and add this line of code to the script.
  
-            yourTriggerPropHere.interactedEvent:Connect(function(_,player)
-                local statsSheet = player.serverUserData.statSheet
-                statsSheet:AddExperience(10)
-            end)
+        yourTriggerPropHere.interactedEvent:Connect(function(_,player)
+            Events.Broadcast("OnDropLoot", "BasicMobTrash", player:GetWorldPosition() - Vector3.Up * 100)
+        end)
  
-        4) When you use the trigger you'll add XP to the player.
-    ------------------------------------
+        When you use the trigger a random loot will be dropped from the "BasicMobTrash" loot table at the player position.
  
- 
+        Numerous Events can help you customize your players' looting experience.
+        For more events open, the "ItemSystems_LootSpawner" script.
+
+        Event used in example below.
+        ------------------------------------------------------------------------------------------------
+        Drops for all players a random loot from a loot table at a position in the world.
+        Events.Broadcast("DropLoot", dropKey : String, worldPosition: Vector3)
+
+    ----------------------------
+
+------------------------------------------------------------------------------------------------------------------
+
     --------------------------------------
     Item Custom Properties
     --------------------------------------
@@ -396,21 +295,80 @@ Framework usage
         
                 * Name : String
                 * Icon : AssetReference (Icon)
-                * ItemType : String
+                * ItemType : String ( Must be a valid ItemType )
                 * Rarity : String
+                * Item : Asset Reference (Weapon or Object)
                 @ LevelRequirement: Integer
                 @ StatKey : String (Should be required on equipables)
                 @ ConsumptionEffect : AssetReference (Script) (Only for consumables)
                 @ MaxStackableSize : Integer
                 @ Description : String
                 @ EquipmentStance : String
-                @ DropRotation : Vector3
-                @ Socket_x : CoreObjectReference
+                @ DropRotation : Vector3 (Initial rotation when the item is on the ground)
+                @ BackpackSlotCount : Int ( This will declare the item to be a backpack. )
+    --------------------------------------
+        Item Asset Properties
+        These are properties that should or can be on your asset you assigned to on the Item custom property.
+            * is required
+            @ is optional
+
+                @ SOCKET_x : CoreObjectReference
                     x is the socket we're going to attach the geometry to when
                     the player equips this item. If you want your boots to go on both feet then
-                    make sure to have the name of your custom property, "Socket_both_feet".
+                    make sure to have the name of your custom property, "SOCKET_both_feet".
                     Then assign the root object for the property.
                     Reference all the sockets here: https://docs.coregames.com/api/animations/
+                    
+                    Example: SOCKET_head
+        
+        Custom Sockets:
+                SOCKET_both_feet - Attaches your single model to both feet of the player.
+                -- TODO: SOCKET_both_shoulders
+                -- TODO: SOCKET_both_hands
+                -- TODO: SOCKET_both_knees
+    --------------------------------------
+
+    --------------------------------------
+    Loot Table Properties
+    --------------------------------------
+        Here is a list of custom properties that need or can be added to a loot table.
+            * is required
+            @ is optional
+
+                * Item : CoreObjectReference
+                * Likelihood : Integer
+                @ MinimumStackWhenDropped : Integer ( Minimum possible stack size when dropping this item ) 
+                                                ( Only for items with the MaxStackableSize property )
+                @ MaximumStackWhenDropped : Integer ( Maximum possible stack size when dropping this item ) 
+                                                ( Only for items with the MaxStackableSize property )
+
+    --------------------------------------
+
+    --------------------------------------
+    Stash Properties
+    --------------------------------------
+        Here is a list of custom properties that need or can be added to a stash object
+            * is required
+            @ is optional
+            $ is required together
+
+                * ID : MUID or Integer
+                @ IsStash : Boolean ( When true the stash will save the player's items )
+                
+                @ (Optional, but paired.)
+                    $ LootTable : String ( Assign an existing loot table name )
+                    $ MinuntestoResetLoot : Integer
+
+                @ ItemCountMin : Integer 
+                                    ( The minimum amount of items that can generate into the stash )
+                @ ItemCountMax : Integer
+                                    ( The maximum amount of items that can generate into the stash )
+                @ SecondsToSearch : Integer
+                                    ( The amount of time (in seconds) it takes to search the stash )
+                @ SFX_OpenSound : AssetReference
+                @ SFX_SearchingSound : AssetReference
+                @ SFX_ClosedSound : AssetReference
+
     --------------------------------------
  
  
@@ -419,76 +377,91 @@ Framework Components Details
 --------------------------------------
  
     ----- Item Database -----
-    Item databases contain factory methods for creating items and loot. They also load the asset derived information
-    from catalogs, load stats information for all item types, and load the loot drop tables.
+    ItemSystems_Database
+
+    Item database is a database that contains all your registered items and loot tables.
+    Item database contains factory methods for creating items that are stored in the database.
+    Anytime you want to create items or check for items with the inventory, you must require ItemSystems_Database
+    and call the factory methods.
     -------------------------
  
-    ----- Item Catalog -----
-    Catalogs are objects that store Asset References to your items that are registered with the Item Database.
-    Anytime you create an item you must always add it to a catalog so it can be registered with the item database.
-    If you want, you could store all your items in a single catalog, but that will bloat the custom properties
-    window and make it hard to track what items you're registering.
-    ------------------------
- 
-    ----- Item Drops (ItemSystems_DATA_Drops) -----
-    "ItemSystems_DATA_Drops" script contains tables that hold loot information about an item's name that can drop and the likelihood.
-    You must always insert your item into a loot table if you want the item to spawn as loot into the world using the Loot spawner events.
-    -----------------------------------------------
- 
-    ----- Item Stats -----
-    Stats scripts return entries of rollable stats. An item is usually paired with a stat key to imbue the item with stats.
-    An item can have multiple rollable stats.
- 
-        StatKey = 'EpicBoots', -- The stat key an item will reference and roll from.
-        Group = 'Base', -- There must be a Base stat for items that reference a statKey. 
-        You can add additional stats to an item by changing this from Base to Bonus1, Bonus2, or Bonus3... etc.
-       
-        Stat = 'Attack', 
-        -- The type of stat this Item will have. Reference ItemSystems_Item script 
-        and the Item.TYPES variable to see what kind of stats an Item can have.
-        Min = '3', -- Min range of the stat
-        Max = '5', -- Max range of the stat
-        Likelihood = '100', -- The weight of this stat. 
- 
-        {
-            StatKey = 'EpicBoots',
-            Group = 'Bonus1',
-            Stat = 'Defense',
-            Min = '3',
-            Max = '5',
-            Likelihood = '100',
-        }
- 
-    ----------------------
- 
     ----- Item Themes -----
+    ItemSystems_ItemThemes
+
     ItemSystems_ItemThemes contains helper functions to retrieve theme information of different item types.
     You can get the color of a rarity or the sound of an item when interacted with inside the inventory.
     You can customize the custom properties to change how items are displayed.
     You can also change the dropped loot indicators for item rarities.
-    Available Rarities: Common, Uncommon, Rare, Epic, or Legendary.
+    Current available rarities: Common, Uncommon, Rare, Epic, or Legendary.
     -----------------------
  
     ----- Inventory -----
-    ItemSystems_Inventory contains the logical representation of an inventory. 
-    It stores your items and has several public methods that allow you to leverage it for your own implementations.
-    You can access the inventory on either a client or server script by getting the player and accessing the corresponding data
-    for example: 
+    ItemSystems_Inventory
+
+    ItemSystems_Inventory script contains the logical representation of an inventory, inventories contain your items.
+    The inventory has several public methods that allow you to modify or get information about the inventory.
+    You can access the client or server inventory by getting the player and accessing their userdata.
+
+    For example: 
+
         for client "local inventory = Game.GetLocalPlayer().clientUserData.inventory"
         for server "local inventory = player.serverUserData.inventory"
  
-    you can then call various public methods to get or set information for example:
-         "local slotIndex = inventory:GetFreeBackpackSlot()"
+    You can then call various public methods to get or set information for example:
+
+         "local slotIndex = inventory:GetFreeBackpackSlot()" 
+         This will return an interger of a free slot in the player's inventory.
+
+    You can add an item to the inventory as well. ( Server context example )
+
+        local ItemDatabase = require(script:GetCustomProperty("ItemSystems_Database")) -- Requires the database script
+        local metalItem = ItemDatabase:GetItemFromName("Metal") -- Creates a single rock item
+
+        local inventory = player.serverUserData.inventory
+        inventory:AddItem(metalItem) -- Adds 1 Metal to the inventory
+
+        Refer to ItemSystems_Inventory script for all methods.
+
+    If you want to access information about an item.
+
+        local ItemDatabase = require(script:GetCustomProperty("ItemSystems_Database")) -- Requires the database script
+        local metalItem = ItemDatabase:GetItemFromName("Metal") -- Creates a single rock item
+
+        metalItem:GetName() -- Gets the name of the item
+
+        metalItem:GetStackSize() -- Gets the stack size of the item
+
+        Refer to ItemSystems_Item script for all methods.
     
     There is a property on the ItemSystems_Inventory script that enables item dropping in-game. This is enabled by default. 
     If you don't want items dropping from players in-game then you can disable the boolean on the script in project content.
     ---------------------
  
     ----- Loot Spawner -----
+    ItemSystems_LootSpawner
+
     ItemSystems_LootSpawner contains various events that can be used to customize the looting experience for your players.
-    Refer to the script for more information.
+    Refer to ItemSystems_LootSpawner script for more information.
     ------------------------
- 
+
+    ----- Stashes -----
+    ItemSystems_Stash
+
+    Stashes are like storage lootable containers you'd find in any classic RPG style game.
+    Stashes are useful for rewarding players with loot. It's a highly effective gameplay element.
+    Check out the "Searchable Loot" folder inside ItemRegistry for examples.
+    
+    ItemSystems_Stash is the logical object of a stash. This is to not be used in the hierarchy as it's constructed
+    by a ItemSystems_StashInstance script.
+    --------------------
+
+    ----- Stash Instance -----
+    ItemSystems_StashInstance
+
+    ItemSystems_StashInstance constructs stashes when attached to a object. The script will
+    look for custom properties on the parent construct itself. Refer to Stash Properties above to
+    determine what properties you need for your stash.
+    --------------------------
  
 --------------------------------------
 Discord
@@ -501,6 +474,5 @@ Discord
         discord.gg/core-creators
     We are a friendly group of creators and players in the Core community. Everyone is welcome to play games together or
     learn about game dev!
- 
  
 --]]

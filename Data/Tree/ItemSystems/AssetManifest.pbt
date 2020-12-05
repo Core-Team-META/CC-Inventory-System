@@ -8,6 +8,24 @@
   }
 }
 Assets {
+  Id: 17705737538679288724
+  Name: "Frame Beveled 002"
+  PlatformAssetType: 9
+  PrimaryAsset {
+    AssetType: "PlatformBrushAssetRef"
+    AssetId: "FrameSolid8px__019"
+  }
+}
+Assets {
+  Id: 16967025786036962869
+  Name: "BG Highlighted 001"
+  PlatformAssetType: 9
+  PrimaryAsset {
+    AssetType: "PlatformBrushAssetRef"
+    AssetId: "BackgroundHighlighted_020"
+  }
+}
+Assets {
   Id: 16634052309904547918
   Name: "Helm"
   PlatformAssetType: 9
@@ -113,6 +131,15 @@ Assets {
   PrimaryAsset {
     AssetType: "PlatformBrushAssetRef"
     AssetId: "Icon_Close"
+  }
+}
+Assets {
+  Id: 8883914688138253207
+  Name: "Cube - Arcade 01"
+  PlatformAssetType: 1
+  PrimaryAsset {
+    AssetType: "StaticMeshAssetRef"
+    AssetId: "sm_arcade_cube_001"
   }
 }
 Assets {
@@ -239,5 +266,32 @@ Assets {
   PrimaryAsset {
     AssetType: "PlatformBrushAssetRef"
     AssetId: "Icon_Health"
+  }
+}
+Assets {
+  Id: 717023214322694559
+  Name: "Fantasy Crate 002"
+  PlatformAssetType: 9
+  PrimaryAsset {
+    AssetType: "PlatformBrushAssetRef"
+    AssetId: "UI_Fantasy_Equip_Crate_002"
+  }
+}
+Assets {
+  Id: 242686649107475491
+  Name: "Fantasy Craft Bar 003"
+  PlatformAssetType: 9
+  PrimaryAsset {
+    AssetType: "PlatformBrushAssetRef"
+    AssetId: "UI_Fantasy_Crafting_Bar_003"
+  }
+}
+Assets {
+  Id: 48307754774318265
+  Name: "UI Gradient Rectangular 001"
+  PlatformAssetType: 9
+  PrimaryAsset {
+    AssetType: "PlatformBrushAssetRef"
+    AssetId: "UI_Basic_Shape_002"
   }
 }

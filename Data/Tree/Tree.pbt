@@ -20,11 +20,8 @@ Objects {
   ChildIds: 10005074784157121906
   ChildIds: 16420670164568016775
   ChildIds: 17565214277585214929
-  ChildIds: 4141054479326510490
   ChildIds: 13563874273447012072
-  ChildIds: 5012740452443113133
   ChildIds: 17933308923335840406
-  ChildIds: 4649353316498909807
   UnregisteredParameters {
   }
   Collidable_v2 {
@@ -34,34 +31,6 @@ Objects {
     Value: "mc:evisibilitysetting:forceon"
   }
   Folder {
-  }
-}
-Objects {
-  Id: 4649353316498909807
-  Name: "Items"
-  Transform {
-    Location {
-      X: -22.6154156
-      Y: 18.1475067
-    }
-    Rotation {
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  Folder {
-    IsGroup: true
   }
 }
 Objects {
@@ -83,15 +52,6 @@ Objects {
   ParentId: 4781671109827199097
   ChildIds: 14581501006455127914
   ChildIds: 17647805156784155981
-  ChildIds: 5188626430616281487
-  ChildIds: 824342858470011399
-  ChildIds: 13578153751759716262
-  ChildIds: 10170914700949068836
-  ChildIds: 15801377084994020063
-  ChildIds: 17481497204636877117
-  ChildIds: 8720339022854164571
-  ChildIds: 11948336768491710111
-  ChildIds: 15912692059922915004
   WantsNetworking: true
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
@@ -101,569 +61,6 @@ Objects {
   }
   Folder {
     IsGroup: true
-  }
-}
-Objects {
-  Id: 15912692059922915004
-  Name: "RPG Skeleton - Full Armed Test"
-  Transform {
-    Location {
-      X: -1923.10938
-      Y: 172.474426
-      Z: 2.28881836e-05
-    }
-    Rotation {
-      Yaw: -173.329666
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 17933308923335840406
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 9913815135764235794
-      value {
-        Overrides {
-          Name: "Name"
-          String: "RPG Skeleton - Full Armed Test"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -2780.49146
-            Y: -118.46524
-            Z: 2.28881836e-05
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-            Yaw: -173.329666
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 15999979663030433163
-    }
-  }
-}
-Objects {
-  Id: 11948336768491710111
-  Name: "RPG Skeleton - Full Armed Test"
-  Transform {
-    Location {
-      X: -1923.10938
-      Y: 380.369446
-      Z: 2.28881836e-05
-    }
-    Rotation {
-      Yaw: -173.329712
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 17933308923335840406
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 9913815135764235794
-      value {
-        Overrides {
-          Name: "Name"
-          String: "RPG Skeleton - Full Armed Test"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -2780.49146
-            Y: 107.85508
-            Z: 2.28881836e-05
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-            Yaw: -173.329681
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 15999979663030433163
-    }
-  }
-}
-Objects {
-  Id: 8720339022854164571
-  Name: "RPG Skeleton - Full Armed Test"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 17933308923335840406
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 9913815135764235794
-      value {
-        Overrides {
-          Name: "Name"
-          String: "RPG Skeleton - Full Armed Test"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -2780.49146
-            Y: 315.750092
-            Z: 2.28881836e-05
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-            Yaw: -173.329727
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 15999979663030433163
-    }
-  }
-}
-Objects {
-  Id: 17481497204636877117
-  Name: "RPG Skeleton - Full Armed Test"
-  Transform {
-    Location {
-      X: 1128.93213
-      Y: 222.89505
-      Z: 2.28881836e-05
-    }
-    Rotation {
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 17933308923335840406
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 9913815135764235794
-      value {
-        Overrides {
-          Name: "Name"
-          String: "RPG Skeleton - Full Armed Test"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: 271.550049
-            Y: 315.750092
-            Z: 2.28881836e-05
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        Overrides {
-          Name: "cs:LootId"
-          String: "BasicMobTrash"
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 15999979663030433163
-    }
-  }
-}
-Objects {
-  Id: 15801377084994020063
-  Name: "RPG Skeleton - Full Armed Test"
-  Transform {
-    Location {
-      X: 1128.93213
-      Y: 25.6526794
-      Z: 2.28881836e-05
-    }
-    Rotation {
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 17933308923335840406
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 9913815135764235794
-      value {
-        Overrides {
-          Name: "Name"
-          String: "RPG Skeleton - Full Armed Test"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: 271.550049
-            Y: 158.275696
-            Z: 2.28881836e-05
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        Overrides {
-          Name: "cs:LootId"
-          String: "BasicMobTrash"
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 15999979663030433163
-    }
-  }
-}
-Objects {
-  Id: 10170914700949068836
-  Name: "RPG Skeleton - Full Armed Test"
-  Transform {
-    Location {
-      X: 1128.93213
-      Y: -190.160553
-      Z: 2.28881836e-05
-    }
-    Rotation {
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 17933308923335840406
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 9913815135764235794
-      value {
-        Overrides {
-          Name: "Name"
-          String: "RPG Skeleton - Full Armed Test"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: 271.550049
-            Y: -38.9666672
-            Z: 2.28881836e-05
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        Overrides {
-          Name: "cs:LootId"
-          String: "BasicMobTrash"
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 15999979663030433163
-    }
-  }
-}
-Objects {
-  Id: 13578153751759716262
-  Name: "RPG Skeleton - Full Armed Test"
-  Transform {
-    Location {
-      X: 868.065125
-      Y: -190.160553
-      Z: 2.28881836e-05
-    }
-    Rotation {
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 17933308923335840406
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 9913815135764235794
-      value {
-        Overrides {
-          Name: "Name"
-          String: "RPG Skeleton - Full Armed Test"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: 271.550049
-            Y: -254.779907
-            Z: 2.28881836e-05
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        Overrides {
-          Name: "cs:LootId"
-          String: "BasicMobTrash"
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 15999979663030433163
-    }
-  }
-}
-Objects {
-  Id: 824342858470011399
-  Name: "RPG Skeleton - Full Armed Test"
-  Transform {
-    Location {
-      X: 868.065125
-      Y: 389.500275
-      Z: 2.28881836e-05
-    }
-    Rotation {
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 17933308923335840406
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 9913815135764235794
-      value {
-        Overrides {
-          Name: "Name"
-          String: "RPG Skeleton - Full Armed Test"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: 10.6830444
-            Y: -254.779907
-            Z: 2.28881836e-05
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        Overrides {
-          Name: "cs:LootId"
-          String: "BasicMobTrash"
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 15999979663030433163
-    }
-  }
-}
-Objects {
-  Id: 5188626430616281487
-  Name: "RPG Skeleton - Full Armed Test"
-  Transform {
-    Location {
-      X: 868.065125
-      Y: 204.358063
-      Z: 2.28881836e-05
-    }
-    Rotation {
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 17933308923335840406
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 9913815135764235794
-      value {
-        Overrides {
-          Name: "Name"
-          String: "RPG Skeleton - Full Armed Test"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: 10.6830444
-            Y: 324.88092
-            Z: 2.28881836e-05
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        Overrides {
-          Name: "cs:LootId"
-          String: "BasicMobTrash"
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 15999979663030433163
-    }
   }
 }
 Objects {
@@ -722,7 +119,7 @@ Objects {
         }
         Overrides {
           Name: "cs:LootId"
-          String: "BasicMobTrash"
+          String: "Currency"
         }
       }
     }
@@ -780,124 +177,12 @@ Objects {
         }
         Overrides {
           Name: "cs:LootId"
-          String: "BasicMobTrash"
+          String: "Equipments"
         }
       }
     }
     TemplateAsset {
       Id: 15999979663030433163
-    }
-  }
-}
-Objects {
-  Id: 5012740452443113133
-  Name: "RollForLootExample"
-  Transform {
-    Location {
-      X: 178.203644
-      Y: 593.473083
-      Z: -201.373734
-    }
-    Rotation {
-    }
-    Scale {
-      X: 2.07154322
-      Y: 2.07154322
-      Z: 2.07154322
-    }
-  }
-  ParentId: 4781671109827199097
-  ChildIds: 7083834742207966819
-  ChildIds: 9874496349888010355
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:forceon"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  CoreMesh {
-    MeshAsset {
-      Id: 8883914688138253207
-    }
-    Teams {
-      IsTeamCollisionEnabled: true
-      IsEnemyCollisionEnabled: true
-    }
-    EnableCameraCollision: true
-    StaticMesh {
-      Physics {
-      }
-    }
-  }
-}
-Objects {
-  Id: 9874496349888010355
-  Name: "RollForLootExample"
-  Transform {
-    Location {
-    }
-    Rotation {
-    }
-    Scale {
-      X: 0.482731909
-      Y: 0.482731909
-      Z: 0.482731909
-    }
-  }
-  ParentId: 5012740452443113133
-  UnregisteredParameters {
-    Overrides {
-      Name: "cs:ActivateTrigger"
-      ObjectReference {
-        SelfId: 7083834742207966819
-      }
-    }
-  }
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  Script {
-    ScriptAsset {
-      Id: 10753996859646856227
-    }
-  }
-}
-Objects {
-  Id: 7083834742207966819
-  Name: "Trigger"
-  Transform {
-    Location {
-      X: -3.60730433
-      Y: 3.83507276
-      Z: 133.575546
-    }
-    Rotation {
-    }
-    Scale {
-      X: 1.50792122
-      Y: 1.50792122
-      Z: 1.50792122
-    }
-  }
-  ParentId: 5012740452443113133
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:forceon"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  Trigger {
-    Interactable: true
-    InteractionLabel: "Create Roll For Loot"
-    TeamSettings {
-      IsTeamCollisionEnabled: true
-      IsEnemyCollisionEnabled: true
-    }
-    TriggerShape_v2 {
-      Value: "mc:etriggershape:box"
     }
   }
 }
@@ -927,33 +212,6 @@ Objects {
   Folder {
     IsFilePartition: true
     FilePartitionName: "ItemSystems"
-  }
-}
-Objects {
-  Id: 4141054479326510490
-  Name: "ItemSystems_README"
-  Transform {
-    Location {
-    }
-    Rotation {
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  Script {
-    ScriptAsset {
-      Id: 8874021884682456042
-    }
   }
 }
 Objects {
@@ -1021,6 +279,7 @@ Objects {
   ChildIds: 14982843161775482339
   ChildIds: 9477342016099356239
   ChildIds: 16376903361466163397
+  ChildIds: 2012268944739716556
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
@@ -1032,13 +291,52 @@ Objects {
   }
 }
 Objects {
+  Id: 2012268944739716556
+  Name: "Bench Full"
+  Transform {
+    Location {
+      X: -432.439148
+      Y: 45.8446045
+      Z: 49.9999084
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 16420670164568016775
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  CoreMesh {
+    MeshAsset {
+      Id: 3166309416474212553
+    }
+    Teams {
+      IsTeamCollisionEnabled: true
+      IsEnemyCollisionEnabled: true
+    }
+    EnableCameraCollision: true
+    StaticMesh {
+      Physics {
+      }
+    }
+  }
+}
+Objects {
   Id: 16376903361466163397
   Name: "Bench Full"
   Transform {
     Location {
-      X: -110.764328
-      Y: 12.3380127
-      Z: 49.9999695
+      X: 49.9656525
+      Y: 45.8446045
+      Z: 49.9999084
     }
     Rotation {
     }
@@ -1265,8 +563,9 @@ Objects {
   Name: "Grass Tall"
   Transform {
     Location {
-      X: -785.079163
-      Y: 273.343506
+      X: -798.134888
+      Y: 162.542053
+      Z: -6.10351563e-05
     }
     Rotation {
     }
@@ -1303,8 +602,9 @@ Objects {
   Name: "Grass Tall"
   Transform {
     Location {
-      X: 62.1042023
-      Y: 208.348389
+      X: 70.629837
+      Y: 270.110657
+      Z: -3.05175781e-05
     }
     Rotation {
     }

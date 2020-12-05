@@ -8,7 +8,7 @@ local Database = require(script:GetCustomProperty("ItemSystems_Database"))
 
 print([[
 ------------------------------------------------------------------------------------
-!!! DEVELOPER CHEATS ENABLED !!! ( Preview Only )
+!!! ITEM SYSTEMS DEVELOPER CHEATS ENABLED !!! ( Preview Only )
 ------------------------------------------------------------------------------------
 
 DROP LOOT
@@ -38,8 +38,7 @@ Load the quick save of your inventory.
 
 CLEAR INVENTORY QUICK SAVE 
 [F3]
-Load the quick save of your inventory.
-
+Clear the quick save information from your player.
 
 PRINT INVENTORY
 [F8]
