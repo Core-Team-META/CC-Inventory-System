@@ -104,6 +104,8 @@ function Inventory:SetItemToSlot(item,quantity,slot,_hasRepeated) -- Item item, 
     end
     if item:IsBackpack() then
         item:ClearStats()
+        item:NewBackpackInventory(Inventory,self.database,self.owner,item:RuntimeHash())
+        self:_AddItemToBackpack(item)
     end
     self:_SetSlotItem(slot, item)
     if not _hasRepeated then -- Prevents an infinite context loop.

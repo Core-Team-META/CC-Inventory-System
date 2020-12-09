@@ -73,7 +73,9 @@ end
 
 ---------------------------------------------------------------------------------------------------------
 local function ServerUpdateStatSheet(inventory, modifiers)
+    while not OWNER.serverUserData.statSheet do Task.Wait() end
     local statSheet = OWNER.serverUserData.statSheet
+
     -- First time through, make sure all modifiers are present.
     local isFromItem = true
     modifiers.Health        = modifiers.Health          or statSheet:NewStatModifierAdd("Health",       0, isFromItem)
@@ -109,11 +111,6 @@ local function ServerSaveInventory(inventory)
     Storage.SetPlayerData(OWNER, playerData)
 end
 
--- If the client is observed to have unsual requests then resync them.
-local function ResyncClient()
-
-end
-
 ---------------------------------------------------------------------------------------------------------
 -- Initalizes the server-side inventory replication events.
 local function ServerInitInventory()
@@ -138,6 +135,7 @@ local function ServerInitInventory()
             OWNER.animationStance = equipItem and equipItem:GetAnimationStance() or "unarmed_stance"
         end
     end)
+    
     -- Whenever an item is added to the players server inventory, replicate it to the client
     inventory.itemAdded:Connect(function(itemHash,quantity)
         ReliableEvents.BroadcastToPlayer(OWNER,"IAI",itemHash,quantity)
@@ -210,17 +208,6 @@ local function ServerInitInventory()
             ServerSaveInventory(inventory)
         end
     end)
-    -- -- Whenever a client equips an item in the loadout, equip the item.
-    -- Events.ConnectForPlayer("IFE", function(player, equipSlot)
-    --     if player == OWNER then
-    --         local item = inventory:GetItem(equipSlot)
-    --         if item then
-    --             COMPONENT:SetNetworkedCustomProperty("E1", item:RuntimeHash())
-    --         else
-    --             COMPONENT:SetNetworkedCustomProperty("E1", "")
-    --         end
-    --     end
-    -- end)
     -- Whenever a client rearranges their local inventory, update the server inventory and persist.
     Events.ConnectForPlayer("IIM", function(player, fromSlotIndex, toSlotIndex)
         if player == OWNER then

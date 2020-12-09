@@ -44,12 +44,7 @@ if script.isServerOnly then
     local _, lootHash = LOOT:GetCustomProperty("LOOTINFO"):match("^(.*)@(.*)$")
     local item = Database:CreateItemFromHash(lootHash)
 
-    -- TODO: REMOVE THIS FOR BACKPACK
-    --if item and item:IsBackpack() then
-    --    Task.Wait(60*8) -- 8 Minutes
-    --else
-        Task.Wait(LOOTDESTROY_TIME)
-    --end
+    Task.Wait(LOOTDESTROY_TIME)
 
     -- If it's not claimed for some time we unregister it.
     -- Unregister the loot for everyone

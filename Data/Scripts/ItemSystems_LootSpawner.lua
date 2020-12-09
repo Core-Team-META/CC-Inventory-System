@@ -9,7 +9,6 @@ local Database = require(script:GetCustomProperty("ItemSystems_Database"))
 local LOOT_TEMPLATE = script:GetCustomProperty("LootTemplate")
 local LOOT_FOLDER = script:GetCustomProperty("LootFolder"):GetObject()
 
-
 -- Creates a loot object and populates the the network properties to describe the loot object.
 local function CreateLootObject(rolledItem, dropWorldPosition)
     local object = World.SpawnAsset(LOOT_TEMPLATE, { position = dropWorldPosition, parent = LOOT_FOLDER })

@@ -13,19 +13,28 @@
       Overrides {
         Name: "cs:RegisteredItems"
         ObjectReference {
-          SelfId: 7856194731303563242
+          SelfId: 15060452164430216944
+          SubObjectId: 5589567729291242789
+          InstanceId: 127248497649081167
+          TemplateId: 18068993268844025594
         }
       }
       Overrides {
         Name: "cs:LootTable"
         ObjectReference {
-          SelfId: 15561915128000536070
+          SelfId: 14759530591251833285
+          SubObjectId: 5784655539549483536
+          InstanceId: 127248497649081167
+          TemplateId: 18068993268844025594
         }
       }
       Overrides {
         Name: "cs:SalvageTable"
         ObjectReference {
-          SelfId: 9831645784876922823
+          SelfId: 6057853360809261972
+          SubObjectId: 14448263138265868353
+          InstanceId: 127248497649081167
+          TemplateId: 18068993268844025594
         }
       }
     }

@@ -67,13 +67,19 @@
       Overrides {
         Name: "cs:ItemThemeFolder"
         ObjectReference {
-          SelfId: 15086660078459822280
+          SelfId: 10657802142314911114
+          SubObjectId: 1115562142739187295
+          InstanceId: 127248497649081167
+          TemplateId: 18068993268844025594
         }
       }
       Overrides {
         Name: "cs:ItemTypesFolder"
         ObjectReference {
-          SelfId: 2648351777898137767
+          SelfId: 4192892805406606644
+          SubObjectId: 12007580143985448673
+          InstanceId: 127248497649081167
+          TemplateId: 18068993268844025594
         }
       }
     }

@@ -25,7 +25,10 @@
       Overrides {
         Name: "cs:PlayerStashStates"
         ObjectReference {
-          SelfId: 1750497371752810374
+          SelfId: 14908726187320816792
+          SubObjectId: 5941712686715119437
+          InstanceId: 127248497649081167
+          TemplateId: 18068993268844025594
         }
       }
     }

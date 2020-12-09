@@ -28,6 +28,7 @@ function CombatStats:CalculateAttackDamageBetweenPlayers(attacker, receiver) -- 
     return Damage.New(totalDamage)
 end
 
+-- Returns the attack damage for the player which can include a crit bonus.
 function CombatStats:GetAttackDamage(player)
     local attackerStatSheet = player.serverUserData.statSheet
     -- Roll damage 

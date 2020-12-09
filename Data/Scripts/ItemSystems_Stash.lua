@@ -189,6 +189,8 @@ function Stash:_Init(WORLD_OBJECT,owner,slotCount)
     self.onStashUseEvent = Events.ConnectForPlayer("OnStashUse",function(player,stashID)
         if tostring(stashID) == self.id then
 
+            -- TODO: Allow multiple players to interact with a stash that is marked as saveable
+
             -- Is the current player using it again and it's locked? If so then just unlock it.
             if player == self.usingPlayer then
                 self.inUse = false

@@ -80,7 +80,6 @@ function Tick()
                             end
                         end
                     end
-
                 end
             end
         end

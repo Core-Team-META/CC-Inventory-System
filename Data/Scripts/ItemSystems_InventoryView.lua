@@ -6,6 +6,7 @@
 
 local ItemThemes = require(script:GetCustomProperty("ItemSystems_ItemThemes"))
 local ItemDatabase = require(script:GetCustomProperty("ItemSystems_Database"))
+print("DONE VIEW INVENTORY")
 local INVENTORY_VIEW = script:GetCustomProperty("InventoryView"):WaitForObject()
 local CONTAINER_VIEW = script:GetCustomProperty("ContainerView"):WaitForObject()
 local PLAYER_NAME = script:GetCustomProperty("PlayerName"):WaitForObject()
@@ -31,6 +32,7 @@ local SFX_SALVAGE = script:GetCustomProperty("SFX_Salvage")
 local SLOT_HIGHLIGHT_COLOR = script:GetCustomProperty("SlotHighlightColor")
 local LOADOUT_COOLDOWN_TIME = script:GetCustomProperty("LoadoutCooldownInSeconds")
 local LOCAL_PLAYER = Game.GetLocalPlayer()
+print("DONE VIEW INVENTORY")
 
 -- Hardcoded UI placement settings.
 local SLOT_ANCHOR = "TopCenter"

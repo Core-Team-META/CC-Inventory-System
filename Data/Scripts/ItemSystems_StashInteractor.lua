@@ -104,8 +104,7 @@ local function OpenStash(_,keybind)
             Reset()
             return
         end
-
-        print("Broadcasting ID:",id)
+        
         ReliableEvents.BroadcastToServer("OnStashUse",id)
 
         -- Ensure we don't spam broadcasts.
@@ -158,7 +157,7 @@ function Tick()
             end
             if id and stashObject and type(id) == "userdata" and id:IsA("CoreObjectReference") then
                 id = id:GetObject().id -- MUID support
-            else
+            elseif not id then
                 SearchIndicatorUI.visibility = Visibility.FORCE_OFF
             end
         end

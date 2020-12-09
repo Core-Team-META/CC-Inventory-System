@@ -104,7 +104,9 @@ local function ProcessRollRequest(player,id,request) -- player, int, bool
 end
 
 -- Create a rolled loot entry that specified clients will receive to roll upon.
-local function CreateRollForLootEntry(dropKey, players) -- string, table of players
+-- @param dropKey : string
+-- @param players : table of players
+local function CreateRollForLootEntry(dropKey, players)
     --assert(#players > 1, "You need more than 1 player to create rollable loot.")
     local rolledItem = Database:CreateLootItemFromDropKey(dropKey)
     local rollEntry = World.SpawnAsset(ROLLENTRY_TEMPLATE,{ parent = script })

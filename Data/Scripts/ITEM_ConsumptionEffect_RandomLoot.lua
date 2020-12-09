@@ -16,6 +16,6 @@ return function(player)
     end
     if RuntimeContextDetection.IsServerSide() then
         -- Execute server side code here!
-        Events.Broadcast("OnDropLoot","BasicMobTrash", player:GetWorldPosition() - Vector3.UP * 100 )
+        Events.Broadcast("OnDropLoot","Equipments", player:GetWorldPosition() - Vector3.UP * 100 )
     end
 end

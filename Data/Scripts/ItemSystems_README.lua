@@ -1,12 +1,16 @@
 ﻿--[[
 ---------------------------------------------------------------------------------------------------------------------------------------
     ItemSystems - README
-    v0.9.4
+    v0.9.8
     Creation by: structfoo (Kevin) (Manticore) (https://www.coregames.com/user/b9a4f899f12946f1b467f671f0fc0410)
     Adaptation and Modification by: Coderz (Drake) (META) (https://www.coregames.com/user/d5daea732ee3422fbe85aecb900e73ec)
-    Testing and Bug fixing by: blaking707 (Blake) (META) ( TODO: Insert profile here. )
-    UI Design by: KonzZwodrei (META) (https://www.coregames.com/user/fdb45035857a4e87b17344cd891c48c5)
-    Stash search progress circle by: waffle (Manticore) ( TODO: Insert profile here. )
+
+    Contributions:
+    Testing and Bug fixing by: blaking707 (Blake) (META) (https://www.coregames.com/user/0ea6612ceab7456a8a3a963a94808295)
+    Stash search progress circle by: waffle (Manticore) (https://www.coregames.com/user/581ff579fd864966aec56450754db1fb)
+    Loot Factory adapter by: standardcombo (Manticore) (https://www.coregames.com/user/b4c6e32137e54571814b5e8f27aa2fcd)
+
+
  
     Description:
     ItemSystems is a framework for inventory and item management such that you'd find in MMO games.
@@ -23,6 +27,12 @@
         8) Lootable Stashes
         9) Backpacks
         10) Roll for loot Mechanic
+        11) Developer Cheats
+        12) Proximity Looting
+
+    What this framework will get in future updates:
+        1) Item Upgrading
+        2) Customizable slots ( Easy add and removing of slots )
  
     Please refer to the "Framework usage" section of this readme for information on how to get the most out of this framework.
 --------------------------------------------------------------------------------------------------------------------------------------- 
@@ -44,32 +54,29 @@ Framework usage
         
         5) Inside the ItemTypes folder in ItemRegistery, duplicate one of the groups and rename it to the type of your item.
 
-        6) Change EquipSlotType property on the group to "Loadout" and for the EquipSFX change that to a SFX asset.
+        6) Change EquipSlotType property on the group to "MainHand" and for the EquipSFX change that to a SFX asset.
 
         Customization of the item is trivial as all the information of a weapon is derived from the group.
         
         5) Change all custom properties except for the Item property.
 
-        6) For the Item property click and search for a weapon that you will want the player to equip when in the loadout.
+        6) For the Item property click and search for a weapon that you will want the player to equip when in the MainHand.
 
         Once you've assigned your item the registration is complete. The item will load into the item database
         and you can assign this item to a loot table for spawning.
 
     ------------------------------
  
-    -- CHANGE ME
     ------ Creating Consumable Items ------
         This tutorial will show you how to create consumable items
 
-        1) Inside the Gameplay systems folder open the ItemSystems folder and then open the ItemRegistry folder.
+        1) Inside the ItemSystems folder open the ItemRegistry and find a consumable item
 
-        2) Open the RegisteredItems folder and find a consumable item in the consumables folders.
-
-        3) Duplicate a consumable group.
+        3) Duplicate one of the consumables
         
         4) Change all custom properties except for the Item and ConsumptionEffect property.
 
-        5) Search for "ITEM_Consumable_Fruit" in project content.
+        5) Search for "ITEM_Consumable_DeadlyPotion" in project content.
 
         6) Drag and drop the asset into the world and adjust the model to your liking.
 
@@ -81,7 +88,7 @@ Framework usage
 
         9) Create a new script and name it, "ITEM_ConsumptionEffect_xxx" xxx being your item name. (This is for organizational reasons.)
 
-        9) Search for, "ITEM_ConsumptionEffect_Bandages" script in project content and open it.
+        9) Search for, "ITEM_ConsumptionEffect_Deadly" script in project content and open it.
 
         10) Copy and paste the entire script into the new script you created.
 
@@ -93,6 +100,9 @@ Framework usage
 
     ------ TODO: Creating or Removing Equipment Slots ------
     --------------------------------------------------------
+
+    ------ TODO: Making Items Upgradable ------
+    -------------------------------------------
 
     ------ Creating Stashes ------
         In this tutorial, you'll create stashes that players can loot in the world.
@@ -167,9 +177,11 @@ Framework usage
 
     -------- Stats For Weapons or Armor  --------
         In this tutorial you'll add stats to weapons or armor of your choice.
-        One thing to be aware of is that there is no use for these stats in this system as those
+        One thing to be aware of is that there is no use for these stats in this system (Except for attack, defense, and critical chance) as those
         are suppose to be implemented by you. Refer to Player Stats section of this readme if you
-        want to learn more about accessing and using the stats.
+        want to learn more about accessing and using the stats. If you don't want your items to have
+        stats then just remove the stats folder from the item and the item will not have any stats.
+        For the attack, defense, and critical chance stat you can check out their uses in the PlayerStats_Combat script.
 
         1) Inside the ItemRegistry folder open RegisteredItems and then find an armor or weapon item.
 
@@ -192,17 +204,18 @@ Framework usage
                 Bonus1
                     Haste
 
-        When the Example Sword is rolled it will have the base stat and 1 bonus stat.
+        When the Example Sword is rolled it will have the base stat and bonus stat.
         So the sword is guarenteed to get an attack base stat and it will either have a Magic or Haste bonus, but not both.
 
         4) Duplicate the base stat
 
         5) Inside the base stat folder change the name of the stat to "Magic"
 
-        Now when your item is rolled it will have 2 base stats and 1 bonus stat.
+        Now when your item is rolled it will have 2 base stats and bonus stat.
 
         These stats alone are not useful when not implemented which is why their implementation relies on you.
-        Refer to Player Stats section of this readme if you want to learn more about accessing and using the stats.
+        Refer to Player Stats section of this readme if you want to learn more about accessing stats.
+        For an example of usage of these stats refer to PlayerStats_Combat script.
 
     ----------------------------------------
 
@@ -245,7 +258,7 @@ Framework usage
         1) Search for "RPG Skeleton".
         2) Drag and drop the Skeleton into the scene.
         3) Right-click the skeleton in the Hierarchy and click "Create new template from this" and give it a name.
-        4) In the custom properties of the skeleton change LootId's value to "BasicMobTrash".
+        4) In the custom properties of the skeleton change LootId's value to "Equipments".
         5) Search for "ItemSystems_LootFactoryAdapter" and open it.
         6) Uncomment the first broadcast.
         7) Kill the skeleton to call the roll for loot event.
@@ -257,7 +270,8 @@ Framework usage
     -------- Loot Drops --------
         Loot drops are collectible items that can be spawned into the world. They are an effective way of rewarding the player.
         Loot drops utilize Core's events for spawning loot as they provide an easy to way communicate with
-        the loot spawner script. 
+        the loot spawner script. There is an adapter with Standardcombo's loot factory so changing the "LootId" custom property
+        on the NPCs to an existing loot table will allow NPCs to drop loot from ItemSystems.
 
         This example is to give you an idea of how to leverage loot drops for your game. You don't have to use triggers, but
         we will for this example.
@@ -268,17 +282,17 @@ Framework usage
         4) Get the trigger property and add this line of code to the script.
  
         yourTriggerPropHere.interactedEvent:Connect(function(_,player)
-            Events.Broadcast("OnDropLoot", "BasicMobTrash", player:GetWorldPosition() - Vector3.Up * 100)
+            Events.Broadcast("OnDropLoot", "Equipments", player:GetWorldPosition() - Vector3.Up * 100)
         end)
  
-        When you use the trigger a random loot will be dropped from the "BasicMobTrash" loot table at the player position.
+        When you use the trigger a random loot will be dropped from the "Equipments" loot table at the player position.
  
         Numerous Events can help you customize your players' looting experience.
         For more events open, the "ItemSystems_LootSpawner" script.
 
         Event used in example below.
         ------------------------------------------------------------------------------------------------
-        Drops for all players a random loot from a loot table at a position in the world.
+        Drops a random loot from a loot table at a position in the world.
         Events.Broadcast("DropLoot", dropKey : String, worldPosition: Vector3)
 
     ----------------------------
@@ -308,7 +322,7 @@ Framework usage
                 @ BackpackSlotCount : Int ( This will declare the item to be a backpack. )
     --------------------------------------
         Item Asset Properties
-        These are properties that should or can be on your asset you assigned to on the Item custom property.
+        These are properties that need or can be on your asset you assigned to on the Item custom property.
             * is required
             @ is optional
 
@@ -427,9 +441,9 @@ Framework Components Details
         local ItemDatabase = require(script:GetCustomProperty("ItemSystems_Database")) -- Requires the database script
         local metalItem = ItemDatabase:GetItemFromName("Metal") -- Creates a single rock item
 
-        metalItem:GetName() -- Gets the name of the item
+        local itemName = metalItem:GetName() -- Gets the name of the item
 
-        metalItem:GetStackSize() -- Gets the stack size of the item
+        local itemStackSize = metalItem:GetStackSize() -- Gets the stack size of the item
 
         Refer to ItemSystems_Item script for all methods.
     
@@ -469,6 +483,7 @@ Discord
  
     If you find any bugs or problems with the Item System please direct your questions to
     my discord: Coderz#0441
+
  
     If you have any questions, feel free to join the Core Hub Discord server:
         discord.gg/core-creators

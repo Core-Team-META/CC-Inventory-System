@@ -98,6 +98,7 @@ local function ClientSetupReplicatedStatSheet()
     -- Poll for networked stat changes.
     local statModifiers = {}
     if not Object.IsValid(OWNER) then return end
+    if not Object.IsValid(OWNER.clientUserData.statSheet) then return end
     local statSheetUpdateTask = Task.Spawn(function() ClientUpdateStatSheet(OWNER.clientUserData.statSheet, statModifiers) end)
     statSheetUpdateTask.repeatCount = -1
 end
