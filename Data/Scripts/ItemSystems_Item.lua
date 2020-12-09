@@ -5,7 +5,7 @@
     Logical representation of an item.
 ]]
 local Base64 = require(script:GetCustomProperty("Base64"))
-local ITEM_TYPES_FOLDER = script:GetCustomProperty("ItemTypesFolder"):WaitForObject()
+local ITEM_TYPES_FOLDER = World.FindObjectByName("ItemTypes")
 
 local Item = {}
 Item.__index = Item

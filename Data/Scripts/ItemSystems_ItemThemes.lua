@@ -7,8 +7,12 @@
 ]]
 
 local Item = script:GetCustomProperty("Item")
-local ITEM_THEME_FOLDER = script:GetCustomProperty("ItemThemeFolder"):WaitForObject()
-local ITEM_TYPES_FOLDER = script:GetCustomProperty("ItemTypesFolder"):WaitForObject()
+
+local ITEM_THEME_FOLDER = World.FindObjectByName("ItemRarities")
+local ITEM_TYPES_FOLDER = World.FindObjectByName("ItemTypes")
+
+--local ITEM_THEME_FOLDER = script:GetCustomProperty("ItemThemeFolder"):WaitForObject()
+--local ITEM_TYPES_FOLDER = script:GetCustomProperty("ItemTypesFolder"):WaitForObject()
 
 local RARITY_COLORS = {}
 local RARITY_INDEX = {}

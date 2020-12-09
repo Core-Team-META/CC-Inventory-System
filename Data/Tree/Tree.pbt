@@ -19,11 +19,11 @@ Objects {
   ChildIds: 14713340454944924967
   ChildIds: 10005074784157121906
   ChildIds: 16420670164568016775
-  ChildIds: 17565214277585214929
-  ChildIds: 127248497649081167
-  ChildIds: 3658693519467443733
-  ChildIds: 5257580148771062255
   ChildIds: 17933308923335840406
+  ChildIds: 17565214277585214929
+  ChildIds: 9402882580256333366
+  ChildIds: 17026461017436657609
+  ChildIds: 11349200905422624097
   UnregisteredParameters {
   }
   Collidable_v2 {
@@ -33,6 +33,155 @@ Objects {
     Value: "mc:evisibilitysetting:forceon"
   }
   Folder {
+  }
+}
+Objects {
+  Id: 11349200905422624097
+  Name: "Roll For Loot Example"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 10384426923796527461
+      value {
+        Overrides {
+          Name: "Name"
+          String: "Roll For Loot Example"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: -527.265808
+            Y: 515.513306
+            Z: -193.216217
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 4473878781024637940
+    }
+  }
+}
+Objects {
+  Id: 17026461017436657609
+  Name: "Searchable Loots Examples"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 9895004479173236156
+      value {
+        Overrides {
+          Name: "Name"
+          String: "Searchable Loots Examples"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+            X: 232.29628
+            Y: -74.4239197
+            Z: 2.28881836e-05
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 10056356897892403281
+    }
+  }
+}
+Objects {
+  Id: 9402882580256333366
+  Name: "ItemSystems"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 207660695082833891
+      value {
+        Overrides {
+          Name: "Visible"
+          Enum {
+            Value: "mc:evisibilitysetting:forceoff"
+          }
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 12612894699804541601
+      value {
+        Overrides {
+          Name: "Name"
+          String: "ItemSystems"
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 18068993268844025594
+    }
+  }
+}
+Objects {
+  Id: 17565214277585214929
+  Name: "Combat Dependencies"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 8014650375856875642
+      value {
+        Overrides {
+          Name: "Name"
+          String: "Combat Dependencies"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+        Overrides {
+          Name: "Scale"
+          Vector {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 1337239855421309995
+    }
   }
 }
 Objects {
@@ -185,160 +334,6 @@ Objects {
     }
     TemplateAsset {
       Id: 15999979663030433163
-    }
-  }
-}
-Objects {
-  Id: 5257580148771062255
-  Name: "Searchable Loots Examples"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 9895004479173236156
-      value {
-        Overrides {
-          Name: "Name"
-          String: "Searchable Loots Examples"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: 159.00412
-            Y: -81.8965
-            Z: 3.05175781e-05
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 10056356897892403281
-    }
-  }
-}
-Objects {
-  Id: 3658693519467443733
-  Name: "Roll For Loot Example"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 10384426923796527461
-      value {
-        Overrides {
-          Name: "Name"
-          String: "Roll For Loot Example"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-            X: -661.081116
-            Y: 507.373352
-            Z: -201.373734
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 4473878781024637940
-    }
-  }
-}
-Objects {
-  Id: 127248497649081167
-  Name: "ItemSystems"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 12612894699804541601
-      value {
-        Overrides {
-          Name: "Name"
-          String: "ItemSystems"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 18068993268844025594
-    }
-  }
-}
-Objects {
-  Id: 17565214277585214929
-  Name: "Combat Dependencies"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 8014650375856875642
-      value {
-        Overrides {
-          Name: "Name"
-          String: "Combat Dependencies"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-        Overrides {
-          Name: "Scale"
-          Vector {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 1337239855421309995
     }
   }
 }

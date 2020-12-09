@@ -64,24 +64,6 @@
           Id: 13866541763018299709
         }
       }
-      Overrides {
-        Name: "cs:ItemThemeFolder"
-        ObjectReference {
-          SelfId: 10657802142314911114
-          SubObjectId: 1115562142739187295
-          InstanceId: 127248497649081167
-          TemplateId: 18068993268844025594
-        }
-      }
-      Overrides {
-        Name: "cs:ItemTypesFolder"
-        ObjectReference {
-          SelfId: 4192892805406606644
-          SubObjectId: 12007580143985448673
-          InstanceId: 127248497649081167
-          TemplateId: 18068993268844025594
-        }
-      }
     }
     Assets {
       Id: 1285653368607626957

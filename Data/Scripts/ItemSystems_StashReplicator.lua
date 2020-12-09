@@ -8,7 +8,7 @@
 local LootableContainer = require(script:GetCustomProperty("ItemSystems_LootableContainer"))
 local Database = require(script:GetCustomProperty("ItemSystems_Database"))
 local ReliableEvents = require(script:GetCustomProperty("ReliableEvents"))
-local PlayerStashStates = script:GetCustomProperty("PlayerStashStates"):WaitForObject()
+local PlayerStashStates = World.FindObjectByName("PlayerStashStates")
 
 local StashReplicator = {}
 local stashes = {} -- All stash instances are stored here

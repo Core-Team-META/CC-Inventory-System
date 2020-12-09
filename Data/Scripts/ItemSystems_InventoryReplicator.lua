@@ -37,6 +37,16 @@ end
 -- Wait until the database has fully loaded to proceed.
 Database:WaitUntilLoaded()
 
+-- Wait until the player stat sheet has loaded.
+while true do
+    if script.isClientOnly then
+        if OWNER.clientUserData.statSheet then break end
+    else
+        if OWNER.serverUserData.statSheet then break end
+    end
+    Task.Wait()
+end
+
 ---------------------------------------------------------------------------------------------------------
 -- Server loads the hash from storage, loads the hash into a server inventory, and sets the network property so the client retrieves it.
 local function ServerLoadInventory()
@@ -73,7 +83,6 @@ end
 
 ---------------------------------------------------------------------------------------------------------
 local function ServerUpdateStatSheet(inventory, modifiers)
-    while not OWNER.serverUserData.statSheet do Task.Wait() end
     local statSheet = OWNER.serverUserData.statSheet
 
     -- First time through, make sure all modifiers are present.
@@ -268,10 +277,6 @@ end
 local function ClientInitInventoryLocal()
     OWNER.clientUserData.inventory = Inventory.New(Database, OWNER, nil, equipSlotTypes)
     local inventory = OWNER.clientUserData.inventory
-    -- -- When the server forces the client to set an equip loadout.
-    -- Events.Connect("IFE",function(itemSlot)
-    --     inventory:SetEquipedLoadout(itemSlot)
-    -- end)
     -- When the server adds an item to the players inventory replicate that to the client.
     Events.Connect("IAI",function(itemHash, quantity)
         local item = Database:CreateItemFromHash(itemHash)
@@ -324,10 +329,6 @@ local function ClientInitInventoryLocal()
     inventory.itemRemoveAll:Connect(function() 
         ReliableEvents.BroadcastToServer("IRA")
     end)
-    -- -- Whenever an item is equipped, Broadcast to server.
-    -- inventory.itemEquippedEvent:Connect(function(equipIndex, equipItem)
-    --     ReliableEvents.BroadcastToServer("IFE", equipIndex)
-    -- end)
     -- Whenever a local rearrangement is made, broadcast to server.
     inventory.itemMovedEvent:Connect(function(fromSlotIndex, toSlotIndex)
         ReliableEvents.BroadcastToServer("IIM", fromSlotIndex, toSlotIndex)
@@ -356,15 +357,14 @@ end
 
 -- Whenever an equipment change is received from the server, update the local inventory.
 local function ClientInitInventoryReplicated()
-    OWNER.clientUserData.inventory = Inventory.New(Database)
+    OWNER.clientUserData.inventory = Inventory.New(Database,nil,nil,equipSlotTypes)
     local inventory = OWNER.clientUserData.inventory
     COMPONENT.networkedPropertyChangedEvent:Connect(function(_, prop)
-        if OWNER == Game.GetLocalPlayer() then
-            local equipIndex = tonumber(prop:match("E(%d)"))
-            if equipIndex then
-                local equipItemHash = COMPONENT:GetCustomProperty(prop)
-                inventory:UpdateEquipSlotFromHash(equipIndex, equipItemHash)
-            end
+        if prop == "LOAD" then return end
+        local equipIndex = tonumber(prop:match("E(%d)"))
+        if equipIndex then
+            local equipItemHash = COMPONENT:GetCustomProperty(prop)
+            inventory:UpdateEquipSlotFromHash(equipIndex, equipItemHash)
         end
     end)
 end

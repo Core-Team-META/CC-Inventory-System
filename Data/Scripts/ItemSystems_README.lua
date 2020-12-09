@@ -10,8 +10,6 @@
     Stash search progress circle by: waffle (Manticore) (https://www.coregames.com/user/581ff579fd864966aec56450754db1fb)
     Loot Factory adapter by: standardcombo (Manticore) (https://www.coregames.com/user/b4c6e32137e54571814b5e8f27aa2fcd)
 
-
- 
     Description:
     ItemSystems is a framework for inventory and item management such that you'd find in MMO games.
     It contains a plethora of awesome features to help jump start your RPG-style game. 
@@ -29,14 +27,45 @@
         10) Roll for loot Mechanic
         11) Developer Cheats
         12) Proximity Looting
+    
+    Here are some examples to search for in project content.
+    Examples:
+        Searchable Loot Example
+        Roll For Loot Example
 
     What this framework will get in future updates:
         1) Item Upgrading
         2) Customizable slots ( Easy add and removing of slots )
  
-    Please refer to the "Framework usage" section of this readme for information on how to get the most out of this framework.
 --------------------------------------------------------------------------------------------------------------------------------------- 
+
+--------------------------------------
+Discord
+--------------------------------------
  
+    If you find any bugs or problems with the Item System please direct your questions to
+    my discord: Coderz#0441
+
+ 
+    If you have any questions, feel free to join the Core Hub Discord server:
+        discord.gg/core-creators
+    We are a friendly group of creators and players in the Core community. Everyone is welcome to play games together or
+    learn about game dev! 
+
+--------------------------------------
+Framework Setup
+--------------------------------------
+
+    1) Search for "ItemSystems" template in project content. Drag and drop ItemSystems template into the hierarchy.
+
+    2) Right-click the template in the hierarchy and select, "Deinstance this Object"
+
+    3) Right-click the template once again and select, "Abandon template for entire instance"
+
+    You're all set! You should refer to some of the example provided to get started!
+
+
+
 --------------------------------------
 Framework usage
 --------------------------------------
@@ -476,18 +505,5 @@ Framework Components Details
     look for custom properties on the parent construct itself. Refer to Stash Properties above to
     determine what properties you need for your stash.
     --------------------------
- 
---------------------------------------
-Discord
---------------------------------------
- 
-    If you find any bugs or problems with the Item System please direct your questions to
-    my discord: Coderz#0441
-
- 
-    If you have any questions, feel free to join the Core Hub Discord server:
-        discord.gg/core-creators
-    We are a friendly group of creators and players in the Core community. Everyone is welcome to play games together or
-    learn about game dev!
  
 --]]

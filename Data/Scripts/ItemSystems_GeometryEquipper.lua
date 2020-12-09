@@ -7,6 +7,8 @@
 ]]
 
 local COMPONENT = script:GetCustomProperty("InventoryComponent"):WaitForObject()
+local DATABASE = require(script:GetCustomProperty("Database"))
+DATABASE:WaitUntilLoaded()
 
 ---------------------------------------------------------------------------------------------------------
 local OWNER = nil
@@ -89,8 +91,20 @@ end
 
 ---------------------------------------------------------------------------------------------------------
 local function UpdateEquippedGeometry()
-    for slotIndex,item in inventory:IterateEquipSlots() do
-        UpdateItemGeometry(slotIndex, item)
+    if not inventory.owner then -- It's a replicated inventory
+        for i=1,#inventory.EQUIP_SLOTS do
+            local hash = COMPONENT:GetCustomProperty(string.format("E%s",i))
+            local item = DATABASE:CreateItemFromHash(hash)
+            if item then
+                UpdateItemGeometry(i, item)
+            else
+                UpdateItemGeometry(i, nil)
+            end
+        end
+    else
+        for slotIndex,item in inventory:IterateEquipSlots() do
+            UpdateItemGeometry(slotIndex, item)
+        end
     end
 end
 

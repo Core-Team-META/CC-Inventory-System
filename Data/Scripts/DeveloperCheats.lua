@@ -3,9 +3,8 @@ if not isEnabled then return end
 if not Environment.IsPreview() then return end
 
 local CHEATDROPKEY = script:GetCustomProperty("CheatDropKey")
-print("loading")
 local Database = require(script:GetCustomProperty("ItemSystems_Database"))
-print("Done loading")
+
 print([[
 ------------------------------------------------------------------------------------
 !!! ITEM SYSTEMS DEVELOPER CHEATS ENABLED !!! ( Preview Only )

@@ -5,11 +5,15 @@
     Reads and indexes the raw data scripts. Provides factory methods for creating items.
 ]]
 
-
 local Item = require(script:GetCustomProperty("Item"))
-local LOOT_TABLE = script:GetCustomProperty("LootTable"):WaitForObject():GetChildren()
-local SALVAGE_TABLE = script:GetCustomProperty("SalvageTable"):WaitForObject():GetChildren()
-local REGISTERED_ITEMS = script:GetCustomProperty("RegisteredItems"):WaitForObject()
+
+local LOOT_TABLE = World.FindObjectByName("LootTables"):GetChildren()
+local SALVAGE_TABLE = World.FindObjectByName("Salvagables"):GetChildren()
+local REGISTERED_ITEMS = World.FindObjectByName("RegisteredItems")
+
+--local LOOT_TABLE = script:GetCustomProperty("LootTable"):WaitForObject():GetChildren()
+--local SALVAGE_TABLE = script:GetCustomProperty("SalvageTable"):WaitForObject():GetChildren()
+--local REGISTERED_ITEMS = script:GetCustomProperty("RegisteredItems"):WaitForObject()
 
 
 -- Load the database over a fixed number of frames.

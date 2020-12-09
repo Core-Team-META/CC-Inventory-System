@@ -27,15 +27,6 @@
         ObjectReference {
         }
       }
-      Overrides {
-        Name: "cs:EquippedSlots"
-        ObjectReference {
-          SelfId: 14047493068381686348
-          SubObjectId: 6800967376887290265
-          InstanceId: 127248497649081167
-          TemplateId: 18068993268844025594
-        }
-      }
     }
   }
   SerializationVersion: 68
