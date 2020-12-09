@@ -127,6 +127,33 @@ Objects {
       }
     }
     ParameterOverrideMap {
+      key: 257043235732172839
+      value {
+        Overrides {
+          Name: "cs:Description"
+          String: "DEFENSE UP!"
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 679564626669017434
+      value {
+        Overrides {
+          Name: "cs:Description"
+          String: "Just like in anime!"
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 5665270573963963257
+      value {
+        Overrides {
+          Name: "cs:Description"
+          String: "I wonder what\'s inside?"
+        }
+      }
+    }
+    ParameterOverrideMap {
       key: 12612894699804541601
       value {
         Overrides {
