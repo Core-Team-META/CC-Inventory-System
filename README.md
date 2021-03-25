@@ -1,6 +1,6 @@
 # Inventory-CC
 
-ItemSystems is a framework for inventory and item management such that you'd find in MMO games.
+Inventory-CC is a framework for inventory and item management such that you'd find in MMO games.
 It contains a plethora of awesome features to help jump start your RPG-style game. 
 It also removes the hassle of creating an inventory system from scratch.
 
